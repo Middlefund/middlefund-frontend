@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './home/header/header.component';
 import { LogoComponent } from './shared/logo/logo.component';
 import {MatIconModule} from "@angular/material/icon";
+import { HeroComponent } from './home/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {MatIconModule} from "@angular/material/icon";
     HomeComponent,
     HeaderComponent,
     LogoComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,
