@@ -9,6 +9,8 @@ import { HeaderComponent } from './home/header/header.component';
 import { LogoComponent } from './shared/logo/logo.component';
 import {MatIconModule} from "@angular/material/icon";
 import { HeroComponent } from './home/hero/hero.component';
+import { HowItWorksComponent } from './home/how-it-works/how-it-works.component';
+import { CardComponent } from './home/how-it-works/card/card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { HeroComponent } from './home/hero/hero.component';
     HeaderComponent,
     LogoComponent,
     HeroComponent,
+    HowItWorksComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
