@@ -13,6 +13,8 @@ import { HowItWorksComponent } from './home/how-it-works/how-it-works.component'
 import { CardComponent } from './home/how-it-works/card/card.component';
 import { InvestorHeroComponent } from './home/investor-hero/investor-hero.component';
 import { StartupHeroComponent } from './home/startup-hero/startup-hero.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,15 @@ import { StartupHeroComponent } from './home/startup-hero/startup-hero.component
     CardComponent,
     InvestorHeroComponent,
     StartupHeroComponent,
+    FooterComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
