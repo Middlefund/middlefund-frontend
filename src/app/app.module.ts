@@ -15,6 +15,7 @@ import { InvestorHeroComponent } from './home/investor-hero/investor-hero.compon
 import { StartupHeroComponent } from './home/startup-hero/startup-hero.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BlogComponent } from './home/blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InvestorHeroComponent,
     StartupHeroComponent,
     FooterComponent,
-    
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
