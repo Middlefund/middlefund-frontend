@@ -11,7 +11,7 @@
       <ng-content select=".right-content"></ng-content>
     </button>
   </div>
-  <ng-container *ngIf="control.invalid && control.dirty && control.touched">
+  <ng-container *ngIf="control.invalid && control.touched">
     <span *ngFor="let error of control.errors! | keyvalue" class="error">
       {{errorMessages[error.key]}}
     </span>
