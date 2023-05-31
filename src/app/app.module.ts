@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './home/header/header.component';
-import { LogoComponent } from './shared/logo/logo.component';
 import {MatIconModule} from "@angular/material/icon";
 import { HeroComponent } from './home/hero/hero.component';
 import { HowItWorksComponent } from './home/how-it-works/how-it-works.component';
@@ -16,13 +15,13 @@ import { StartupHeroComponent } from './home/startup-hero/startup-hero.component
 import { FooterComponent } from './home/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BlogComponent } from './home/blog/blog.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    LogoComponent,
     HeroComponent,
     HowItWorksComponent,
     CardComponent,
@@ -36,7 +35,8 @@ import { BlogComponent } from './home/blog/blog.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

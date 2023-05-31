@@ -199,8 +199,8 @@ form.sign-in-form {
 
 @media (max-width: 870px) {
   .account-container {
-    min-height: 800px;
-    height: 100vh;
+    min-height: 600px;
+    height: 70vh;
   }
   .signin-signup {
     width: 100%;
@@ -223,7 +223,7 @@ form.sign-in-form {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 2.5rem 8%;
+    padding: 1rem 8%;
     grid-column: 1 / 2;
   }
 

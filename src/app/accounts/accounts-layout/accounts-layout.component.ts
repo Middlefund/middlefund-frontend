@@ -10,5 +10,5 @@ export class AccountsLayoutComponent {
   @Input() info: string = ''
   @Input() src: string = ''
   @Input() button: string = ''
-  @Input() routerLink: string = ''
+  @Input() route: string = ''
 }

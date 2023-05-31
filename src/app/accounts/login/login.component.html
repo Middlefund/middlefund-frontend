@@ -1,4 +1,4 @@
-<app-accounts-layout question="New here?" button="Sign up" src="assets/login.svg" routerLink="/signup"
+<app-accounts-layout question="New here?" button="Sign up" src="assets/login.svg" route="/signup"
                      info="Join us to enjoy an incredible experience on our page!">
   <form>
     <app-input label="Email" for="email" type="email" placeholder="Enter your email">
@@ -14,5 +14,9 @@
         <mat-icon color="accent">visibility</mat-icon>
       </div>
     </app-input>
+    <div class="action flex items-baseline justify-between">
+      <app-button type="submit" [isLoading]="isLoading" name="Login" variant="primary"/>
+      <span>Forgot password?</span>
+    </div>
   </form>
 </app-accounts-layout>

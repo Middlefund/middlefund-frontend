@@ -1,0 +1,44 @@
+.primary {
+  background: linear-gradient(to right, #A49370, #444444);
+  color: white;
+  transition: 1s;
+  stroke: green;
+}
+
+.primary:hover {
+  background: black;
+}
+
+.secondary {
+  border: 1px solid white;
+}
+
+.secondary:hover {
+  background-color: white;
+}
+
+.tertiary {
+  background: black;
+}
+
+.tertiary:hover {
+  background: #A49370;
+}
+
+.optional {
+  background: #A49370;
+}
+
+.optional:hover {
+  background: black;
+}
+
+.spinner{
+  width: 20px !important;
+  height: 20px !important;
+  stroke: green !important;
+}
+
+/*::ng-deep circle {*/
+/*  stroke: black;*/
+/*}*/
