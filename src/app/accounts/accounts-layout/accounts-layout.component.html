@@ -1,0 +1,21 @@
+<div class="account-container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>{{question}}</h3>
+        <p>
+         {{info}}
+        </p>
+        <button [routerLink]="route" type="button" class="btn transparent" id="sign-up-btn">
+          {{button}}
+        </button>
+      </div>
+      <img [src]="src" width="2px" height="250" class="image" alt="" />
+    </div>
+  </div>
+</div>

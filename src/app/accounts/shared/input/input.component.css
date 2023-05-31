@@ -1,0 +1,26 @@
+.input {
+  width: 400px;
+}
+
+@media only screen and (max-width: 460px) {
+  .input {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 316px) {
+  .input {
+    width: 240px;
+  }
+}
+
+@media only screen and (max-width: 268px) {
+  .input {
+    width: 200px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: small;
+}

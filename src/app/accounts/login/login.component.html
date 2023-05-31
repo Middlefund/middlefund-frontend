@@ -1,0 +1,22 @@
+<app-accounts-layout question="New here?" button="Sign up" src="assets/login.svg" route="/signup"
+                     info="Join us to enjoy an incredible experience on our page!">
+  <form [formGroup]="login" (ngSubmit)="onSubmit()">
+    <app-input [control]="login.controls.email" label="Email" for="email" type="email" placeholder="Enter your email">
+      <div class="left-content">
+        <mat-icon color="accent">mail</mat-icon>
+      </div>
+    </app-input>
+    <app-input [control]="login.controls.password" label="Password" for="password" type="password" placeholder="Enter your password">
+      <div class="left-content">
+        <mat-icon color="accent">vpn_key</mat-icon>
+      </div>
+      <div class="right-content">
+        <mat-icon color="accent">visibility</mat-icon>
+      </div>
+    </app-input>
+    <div class="action flex items-baseline justify-between">
+      <app-button [disable]="!login.valid" type="submit" [isLoading]="isLoading" name="Login" variant="primary"/>
+      <span>Forgot password?</span>
+    </div>
+  </form>
+</app-accounts-layout>
