@@ -3,19 +3,19 @@
 }
 
 @media only screen and (max-width: 460px) {
-  .input {
+  .input, .error {
     width: 300px;
   }
 }
 
 @media only screen and (max-width: 316px) {
-  .input {
+  .input, .error {
     width: 240px;
   }
 }
 
 @media only screen and (max-width: 268px) {
-  .input {
+  .input, .error {
     width: 200px;
   }
 }
@@ -23,4 +23,5 @@
 .error {
   color: red;
   font-size: small;
+  width: 400px;
 }

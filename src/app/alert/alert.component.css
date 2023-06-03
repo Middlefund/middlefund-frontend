@@ -1,0 +1,42 @@
+.alert {
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+.info {
+  background-color: #055160;
+  color: #cff4fc;
+  border: 1px solid #b6effb;
+}
+
+.warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border: 1px solid #ffecb5;
+}
+
+.icon {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon:hover {
+  color: black;
+}

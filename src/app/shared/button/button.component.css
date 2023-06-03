@@ -4,6 +4,18 @@
   transition: 1s;
   stroke: green;
 }
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background: #cccccc;
+  color: #666666;
+}
+button:disabled:hover,
+button[disabled]:hover{
+  border: 1px solid #999999;
+  background: #cccccc;
+  color: #666666;
+}
 
 .primary:hover {
   background: black;
