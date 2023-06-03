@@ -19,6 +19,7 @@ import {SharedModule} from "./shared/shared.module";
 import { StartupComponent } from './dashboard/startup/startup.component';
 import { InvestorComponent } from './dashboard/investor/investor.component';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     BlogComponent,
     StartupComponent,
     InvestorComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [
     BrowserModule,

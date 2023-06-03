@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, tap, throwError} from "rxjs";
-import {loginData} from "../utility/models";
+import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
 
@@ -26,6 +26,6 @@ export class AccountsService {
   }
 
   register(userData: object) {
-    return this.http.post(`${environment.BACKEND_URL}/api/auth/register`, userData)
+    return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/auth/register`, userData)
   }
 }
