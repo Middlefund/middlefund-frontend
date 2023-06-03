@@ -52,20 +52,26 @@ export class SignupComponent {
   })
 
   capitalizeFullName = this.signup.controls.name.valueChanges.subscribe(value => {
-    const capitalizedValue = capitalizeWords(value!);
-    this.signup.controls.name.patchValue(capitalizedValue, { emitEvent: false });
+    if(value) {
+      const capitalizedValue = capitalizeWords(value!);
+      this.signup.controls.name.patchValue(capitalizedValue, {emitEvent: false});
+    }
   })
 
   onSubmit() {
     if(this.signup.valid) {
+      this.isLoading = true
       this.accountsService.register(this.signup.value).subscribe({
         next: value => {
-          this.alert.success("User registered successfully")
-          this.sweetAlert.toast("success", "User registered successfully")
+          console.log(value.message)
+          this.alert.success(value.message)
+          this.sweetAlert.toast("success", value.message)
+          this.isLoading = false
           this.signup.reset()
         },
         error: err => {
-          this.alert.error("Something went wrong")
+          this.alert.error(err.error[0].email || "Oops! Server error")
+          this.isLoading = false
         }
       })
     }

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:ital,wght@0,400;1,100;1,200&display=swap');
+@import url('http://fonts.cdnfonts.com/css/sf-pro-display');
+main{
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: 'SF Pro Display', sans-serif;
+}
+.terms-container {
+  color: #262626;
+}
+
+.terms-title h1 {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+.terms-body h4 {
+  color: #eb573d;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.terms-body h3 {
+  color: #262626;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: -10px;
+  font-size: 17px;
+}
+
+.terms-body p {
+  font-size: 15px;
+  line-height: 25px;
+}
+li {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+.terms-body a {
+  color: #eb573d;
+}
+
+.terms-body a:hover {
+  color: #eb573d;
+  text-decoration: none;
+}
+
+.terms_footer h3 {
+  margin-top: 60px;
+  margin-bottom: 125px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 3px;
+  line-height: 1.5;
+  color: #262626;
+}
+h2 {
+  color: #262626;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: -10px;
+  font-size: 14px;
+}
+
+.terms_footer h3 a:link {
+  color: #eb573d;
+  text-decoration: none;
+}
+ol {
+  list-style: lower-roman !important;
+}

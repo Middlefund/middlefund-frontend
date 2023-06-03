@@ -26,34 +26,6 @@
   z-index: 5;
 }
 
-form {
-  display: flex;
-  row-gap: 15px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 5rem;
-  transition: all 0.2s 0.7s;
-  overflow: hidden;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
-form.sign-up-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-form.sign-in-form {
-  z-index: 2;
-}
-
-.title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
-}
-
 .btn {
   width: 380px;
   background-color: #A49370;
@@ -61,7 +33,6 @@ form.sign-in-form {
   outline: none;
   height: 49px;
   border-radius: .3rem;
-  /* display: block; */
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
@@ -75,9 +46,6 @@ form.sign-in-form {
   color: #A49370;
 }
 
-.btn:hover {
-  background-color: black;
-}
 .panels-container {
   position: absolute;
   height: 100%;
@@ -121,11 +89,6 @@ form.sign-in-form {
   padding: 3rem 17% 2rem 12%;
 }
 
-.right-panel {
-  pointer-events: none;
-  padding: 3rem 12% 2rem 17%;
-}
-
 .panel .content {
   color: #fff;
   transition: transform 0.9s ease-in-out;
@@ -153,13 +116,6 @@ form.sign-in-form {
   font-size: 0.8rem;
 }
 
-.right-panel .image,
-.right-panel .content {
-  transform: translateX(800px);
-}
-
-/* ANIMATION */
-
 .account-container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
@@ -174,27 +130,8 @@ form.sign-in-form {
   left: 25%;
 }
 
-.account-container.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  z-index: 2;
-}
-
-.account-container.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-.account-container.sign-up-mode .right-panel .image,
-.account-container.sign-up-mode .right-panel .content {
-  transform: translateX(0%);
-}
-
 .account-container.sign-up-mode .left-panel {
   pointer-events: none;
-}
-
-.account-container.sign-up-mode .right-panel {
-  pointer-events: all;
 }
 
 @media (max-width: 870px) {
@@ -225,10 +162,6 @@ form.sign-in-form {
     align-items: center;
     padding: 1rem 8%;
     grid-column: 1 / 2;
-  }
-
-  .right-panel {
-    grid-row: 3 / 4;
   }
 
   .left-panel {
@@ -284,11 +217,6 @@ form.sign-in-form {
     transform: translateY(-300px);
   }
 
-  .account-container.sign-up-mode .right-panel .image,
-  .account-container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
   .right-panel .image,
   .right-panel .content {
     transform: translateY(300px);
@@ -301,9 +229,6 @@ form.sign-in-form {
 }
 
 @media (max-width: 570px) {
-  form {
-    padding: 0 1.5rem;
-  }
 
   .image {
     display: none;
@@ -324,23 +249,4 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
-}
-
-.forgotPassword{
-  color: #A49370;
-}
-.forgotPassword:hover{
-  color: black;
-}
-
-.controls{
-  text-align: center;
-}
-.termsConditions{
-  color: #A49370;
-  text-decoration-color: #A49370;
-}
-.termsConditions:hover{
-  color: black;
-  text-decoration-color: black;
 }
