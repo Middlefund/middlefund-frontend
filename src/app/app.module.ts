@@ -16,6 +16,9 @@ import { FooterComponent } from './home/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BlogComponent } from './home/blog/blog.component';
 import {SharedModule} from "./shared/shared.module";
+import { StartupComponent } from './dashboard/startup/startup.component';
+import { InvestorComponent } from './dashboard/investor/investor.component';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import {SharedModule} from "./shared/shared.module";
     StartupHeroComponent,
     FooterComponent,
     BlogComponent,
+    StartupComponent,
+    InvestorComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,8 @@ import {SharedModule} from "./shared/shared.module";
     BrowserAnimationsModule,
     MatIconModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,9 +12,9 @@
     </button>
   </div>
   <ng-container *ngIf="control.invalid && control.touched">
-    <span *ngFor="let error of control.errors! | keyvalue" class="error">
+    <p *ngFor="let error of control.errors! | keyvalue" class="error">
       {{errorMessages[error.key]}}
-    </span>
+    </p>
   </ng-container>
 </div>
 

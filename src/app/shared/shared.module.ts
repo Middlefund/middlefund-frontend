@@ -3,6 +3,7 @@ import {LogoComponent} from "./logo/logo.component";
 import { ButtonComponent } from './button/button.component';
 import {NgClass, NgIf} from "@angular/common";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AlertComponent} from "../alert/alert.component";
 
 @NgModule({
   declarations: [
