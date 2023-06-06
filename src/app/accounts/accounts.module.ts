@@ -11,6 +11,8 @@ import {AccountsService} from "./accounts.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AlertModule} from "../alert";
 import { SignupComponent } from './signup/signup.component';
+import { VerificationSuccessComponent } from './verification-success/verification-success.component';
+import { VerificationFailedComponent } from './verification-failed/verification-failed.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     InputComponent,
     AccountsLayoutComponent,
-    SignupComponent
+    SignupComponent,
+    VerificationSuccessComponent,
+    VerificationFailedComponent
   ],
   imports: [
     CommonModule,
