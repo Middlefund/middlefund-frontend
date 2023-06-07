@@ -28,4 +28,12 @@ export class AccountsService {
   register(userData: object) {
     return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/auth/register`, userData)
   }
+
+  forgotPassword(email: object) {
+    return this.http.post(`${environment.BACKEND_URL}/api/forgot-password`, email)
+  }
+
+  resetPassword(details: object) {
+    return this.http.post(`${environment.BACKEND_URL}/api/reset-password`, details)
+  }
 }
