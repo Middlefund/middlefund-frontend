@@ -55,4 +55,22 @@ export class LoginComponent {
       this.login.markAllAsTouched()
     }
   }
+
+  socialLogin() {
+    this.accountsService.socialLogin().subscribe({
+      next: value => {
+        const width = 600;
+        const height = 700;
+        const left = (screen.width - width) / 2;
+        const top = ( screen.height - height) / 2;
+        window.open(value.url,"center window",'resizable=yes, width=' + width
+          + ', height=' + height + ', top='
+          + top + ', left=' + left)
+
+      },
+      error: err => {
+        this.alert.error(err.error.message || "Oops! Server error")
+      }
+    })
+  }
 }

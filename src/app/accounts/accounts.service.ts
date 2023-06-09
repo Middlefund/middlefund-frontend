@@ -30,10 +30,14 @@ export class AccountsService {
   }
 
   forgotPassword(email: object) {
-    return this.http.post(`${environment.BACKEND_URL}/api/forgot-password`, email)
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/forgot-password`, email)
   }
 
   resetPassword(details: object) {
-    return this.http.post(`${environment.BACKEND_URL}/api/reset-password`, details)
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/reset-password`, details)
+  }
+
+  socialLogin() {
+    return this.http.get<any>(`${environment.BACKEND_URL}/api/redirect`)
   }
 }

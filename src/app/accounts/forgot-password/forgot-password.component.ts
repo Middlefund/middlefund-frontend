@@ -27,7 +27,7 @@ export class ForgotPasswordComponent {
     if(this.forgotPassword.valid) {
       this.accountsService.forgotPassword(this.forgotPassword.value).subscribe({
         next: value => {
-          this.alert.success("An email has been to your account with instruction")
+          this.alert.success(value.message)
           this.isLoading = false;
         },
         error: err => {

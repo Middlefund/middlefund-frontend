@@ -48,7 +48,7 @@ export class ResetPasswordComponent {
     });
     this.accountsService.resetPassword({...this.resetPassword.value, ...{token: this.token}}).subscribe({
       next: value => {
-        this.sweetAlert.toast("success", "Reset password successful")
+        this.sweetAlert.toast("success", value.message)
         this.route.navigate(['/login']).then(r => console.log("Error navigating"))
         this.isLoading = false
       },

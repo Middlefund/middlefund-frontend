@@ -5,6 +5,7 @@ import {AccountsModule} from "./accounts/accounts.module";
 import {StartupComponent} from "./dashboard/startup/startup.component";
 import {InvestorComponent} from "./dashboard/investor/investor.component";
 import {TermsAndConditionsComponent} from "./terms-and-conditions/terms-and-conditions.component";
+import {NotFoundComponent} from "./shared/not-found/not-found.component";
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: '', loadChildren: accountsModule},
   {path: 'startup', component: StartupComponent},
   {path: 'investor', component: InvestorComponent},
-  {path: 'terms-and-conditions', component: TermsAndConditionsComponent}
+  {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
