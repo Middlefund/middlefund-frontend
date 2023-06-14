@@ -1,0 +1,130 @@
+.Box{
+  position:relative;
+  width:300px;
+  min-height:350px;
+  transform-style:preserve-3d;
+  perspective:800px;
+  transition:1s;
+  margin:40px;
+  border-radius: 20px;
+  border: 2px solid #A49370;
+
+}
+.Box .FlipBox{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height: 100%;
+  transition:1s;
+  transform-style:preserve-3d;
+  box-shadow:0px 0px 10px 2px rgba(0,0,0,.3);
+  border-radius: 20px;
+
+}
+
+.Box .Front,
+.Box .Back{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  cursor:pointer;
+  transition:.5s;
+  border-radius: 20px;
+}
+.Box .Front{
+  -webkit-backface-visibility:hidden;
+}
+.Box .Back{
+  -webkit-transform: rotateX(180deg);
+  -webkit-backface-visibility:hidden;
+}
+.Box .Front img{
+  width:70%;
+  height:60%;
+  margin: 45px;
+  border-radius: 20px;
+}
+
+.Box .Front h1{
+  color: white;
+  text-align: center;
+  font-size: large;
+}
+.Box .Back{
+  background-color:#3A3838;
+  color:#fff;
+  display:table;
+  transform:rotateY(180deg);
+  border-radius: 20px;
+}
+.Box .Back div{
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+  padding:20px;
+}
+.Box .Back div h3{
+  font-size:22px;
+}
+.Box .Back div p{
+  font-size:17px;
+  margin-top:10px;
+}
+.Box .Back div a{
+  color:#fff;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:20px;
+  width:120px;
+  height:45px;
+  background-color:#fff;
+  color:#222;
+  line-height:45px;
+  box-shadow:0px 0px 10px rgba(0,0,0,.5);
+  transition:.5s;
+  font-weight:bold;
+}
+.Box .Back div a:hover{
+  background-color:#A49370;
+  color:#fff;
+}
+.Box:hover .FlipBox{
+  transform:rotateY(180deg);
+}
+.Box:hover{
+  transform:translateY(-30px);
+  z-index:2;
+}
+@media (max-width:780px){
+  .Box:not(:last-child):hover{
+    transform:translateY(0px);
+    z-index:2;
+  }
+}
+@media (max-width:520px){
+  .Box:hover{
+    transform:translateY(0px);
+    z-index:2;
+  }
+}
+@media (max-width:255px){
+  .Box{
+    width:100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .Box .Front img{
+    margin:15%;
+
+  }
+
+  .Box .Front h1{
+    font-size: large;
+  }
+
+
+}

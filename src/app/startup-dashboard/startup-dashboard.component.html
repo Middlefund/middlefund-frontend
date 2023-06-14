@@ -1,5 +1,5 @@
 <section>
-  <div class="flex h-screen overflow-y-scroll antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+  <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
     <!-- Sidebar -->
     <aside class="flex-shrink-0 max-md:hidden w-64 bg-tertiary dark:border-primary-darker dark:bg-darker md:block">
       <div class="flex flex-col h-full">
@@ -7,7 +7,7 @@
         <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
           <!-- Dashboards links -->
             <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-            <a class="flex bg-primary text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+            <a class="flex cursor-pointer bg-primary text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
               <mat-icon>home</mat-icon><span class="ml-2 inline-flex items-center text-sm">Dashboards</span>
             </a>
         </nav>
@@ -24,8 +24,8 @@
     </aside>
       <div class="flex-1 h-full relative overflow-x-hidden">
         <!-- Navbar -->
-        <header class="w-full sticky top-0 bg-secondary dark:bg-darker">
-          <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
+        <header class="w-full z-50 border-primary shadow-md shadow-primary border-b sticky top-0 bg-secondary dark:bg-darker">
+          <div class="flex items-center justify-between p-2 dark:border-primary-darker">
           <!-- Mobile menu button -->
             <button (click)="openMobileMainMenu()" class="p-1 transition-colors duration-200 rounded-md text-primary dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
               <mat-icon>menu</mat-icon>
@@ -67,17 +67,13 @@
                 <div (click)="onDocumentClick($event)" *ngIf="isProfileMenuOpen"
                   class="profileMenu absolute right-0 w-48 py-1 bg-secondary rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                 >
-                  <a class="block px-4 py-2 text-sm text-white transition-colors hover:bg-primary rounded-md dark:text-light dark:hover:bg-primary">
+                  <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary rounded-md dark:text-light dark:hover:bg-primary">
                     Your Profile
                   </a>
-                  <a class="block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary">
+                  <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary">
                     Settings
                   </a>
-                  <a
-
-                    role="menuitem"
-                    class="block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary"
-                  >
+                  <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary">
                     Logout
                   </a>
                 </div>
@@ -168,7 +164,7 @@
     <!-- Backdrop -->
     <div (click)="openNotificationsPanel()"  *ngIf="isNotificationsPanelOpen" class="fixed inset-0 z-10 bg-primary" style="opacity: 0.5" aria-hidden="true"></div>
     <!-- Panel -->
-    <section [@slideIn]="slideIn" *ngIf="isNotificationsPanelOpen" class="fixed text-white inset-y-0 z-20 w-full max-w-xs bg-secondary dark:bg-darker dark:text-light sm:max-w-md focus:outline-none">
+    <section [@slideIn]="slideIn" *ngIf="isNotificationsPanelOpen" class="z-50 fixed text-white inset-y-0 w-full max-w-xs bg-secondary dark:bg-darker dark:text-light sm:max-w-md focus:outline-none">
       <div class="absolute right-0 p-2 transform translate-x-full">
         <!-- Close button -->
         <button (click)="openNotificationsPanel()" class="p-2 text-white rounded-md focus:outline-none focus:ring">
