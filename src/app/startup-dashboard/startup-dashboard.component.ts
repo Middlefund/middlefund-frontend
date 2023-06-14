@@ -81,55 +81,6 @@ export class StartupDashboardComponent {
       return 'cyan'
     }
 
-    setColors = (color: string) => {
-      const root = document.documentElement
-      root.style.setProperty('--color-primary', `var(--color-${color})`)
-      root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
-      root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
-      root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
-      root.style.setProperty('--color-primary-lighter', `var(--color-${color}-lighter)`)
-      root.style.setProperty('--color-primary-dark', `var(--color-${color}-dark)`)
-      root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
-      // this.selectedColor = color
-      window.localStorage.setItem('color', color)
-      //
-    }
-
-    // updateBarChart = (on: any) => {
-    //   const data = {
-    //     data: randomData(),
-    //     backgroundColor: 'rgb(207, 250, 254)',
-    //   }
-    //   if (on) {
-    //     barChart.data.datasets.push(data)
-    //     barChart.update()
-    //   } else {
-    //     barChart.data.datasets.splice(1)
-    //     barChart.update()
-    //   }
-    // }
-
-    // const updateDoughnutChart = (on) => {
-    //   const data = random()
-    //   const color = 'rgb(207, 250, 254)'
-    //   if (on) {
-    //     doughnutChart.data.labels.unshift('Seb')
-    //     doughnutChart.data.datasets[0].data.unshift(data)
-    //     doughnutChart.data.datasets[0].backgroundColor.unshift(color)
-    //     doughnutChart.update()
-    //   } else {
-    //     doughnutChart.data.labels.splice(0, 1)
-    //     doughnutChart.data.datasets[0].data.splice(0, 1)
-    //     doughnutChart.data.datasets[0].backgroundColor.splice(0, 1)
-    //     doughnutChart.update()
-    //   }
-    // }
-
-    // const updateLineChart = () => {
-    //   lineChart.data.datasets[0].data.reverse()
-    //   lineChart.update()
-    // }
-
       toggleTheme() {
         this.isDark = !this.isDark
         this.setTheme(this.isDark)
@@ -145,9 +96,6 @@ export class StartupDashboardComponent {
       color = this.getColor()
 
      isSidebarOpen: boolean = false;
-      toggleSidbarMenu() {
-        this.isSidebarOpen = !this.isSidebarOpen
-      }
 
       isNotificationsPanelOpen = false
       openNotificationsPanel() {
