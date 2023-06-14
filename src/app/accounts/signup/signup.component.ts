@@ -63,7 +63,6 @@ export class SignupComponent {
       this.isLoading = true
       this.accountsService.register(this.signup.value).subscribe({
         next: value => {
-          console.log(value.message)
           this.alert.success(value.message)
           this.sweetAlert.toast("success", value.message)
           this.isLoading = false

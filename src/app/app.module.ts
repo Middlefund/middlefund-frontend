@@ -16,8 +16,6 @@ import { FooterComponent } from './home/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BlogComponent } from './home/blog/blog.component';
 import {SharedModule} from "./shared/shared.module";
-import { StartupComponent } from './dashboard/startup/startup.component';
-import { InvestorComponent } from './dashboard/investor/investor.component';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
@@ -33,8 +31,6 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
     StartupHeroComponent,
     FooterComponent,
     BlogComponent,
-    StartupComponent,
-    InvestorComponent,
     TermsAndConditionsComponent,
   ],
   imports: [
