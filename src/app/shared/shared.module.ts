@@ -14,6 +14,9 @@ import { DashboardFooterComponent } from './dashboard-footer/dashboard-footer.co
 import { NotificationsPanelComponent } from './notifications-panel/notifications-panel.component';
 import { DashboardAsideComponent } from './dashboard-aside/dashboard-aside.component';
 import { ProfileDropdownComponent } from './profile-dropdown/profile-dropdown.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { LockedComponent } from './locked/locked.component';
 
 @NgModule({
   declarations: [
@@ -27,16 +30,19 @@ import { ProfileDropdownComponent } from './profile-dropdown/profile-dropdown.co
     NotificationsPanelComponent,
     DashboardAsideComponent,
     ProfileDropdownComponent,
+    DashboardHeaderComponent,
+    LockedComponent,
   ],
-  imports: [
-    CommonModule,
-    NgClass,
-    MatProgressSpinnerModule,
-    NgIf,
-    RouterLink,
-    MatIconModule
+    imports: [
+        CommonModule,
+        NgClass,
+        MatProgressSpinnerModule,
+        NgIf,
+        RouterLink,
+        MatIconModule,
+        MatSlideToggleModule
 
-  ],
+    ],
   exports: [
     LogoComponent,
     ButtonComponent,
@@ -46,6 +52,8 @@ import { ProfileDropdownComponent } from './profile-dropdown/profile-dropdown.co
     NotificationsPanelComponent,
     DashboardAsideComponent,
     ProfileDropdownComponent,
+    DashboardHeaderComponent,
+    LockedComponent,
   ]
 })
 

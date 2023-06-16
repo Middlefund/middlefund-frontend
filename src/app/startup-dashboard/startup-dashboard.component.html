@@ -2,83 +2,12 @@
   <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
     <app-dashboard-aside [navigationData]="navigationData"/>
       <div class="flex-1 h-full relative overflow-x-hidden">
-        <!-- Navbar -->
-        <header class="w-full z-50 border-primary shadow-md shadow-primary border-b sticky top-0 bg-secondary dark:bg-darker">
-          <div class="flex items-center justify-between p-2 dark:border-primary-darker">
-          <!-- Mobile menu button -->
-            <button (click)="openMobileMainMenu()" class="p-1 transition-colors duration-200 rounded-md text-primary dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
-              <mat-icon>menu</mat-icon>
-            </button>
-            <a
-              href="index.html"
-              class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light"
-            >
-              <app-logo/>
-            </a>
-
-            <!-- Mobile sub menu button -->
-           <button (click)="openMobileSubMenu()" class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
-            <span class="text-primary"><mat-icon>more_vert</mat-icon></span>
-           </button>
-
-            <!-- Desktop Right buttons -->
-            <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-              <!-- Toggle dark theme button -->
-              <button aria-hidden="true" class="relative text-primary focus:outline-none">
-                  <mat-slide-toggle color="warn"></mat-slide-toggle>
-              </button>
-
-              <!-- Notification button -->
-              <button (click)="openNotificationsPanel()" class="p-2 transition-colors duration-200 rounded-full text-primary bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
-               <mat-icon>notifications</mat-icon>
-              </button>
-              <app-profile-dropdown/>
-            </nav>
-
-            <!-- Mobile sub menu -->
-            <nav *ngIf="isMobileSubMenuOpen" class="absolute justify-between flex items-center p-4 bg-secondary rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden">
-              <div class="space-x-2">
-                <!-- Toggle dark theme button -->
-                <button aria-hidden="true" class="relative focus:outline-none">
-                  <div
-                    class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"
-                  ></div>
-                  <div class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm">
-                    <mat-slide-toggle></mat-slide-toggle>
-                  </div>
-                </button>
-
-                <!-- Notification button -->
-                <button (click)="openNotificationsPanel()"
-                  class="p-2 transition-colors duration-200 rounded-full text-primary hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
-                >
-                  <mat-icon>notifications</mat-icon>
-                </button>
-              </div>
-              <app-profile-dropdown/>
-            </nav>
-          </div>
-          <!-- Mobile main manu -->
-          <div *ngIf="isMobileMainMenuOpen" class="border-b border-primary">
-            <nav aria-label="Main" class="px-2 py-4 space-y-2">
-              <!-- Dashboards links -->
-              <div>
-                <a *ngFor="let nav of navigationData" [routerLink]="nav.route" class="flex bg-primary text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-                  <mat-icon>{{nav.icon}}</mat-icon><span class="ml-2 inline-flex items-center text-sm">{{nav.title}}</span>
-                </a>
-              </div>
-              <!-- Layouts links -->
-            </nav>
-          </div>
-        </header>
-
-        <!-- Main content -->
+        <app-dashboard-header (notificationButton)="openNotificationsPanel()" [navigationData]="navigationData"/>
         <main>
           <router-outlet></router-outlet>
         </main>
         <app-dashboard-footer/>
       </div>
-      <!-- Notification panel -->
   </div>
 </section>
 <app-notifications-panel [slideIn]="slideIn" [isNotificationsPanelOpen]="isNotificationsPanelOpen"/>

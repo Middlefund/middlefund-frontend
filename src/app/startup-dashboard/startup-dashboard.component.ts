@@ -10,29 +10,16 @@ import {slideInLeft, slideInRight, bounce} from "ng-animate";
 
 
 export class StartupDashboardComponent {
-  loading= true
   isProfileMenuOpen = false;
-  isMobileMainMenuOpen = false
-  isMobileSubMenuOpen = false
   slideIn: any = false
+  isNotificationsPanelOpen = false
   navigationData = [
-    {title: 'Dashboard', icon: 'home', route: '/startup/home'}
+    {title: 'Dashboard', icon: 'home', route: '/startup/home'},
+    {title: 'View Investors', icon: 'view_comfy', route: '/startup/view-investors'},
+    {title: 'Settings', icon: 'settings', route: '/startup/settings'}
   ]
 
-
   constructor() {
-  }
-
-  openMobileSubMenu() {
-    this.isMobileSubMenuOpen = !this.isMobileSubMenuOpen;
-  }
-
-  openMobileMainMenu() {
-    this.isMobileMainMenuOpen = !this.isMobileMainMenuOpen
-  }
-
-  toggleProfileMenu() {
-    this.isProfileMenuOpen = !this.isProfileMenuOpen
   }
 
   @HostListener('document:click', ['$event'])
@@ -44,14 +31,9 @@ export class StartupDashboardComponent {
     }
   }
 
-
-      isNotificationsPanelOpen = false
-      openNotificationsPanel() {
-        this.slideIn = !this.slideIn
-        this.isNotificationsPanelOpen = !this.isNotificationsPanelOpen;
-      }
-
-
-
+  openNotificationsPanel() {
+    this.slideIn = !this.slideIn
+    this.isNotificationsPanelOpen = !this.isNotificationsPanelOpen;
+  }
 
 }
