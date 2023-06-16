@@ -1,0 +1,79 @@
+<!-- Backdrop -->
+<div (click)="toggleNotifications()"  *ngIf="isNotificationsPanelOpen" class="fixed inset-0 z-10 bg-primary" style="opacity: 0.5" aria-hidden="true"></div>
+<!-- Panel -->
+<section [@slideIn]="slideIn" *ngIf="isNotificationsPanelOpen" class="z-50 fixed text-white inset-y-0 w-full max-w-xs bg-secondary dark:bg-darker dark:text-light sm:max-w-md focus:outline-none">
+  <div class="absolute right-0 p-2 transform translate-x-full">
+    <!-- Close button -->
+    <button (click)="toggleNotifications()"  class="p-2 text-white rounded-md focus:outline-none focus:ring">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="flex flex-col h-screen">
+    <!-- Panel header -->
+    <div class="flex-shrink-0">
+      <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-primary-darker">
+        <h2 id="notificationPanelLabel" class="font-semibold">Notifications</h2>
+        <div class="space-x-2">
+          <button [ngClass]="notificationType=== 'action' ? 'border-b':''" (click)="toggleNotificationType('action')" class="px-px pb-4 border-primary transition-all duration-200 transform translate-y-[6.4px] focus:outline-none">
+            Action
+          </button>
+          <button [ngClass]="notificationType=== 'user' ? 'border-b':''" (click)="toggleNotificationType('user')" class="px-px pb-4 transition-all border-primary duration-200 transform translate-y-[6.4px] focus:outline-none">
+            User
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel content (tabs) -->
+    <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
+      <!-- Action tab -->
+      <div *ngIf="notificationType==='action'" class="space-y-4">
+        <a href="#" class="block">
+          <div class="flex px-4 space-x-4">
+            <div class="relative flex-shrink-0">
+                      <span class="relative z-10 inline-block overflow-visible rounded-ful">
+                        <img class="object-scale-down rounded-full w-9 h-9" src="assets/MiddlefundLogo.png" alt="Ahmed kamel"
+                        />
+                      </span>
+              <div class="absolute h-24 p-px -mt-3 -ml-px bg-primary-50 left-1/2 dark:bg-primary-darker"></div>
+            </div>
+            <div class="flex gap-y-1 flex-col overflow-hidden">
+                  <span class="text-sm font-semibold text-gray-600 dark:text-light">
+                    New project "KWD Dashboard" created
+                  </span>
+              <span class="text-sm font-normal text-gray-400 truncate dark:text-primary-lighter">
+                    Looks like there might be a new theme soon
+                  </span>
+              <span class="text-sm font-normal text-grey dark:text-primary-light"> 9h ago </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- User tab -->
+      <div *ngIf="notificationType==='user'" class="space-y-4">
+        <a href="#" class="block">
+          <div class="flex px-4 space-x-4">
+            <div class="relative flex-shrink-0">
+                      <span class="relative z-10 inline-block overflow-visible rounded-ful">
+                        <img
+                          class="object-cover rounded-full w-9 h-9"
+                          src="assets/avatar.jpg"
+                          alt="Ahmed kamel"
+                        />
+                      </span>
+              <div class="absolute h-24 p-px -mt-3 -ml-px bg-primary-50 left-1/2 dark:bg-primary-darker"></div>
+            </div>
+            <div class="flex gap-y-1 flex-col overflow-hidden">
+              <span class="text-sm font-semibold text-gray-600 dark:text-light">Ahmed Kamel</span>
+              <span class="text-sm font-normal text-gray-400 truncate dark:text-primary-lighter">
+                    Shared new project "K-WD Dashboard"
+                  </span>
+              <span class="text-sm font-normal text-grey dark:text-primary-light"> 1d ago </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

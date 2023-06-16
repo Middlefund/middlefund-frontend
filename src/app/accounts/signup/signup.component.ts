@@ -71,6 +71,9 @@ export class SignupComponent {
         error: err => {
           this.alert.error(err.error[0].email || "Oops! Server error")
           this.isLoading = false
+        },
+        complete: () => {
+          this.isLoading = false
         }
       })
     }
