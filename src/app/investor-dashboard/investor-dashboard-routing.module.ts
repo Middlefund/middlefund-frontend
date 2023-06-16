@@ -1,9 +1,11 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
+import {InvestorDashboardComponent} from "./investor-dashboard.component";
 
 const routes: Routes = [
-  {path: 'investor', children: [
-      {path: 'home'}
+  {path: '', component: InvestorDashboardComponent, children: [
+      {path: '', redirectTo: 'home', pathMatch: "full"},
+      {path: 'home', component: InvestorDashboardComponent},
     ]}
 ]
 

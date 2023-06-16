@@ -39,10 +39,10 @@ export class LoginComponent {
         next: value => {
           this.sweetAlert.toast("info", `Welcome ${value.user.name}`)
           if(value.user.user_type === "startup"){
-            this.route.navigate(['startup']).then(r => r)
+            this.route.navigateByUrl('startup/home').then(r => r)
           }
           else{
-            this.route.navigate(['investor']).then(r => r)
+            this.route.navigateByUrl('investor/home').then(r => r)
           }
           this.isLoading = false
         },

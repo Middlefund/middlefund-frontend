@@ -14,7 +14,7 @@ export class AccountsService {
               private alert: AlertService) { }
 
   login(credentials: object): Observable<any> {
-    return this.http.post<loginData>(`${environment.BACKEND_URL}/api/auth/login`, credentials).pipe(
+    return this.http.post<loginData>(`${environment.BACKEND_URL}/api/login`, credentials).pipe(
       tap( response => {
       localStorage.setItem("token", JSON.stringify(response.token))
       localStorage.setItem("user", JSON.stringify(response.user))
@@ -26,7 +26,11 @@ export class AccountsService {
   }
 
   register(userData: object) {
-    return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/auth/register`, userData)
+    return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/register`, userData).pipe(
+      catchError(error => {
+        this.alert.error(error.error.message || "Oops! Server error")
+        return throwError(error)
+      }))
   }
 
   forgotPassword(email: object) {

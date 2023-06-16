@@ -1,0 +1,23 @@
+<div class="relative max-md:ml-auto" >
+  <div class="flex gap-x-3 ">
+    <span class="text-primary flex items-center">Marvin Jervan</span>
+    <button (click)="toggleProfileMenu()" type="button" class="profileButton transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+      <span class="sr-only">User menu</span>
+      <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Ahmed Kamel" />
+    </button>
+  </div>
+  <!-- User dropdown menu -->
+  <div (click)="onDocumentClick($event)" *ngIf="isProfileMenuOpen"
+       class="profileMenu absolute right-0 w-48 py-1 max-md:origin-top-right bg-secondary rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
+  >
+    <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary rounded-md dark:text-light dark:hover:bg-primary">
+      Your Profile
+    </a>
+    <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary">
+      Settings
+    </a>
+    <a class="cursor-pointer block px-4 py-2 text-sm text-white transition-colors hover:bg-primary dark:text-light dark:hover:bg-primary">
+      Logout
+    </a>
+  </div>
+</div>
