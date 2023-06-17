@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
 import {SweetAlertsService} from "../../utility/sweetAlerts.service";
 import {capitalizeWords} from "../../utility/capitalizeEachWord";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +28,8 @@ export class SignupComponent {
               private accountsService: AccountsService,
               private route: Router,
               private alert: AlertService,
-              private sweetAlert: SweetAlertsService) {
+              private sweetAlert: SweetAlertsService,
+              private toast: ToastrService) {
   }
 
   toggleShowPassword() {
@@ -64,7 +66,7 @@ export class SignupComponent {
       this.accountsService.register(this.signup.value).subscribe({
         next: value => {
           this.alert.success(value.message)
-          this.sweetAlert.toast("success", value.message)
+          this.toast.success(value.message)
           this.isLoading = false
           this.signup.reset()
         },

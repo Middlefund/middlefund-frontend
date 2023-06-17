@@ -5,6 +5,7 @@ import {AccountsService} from "../accounts.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
 import {SweetAlertsService} from "../../utility/sweetAlerts.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
               private accountsService: AccountsService,
               private route: Router,
               private alert: AlertService,
-              private sweetAlert: SweetAlertsService) {
+              private sweetAlert: SweetAlertsService,
+              private toast: ToastrService) {
   }
 
   toggleShowPassword() {
@@ -37,7 +39,7 @@ export class LoginComponent {
       this.isLoading = true
       this.accountsService.login(this.login.value).subscribe({
         next: value => {
-          this.sweetAlert.toast("info", `Welcome ${value.user.name}`)
+          this.toast.success(`Welcome ${value.user.name}`)
           if(value.user.user_type === "startup"){
             this.route.navigateByUrl('startup/home').then(r => r)
           }
@@ -47,7 +49,7 @@ export class LoginComponent {
           this.isLoading = false
         },
         error: err => {
-          this.alert.error(err.error.message || "Oops! Server error")
+          this.alert.error(err.error?.message || "Oops! Server error")
           this.isLoading = false
         }
       })

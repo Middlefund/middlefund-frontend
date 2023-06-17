@@ -1,0 +1,27 @@
+<section class="h-full bg-secondary min-h-screen flex pt-20">
+  <form class="h-full bg-secondary mx-auto max-w-5xl text-white">
+    <div class="flex max-sm:flex-col lg:gap-x-20 gap-x-10">
+      <div>
+        <span class="lg:text-xl text-base">Personal Information</span>
+        <p class="text-grey max-lg:text-xs">Change your information and click save</p>
+      </div>
+      <div>
+        <div class="inline-flex items-center gap-x-8">
+          <div>
+            <img class="w-20 h-20 rounded-md" [src]="image" alt="profile image" />
+          </div>
+          <div class="flex gap-y-2 flex-col">
+            <label class="bg-primary max-w-[7rem] text-center hover:bg-white hover:text-black cursor-pointer py-3 rounded-md" for="profileImage">Change Image</label>
+            <input id="profileImage" type="file" class="hidden"/>
+            <span class="text-grey text-xs">PG, GIF or PNG. 1MB max.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-col gap-y-6">
+      <app-custom-input [for]="'name'" [label]="'Full Name'" [placeholder]="'Enter your fullname'"/>
+      <app-button name="Save" variant="optional"/>
+    </div>
+
+  </form>
+</section>

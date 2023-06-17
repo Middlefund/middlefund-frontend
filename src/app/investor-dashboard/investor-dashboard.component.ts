@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./investor-dashboard.component.css']
 })
 export class InvestorDashboardComponent {
+  isProfileMenuOpen = false;
+  slideIn: any = false
+  isNotificationsPanelOpen = false
+  navigationData = [
+    {title: 'Dashboard', icon: 'home', route: '/investor/home'},
+    {title: 'View Startups', icon: 'leaderboard', route: '/investor/view-startups'},
+    {title: 'Investor Verification', icon: 'domain_verification', route: '/investor/investor-verification'},
+    {title: 'Settings', icon: 'settings', route: '/investor/settings'},
+  ]
 
+  openNotificationsPanel() {
+    this.slideIn = !this.slideIn
+    this.isNotificationsPanelOpen = !this.isNotificationsPanelOpen;
+  }
 }

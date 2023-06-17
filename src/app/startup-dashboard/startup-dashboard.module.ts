@@ -6,13 +6,13 @@ import {RouterOutlet} from "@angular/router";
 import {StartupDashboardRoutingModule} from "./startup-dashboard-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import { StartupHomeComponent } from './startup-home/startup-home.component';
+import { DashboardHomeComponent } from '../shared/dashboard-home/dashboard-home.component';
 import { ViewInvestorsComponent } from './view-investors/view-investors.component';
 
 @NgModule({
   declarations: [
     StartupDashboardComponent,
-    StartupHomeComponent,
+    DashboardHomeComponent,
     ViewInvestorsComponent
   ],
   imports: [
