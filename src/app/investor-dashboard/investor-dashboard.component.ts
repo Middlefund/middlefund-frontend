@@ -11,8 +11,9 @@ export class InvestorDashboardComponent {
   isNotificationsPanelOpen = false
   navigationData = [
     {title: 'Dashboard', icon: 'home', route: '/investor/home'},
-    {title: 'View Startups', icon: 'leaderboard', route: '/investor/view-'},
-    {title: 'Settings', icon: 'settings', route: '/startup/settings'}
+    {title: 'View Startups', icon: 'leaderboard', route: '/investor/view-startups'},
+    {title: 'Investor Verification', icon: 'domain_verification', route: '/investor/investor-verification'},
+    {title: 'Settings', icon: 'settings', route: '/investor/settings'},
   ]
 
   openNotificationsPanel() {

@@ -19,6 +19,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { LockedComponent } from './locked/locked.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { CustomCardComponent } from './custom-card/custom-card.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     DashboardHeaderComponent,
     LockedComponent,
     CustomInputComponent,
+    CustomCardComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     DashboardHeaderComponent,
     LockedComponent,
     CustomInputComponent,
+    CustomCardComponent,
   ]
 })
 

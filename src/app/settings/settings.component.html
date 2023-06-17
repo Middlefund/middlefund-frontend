@@ -1,7 +1,7 @@
 <div  class="w-full z-50 bg-secondary max-sm:gap-x-2 max-sm:text-xs px-4 flex gap-x-3 text-white py-5 border-b border-primary">
   <a class="py-1" routerLinkActive="border-b text-primary border-primary" routerLink="profile">Profile</a>
   <a class="py-1" routerLinkActive="border-b text-primary border-primary" routerLink="accounts">Account</a>
-  <a class="py-1" routerLinkActive="border-b text-primary border-primary" routerLink="investor-settings">Investor settings</a>
+  <a *ngIf="accountType === 'investor'" class="py-1" routerLinkActive="border-b text-primary border-primary" routerLink="investor-settings">Investor settings</a>
   <a class="py-1" routerLinkActive="border-b text-primary border-primary">Notifications</a>
 </div>
 <router-outlet></router-outlet>

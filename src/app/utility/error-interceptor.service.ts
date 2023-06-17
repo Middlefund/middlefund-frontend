@@ -18,9 +18,14 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.accountsService.refreshToken().subscribe({
           next: (response) => {
             const userData = JSON.parse(localStorage.getItem('middlefund$user')!);
-            userData['token'] = response
+            userData['token'] = response.token
             localStorage.setItem('middlefund$user', JSON.stringify(userData));
             this.accountsService.updateUser(userData)
+            request = request.clone({
+              setHeaders: {
+                Authorization: `Bearer ${userData.token.access_token}`
+              }
+            });
             return next.handle(request)
           },
           error: (err) => {
@@ -31,16 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         })
       }
-      else {
-        localStorage.clear()
-        this.accountsService.setRedirectUrl(this.router.url)
-        this.router.navigateByUrl('/login').then(r => r)
-        this.toast.info("Your session ended unexpectedly, login to continue")
-      }
-
-      const error = err.error?.message || err.statusText;
-      console.error(err);
-      return throwError(() => error);
+      return throwError(() => err);
     }))
   }
 }

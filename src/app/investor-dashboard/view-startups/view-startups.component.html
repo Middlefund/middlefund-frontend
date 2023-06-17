@@ -1,0 +1,38 @@
+<section class="h-[100vh] overflow-y-scroll bg-secondary">
+
+<div class="flex flex-row-reverse justify-evenly m-20">
+  <form class="flex items-center">
+    <label for="simple-search" class="sr-only">Search</label>
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 text-primary left-0 flex items-center pl-3 pointer-events-none">
+        <mat-icon>search</mat-icon>
+      </div>
+      <input type="search" id="simple-search" class="bg-secondary border border-primary text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+    </div>
+    <button type="submit" class="p-1.5 ml-2 text-xs font-medium text-primary bg-secondary rounded-lg border border-primary dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+<div>
+  <select id="countries" class="bg-secondary border border-primary text-white text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option selected>Choose a category</option>
+    <option value="US">Fintech</option>
+    <option value="CA">Agriculture</option>
+    <option value="FR">Web 3.0</option>
+    <option value="DE">Software Development</option>
+  </select>
+</div>
+</div>
+
+  <div class="justify-items-center overflow-y-auto gap-4 mx-10 my-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <app-custom-card/>
+    <app-custom-card/>
+    <app-custom-card/>
+    <app-custom-card/>
+    <app-custom-card/>
+  </div>
+  <div class="card my-10 flex justify-center">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</section>
+
