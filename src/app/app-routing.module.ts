@@ -3,17 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {TermsAndConditionsComponent} from "./terms-and-conditions/terms-and-conditions.component";
 import {NotFoundComponent} from "./shared/not-found/not-found.component";
-import {StartupDashboardComponent} from "./startup-dashboard/startup-dashboard.component";
 import {InvestorDashboardComponent} from "./investor-dashboard/investor-dashboard.component";
 import {UnderConstructionComponent} from "./shared/under-construction/under-construction.component";
+import {canActivateInvestor, canActivateStartup, cannotAuthenticate} from "./utility/auth.guard";
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 const startupDashboardModule = () => import('./startup-dashboard/startup-dashboard.module').then(x => x.StartupDashboardModule)
+const investorDashboardModule = () => import('./investor-dashboard/investor-dashboard.module').then(x => x.InvestorDashboardModule)
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: '', loadChildren: accountsModule},
-  {path: 'startup', loadChildren: startupDashboardModule},
-  {path: 'investor', component: InvestorDashboardComponent},
+  {path: '', loadChildren: accountsModule, canActivate: [cannotAuthenticate]},
+  {path: 'startup', loadChildren: startupDashboardModule, canActivate: [canActivateStartup]},
+  {path: 'investor', loadChildren: investorDashboardModule, canActivate: [canActivateInvestor]},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
   {path: '**', component: NotFoundComponent}

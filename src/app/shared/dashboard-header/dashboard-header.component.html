@@ -58,7 +58,7 @@
     <nav aria-label="Main" class="px-2 py-4 space-y-2">
       <!-- Dashboards links -->
       <div>
-        <a *ngFor="let nav of navigationData" [routerLink]="nav.route" class="flex mb-3 bg-primary text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+        <a routerLinkActive="bg-primary" *ngFor="let nav of navigationData" [routerLink]="nav.route" class="flex mb-3 text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
           <mat-icon>{{nav.icon}}</mat-icon><span class="ml-2 inline-flex items-center text-sm">{{nav.title}}</span>
         </a>
       </div>

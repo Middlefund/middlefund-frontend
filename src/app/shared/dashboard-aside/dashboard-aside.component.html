@@ -4,7 +4,7 @@
     <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
       <!-- Dashboards links -->
       <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-      <a *ngFor="let nav of navigationData" [routerLink]="nav.route" class="flex cursor-pointer bg-primary text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+      <a routerLinkActive="bg-primary" *ngFor="let nav of navigationData" [routerLink]="nav.route" class="flex cursor-pointer text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
         <mat-icon>{{nav.icon}}</mat-icon><span class="ml-2 inline-flex items-center text-sm">{{nav.title}}</span>
       </a>
     </nav>

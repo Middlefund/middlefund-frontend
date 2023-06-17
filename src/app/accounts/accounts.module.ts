@@ -1,3 +1,4 @@
+import {HttpClientModule} from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -8,7 +9,6 @@ import { AccountsLayoutComponent } from './accounts-layout/accounts-layout.compo
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AccountsService} from "./accounts.service";
-import {HttpClientModule} from "@angular/common/http";
 import {AlertModule} from "../alert";
 import { SignupComponent } from './signup/signup.component';
 import { VerificationSuccessComponent } from './verification-success/verification-success.component';
@@ -38,7 +38,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     AlertModule
   ],
   providers: [
-    AccountsService,
+
   ]
 })
 export class AccountsModule { }

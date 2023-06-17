@@ -1,23 +1,46 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, Observable, tap, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService {
-
+  private userSubject!: BehaviorSubject<any>;
+  public user!: Observable<any>;
+  public redirectUrl = '/login'
   constructor(private http: HttpClient,
-              private alert: AlertService) { }
+              private alert: AlertService,
+              private toast: ToastrService) {
+    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('middlefund$user')!));
+    this.user = this.userSubject.asObservable();
+  }
+
+  public get loggedInUser() {
+    return this.userSubject.value || false;
+  }
+
+  public updateUser(user: any) {
+    this.userSubject.next(user);
+  }
+
+  public get userData() {
+    return this.userSubject.value.user;
+  }
+
+  public get userTokens() {
+    return this.userSubject.value?.token;
+  }
 
   login(credentials: object): Observable<any> {
     return this.http.post<loginData>(`${environment.BACKEND_URL}/api/login`, credentials).pipe(
       tap( response => {
-      localStorage.setItem("token", JSON.stringify(response.token))
-      localStorage.setItem("user", JSON.stringify(response.user))
+      localStorage.setItem("middlefund$user", JSON.stringify(response))
+        this.userSubject.next(response);
     }),
       catchError(error => {
         this.alert.error(error.error.message || "Oops! Server error")
@@ -44,4 +67,17 @@ export class AccountsService {
   socialLogin() {
     return this.http.get<any>(`${environment.BACKEND_URL}/api/redirect`)
   }
+
+  logout() {
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/logout`, {})
+  }
+
+  refreshToken(refreshToken: string = this.userTokens.refresh_token, user_type: string = this.userData.user_type) {
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/refresh`, {refreshToken, user_type})
+  }
+
+  setRedirectUrl(url: string) {
+    this.redirectUrl = url;
+  }
+
 }

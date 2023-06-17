@@ -19,6 +19,7 @@ export class StartupDashboardComponent {
     {title: 'Settings', icon: 'settings', route: '/startup/settings'}
   ]
 
+
   constructor() {
   }
 
