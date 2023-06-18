@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {trigger, transition, useAnimation} from "@angular/animations";
 import {slideInLeft} from "ng-animate";
+import {AccountsService} from "../../accounts/accounts.service";
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,19 @@ import {slideInLeft} from "ng-animate";
   ]
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   slideIn: any;
   isNavBarOpen = false;
+  isLoggedIn = false;
+
+  constructor(private accountsService: AccountsService) {
+  }
+
+  ngOnInit() {
+    if(this.accountsService.loggedInUser) {
+      this.isLoggedIn = true;
+    }
+  }
 
   toggleNavBar() {
     this.isNavBarOpen = !this.isNavBarOpen;

@@ -1,0 +1,20 @@
+<section class="flex h-screen justify-center w-full">
+    <form class="flex flex-col w-full items-center">
+      <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+      <app-custom-input label="Startup Name *" for="startup_name" type="text" placeholder="Enter startup name"/>
+      <app-custom-select label="Registration Info" placeholder="What is your startup registered as" [options]="registrationInfo"/>
+      <app-custom-select label="Industry *" placeholder="What industry do you operate in?" [options]="industries" [loadingOptions]="loadingIndustries"/>
+      <app-custom-select label="Registration Country" placeholder="What country is your startup registered in"/>
+      <app-custom-select label="Stage *" placeholder="What stage are you currently at?"/>
+      <app-custom-select label="Country *" placeholder="What country is your startup based in"/>
+      <app-custom-select label="City *" placeholder="What city is your startup based i"/>
+      <app-custom-select label="Region or State *" placeholder="What region or state is your startup based i"/>
+      <app-custom-input label="Website" for="website" type="url" placeholder="Leave blank if you do not have a website."/>
+      <app-custom-input label="LinkedIn" for="linkedin" type="url" placeholder="Leave blank if you do not have an account."/>
+      </div>
+      <div class="flex mt-10 w-full justify-end md:max-w-5xl">
+        <app-button>Save and Continue</app-button>
+      </div>
+  </form>
+</section>
+

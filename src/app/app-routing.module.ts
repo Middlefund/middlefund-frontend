@@ -9,12 +9,14 @@ import {canActivateInvestor, canActivateStartup, cannotAuthenticate} from "./uti
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 const startupDashboardModule = () => import('./startup-dashboard/startup-dashboard.module').then(x => x.StartupDashboardModule)
 const investorDashboardModule = () => import('./investor-dashboard/investor-dashboard.module').then(x => x.InvestorDashboardModule)
+const pitchSubmissionModule = () => import('./pitch-submission/pitch-submission.module').then(x => x.PitchSubmissionModule)
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: '', loadChildren: accountsModule, canActivate: [cannotAuthenticate]},
   {path: 'startup', loadChildren: startupDashboardModule, canActivate: [canActivateStartup]},
   {path: 'investor', loadChildren: investorDashboardModule, canActivate: [canActivateInvestor]},
+  {path: 'pitch-submission', loadChildren:pitchSubmissionModule, canActivate: [canActivateStartup]},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
   {path: '**', component: NotFoundComponent}

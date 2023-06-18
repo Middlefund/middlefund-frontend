@@ -20,6 +20,7 @@ import { LockedComponent } from './locked/locked.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { CustomCardComponent } from './custom-card/custom-card.component';
+import { CustomSelectComponent } from './custom-select/custom-select.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
     LockedComponent,
     CustomInputComponent,
     CustomCardComponent,
+    CustomSelectComponent,
   ],
   imports: [
     CommonModule,
@@ -50,20 +52,21 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
     ReactiveFormsModule
 
   ],
-  exports: [
-    LogoComponent,
-    ButtonComponent,
-    FlipBoxComponent,
-    StatsCardComponent,
-    DashboardFooterComponent,
-    NotificationsPanelComponent,
-    DashboardAsideComponent,
-    ProfileDropdownComponent,
-    DashboardHeaderComponent,
-    LockedComponent,
-    CustomInputComponent,
-    CustomCardComponent,
-  ]
+    exports: [
+        LogoComponent,
+        ButtonComponent,
+        FlipBoxComponent,
+        StatsCardComponent,
+        DashboardFooterComponent,
+        NotificationsPanelComponent,
+        DashboardAsideComponent,
+        ProfileDropdownComponent,
+        DashboardHeaderComponent,
+        LockedComponent,
+        CustomInputComponent,
+        CustomCardComponent,
+        CustomSelectComponent,
+    ]
 })
 
 export class SharedModule{}

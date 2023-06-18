@@ -24,12 +24,13 @@
 </div>
 </div>
 
-  <div class="justify-items-center overflow-y-auto gap-4 mx-10 my-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    <app-custom-card/>
-    <app-custom-card/>
-    <app-custom-card/>
-    <app-custom-card/>
-    <app-custom-card/>
+  <div class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
+    <div class="flex gap-5 justify-center items-center flex-wrap">
+      <app-custom-card/>
+      <app-custom-card/>
+      <app-custom-card/>
+      <app-custom-card/>
+    </div>
   </div>
   <div class="card my-10 flex justify-center">
     <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
