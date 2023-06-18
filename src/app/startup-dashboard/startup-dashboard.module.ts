@@ -13,7 +13,7 @@ import { ViewInvestorsComponent } from './view-investors/view-investors.componen
   declarations: [
     StartupDashboardComponent,
     DashboardHomeComponent,
-    ViewInvestorsComponent
+    ViewInvestorsComponent,
   ],
   imports: [
     RouterOutlet,

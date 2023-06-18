@@ -5,6 +5,7 @@ import {DashboardHomeComponent} from "../shared/dashboard-home/dashboard-home.co
 import {ViewInvestorsComponent} from "./view-investors/view-investors.component";
 
 const settingsModule = () => import('../settings/settings.module').then(x => x.SettingsModule)
+
 const routes: Routes = [
   {path: '', component: StartupDashboardComponent, children: [
       {path: '', redirectTo: 'home', pathMatch: 'full' },
