@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-startup-profile',
@@ -20,9 +21,19 @@ export class StartupProfileComponent implements OnInit{
     {name: "Company Limited by Guarantee", value: "Company Limited by Guarantee"},
     {name: "Incorporated Partnership", value: "Incorporated Partnership"},
   ]
+  stagesOptions: Array<{name: string, value: string}> = [
+    {name: "Idea Stage", value: "Idea Stage"},
+    {name: "Minimum Viable Product (MVP)", value: "Minimum Viable Product (MVP)"},
+    {name: "Pre Seed(Pre Revenue)", value: "Pre Seed(Pre Revenue)"},
+    {name: "Pre Seed(Pre Revenue with Traction)", value: "Pre Seed(Pre Revenue with Traction)"},
+    {name: "Early Stage", value: "Early Stage"},
+    {name: "Seed Stage", value: "Seed Stage"},
+    {name: "Series A+", value: "Series A+"},
+  ]
 
   constructor(private pitchService: PitchSubmissionService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -43,5 +54,27 @@ export class StartupProfileComponent implements OnInit{
         this.toast.error(error.error.message || "Oops! Server error")
       }
     })
+  }
+
+  startupProfileForm = this.fb.group({
+    startupName: ['', [Validators.required]],
+    registrationInfo: [null],
+    industry: [null, Validators.required],
+    registrationCountry: [null],
+    stage: [null, Validators.required],
+    location: this.fb.group({
+      country: [null, Validators.required],
+      city: [null, Validators.required],
+      region: [null, Validators.required],
+    }),
+    social: this.fb.group({
+      website: ['',],
+      linkedIn: ['']
+    })
+
+  })
+
+  onSubmit = () => {
+    console.log(this.startupProfileForm.value)
   }
 }
