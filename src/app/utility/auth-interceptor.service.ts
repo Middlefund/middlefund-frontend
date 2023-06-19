@@ -30,6 +30,10 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((err) => {
         if ([401].includes(err.status)) {
           return this.accountsService.refreshToken().pipe(
+            catchError((err): any => {
+              localStorage.clear()
+              this.router.navigateByUrl('/login').then()
+            }),
             concatMap((response) => {
               const userData = JSON.parse(
                 localStorage.getItem("middlefund$user")!
@@ -43,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 },
               });
               return next.handle(request);
-            })
+            }),
           );
         }
         return throwError(() => err);
