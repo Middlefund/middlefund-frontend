@@ -6,7 +6,7 @@
     <option [value]="option.value" *ngFor="let option of options">{{option.name}}</option>
   </select>
   <ng-container *ngIf="control.invalid && control.touched">
-    <p *ngFor="let error of control.errors! | keyvalue" class="error">
+    <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">
       {{errorMessages[error.key]}}
     </p>
   </ng-container>

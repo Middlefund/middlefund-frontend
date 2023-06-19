@@ -5,7 +5,7 @@
          [placeholder]="placeholder" [formControl]="control"
   >
   <ng-container *ngIf="control.invalid && control.touched">
-    <p *ngFor="let error of control.errors! | keyvalue" class="error">
+    <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">
       {{errorMessages[error.key]}}
     </p>
   </ng-container>

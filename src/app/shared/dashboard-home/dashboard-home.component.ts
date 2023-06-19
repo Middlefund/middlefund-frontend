@@ -20,7 +20,7 @@ export class DashboardHomeComponent implements OnInit{
        this.flipCardData = [
          {title: 'Submit Pitch',
            description: 'Tell us about your startup and how much you are looking to raise.',
-           image: 'assets/undraw_pitching_re_fpgk.svg', route: 'pitch'},
+           image: 'assets/undraw_pitching_re_fpgk.svg', route: '../../pitch-submission'},
          {title: 'Middlefund Platinum', description: 'This page is currently under construction',
            image: 'assets/undraw_revenue_re_2bmg.svg', route: '/under-construction'},
          {title: 'Build Pitch', description: 'This page is currently under construction',

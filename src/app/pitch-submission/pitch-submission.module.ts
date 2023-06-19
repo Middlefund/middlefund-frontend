@@ -8,7 +8,8 @@ import { ReviewingPitchComponent } from './reviewing-pitch/reviewing-pitch.compo
 import {RouterOutlet} from "@angular/router";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {SharedModule} from "../shared/shared.module";
-import {NgClass} from "@angular/common";
+import {CurrencyPipe, NgClass} from "@angular/common";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,9 +24,11 @@ import {NgClass} from "@angular/common";
     RouterOutlet,
     PitchSubmissionRoutingModule,
     SharedModule,
-    NgClass
+    NgClass,
+    ReactiveFormsModule
   ],
-  exports: []
+  exports: [],
+  providers: [CurrencyPipe]
 })
 
 export class PitchSubmissionModule {}
