@@ -8,7 +8,7 @@ import { ReviewingPitchComponent } from './reviewing-pitch/reviewing-pitch.compo
 import {RouterOutlet} from "@angular/router";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {SharedModule} from "../shared/shared.module";
-import {CurrencyPipe, NgClass} from "@angular/common";
+import {CurrencyPipe, NgClass, PercentPipe} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -28,7 +28,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule
   ],
   exports: [],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, PercentPipe]
 })
 
 export class PitchSubmissionModule {}

@@ -1,0 +1,11 @@
+<div>
+  <label [for]="for" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{label}}</label>
+  <textarea [formControl]="control" id="message" rows="4"
+            class="block p-2.5 w-full bg-secondary border-grey text-[white] text-sm  rounded-lg border border-gray-300 focus:border-primary focus:shadow-primary focus:shadow-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [placeholder]="placeholder"></textarea>
+  <ng-container *ngIf="control.invalid && control.touched">
+    <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">
+      {{errorMessages[error.key]}}
+    </p>
+  </ng-container>
+</div>

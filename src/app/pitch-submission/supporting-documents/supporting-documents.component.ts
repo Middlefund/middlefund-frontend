@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-supporting-documents',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class SupportingDocumentsComponent {
 
+  constructor(private fb: FormBuilder){
+  }
+  supportingDocsForm = this.fb.group({
+    logo: ['', Validators.required],
+    pitch: ['', Validators.required],
+    video: [''],
+    id: ['', Validators.required]
+  })
+
+  onSubmit() {
+
+  }
 }
