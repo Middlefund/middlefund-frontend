@@ -40,13 +40,18 @@ export class LoginComponent {
       this.accountsService.login(this.login.value).subscribe({
         next: value => {
           this.toast.success(`Welcome ${value.user.name}`)
+          console.log(this.accountsService.redirectUrl)
+          this.isLoading = false
+          if (this.accountsService.redirectUrl) {
+            console.log(this.accountsService.redirectUrl)
+            return this.route.navigateByUrl(this.accountsService.redirectUrl).then(r => r)
+          }
           if(value.user.user_type === "startup"){
-            this.route.navigateByUrl('startup/home').then(r => r)
+            return this.route.navigateByUrl('startup/home').then(r => r)
           }
           else{
-            this.route.navigateByUrl('investor/home').then(r => r)
+            return this.route.navigateByUrl('investor/home').then(r => r)
           }
-          this.isLoading = false
         },
         error: err => {
           this.alert.error(err.error?.message || "Oops! Server error")

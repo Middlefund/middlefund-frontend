@@ -7,8 +7,9 @@
       <app-custom-input label="Equity (%) *" for="equity" type="text" placeholder="How much are you looking to give for this amount?" [control]="pitchDetailsForm.controls.equity"/>
       <app-custom-text-area [for]="'startup_bio'" [control]="pitchDetailsForm.controls.startupBio" placeholder="Tell us about your startup" label="Short Bio"/>
     </div>
-    <div class="flex mt-10 w-full justify-end md:max-w-5xl">
-      <app-button>Save and Continue</app-button>
+    <div class="flex gap-x-2 mt-10 w-full justify-end md:max-w-5xl">
+      <app-button routerLink="../startup-profile" type="button" name="Previous"/>
+      <app-button [disable]="pitchDetailsForm.invalid">Next</app-button>
     </div>
   </form>
 </section>

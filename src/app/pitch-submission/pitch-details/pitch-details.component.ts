@@ -1,6 +1,10 @@
 import {Component, ElementRef} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CurrencyPipe, PercentPipe} from "@angular/common";
+import {PitchSubmissionService} from "../pitch-submission.service";
+import {Router} from "@angular/router";
+import {FormDataAppender} from "../../utility/formDataAppender";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-pitch-details',
@@ -27,10 +31,15 @@ export class PitchDetailsComponent {
   ]
 
   formattedAmount: any
+  isLoading: boolean = false
 
   constructor(private fb: FormBuilder,
               private currencyPipe: CurrencyPipe,
-              private percentagePipe: PercentPipe) {
+              private percentagePipe: PercentPipe,
+              private pitchService: PitchSubmissionService,
+              private router: Router,
+              private appender: FormDataAppender,
+              private toast: ToastrService) {
   }
 
   pitchDetailsForm = this.fb.group({
@@ -51,6 +60,21 @@ export class PitchDetailsComponent {
   }
 
   onSubmit = () => {
-
+    if(this.pitchDetailsForm.valid) {
+      this.appender.appendFormData(this.pitchDetailsForm)
+      this.pitchService.savePitchDetails(this.pitchDetailsForm.getRawValue())
+      this.isLoading = true
+      this.pitchService.submitPitchDetails(this.pitchDetailsForm.getRawValue()).subscribe({
+        next: value => {
+          this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
+          this.toast.success(value.message)
+          this.isLoading = false
+        },
+        error: error => {
+          this.toast.error(error.error.message || 'Oops! Something went wrong');
+          this.isLoading = false
+        }
+      })
+    }
   }
 }

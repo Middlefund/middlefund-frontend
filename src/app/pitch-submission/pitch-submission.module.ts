@@ -6,10 +6,11 @@ import { RepresentativeDetailsComponent } from './representative-details/represe
 import { SupportingDocumentsComponent } from './supporting-documents/supporting-documents.component';
 import { ReviewingPitchComponent } from './reviewing-pitch/reviewing-pitch.component';
 import {RouterOutlet} from "@angular/router";
-import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {SharedModule} from "../shared/shared.module";
-import {CurrencyPipe, NgClass, PercentPipe} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {CommonModule, CurrencyPipe, NgClass, NgIf, PercentPipe} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
+import {FormDataAppender} from "../utility/formDataAppender";
 
 @NgModule({
   declarations: [
@@ -22,13 +23,16 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     RouterOutlet,
+    CommonModule,
     PitchSubmissionRoutingModule,
     SharedModule,
     NgClass,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf,
+    FormsModule
   ],
   exports: [],
-  providers: [CurrencyPipe, PercentPipe]
+  providers: [CurrencyPipe, PercentPipe, FormDataAppender]
 })
 
 export class PitchSubmissionModule {}

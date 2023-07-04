@@ -9,6 +9,7 @@ button[disabled]{
   border: 1px solid #999999;
   background: #cccccc;
   color: #666666;
+  cursor: not-allowed;
 }
 button:disabled:hover,
 button[disabled]:hover{

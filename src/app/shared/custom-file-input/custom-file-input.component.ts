@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -12,5 +12,10 @@ export class CustomFileInputComponent {
   @Input() acceptedType: string = '';
   @Input() accept: string = ''
   @Input() control = new FormControl
+  @Output() changeInput = new EventEmitter
+  @Input() for = ''
 
+  onChange(event: any): void {
+    this.changeInput.emit(event)
+  }
 }

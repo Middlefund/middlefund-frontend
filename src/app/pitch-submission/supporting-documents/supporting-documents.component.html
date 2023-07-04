@@ -1,13 +1,14 @@
 <section class="flex h-screen justify-center w-full">
-  <form [formGroup]="supportingDocsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
+  <form (ngSubmit)="onSubmit()"  class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
-      <app-custom-file-input title="UPLOAD YOUR LOGO" description="Upload your startup's logo" [control]="supportingDocsForm.controls.logo" acceptedType="png, jpeg, jpg"/>
-      <app-custom-file-input title="PITCH DECK" description="Upload your pdf pitch deck" [control]="supportingDocsForm.controls.pitch" acceptType="pdf"/>
-      <app-custom-file-input title="VIDEO PITCH" description="This not required but helps" [control]="supportingDocsForm.controls.video" acceptedType="mp4"/>
-      <app-custom-file-input title="REPRESENTATIVE'S ID" description="Upload a governemnt issued ID" [control]="supportingDocsForm.controls.id" acceptedType="png, jpeg, jpg"/>
+      <app-custom-file-input for="logo" (changeInput)="onLogoChange($event)" title="UPLOAD YOUR LOGO" description="Upload your startup's logo"  acceptedType="png, jpeg, jpg"/>
+      <app-custom-file-input [for]="'pitch'" (changeInput)="onPitchChange($event)" title="PITCH DECK" description="Upload your pdf pitch deck" acceptedType="pdf"/>
+      <app-custom-file-input for="video" (changeInput)="onVideoChange($event)" title="VIDEO PITCH" description="This not required but helps" acceptedType="mp4"/>
+      <app-custom-file-input for="id" (changeInput)="onIdChange($event)" title="REPRESENTATIVE'S ID" description="Upload a government issued ID" acceptedType="png, jpeg, jpg"/>
     </div>
     <div class="flex mt-10 w-full justify-end md:max-w-5xl">
-      <app-button>Save and Finish</app-button>
+      <app-button routerLink="../representative-details" type="button">Previous</app-button>
+      <app-button [isLoading]="isLoading" name="Save" [disable]="supportingDocsForm.invalid"/>
     </div>
   </form>
 </section>

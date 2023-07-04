@@ -12,7 +12,7 @@ import {ToastrService} from "ngx-toastr";
 export class AccountsService {
   private userSubject!: BehaviorSubject<any>;
   public user!: Observable<any>;
-  public redirectUrl = '/login'
+  public redirectUrl: string = ''
   constructor(private http: HttpClient,
               private alert: AlertService,
               private toast: ToastrService) {
@@ -49,11 +49,7 @@ export class AccountsService {
   }
 
   register(userData: object) {
-    return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/register`, userData).pipe(
-      catchError(error => {
-        this.alert.error(error.error.message || "Oops! Server error")
-        return throwError(error)
-      }))
+    return this.http.post<registerMessage>(`${environment.BACKEND_URL}/api/register`, userData)
   }
 
   forgotPassword(email: object) {
@@ -70,6 +66,10 @@ export class AccountsService {
 
   logout() {
     return this.http.post<any>(`${environment.BACKEND_URL}/api/logout`, {})
+  }
+
+  clearToken() {
+    this.userSubject = new BehaviorSubject<any>(null)
   }
 
   refreshToken(refreshToken: string = this.userTokens.refresh_token, user_type: string = this.userData.user_type) {

@@ -2,6 +2,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, provideRouter, RouterStateSnapsh
 import { inject } from "@angular/core";
 import { Router } from "@angular/router";
 import {AccountsService} from "../accounts/accounts.service";
+import {PitchSubmissionService} from "../pitch-submission/pitch-submission.service";
 
 export const canActivateStartup: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
@@ -39,5 +40,17 @@ export const cannotAuthenticate: CanActivateFn =
     }
 
     return true
+
+  };
+
+export const canActivatePitchDetails: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const pitch = inject(PitchSubmissionService);
+    if (pitch.startupProfileValid) {
+
+      return true
+    }
+    inject(Router).navigateByUrl('/pitch-submission/startup-profile').then(r => r)
+    return false;
 
   };
