@@ -3,13 +3,13 @@
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-select label="Raised Amount" placeholder="How much have you raised for your startup" [options]="raisedAmountOptions" [control]="pitchDetailsForm.controls.raisedAmount"/>
       <app-custom-input (blur)="transformAmount()" label="Amount to Raise (USD) *" for="amount_to_raise" type="text" placeholder="How much are you looking to raise" [control]="pitchDetailsForm.controls.amountToRaise"/>
-      <app-custom-select label="Purpose of funds" placeholder="What do you want use this amount for?" [options]="raisedAmountOptions" [control]="pitchDetailsForm.controls.purpose"/>
+      <app-custom-select label="Purpose of funds" placeholder="What do you want use this amount for?" [options]="purposeOptions" [control]="pitchDetailsForm.controls.purpose"/>
       <app-custom-input label="Equity (%) *" for="equity" type="text" placeholder="How much are you looking to give for this amount?" [control]="pitchDetailsForm.controls.equity"/>
       <app-custom-text-area [for]="'startup_bio'" [control]="pitchDetailsForm.controls.startupBio" placeholder="Tell us about your startup" label="Short Bio"/>
     </div>
     <div class="flex gap-x-2 mt-10 w-full justify-end md:max-w-5xl">
       <app-button routerLink="../startup-profile" type="button" name="Previous"/>
-      <app-button [disable]="pitchDetailsForm.invalid">Next</app-button>
+      <app-button [isLoading]="isLoading" [disable]="pitchDetailsForm.invalid" name="Next" />
     </div>
   </form>
 </section>

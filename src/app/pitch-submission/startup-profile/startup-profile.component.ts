@@ -116,6 +116,7 @@ export class StartupProfileComponent implements OnInit{
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
+          this.pitchService.updatePitch(value.data)
           this.getAllIndustries()
           this.startupProfileForm.get('startupName')?.setValue(value.data.startup_name)
           this.startupProfileForm.get('registrationInfo')?.setValue(value.data.registration_type)

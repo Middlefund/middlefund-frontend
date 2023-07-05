@@ -61,11 +61,13 @@ export class PitchDetailsComponent {
 
   onSubmit = () => {
     if(this.pitchDetailsForm.valid) {
-      this.appender.appendFormData(this.pitchDetailsForm)
-      this.pitchService.savePitchDetails(this.pitchDetailsForm.getRawValue())
+      // this.appender.appendFormData(this.pitchDetailsForm)
+      // this.pitchService.savePitchDetails(this.pitchDetailsForm.getRawValue())
       this.isLoading = true
       this.pitchService.submitPitchDetails(this.pitchDetailsForm.getRawValue()).subscribe({
         next: value => {
+          localStorage.setItem('pitch', JSON.stringify(value.data))
+          this.pitchService.updatePitch(value.data)
           this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
           this.toast.success(value.message)
           this.isLoading = false

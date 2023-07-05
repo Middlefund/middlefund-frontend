@@ -3,6 +3,7 @@ import { inject } from "@angular/core";
 import { Router } from "@angular/router";
 import {AccountsService} from "../accounts/accounts.service";
 import {PitchSubmissionService} from "../pitch-submission/pitch-submission.service";
+import {ToastrService} from "ngx-toastr";
 
 export const canActivateStartup: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
@@ -46,11 +47,35 @@ export const cannotAuthenticate: CanActivateFn =
 export const canActivatePitchDetails: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const pitch = inject(PitchSubmissionService);
-    if (pitch.startupProfileValid) {
-
+    if (pitch.pitchData && pitch.startupProfileValid) {
       return true
     }
+    inject(ToastrService).info('Please fill out the previous steps')
     inject(Router).navigateByUrl('/pitch-submission/startup-profile').then(r => r)
+    return false;
+
+  };
+export const canActivateRepDetails: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const pitch = inject(PitchSubmissionService);
+    console.log(pitch.pitchData)
+    console.log(pitch.pitchDetailsValid)
+    if (pitch.pitchData && pitch.pitchDetailsValid) {
+      return true
+    }
+    inject(ToastrService).info('Please fill out the previous steps')
+    inject(Router).navigateByUrl('/pitch-submission/pitch-details').then(r => r)
+    return false;
+  };
+
+export const canActivateSupportingDocs: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const pitch = inject(PitchSubmissionService);
+    if (pitch.pitchData && pitch.repDetailsValid) {
+      return true
+    }
+    inject(ToastrService).info('Please fill out the previous steps')
+    inject(Router).navigateByUrl('/pitch-submission/representative-details').then(r => r)
     return false;
 
   };

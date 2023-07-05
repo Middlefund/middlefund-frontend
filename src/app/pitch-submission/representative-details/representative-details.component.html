@@ -3,12 +3,12 @@
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-input label="Rep's Name *" for="reps_name" type="text" placeholder="Full name of your startup's representative" [control]="repDetailsForm.controls.repName"/>
       <app-custom-input label="Position *" for="rep_position" type="text" placeholder="What is your position in the startup" [control]="repDetailsForm.controls.position"/>
-      <app-custom-input label="Linkedin" for="linkedin" type="url" placeholder="What is your position in the startup" [control]="repDetailsForm.controls.position"/>
+      <app-custom-input label="Linkedin" for="linkedin" type="url" placeholder="Leave blank if you do not have an account" [control]="repDetailsForm.controls.position"/>
       <app-custom-text-area [for]="'rep_bio'" [control]="repDetailsForm.controls.repBio" placeholder="Tell us a little bit about the representative" label="Short Bio"/>
     </div>
     <div class="flex mt-10 w-full justify-end md:max-w-5xl">
       <app-button type="button" routerLink="../pitch-details">Previous</app-button>
-      <app-button [disable]="repDetailsForm.invalid">Next</app-button>
+      <app-button [disable]="repDetailsForm.invalid" [isLoading]="isLoading" name="Next" />
     </div>
   </form>
 </section>

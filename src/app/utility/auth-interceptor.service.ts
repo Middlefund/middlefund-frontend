@@ -44,6 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 return this.router.navigateByUrl('/login').then()
               }),
               concatMap((response) => {
+                this.isRefreshing = false;
                 const userData = JSON.parse(
                   localStorage.getItem("middlefund$user")!
                 );

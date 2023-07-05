@@ -24,7 +24,11 @@ export class PitchSubmissionService {
   }
 
   public get pitchData() {
-    return this.pitchSubject.value
+    return this.pitchSubject.value || false;
+  }
+
+  public updatePitch(pitch: any) {
+    this.pitchSubject.next(pitch);
   }
 
   public get startupProfileValid() {
@@ -35,7 +39,15 @@ export class PitchSubmissionService {
     return startup_name && industry && stage && country && region_state && city
   }
 
+  public get pitchDetailsValid() {
+    const {amount_to_raise, raised_amount, purpose, equity, startup_bio} = this.pitchData
+    return amount_to_raise && raised_amount && purpose && equity && startup_bio
+  }
 
+  public get repDetailsValid() {
+    const {rep_name, rep_position, rep_short_bio} = this.pitchData
+    return rep_name && rep_position && rep_short_bio;
+  }
 
   saveStartupProfile(startupProfile: startupProfile) {
     this.startupProfile = startupProfile;
@@ -63,6 +75,10 @@ export class PitchSubmissionService {
 
   submitPitchDetails(pitchDetails: pitchDetails) {
     return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/pitch-details`, pitchDetails)
+  }
+
+  submitRepDetails(repDetails: repDetails) {
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/rep-details`, repDetails)
   }
 
 }
