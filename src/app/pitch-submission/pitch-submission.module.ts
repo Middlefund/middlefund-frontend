@@ -11,6 +11,7 @@ import {CommonModule, CurrencyPipe, NgClass, NgIf, PercentPipe} from "@angular/c
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {FormDataAppender} from "../utility/formDataAppender";
+import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {FormDataAppender} from "../utility/formDataAppender";
     PitchDetailsComponent,
     RepresentativeDetailsComponent,
     SupportingDocumentsComponent,
-    ReviewingPitchComponent
+    ReviewingPitchComponent,
   ],
   imports: [
     RouterOutlet,
@@ -31,7 +32,8 @@ import {FormDataAppender} from "../utility/formDataAppender";
     NgIf,
     FormsModule
   ],
-  exports: [],
+  exports: [
+  ],
   providers: [CurrencyPipe, PercentPipe, FormDataAppender]
 })
 

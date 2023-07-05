@@ -1,5 +1,9 @@
 <section class="flex h-screen justify-center w-full">
-  <form [formGroup]="repDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form *ngIf="!isLoadingPage" [formGroup]="repDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-input label="Rep's Name *" for="reps_name" type="text" placeholder="Full name of your startup's representative" [control]="repDetailsForm.controls.repName"/>
       <app-custom-input label="Position *" for="rep_position" type="text" placeholder="What is your position in the startup" [control]="repDetailsForm.controls.position"/>

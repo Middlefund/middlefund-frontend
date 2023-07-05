@@ -23,6 +23,9 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { CustomTextAreaComponent } from './custom-text-area/custom-text-area.component';
 import { CustomFileInputComponent } from './custom-file-input/custom-file-input.component';
+import {PitchSubmissionModule} from "../pitch-submission/pitch-submission.module";
+import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { CustomFileInputComponent } from './custom-file-input/custom-file-input.
     CustomSelectComponent,
     CustomTextAreaComponent,
     CustomFileInputComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,
@@ -53,8 +57,8 @@ import { CustomFileInputComponent } from './custom-file-input/custom-file-input.
     MatIconModule,
     MatSlideToggleModule,
     RouterLinkActive,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    PdfViewerModule,
   ],
   exports: [
     LogoComponent,

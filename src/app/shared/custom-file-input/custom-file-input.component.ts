@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-custom-file-input',
@@ -14,6 +15,9 @@ export class CustomFileInputComponent {
   @Input() control = new FormControl
   @Output() changeInput = new EventEmitter
   @Input() for = ''
+  @Input() imageSrc: string = ''
+  @Input() videoSrc: string = ''
+  @Input() pdfSrc: string = ''
 
   onChange(event: any): void {
     this.changeInput.emit(event)

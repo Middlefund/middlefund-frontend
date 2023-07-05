@@ -1,8 +1,20 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
 import {messageData, pitchData, pitchDetails, repDetails, startupData, startupProfile} from "../models/interfaces";
 import {BehaviorSubject, Observable} from "rxjs";
+
+const HttpUploadOptions = {
+  headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
+}
+
+const headers= new HttpHeaders()
+  .set('content-type', '')
+
+const options = {
+  headers: new HttpHeaders().set('enctype', 'multipart/form-data')
+    .set('Content-Type', 'multipart/form-data')
+};
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +91,10 @@ export class PitchSubmissionService {
 
   submitRepDetails(repDetails: repDetails) {
     return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/rep-details`, repDetails)
+  }
+
+  submitSupportingDocs(supportingDocs: any) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/supporting-docs`, supportingDocs)
   }
 
 }

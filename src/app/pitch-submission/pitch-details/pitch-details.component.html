@@ -1,5 +1,9 @@
 <section class="flex h-screen justify-center w-full">
-  <form [formGroup]="pitchDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form *ngIf="!isLoadingPage" [formGroup]="pitchDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-select label="Raised Amount" placeholder="How much have you raised for your startup" [options]="raisedAmountOptions" [control]="pitchDetailsForm.controls.raisedAmount"/>
       <app-custom-input (blur)="transformAmount()" label="Amount to Raise (USD) *" for="amount_to_raise" type="text" placeholder="How much are you looking to raise" [control]="pitchDetailsForm.controls.amountToRaise"/>

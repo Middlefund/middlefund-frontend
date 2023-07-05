@@ -1,17 +1,18 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CurrencyPipe, PercentPipe} from "@angular/common";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {Router} from "@angular/router";
 import {FormDataAppender} from "../../utility/formDataAppender";
 import {ToastrService} from "ngx-toastr";
+import {startupData} from "../../models/interfaces";
 
 @Component({
   selector: 'app-pitch-details',
   templateUrl: './pitch-details.component.html',
   styleUrls: ['./pitch-details.component.css']
 })
-export class PitchDetailsComponent {
+export class PitchDetailsComponent implements OnInit{
   raisedAmountOptions: Array<{name: string, value: string}> = [
     {name: 'No money raised', value: 'No money raised'},
     {name: 'Less than $50k', value: 'Less than $50k'},
@@ -32,6 +33,7 @@ export class PitchDetailsComponent {
 
   formattedAmount: any
   isLoading: boolean = false
+  isLoadingPage: boolean = false
 
   constructor(private fb: FormBuilder,
               private currencyPipe: CurrencyPipe,
@@ -40,6 +42,9 @@ export class PitchDetailsComponent {
               private router: Router,
               private appender: FormDataAppender,
               private toast: ToastrService) {
+  }
+  ngOnInit() {
+    this.getPitch()
   }
 
   pitchDetailsForm = this.fb.group({
@@ -50,6 +55,35 @@ export class PitchDetailsComponent {
     startupBio: ['', [Validators.required]]
   })
 
+  setData(pitch: startupData) {
+    this.pitchDetailsForm.get('raisedAmount')?.setValue(pitch.raised_amount)
+    this.pitchDetailsForm.get('amountToRaise')?.setValue(pitch.amount_to_raise)
+    this.pitchDetailsForm.get('purpose')?.setValue(pitch.purpose)
+    this.pitchDetailsForm.get('equity')?.setValue(pitch.equity)
+    this.pitchDetailsForm.get('startupBio')?.setValue(pitch.startup_bio)
+  }
+
+  getPitch() {
+    if(this.pitchService.pitchData) {
+      const pitch: startupData = this.pitchService.pitchData
+      this.setData(pitch)
+    }
+    else {
+      this.isLoadingPage = true
+      this.pitchService.getPitch().subscribe({
+        next: value => {
+          localStorage.setItem('pitch', JSON.stringify(value.data))
+          this.pitchService.updatePitch(value.data)
+          this.setData(value.data)
+          this.isLoadingPage = false;
+        },
+        error: error => {
+          this.isLoadingPage = false;
+          this.toast.error(error.error.message || "Oops! Server error")
+        }
+      })
+    }
+  }
 
   transformAmount() {
     this.pitchDetailsForm.get('amountToRaise')?.setValue(this.currencyPipe.transform(this.pitchDetailsForm.controls.amountToRaise.value, '$'))
