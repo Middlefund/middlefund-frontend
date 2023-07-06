@@ -3,7 +3,7 @@
     <app-logo/>
     <span class="text-primary mt-4">Loading...</span>
   </div>
-  <form *ngIf="!isLoadingPage" (ngSubmit)="onSubmit()"  class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
+  <form *ngIf="!isLoadingPage" (ngSubmit)="onSubmit()" class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-file-input [imageSrc]="logoSrc" for="logo" (changeInput)="onLogoChange($event)" title="UPLOAD YOUR LOGO" accept="image/*" description="Upload your startup's logo"  acceptedType="png, jpeg, jpg"/>
       <app-custom-file-input [pdfSrc]="pdfSrc" [for]="'pitch'" (changeInput)="onPitchChange($event)" title="PITCH DECK" accept="application/pdf" description="Upload your pdf pitch deck" acceptedType="pdf"/>

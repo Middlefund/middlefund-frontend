@@ -25,7 +25,8 @@ export class SupportingDocumentsComponent implements OnInit{
               private pitchService: PitchSubmissionService,
               private toast: ToastrService,
               private router: Router,
-              private sanitizer: DomSanitizer){
+              private sanitizer: DomSanitizer,
+              ){
   }
 
   ngOnInit() {
@@ -40,10 +41,30 @@ export class SupportingDocumentsComponent implements OnInit{
   })
 
   setData(pitch: startupData) {
-    this.pdfSrc = pitch.pitch_deck
+    this.pitchService.getFileLink(pitch.logo).subscribe((blob: Blob) => {
+      const file: any = new File([blob], 'logo.jpg', { type: 'image/*'})
+      this.pitchFormData.append('logo', file)
+      this.supportingDocsForm.patchValue({ logo: file });
+    })
     this.logoSrc = pitch.logo
+    this.pitchService.getFileLink(pitch.pitch_deck).subscribe((blob: Blob) => {
+      const file: any = new File([blob], 'pitch.pdf', { type: 'application/pdf'})
+      this.pitchFormData.append('pitch', file)
+      this.supportingDocsForm.patchValue({ pitch: file });
+    })
+    this.pdfSrc = pitch.pitch_deck
     this.videoSrc = pitch.video_pitch
+    this.pitchService.getFileLink(pitch.video_pitch).subscribe((blob: Blob) => {
+      const file: any = new File([blob], 'pitch-video.pdf', { type: 'video/*'})
+      this.pitchFormData.append('pitch', file)
+      this.supportingDocsForm.patchValue({ video: file})
+    })
     this.idSrc = pitch.rep_id;
+    this.pitchService.getFileLink(pitch.rep_id).subscribe((blob: Blob) => {
+      const file: any = new File([blob], 'rep-id.jpg', { type: 'image/*'})
+      this.supportingDocsForm.patchValue({ id: file})
+      this.pitchFormData.append('id', file)
+    })
   }
 
   getPitch() {
@@ -156,4 +177,6 @@ export class SupportingDocumentsComponent implements OnInit{
       })
     }
   }
+
+
 }

@@ -8,7 +8,7 @@
     </div>
       <img *ngIf="imageSrc" class="object-contain w-full h-60" [src]="imageSrc | safeUrl"/>
       <video *ngIf="videoSrc" class="object-contain w-full h-60" autoplay [src]="videoSrc | safeUrl"></video>
-      <pdf-viewer *ngIf="pdfSrc" [render-text]="true" [external-link-target]="'self'"
+      <pdf-viewer *ngIf="pdfSrc | safeUrl" [render-text]="true" [external-link-target]="'_blank'"
                   [original-size]="false" [src]="pdfSrc" style="height: 15rem; width: 100%; display: block;"></pdf-viewer>
   </label>
 </div>

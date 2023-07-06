@@ -26,6 +26,7 @@ import { CustomFileInputComponent } from './custom-file-input/custom-file-input.
 import {PitchSubmissionModule} from "../pitch-submission/pitch-submission.module";
 import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     RouterLinkActive,
     ReactiveFormsModule,
     PdfViewerModule,
+    NgxExtendedPdfViewerModule,
   ],
   exports: [
     LogoComponent,

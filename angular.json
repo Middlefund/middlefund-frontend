@@ -13,6 +13,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "ngx-"
+            ],
             "outputPath": "dist/middlefund-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -100,7 +104,9 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           }
         }
       }

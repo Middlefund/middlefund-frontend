@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {SafeResourceUrl} from "@angular/platform-browser";
+import {ScrollModeType} from "ngx-extended-pdf-viewer";
 
 @Component({
   selector: 'app-custom-file-input',
@@ -22,4 +23,6 @@ export class CustomFileInputComponent {
   onChange(event: any): void {
     this.changeInput.emit(event)
   }
+
+  protected readonly ScrollModeType = ScrollModeType;
 }

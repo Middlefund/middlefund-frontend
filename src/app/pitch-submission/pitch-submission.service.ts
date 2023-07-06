@@ -97,4 +97,8 @@ export class PitchSubmissionService {
     return this.http.post<messageData>(`${environment.BACKEND_URL}/api/supporting-docs`, supportingDocs)
   }
 
+  getFileLink(link: string) {
+    return this.http.get(link, {responseType: 'blob'})
+  }
+
 }
