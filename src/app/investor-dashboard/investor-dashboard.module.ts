@@ -6,7 +6,6 @@ import {RouterOutlet} from "@angular/router";
 import {InvestorDashboardRoutingModule} from "./investor-dashboard-routing.module";
 import { ViewStartupsComponent } from './view-startups/view-startups.component';
 import { InvestorVerificationComponent } from './investor-verification/investor-verification.component';
-import {PaginatorModule} from "primeng/paginator";
 import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
@@ -20,7 +19,6 @@ import {MatIconModule} from "@angular/material/icon";
     SharedModule,
     RouterOutlet,
     InvestorDashboardRoutingModule,
-    PaginatorModule,
     MatIconModule
   ],
   exports: [],

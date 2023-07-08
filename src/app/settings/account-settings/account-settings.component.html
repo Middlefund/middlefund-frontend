@@ -1,9 +1,10 @@
-<section class="h-full bg-secondary min-h-screen flex pt-20">
-  <form class="h-full bg-secondary mx-auto max-w-5xl text-white">
+<section class="h-full w-full bg-secondary min-h-screen flex pt-20">
+  <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()" class="h-full max-sm:mx-5 w-full bg-secondary mx-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-white">
     <div class="mt-8 flex flex-col gap-y-6">
-      <app-custom-input [for]="'email'" [label]="'Email'" [placeholder]="'Enter your email'" [disabled]="true"/>
-      <app-custom-input [for]="'Account Type'" [label]="'Account Type'" [placeholder]="'Enter your e'" [disabled]="true"/>
-      <app-button name="Save" variant="optional"/>
+      <app-custom-input [for]="'old_password'" [control]="changePasswordForm.controls.oldPassword" [label]="'Current Password'" [placeholder]="'Enter your current password'"/>
+      <app-custom-input [control]="changePasswordForm.controls.password" [for]="'password'" [label]="'New Password'" [placeholder]="'Enter your new password'"/>
+      <app-custom-input [control]="changePasswordForm.controls.password_confirmation" [for]="'password_confirmation'" [label]="'Confirm New Password'" [placeholder]="'Enter your new password again'"/>
+      <app-button [isLoading]="isLoading" name="Save" variant="optional"/>
     </div>
   </form>
 </section>
