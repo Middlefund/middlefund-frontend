@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {CurrencyPipe, PercentPipe} from "@angular/common";
+import {CurrencyPipe} from "@angular/common";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {Router} from "@angular/router";
-import {FormDataAppender} from "../../utility/formDataAppender";
 import {ToastrService} from "ngx-toastr";
 import {startupData} from "../../models/interfaces";
+import {purposeOptions, raisedAmountOptions} from "../../utility/constants";
 
 @Component({
   selector: 'app-pitch-details',
@@ -13,34 +13,14 @@ import {startupData} from "../../models/interfaces";
   styleUrls: ['./pitch-details.component.css']
 })
 export class PitchDetailsComponent implements OnInit{
-  raisedAmountOptions: Array<{name: string, value: string}> = [
-    {name: 'No money raised', value: 'No money raised'},
-    {name: 'Less than $50k', value: 'Less than $50k'},
-    {name: 'Between $50k - $350k', value: 'Between $50k - $350k'},
-    {name: 'Between $350k - $1M', value: 'Between $350k - $1M'},
-    {name: 'More than $1M', value: 'More than $1M'},
-  ]
-
-  purposeOptions: Array<{name: string, value: string}> = [
-    {name: 'Research and Development', value: 'Research and Development'},
-    {name: 'Marketing', value: 'Marketing'},
-    {name: 'Scaling', value: 'Scaling'},
-    {name: 'Launch', value: 'Launch'},
-    {name: 'New Product', value: 'New Product'},
-    {name: 'Debts', value: 'Debts'},
-    {name: 'Others', value: 'Others'},
-  ]
-
   formattedAmount: any
   isLoading: boolean = false
   isLoadingPage: boolean = false
 
   constructor(private fb: FormBuilder,
               private currencyPipe: CurrencyPipe,
-              private percentagePipe: PercentPipe,
               private pitchService: PitchSubmissionService,
               private router: Router,
-              private appender: FormDataAppender,
               private toast: ToastrService) {
   }
   ngOnInit() {
@@ -89,14 +69,8 @@ export class PitchDetailsComponent implements OnInit{
     this.pitchDetailsForm.get('amountToRaise')?.setValue(this.currencyPipe.transform(this.pitchDetailsForm.controls.amountToRaise.value, '$'))
   }
 
-  transformPercentage() {
-    this.pitchDetailsForm.get('equity')?.setValue(this.percentagePipe.transform((this.pitchDetailsForm.controls.equity.value ?? 0 / 100), '1.2-2'))
-  }
-
   onSubmit = () => {
     if(this.pitchDetailsForm.valid) {
-      // this.appender.appendFormData(this.pitchDetailsForm)
-      // this.pitchService.savePitchDetails(this.pitchDetailsForm.getRawValue())
       this.isLoading = true
       this.pitchService.submitPitchDetails(this.pitchDetailsForm.getRawValue()).subscribe({
         next: value => {
@@ -113,4 +87,6 @@ export class PitchDetailsComponent implements OnInit{
       })
     }
   }
+  protected readonly raisedAmountOptions = raisedAmountOptions;
+  protected readonly purposeOptions = purposeOptions;
 }
