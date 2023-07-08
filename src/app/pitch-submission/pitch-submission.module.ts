@@ -7,11 +7,10 @@ import { SupportingDocumentsComponent } from './supporting-documents/supporting-
 import { ReviewingPitchComponent } from './reviewing-pitch/reviewing-pitch.component';
 import {RouterOutlet} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import {CommonModule, CurrencyPipe, NgClass, NgIf, PercentPipe} from "@angular/common";
+import {CommonModule, CurrencyPipe, PercentPipe} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {FormDataAppender} from "../utility/formDataAppender";
-import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
 
 @NgModule({
   declarations: [
@@ -27,9 +26,7 @@ import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
     CommonModule,
     PitchSubmissionRoutingModule,
     SharedModule,
-    NgClass,
     ReactiveFormsModule,
-    NgIf,
     FormsModule
   ],
   exports: [
