@@ -25,8 +25,7 @@ export class SupportingDocumentsComponent implements OnInit{
               private pitchService: PitchSubmissionService,
               private toast: ToastrService,
               private router: Router,
-              private sanitizer: DomSanitizer,
-              ){
+              private sanitizer: DomSanitizer){
   }
 
   ngOnInit() {
@@ -130,8 +129,6 @@ export class SupportingDocumentsComponent implements OnInit{
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        // Sanitize the image URL
-        // this.logoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result) as string;
         this.videoSrc = e.target.result
       };
 
@@ -149,8 +146,6 @@ export class SupportingDocumentsComponent implements OnInit{
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        // Sanitize the image URL
-        // this.logoSrc = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result) as string;
         this.idSrc = e.target.result
       };
 
@@ -177,6 +172,5 @@ export class SupportingDocumentsComponent implements OnInit{
       })
     }
   }
-
 
 }
