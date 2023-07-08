@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CurrencyPipe, PercentPipe} from "@angular/common";
 import {PitchSubmissionService} from "../pitch-submission.service";

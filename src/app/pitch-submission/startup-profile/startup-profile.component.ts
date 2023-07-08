@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {City, Country, ICountry, State} from "country-state-city";
 import {Router} from "@angular/router";
 import {FormDataAppender} from "../../utility/formDataAppender";
-import {pitchData, startupData} from "../../models/interfaces";
+import {startupData} from "../../models/interfaces";
 
 @Component({
   selector: 'app-startup-profile',

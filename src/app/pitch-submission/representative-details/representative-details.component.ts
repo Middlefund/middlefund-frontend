@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {CurrencyPipe, PercentPipe} from "@angular/common";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {Router} from "@angular/router";
 import {FormDataAppender} from "../../utility/formDataAppender";
