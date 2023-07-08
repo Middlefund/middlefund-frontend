@@ -1,1 +1,19 @@
-<p>supporting-documents works!</p>
+<section class="flex h-screen justify-center w-full">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form *ngIf="!isLoadingPage" (ngSubmit)="onSubmit()" class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
+    <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+      <app-custom-file-input [imageSrc]="logoSrc" for="logo" (changeInput)="onLogoChange($event)" title="UPLOAD YOUR LOGO" accept="image/*" description="Upload your startup's logo"  acceptedType="png, jpeg, jpg"/>
+      <app-custom-file-input [pdfSrc]="pdfSrc" [for]="'pitch'" (changeInput)="onPitchChange($event)" title="PITCH DECK" accept="application/pdf" description="Upload your pdf pitch deck" acceptedType="pdf"/>
+      <app-custom-file-input [videoSrc]="videoSrc" for="video" (changeInput)="onVideoChange($event)" title="VIDEO PITCH" accept="video/*" description="This not required but helps" acceptedType="mp4"/>
+      <app-custom-file-input [imageSrc]="idSrc" for="id" (changeInput)="onIdChange($event)" title="REPRESENTATIVE'S ID" accept="image/*" description="Upload a government issued ID" acceptedType="png, jpeg, jpg"/>
+    </div>
+    <div class="flex mt-10 w-full justify-end md:max-w-5xl">
+      <app-button routerLink="../representative-details" type="button">Previous</app-button>
+      <app-button [isLoading]="isLoading" name="Save" [disable]="supportingDocsForm.invalid"/>
+    </div>
+  </form>
+</section>
+

@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'app-custom-input',
-  templateUrl: './custom-input.component.html',
-  styleUrls: ['./custom-input.component.css']
+  selector: 'app-custom-text-area',
+  templateUrl: './custom-text-area.component.html',
+  styleUrls: ['./custom-text-area.component.css']
 })
-export class CustomInputComponent {
+export class CustomTextAreaComponent {
   @Input() for:string = '';
   @Input() label:string = '';
   @Input() type: string = '';
@@ -14,10 +14,6 @@ export class CustomInputComponent {
   @Input() control = new FormControl
   @Input() disabled: boolean = false;
   @Output() blur = new EventEmitter
-
-  onBlur () {
-    this.blur.emit()
-  }
 
   errorMessages: Record<string, string> = {
     required: "This field is required.",

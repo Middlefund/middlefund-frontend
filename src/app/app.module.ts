@@ -23,6 +23,7 @@ import {ProfileInitials} from "./utility/profileInitials";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {ErrorInterceptor} from "./utility/error-interceptor.service";
+import {PitchSubmissionModule} from "./pitch-submission/pitch-submission.module";
 
 @NgModule({
   declarations: [

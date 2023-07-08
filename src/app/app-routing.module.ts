@@ -6,6 +6,7 @@ import {NotFoundComponent} from "./shared/not-found/not-found.component";
 import {InvestorDashboardComponent} from "./investor-dashboard/investor-dashboard.component";
 import {UnderConstructionComponent} from "./shared/under-construction/under-construction.component";
 import {canActivateInvestor, canActivateStartup, cannotAuthenticate} from "./utility/auth.guard";
+import {PitchSubmissionComponent} from "./pitch-submission/pitch-submission.component";
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 const startupDashboardModule = () => import('./startup-dashboard/startup-dashboard.module').then(x => x.StartupDashboardModule)
 const investorDashboardModule = () => import('./investor-dashboard/investor-dashboard.module').then(x => x.InvestorDashboardModule)
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: '', loadChildren: accountsModule, canActivate: [cannotAuthenticate]},
   {path: 'startup', loadChildren: startupDashboardModule, canActivate: [canActivateStartup]},
   {path: 'investor', loadChildren: investorDashboardModule, canActivate: [canActivateInvestor]},
-  {path: 'pitch-submission', loadChildren:pitchSubmissionModule, canActivate: [canActivateStartup]},
+  {path: 'pitch-submission', loadChildren: pitchSubmissionModule, canActivate: [canActivateStartup]},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
   {path: '**', component: NotFoundComponent}

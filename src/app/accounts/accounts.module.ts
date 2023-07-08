@@ -16,7 +16,6 @@ import { VerificationFailedComponent } from './verification-failed/verification-
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -26,7 +25,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     VerificationSuccessComponent,
     VerificationFailedComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,

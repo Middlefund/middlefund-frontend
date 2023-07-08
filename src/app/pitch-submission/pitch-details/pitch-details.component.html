@@ -1,20 +1,19 @@
 <section class="flex h-screen justify-center w-full">
-  <form [formGroup]="pitchDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form *ngIf="!isLoadingPage" [formGroup]="pitchDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full items-center">
     <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <app-custom-select label="Raised Amount" placeholder="How much have you raised for your startup" [options]="raisedAmountOptions" [control]="pitchDetailsForm.controls.raisedAmount"/>
-      <app-custom-input label="Amount to Raise *" (blur)="transformAmount()" for="startup_name" type="text" placeholder="How much are you looking to raise" [control]="pitchDetailsForm.controls.amountToRaise"/>
-      <input type="text" (blur)="transformAmount()"/>
-<!--      <app-custom-select label="Industry *" placeholder="What industry do you operate in?" [options]="industries" [loadingOptions]="loadingIndustries" [control]="startupProfileForm.controls.industry"/>-->
-<!--      <app-custom-select label="Registration Country" placeholder="What country is your startup registered in" [control]="startupProfileForm.controls.registrationCountry"/>-->
-<!--      <app-custom-select label="Stage *" placeholder="What stage are you currently at?" [control]="startupProfileForm.controls.stage"/>-->
-<!--      <app-custom-select label="Country *" placeholder="What country is your startup based in" [control]="startupProfileForm.controls.location.controls.country"/>-->
-<!--      <app-custom-select label="City *" placeholder="What city is your startup based in" [control]="startupProfileForm.controls.location.controls.city"/>-->
-<!--      <app-custom-select label="Region or State *" placeholder="What region or state is your startup based i" [control]="startupProfileForm.controls.location.controls.region"/>-->
-<!--      <app-custom-input label="Website" for="website" type="url" placeholder="Leave blank if you do not have a website." [control]="startupProfileForm.controls.social.controls.website"/>-->
-<!--      <app-custom-input label="LinkedIn" for="linkedin" type="url" placeholder="Leave blank if you do not have an account." [control]="startupProfileForm.controls.social.controls.linkedIn"/>-->
+      <app-custom-input (blur)="transformAmount()" label="Amount to Raise (USD) *" for="amount_to_raise" type="text" placeholder="How much are you looking to raise" [control]="pitchDetailsForm.controls.amountToRaise"/>
+      <app-custom-select label="Purpose of funds" placeholder="What do you want use this amount for?" [options]="purposeOptions" [control]="pitchDetailsForm.controls.purpose"/>
+      <app-custom-input label="Equity (%) *" for="equity" type="text" placeholder="How much are you looking to give for this amount?" [control]="pitchDetailsForm.controls.equity"/>
+      <app-custom-text-area [for]="'startup_bio'" [control]="pitchDetailsForm.controls.startupBio" placeholder="Tell us about your startup" label="Short Bio"/>
     </div>
-    <div class="flex mt-10 w-full justify-end md:max-w-5xl">
-      <app-button>Save and Continue</app-button>
+    <div class="flex gap-x-2 mt-10 w-full justify-end md:max-w-5xl">
+      <app-button routerLink="../startup-profile" type="button" name="Previous"/>
+      <app-button [isLoading]="isLoading" [disable]="pitchDetailsForm.invalid" name="Next" />
     </div>
   </form>
 </section>

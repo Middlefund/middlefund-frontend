@@ -21,6 +21,11 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { CustomCardComponent } from './custom-card/custom-card.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
+import { CustomTextAreaComponent } from './custom-text-area/custom-text-area.component';
+import { CustomFileInputComponent } from './custom-file-input/custom-file-input.component';
+import {PitchSubmissionModule} from "../pitch-submission/pitch-submission.module";
+import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -39,6 +44,9 @@ import { CustomSelectComponent } from './custom-select/custom-select.component';
     CustomInputComponent,
     CustomCardComponent,
     CustomSelectComponent,
+    CustomTextAreaComponent,
+    CustomFileInputComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,
@@ -49,24 +57,26 @@ import { CustomSelectComponent } from './custom-select/custom-select.component';
     MatIconModule,
     MatSlideToggleModule,
     RouterLinkActive,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    PdfViewerModule,
   ],
-    exports: [
-        LogoComponent,
-        ButtonComponent,
-        FlipBoxComponent,
-        StatsCardComponent,
-        DashboardFooterComponent,
-        NotificationsPanelComponent,
-        DashboardAsideComponent,
-        ProfileDropdownComponent,
-        DashboardHeaderComponent,
-        LockedComponent,
-        CustomInputComponent,
-        CustomCardComponent,
-        CustomSelectComponent,
-    ]
+  exports: [
+    LogoComponent,
+    ButtonComponent,
+    FlipBoxComponent,
+    StatsCardComponent,
+    DashboardFooterComponent,
+    NotificationsPanelComponent,
+    DashboardAsideComponent,
+    ProfileDropdownComponent,
+    DashboardHeaderComponent,
+    LockedComponent,
+    CustomInputComponent,
+    CustomCardComponent,
+    CustomSelectComponent,
+    CustomTextAreaComponent,
+    CustomFileInputComponent,
+  ]
 })
 
 export class SharedModule{}
