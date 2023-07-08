@@ -3,7 +3,6 @@
   <input [type]="type" [id]="for" (blur)="onBlur()"
          class="bg-secondary border border-grey text-white text-sm rounded-lg focus:ring-blue-500 focus:border-primary focus:shadow-primary focus:shadow-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
          [placeholder]="placeholder" [formControl]="control"
-         [disabled]="disabled"
   >
   <ng-container *ngIf="control.invalid && control.touched">
     <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">

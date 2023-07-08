@@ -7,6 +7,7 @@ import {SettingsComponent} from "./settings.component";
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { InvestorSettingsComponent } from './investor-settings/investor-settings.component';
 import {SharedModule} from "../shared/shared.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import {SharedModule} from "../shared/shared.module";
     CommonModule,
     SettingsRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports : []
 })

@@ -4,7 +4,6 @@ import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
-import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,7 @@ export class AccountsService {
   public user!: Observable<any>;
   public redirectUrl: string = ''
   constructor(private http: HttpClient,
-              private alert: AlertService,
-              private toast: ToastrService) {
+              private alert: AlertService) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('middlefund$user')!));
     this.user = this.userSubject.asObservable();
   }

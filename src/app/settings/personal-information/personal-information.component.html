@@ -1,5 +1,5 @@
 <section class="h-full bg-secondary min-h-screen flex pt-20">
-  <form class="h-full bg-secondary mx-auto max-w-5xl text-white">
+  <form [formGroup]="personalInformationForm" (ngSubmit)="onSubmit()" class="h-full bg-secondary mx-auto max-w-5xl text-white">
     <div class="flex max-sm:flex-col lg:gap-x-20 gap-x-10">
       <div>
         <span class="lg:text-xl text-base">Personal Information</span>
@@ -12,17 +12,16 @@
           </div>
           <div class="flex gap-y-2 flex-col">
             <label class="bg-primary max-w-[7rem] text-center hover:bg-white hover:text-black cursor-pointer py-3 rounded-md" for="profileImage">Change Image</label>
-            <input id="profileImage" type="file" class="hidden"/>
+            <input (change)="onAvatarChange($event)" id="profileImage" accept="image/*" type="file" class="hidden"/>
             <span class="text-grey text-xs">PG, GIF or PNG. 1MB max.</span>
           </div>
         </div>
       </div>
     </div>
     <div class="mt-8 flex flex-col gap-y-6">
-      <app-custom-input [for]="'name'" [label]="'Full Name'" [placeholder]="'Enter your fullname'"/>
-      <app-custom-input [disabled]="true" [for]="'email'" [label]="'Email'" [placeholder]="'Enter your email'"/>
-      <app-button name="Save" variant="optional"/>
+      <app-custom-input [for]="'name'" [control]="personalInformationForm.controls.fullName" [label]="'Full Name'" [placeholder]="'Enter your fullname'"/>
+      <app-custom-input [control]="personalInformationForm.controls.email" [for]="'email'" [label]="'Email'" [placeholder]="'Enter your email'"/>
+      <app-button [isLoading]="isLoading" name="Save" variant="optional"/>
     </div>
-
   </form>
 </section>

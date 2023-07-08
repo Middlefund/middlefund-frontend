@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AccountsService} from "../../accounts/accounts.service";
 import {ProfileInitials} from "../../utility/profileInitials";
 import {Router} from "@angular/router";
@@ -9,11 +9,12 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './profile-dropdown.component.html',
   styleUrls: ['./profile-dropdown.component.css']
 })
-export class ProfileDropdownComponent implements OnInit{
+export class ProfileDropdownComponent implements OnInit {
   isProfileMenuOpen: boolean = false;
   name: string = ''
   image: string = ''
   loggingOut: boolean = false;
+
   constructor(private accountsService: AccountsService,
               private profileInitials: ProfileInitials,
               private router: Router,
@@ -21,9 +22,10 @@ export class ProfileDropdownComponent implements OnInit{
   }
 
   ngOnInit() {
-    const user = this.accountsService.userData
-    this.name = user.name;
-    this.image = user.avatar ? user.avatar : this.profileInitials.createImageFromInitials()
+    this.accountsService.user.subscribe(value => {
+      this.image = value.user.avatar ? value.user.avatar : this.profileInitials.createImageFromInitials()
+      this.name = value.user.name
+    })
   }
 
   toggleProfileMenu() {
