@@ -4,7 +4,7 @@ import {FormBuilder} from "@angular/forms";
 import {AccountsService} from "../accounts.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../alert";
-import {SweetAlertsService} from "../../utility/sweetAlerts.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-reset-password',
@@ -22,7 +22,8 @@ export class ResetPasswordComponent {
               private route: Router,
               private activatedRoute: ActivatedRoute,
               private alert: AlertService,
-              private sweetAlert: SweetAlertsService) {
+              private toast: ToastrService
+              ) {
   }
 
   toggleShowPassword() {
@@ -48,7 +49,7 @@ export class ResetPasswordComponent {
     });
     this.accountsService.resetPassword({...this.resetPassword.value, ...{token: this.token}}).subscribe({
       next: value => {
-        this.sweetAlert.toast("success", value.message)
+        this.toast.success(value.message)
         this.route.navigate(['/login']).then(r => console.log("Error navigating"))
         this.isLoading = false
       },
