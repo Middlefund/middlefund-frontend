@@ -1,87 +1,46 @@
 .account-container {
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
+  @apply relative w-full bg-white min-h-screen overflow-hidden
 }
 
 .forms-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  @apply absolute w-full h-full top-0 left-0
 }
 
 .signin-signup {
-  position: absolute;
-  top: 50%;
+  @apply absolute top-1/2 left-3/4 w-1/2 grid grid-cols-[1fr] z-[5];
   transform: translate(-50%, -50%);
-  left: 75%;
-  width: 50%;
   transition: 1s 0.7s ease-in-out;
-  display: grid;
-  grid-template-columns: 1fr;
-  z-index: 5;
 }
 
 .btn {
-  width: 380px;
-  background-color: #A49370;
-  border: none;
-  outline: none;
-  height: 49px;
-  border-radius: .3rem;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
+  @apply w-[380px] bg-white text-primary border-none outline-none h-[49px] rounded-[0.3rem] uppercase font-semibold cursor-pointer;
   margin: 10px 0;
-  cursor: pointer;
   transition: 0.5s;
 }
 
 .btn.transparent:hover {
-  background-color: white;
-  color: #A49370;
+  @apply bg-white text-primary
 }
 
 .panels-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  @apply absolute h-full w-full top-0 left-0 grid grid-cols-2;
 }
 
 .account-container:before {
+  @apply absolute h-[2000px] w-[2000px] -top-[10%] right-[48%] rounded-[50%] z-[6];
   content: "";
-  position: absolute;
-  height: 2000px;
-  width: 2000px;
-  top: -10%;
-  right: 48%;
   transform: translateY(-50%);
   background-image: linear-gradient(-45deg, #A49370 0%, #322929 100%);
   transition: 1.8s ease-in-out;
-  border-radius: 50%;
-  z-index: 6;
 }
 
 .image {
-  width: 100%;
+  @apply w-full delay-[0.4s];
   transition: transform 1.1s ease-in-out;
-  transition-delay: 0.4s;
 }
 
 .panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  z-index: 6;
+  @apply flex flex-col justify-around text-center z-[6];
 }
 
 .left-panel {
@@ -90,15 +49,12 @@
 }
 
 .panel .content {
-  color: #fff;
+  @apply text-white delay-[0.6s];
   transition: transform 0.9s ease-in-out;
-  transition-delay: 0.6s;
 }
 
 .panel h3 {
-  font-weight: 600;
-  line-height: 1;
-  font-size: 1.5rem;
+  @apply font-semibold text-xl;
 }
 
 .panel p {
@@ -107,23 +63,15 @@
 }
 
 .btn.transparent {
-  margin: 0;
-  background: none;
-  border: 2px solid #fff;
-  width: 130px;
-  height: 41px;
-  font-weight: 600;
-  font-size: 0.8rem;
+  @apply m-0 bg-none border-2 border-white w-[130px] h-[41px] font-semibold text-sm;
 }
 
 @media (max-width: 870px) {
   .account-container {
-    min-height: 600px;
-    height: 70vh;
+    @apply min-h-[600px] h-[70vh];
   }
   .signin-signup {
-    width: 100%;
-    top: 80%;
+    @apply w-full top-[80%];
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -139,9 +87,7 @@
   }
 
   .panel {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @apply flex-row justify-around items-center;
     padding: 1rem 8%;
     grid-column: 1 / 2;
   }
@@ -151,15 +97,13 @@
   }
 
   .image {
-    width: 200px;
+    @apply w-[200px] delay-[0.6s];
     transition: transform 0.9s ease-in-out;
-    transition-delay: 0.6s;
   }
 
   .panel .content {
-    padding-right: 15%;
+    @apply pr-[15%] delay-[0.8s];
     transition: transform 0.9s ease-in-out;
-    transition-delay: 0.8s;
   }
 
   .panel h3 {
@@ -172,19 +116,11 @@
   }
 
   .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
+    @apply w-[110px] h-[35px] text-sm;
   }
 
   .account-container:before {
-    width: 1500px;
-    height: 1500px;
-    transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
-    right: initial;
-    top: initial;
+    @apply w-[1500px] h-[1500px] -translate-x-1/2 left-[30%] bottom-[68%] right-[initial] top-[initial];
     transition: 2s ease-in-out;
   }
 
@@ -195,7 +131,6 @@
 }
 
 @media (max-width: 570px) {
-
   .image {
     display: none;
   }
@@ -207,8 +142,7 @@
   }
 
   .account-container:before {
-    bottom: 72%;
-    left: 50%;
+    @apply bottom-[72%] left-1/2;
   }
 
 }
