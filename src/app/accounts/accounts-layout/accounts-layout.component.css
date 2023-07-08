@@ -116,24 +116,6 @@
   font-size: 0.8rem;
 }
 
-.account-container.sign-up-mode:before {
-  transform: translate(100%, -50%);
-  right: 52%;
-}
-
-.account-container.sign-up-mode .left-panel .image,
-.account-container.sign-up-mode .left-panel .content {
-  transform: translateX(-800px);
-}
-
-.account-container.sign-up-mode .signin-signup {
-  left: 25%;
-}
-
-.account-container.sign-up-mode .left-panel {
-  pointer-events: none;
-}
-
 @media (max-width: 870px) {
   .account-container {
     min-height: 600px;
@@ -206,25 +188,9 @@
     transition: 2s ease-in-out;
   }
 
-  .account-container.sign-up-mode:before {
-    transform: translate(-50%, 100%);
-    bottom: 32%;
-    right: initial;
-  }
-
-  .account-container.sign-up-mode .left-panel .image,
-  .container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
   .right-panel .image,
   .right-panel .content {
     transform: translateY(300px);
-  }
-
-  .account-container.sign-up-mode .signin-signup {
-    top: 5%;
-    transform: translate(-50%, 0);
   }
 }
 
@@ -245,8 +211,4 @@
     left: 50%;
   }
 
-  .account-container.sign-up-mode:before {
-    bottom: 28%;
-    left: 50%;
-  }
 }
