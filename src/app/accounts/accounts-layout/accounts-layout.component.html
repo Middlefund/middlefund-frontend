@@ -1,21 +1,21 @@
-<div class="account-container">
-  <div class="forms-container">
-    <div class="signin-signup">
+<div class="account-container max-sm-al:p-[1.5rem] max-sm-al:before:bottom-[72%] max-sm-al:before:left-1/2 relative w-full bg-white min-h-screen overflow-hidden">
+  <div class="forms-container absolute w-full h-full top-0 left-0">
+    <div class="signin-signup absolute top-1/2 left-3/4 w-1/2 grid grid-cols-[1fr] z-[5]">
       <ng-content></ng-content>
     </div>
   </div>
-  <div class="panels-container">
-    <div class="panel left-panel">
-      <div class="content">
-        <h3>{{question}}</h3>
-        <p>
+  <div class="panels-container absolute h-full w-full top-0 left-0 grid grid-cols-2">
+    <div class="panel flex flex-col justify-around text-center z-[6] left-panel pointer-events-all">
+      <div class="content max-sm-al:py-[0.5rem] px-[1rem] text-white delay-[0.6s]">
+        <h3 class="font-semibold text-lg">{{question}}</h3>
+        <p class="text-sm py-[0.7rem] px-0">
          {{info}}
         </p>
-        <button [routerLink]="route" type="button" class="btn transparent" id="sign-up-btn">
+        <button [routerLink]="route" type="button" class="btn transparent bg-none w-[110px] outline-none h-[35px] rounded-[0.3rem] text-white uppercase font-semibold cursor-pointer hover:bg-white hover:text-primary m-0 border-2 border-white"  id="sign-up-btn">
           {{button}}
         </button>
       </div>
-      <img [src]="src" width="2px" height="250" class="image" alt="" />
+      <img [src]="src" width="2px" height="250" class="image w-full delay-[0.4s] max-sm-al:hidden" alt="" />
     </div>
   </div>
 </div>
