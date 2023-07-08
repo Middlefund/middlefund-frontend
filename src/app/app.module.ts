@@ -16,14 +16,11 @@ import { FooterComponent } from './home/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BlogComponent } from './home/blog/blog.component';
 import {SharedModule} from "./shared/shared.module";
-import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ProfileInitials} from "./utility/profileInitials";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
-import {ErrorInterceptor} from "./utility/error-interceptor.service";
-import {PitchSubmissionModule} from "./pitch-submission/pitch-submission.module";
 
 @NgModule({
   declarations: [
@@ -46,7 +43,6 @@ import {PitchSubmissionModule} from "./pitch-submission/pitch-submission.module"
     MatIconModule,
     FontAwesomeModule,
     SharedModule,
-    SweetAlert2Module.forRoot(),
     HttpClientModule,
     ToastrModule.forRoot(),
   ],

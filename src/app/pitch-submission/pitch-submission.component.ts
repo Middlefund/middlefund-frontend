@@ -19,22 +19,4 @@ export class PitchSubmissionComponent {
     this.slideIn = !this.slideIn
     this.isNotificationsPanelOpen = !this.isNotificationsPanelOpen;
   }
-
-  onNext() {
-    this.activeForm++
-  }
-
-  startupProfileValidity($event: any) {
-    this.isStartupProfileValid = $event
-  }
-
-  loadPitchDetailsForm() {
-    return this.isStartupProfileValid ?
-      this.activeForm = 2 :
-      this.toast.warning('You have to fill the other parts of the form first')
-  }
-
-  onPrevious() {
-    this.activeForm--
-  }
 }

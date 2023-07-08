@@ -10,7 +10,6 @@ import {SharedModule} from "../shared/shared.module";
 import {CommonModule, CurrencyPipe, PercentPipe} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
-import {FormDataAppender} from "../utility/formDataAppender";
 
 @NgModule({
   declarations: [
@@ -31,7 +30,7 @@ import {FormDataAppender} from "../utility/formDataAppender";
   ],
   exports: [
   ],
-  providers: [CurrencyPipe, PercentPipe, FormDataAppender]
+  providers: [CurrencyPipe, PercentPipe]
 })
 
 export class PitchSubmissionModule {}

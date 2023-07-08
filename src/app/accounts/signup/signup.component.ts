@@ -9,7 +9,6 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {AccountsService} from "../accounts.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
-import {SweetAlertsService} from "../../utility/sweetAlerts.service";
 import {capitalizeWords} from "../../utility/capitalizeEachWord";
 import {ToastrService} from "ngx-toastr";
 
@@ -28,7 +27,6 @@ export class SignupComponent {
               private accountsService: AccountsService,
               private route: Router,
               private alert: AlertService,
-              private sweetAlert: SweetAlertsService,
               private toast: ToastrService) {
   }
 

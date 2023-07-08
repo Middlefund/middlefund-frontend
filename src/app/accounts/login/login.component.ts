@@ -4,7 +4,6 @@ import {emailValidator} from "../../utility/validators.directive";
 import {AccountsService} from "../accounts.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
-import {SweetAlertsService} from "../../utility/sweetAlerts.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -20,7 +19,6 @@ export class LoginComponent {
               private accountsService: AccountsService,
               private route: Router,
               private alert: AlertService,
-              private sweetAlert: SweetAlertsService,
               private toast: ToastrService) {
   }
 

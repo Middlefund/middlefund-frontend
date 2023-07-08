@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {DomSanitizer} from "@angular/platform-browser";
 import {startupData} from "../../models/interfaces";
 
 
