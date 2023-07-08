@@ -31,6 +31,7 @@ export class PersonalInformationComponent implements OnInit{
     const user = this.accountsService.userData
     this.personalInformationForm.get('fullName')?.setValue(user.name)
     this.personalInformationForm.get('email')?.setValue(user.email)
+    this.personalInformationForm.get('avatar')?.setValue(user.avatar)
     this.image = user.avatar
   }
 
