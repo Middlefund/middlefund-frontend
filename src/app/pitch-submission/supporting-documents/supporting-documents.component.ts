@@ -33,37 +33,25 @@ export class SupportingDocumentsComponent implements OnInit{
   }
 
   supportingDocsForm = this.fb.group({
-    logo: [null, Validators.required],
+    logo: ['', Validators.required],
     pitch: ['', Validators.required],
     video: [''],
     id: ['', Validators.required]
   })
 
   setData(pitch: startupData) {
-    this.pitchService.getFileLink(pitch.logo).subscribe((blob: Blob) => {
-      const file: any = new File([blob], 'logo.jpg', { type: 'image/*'})
-      this.pitchFormData.append('logo', file)
-      this.supportingDocsForm.patchValue({ logo: file });
-    })
     this.logoSrc = pitch.logo
-    this.pitchService.getFileLink(pitch.pitch_deck).subscribe((blob: Blob) => {
-      const file: any = new File([blob], 'pitch.pdf', { type: 'application/pdf'})
-      this.pitchFormData.append('pitch', file)
-      this.supportingDocsForm.patchValue({ pitch: file });
-    })
-    this.pdfSrc = pitch.pitch_deck
+    this.idSrc = pitch.rep_id
     this.videoSrc = pitch.video_pitch
-    this.pitchService.getFileLink(pitch.video_pitch).subscribe((blob: Blob) => {
-      const file: any = new File([blob], 'pitch-video.pdf', { type: 'video/*'})
-      this.pitchFormData.append('pitch', file)
-      this.supportingDocsForm.patchValue({ video: file})
-    })
-    this.idSrc = pitch.rep_id;
-    this.pitchService.getFileLink(pitch.rep_id).subscribe((blob: Blob) => {
-      const file: any = new File([blob], 'rep-id.jpg', { type: 'image/*'})
-      this.supportingDocsForm.patchValue({ id: file})
-      this.pitchFormData.append('id', file)
-    })
+    this.pdfSrc = pitch.pitch_deck
+    this.supportingDocsForm.get('logo')?.setValue(pitch.logo)
+    this.pitchFormData.append('logo', pitch.logo)
+    this.supportingDocsForm.get('pitch')?.setValue(pitch.pitch_deck)
+    this.pitchFormData.append('pitch', pitch.pitch_deck)
+    this.supportingDocsForm.get('id')?.setValue(pitch.rep_id)
+    this.pitchFormData.append('id', pitch.rep_id)
+    this.supportingDocsForm.get('video')?.setValue(pitch.video_pitch)
+    this.pitchFormData.append('video', pitch.video_pitch)
   }
 
   getPitch() {
@@ -156,20 +144,24 @@ export class SupportingDocumentsComponent implements OnInit{
 
   onSubmit() {
     if (this.supportingDocsForm.value) {
-      this.isLoading = true
-      this.pitchService.submitSupportingDocs(this.pitchFormData).subscribe({
-        next: (value: any) => {
-          localStorage.setItem('pitch', JSON.stringify(value.data))
-          this.pitchService.updatePitch(value.data)
-          this.toast.success(value.message)
-          this.isLoading = false
-          this.router.navigateByUrl('/startup/home').then(r => r)
-        },
-        error: (err: any) => {
-          this.isLoading = false;
-          this.toast.error(err.error.error || "Oops! Server error: ")
-        }
-      })
+      if(JSON.stringify(this.pitchService.supportingDocs) === JSON.stringify(this.supportingDocsForm.value)) {
+        this.router.navigateByUrl('/startup/home').then(r => r)
+      } else {
+        this.isLoading = true
+        this.pitchService.submitSupportingDocs(this.pitchFormData).subscribe({
+          next: (value: any) => {
+            localStorage.setItem('pitch', JSON.stringify(value.data))
+            this.pitchService.updatePitch(value.data)
+            this.toast.success(value.message)
+            this.isLoading = false
+            this.router.navigateByUrl('/startup/home').then(r => r)
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            this.toast.error(err.error.error || "Oops! Server error: ")
+          }
+        })
+      }
     }
   }
 

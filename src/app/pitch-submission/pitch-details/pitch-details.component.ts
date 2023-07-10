@@ -71,20 +71,25 @@ export class PitchDetailsComponent implements OnInit{
 
   onSubmit = () => {
     if(this.pitchDetailsForm.valid) {
-      this.isLoading = true
-      this.pitchService.submitPitchDetails(this.pitchDetailsForm.getRawValue()).subscribe({
-        next: value => {
-          localStorage.setItem('pitch', JSON.stringify(value.data))
-          this.pitchService.updatePitch(value.data)
-          this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
-          this.toast.success(value.message)
-          this.isLoading = false
-        },
-        error: error => {
-          this.toast.error(error.error.message || 'Oops! Something went wrong');
-          this.isLoading = false
-        }
-      })
+      if(JSON.stringify(this.pitchService.pitchDetails) === JSON.stringify(this.pitchDetailsForm.value)) {
+        this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
+      }
+      else {
+        this.isLoading = true
+        this.pitchService.submitPitchDetails(this.pitchDetailsForm.getRawValue()).subscribe({
+          next: value => {
+            localStorage.setItem('pitch', JSON.stringify(value.data))
+            this.pitchService.updatePitch(value.data)
+            this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
+            this.toast.success(value.message)
+            this.isLoading = false
+          },
+          error: error => {
+            this.toast.error(error.error.message || 'Oops! Something went wrong');
+            this.isLoading = false
+          }
+        })
+      }
     }
   }
   protected readonly raisedAmountOptions = raisedAmountOptions;

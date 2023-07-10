@@ -58,8 +58,6 @@ export const canActivatePitchDetails: CanActivateFn =
 export const canActivateRepDetails: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const pitch = inject(PitchSubmissionService);
-    console.log(pitch.pitchData)
-    console.log(pitch.pitchDetailsValid)
     if (pitch.pitchData && pitch.pitchDetailsValid) {
       return true
     }

@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
-import {messageData, pitchData, pitchDetails, repDetails, startupData, startupProfile} from "../models/interfaces";
+import {messageData, pitchDetails, repDetails, startupData, startupProfile, supportingDocs} from "../models/interfaces";
 import {BehaviorSubject, Observable} from "rxjs";
 
 const HttpUploadOptions = {
@@ -20,9 +20,6 @@ const options = {
   providedIn: 'root'
 })
 export class PitchSubmissionService {
-  startupProfile: any
-  pitchDetails: any
-  repDetails: any
   pitchFormData = new FormData();
   private pitchSubject: BehaviorSubject<startupData>
   public pitch: Observable<startupData>
@@ -61,16 +58,55 @@ export class PitchSubmissionService {
     return rep_name && rep_position && rep_short_bio;
   }
 
-  saveStartupProfile(startupProfile: startupProfile) {
-    this.startupProfile = startupProfile;
+  public get startupProfile(): startupProfile {
+    const pitch = this.pitchData
+    return {
+      startupName: pitch.startup_name,
+      registrationInfo: pitch.registration_type,
+      industry: pitch.industry,
+      registrationCountry: pitch.registration_country,
+      stage: pitch.stage,
+      location: {
+        country: pitch.country,
+        city: pitch.city,
+        region: pitch.region_state
+      },
+      social: {
+        website: pitch.website,
+        linkedIn: pitch.linkedin
+      }
+    }
   }
 
-  savePitchDetails(pitchDetails: pitchDetails) {
-    this.pitchDetails = pitchDetails;
+  public get pitchDetails(): pitchDetails {
+    const pitch = this.pitchData
+    return {
+      raisedAmount:  pitch.raised_amount,
+      amountToRaise: pitch.amount_to_raise,
+      purpose: pitch.purpose,
+      equity: pitch.equity,
+      startupBio: pitch.startup_bio
+    }
   }
 
-  saveRepDetails(repDetails: repDetails) {
-    this.repDetails = repDetails
+  public get repDetails(): repDetails {
+    const pitch = this.pitchData
+    return {
+      repName: pitch.rep_name,
+      position: pitch.rep_position,
+      linkedIn: pitch.rep_linkedin,
+      repBio: pitch.rep_short_bio
+    }
+  }
+
+  public get supportingDocs(): supportingDocs {
+    const pitch = this.pitchData
+    return {
+      logo: pitch.logo,
+      pitch: pitch.pitch_deck,
+      video: pitch.video_pitch,
+      id: pitch.rep_id
+    }
   }
 
   getPitch() {

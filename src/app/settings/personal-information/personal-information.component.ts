@@ -4,6 +4,8 @@ import {ProfileInitials} from "../../utility/profileInitials";
 import {FormBuilder, Validators} from "@angular/forms";
 import {SettingsService} from "../settings.service";
 import {ToastrService} from "ngx-toastr";
+import {AlertService} from "../../alert";
+import {fullNameValidator} from "../../utility/validators.directive";
 
 @Component({
   selector: 'app-personal-information',
@@ -19,7 +21,8 @@ export class PersonalInformationComponent implements OnInit{
               private profileInitials: ProfileInitials,
               private fb: FormBuilder,
               private settingsService: SettingsService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private alert: AlertService) {
   }
   ngOnInit() {
     this.setData()
@@ -54,7 +57,7 @@ export class PersonalInformationComponent implements OnInit{
   }
 
   personalInformationForm = this.fb.group({
-    fullName: ['', Validators.required],
+    fullName: ['', [fullNameValidator()]],
     avatar: [null, Validators.required],
     email: [{value: '', disabled: true}, Validators.required]
   })
@@ -70,10 +73,12 @@ export class PersonalInformationComponent implements OnInit{
           localStorage.setItem('middlefund$user', JSON.stringify(user))
           this.accountsService.updateUser(user)
           this.toast.success(value.message)
+          this.alert.success(value.message)
           this.isLoading = false;
         },
         error: err => {
           this.toast.error(err.error.error)
+          this.alert.error(err.error.message)
           this.isLoading = false;
         }
       })

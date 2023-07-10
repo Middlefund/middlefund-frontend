@@ -130,19 +130,25 @@ export class StartupProfileComponent implements OnInit{
 
 
   onSubmit = () => {
-    this.isLoading = true
     if(this.startupProfileForm.valid) {
-      this.pitchService.submitStartupProfile(this.startupProfileForm.value).subscribe({
-        next: value => {
-          this.toast.success(value.message)
-          this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
-          this.isLoading = false
-        },
-        error: (err) => {
-          this.toast.error(err.error.error || 'Oops! Something went wrong')
-          this.isLoading = false
-        }
-      })
+      if(JSON.stringify(this.pitchService.startupProfile) === JSON.stringify(this.startupProfileForm.value)) {
+        this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
+      }
+      else {
+        this.isLoading = true
+        this.pitchService.submitStartupProfile(this.startupProfileForm.value).subscribe({
+          next: value => {
+            this.toast.success(value.message)
+            this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
+            this.isLoading = false
+          },
+          error: (err) => {
+            this.toast.error(err.error.error || 'Oops! Something went wrong')
+            this.isLoading = false
+          }
+        })
+      }
+
     }
   }
 
