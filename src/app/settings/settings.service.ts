@@ -14,4 +14,8 @@ export class SettingsService {
   changePersonalSettings(personalSettings: any) {
     return this.http.post<messageData>(`${environment.BACKEND_URL}/api/change-personal-information`, personalSettings)
   }
+
+  changePassword(passwords: any){
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/change-password`, passwords)
+  }
 }

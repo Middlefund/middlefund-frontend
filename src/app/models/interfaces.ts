@@ -90,4 +90,11 @@ export interface startupData {
   updated_at: string;
 }
 
+export interface supportingDocs {
+  logo: string;
+  pitch: string,
+  video: string,
+  id: string
+}
+
 
