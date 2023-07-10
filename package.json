@@ -28,6 +28,7 @@
     "country-state-city": "^3.1.4",
     "ng-animate": "^2.0.1",
     "ng2-pdf-viewer": "^9.1.5",
+    "ngx-lottie": "^10.0.0",
     "ngx-toastr": "^17.0.2",
     "primeng": "^16.0.1",
     "rxjs": "~7.8.0",
