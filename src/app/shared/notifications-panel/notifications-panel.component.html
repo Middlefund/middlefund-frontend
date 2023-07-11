@@ -23,12 +23,19 @@
         </div>
       </div>
     </div>
+    <div *ngIf="isLoading" class="self-center flex items-center h-full">
+      <mat-spinner class="spinner" color="accent"/>
+    </div>
 
     <!-- Panel content (tabs) -->
-    <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
+    <div *ngIf="!isLoading" class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
       <!-- Action tab -->
-      <div *ngIf="notificationType==='action'" class="space-y-4">
-        <a href="#" class="block">
+      <div *ngIf="notificationType==='action' && !systemNotifications.length" class="self-center flex items-center h-full">
+        <p class="text-center w-full">You have zero notifications</p>
+      </div>
+      <div *ngIf="notificationType==='action' && systemNotifications.length" class="space-y-4">
+
+        <a *ngFor="let notification of systemNotifications" class="block">
           <div class="flex px-4 space-x-4">
             <div class="relative flex-shrink-0">
                       <span class="relative z-10 inline-block overflow-visible rounded-ful">
@@ -39,19 +46,22 @@
             </div>
             <div class="flex gap-y-1 flex-col overflow-hidden">
                   <span class="text-sm font-semibold text-gray-600 dark:text-light">
-                    New project "KWD Dashboard" created
+                    {{notification.data.title}}
                   </span>
               <span class="text-sm font-normal text-gray-400 truncate dark:text-primary-lighter">
-                    Looks like there might be a new theme soon
+                  {{notification.data.message}}
                   </span>
-              <span class="text-sm font-normal text-grey dark:text-primary-light"> 9h ago </span>
+              <span class="text-sm font-normal text-grey dark:text-primary-light">{{getTimeElapsed(notification.created_at)}}</span>
             </div>
           </div>
         </a>
       </div>
 
       <!-- User tab -->
-      <div *ngIf="notificationType==='user'" class="space-y-4">
+      <div *ngIf="notificationType==='user' && !userNotifications.length" class="self-center flex items-center h-full">
+        <p class="text-center w-full">You have zero notifications</p>
+      </div>
+      <div *ngIf="notificationType==='user' && userNotifications.length" class="space-y-4">
         <a href="#" class="block">
           <div class="flex px-4 space-x-4">
             <div class="relative flex-shrink-0">

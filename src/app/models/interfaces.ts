@@ -97,4 +97,20 @@ export interface supportingDocs {
   id: string
 }
 
+export interface NotificationData {
+  id: string;
+  type: string;
+  notifiable_type: string;
+  notifiable_id: string;
+  data: {
+    title: string;
+    message: string;
+    type: string;
+  }
+  read_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+
 
