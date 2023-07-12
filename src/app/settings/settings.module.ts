@@ -9,6 +9,7 @@ import { InvestorSettingsComponent } from './investor-settings/investor-settings
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AlertModule} from "../alert";
+import {MultiSelectModule} from "primeng/multiselect";
 
 @NgModule({
   declarations: [
@@ -17,15 +18,16 @@ import {AlertModule} from "../alert";
     AccountSettingsComponent,
     InvestorSettingsComponent
   ],
-  imports: [
-    RouterOutlet,
-    CommonModule,
-    SettingsRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AlertModule,
-  ],
+    imports: [
+        RouterOutlet,
+        CommonModule,
+        SettingsRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AlertModule,
+        MultiSelectModule,
+    ],
   exports : []
 })
 
