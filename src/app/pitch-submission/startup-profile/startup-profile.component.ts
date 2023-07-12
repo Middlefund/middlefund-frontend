@@ -89,17 +89,17 @@ export class StartupProfileComponent implements OnInit{
       this.getAllIndustries()
       const pitch: startupData = this.pitchService.pitchData
       this.setData(pitch)
-      if(this.startupProfileForm.invalid) {
-        localStorage.removeItem('pitch');
-        this.getPitch()
-      }
+      // if(this.startupProfileForm.invalid) {
+      //   localStorage.removeItem('pitch');
+      //   // this.getPitch()
+      // }
     } else {
       this.loadingPage = true
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
           this.pitchService.updatePitch(value.data)
-          this.getAllIndustries()
+          // this.getAllIndustries()
           this.setData(value.data)
           this.loadingPage =false
         },
@@ -138,6 +138,8 @@ export class StartupProfileComponent implements OnInit{
         this.isLoading = true
         this.pitchService.submitStartupProfile(this.startupProfileForm.value).subscribe({
           next: value => {
+            localStorage.setItem('pitch', JSON.stringify(value.data))
+            this.pitchService.updatePitch(value.data)
             this.toast.success(value.message)
             this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
             this.isLoading = false

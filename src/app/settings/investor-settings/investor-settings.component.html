@@ -1,1 +1,24 @@
-<p>investor-settings works!</p>
+<alert/>
+<section class="h-full w-full bg-secondary min-h-screen flex pt-10">
+  <form [formGroup]="investorForm" (ngSubmit)="onSubmit()" class="h-full max-lg:mx-5 w-full bg-secondary mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl text-white">
+    <div class="mt-8 grid md:grid-cols-2 gap-x-6 gap-y-6">
+      <app-custom-input type="text" [for]="'organization_name'" [label]="'Organization Name'" [placeholder]="'Enter the name of your organization'"/>
+      <app-custom-input type="text" [for]="'investment_stage'" [label]="'Investment Stage'" [placeholder]="'Select preferred Investment Stage'"/>
+      <app-custom-input type="password" [for]="'password_confirmation'" [label]="'Confirm New Password'" [placeholder]="'Enter your new password again'"/>
+
+      <div class="card flex justify-content-center">
+        <p-multiSelect [options]="groupedCities" [group]="true" [(ngModel)]="selectedCities" defaultLabel="Select a City" scrollHeight="250px" display="chip">
+          <ng-template let-group pTemplate="group">
+            <div class="flex align-items-center">
+              <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + group.value" style="width: 20px" />
+              <span>{{ group.label }}</span>
+            </div>
+          </ng-template>
+        </p-multiSelect>
+      </div>
+    </div>
+    <div class="mt-5">
+      <app-button [isLoading]="isLoading" name="Save" variant="optional"/>
+    </div>
+  </form>
+</section>

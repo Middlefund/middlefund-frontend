@@ -4,6 +4,7 @@ import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
+import {messageData} from "../models/interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,10 @@ export class AccountsService {
 
   setRedirectUrl(url: string) {
     this.redirectUrl = url;
+  }
+
+  notifications() {
+    return this.http.get<messageData>(`${environment.BACKEND_URL}/api/user-notification`)
   }
 
 }

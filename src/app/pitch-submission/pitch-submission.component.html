@@ -2,7 +2,8 @@
   <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
     <div class="flex-1 h-full relative overflow-x-hidden">
       <app-dashboard-header (notificationButton)="openNotificationsPanel()"/>
-      <div class="m-10">
+      <app-breadcrumb [breadcrumbs]="breadcrumb"/>
+      <div *ngIf="status !== 'pending' && !isLoading" class="m-10">
         <h2 class="sr-only">Steps</h2>
 
         <div
@@ -53,7 +54,12 @@
         </div>
       </div>
       <main>
-        <router-outlet></router-outlet>
+        <div *ngIf="isLoading" class="flex h-screen flex-col animate-bounce justify-center mx-5 w-full items-center">
+          <app-logo/>
+          <span class="text-primary mt-4">Loading...</span>
+        </div>
+        <router-outlet *ngIf="status !== 'pending' && !isLoading"></router-outlet>
+        <app-rocket-animation *ngIf="status === 'pending' && !isLoading" title="You pitch is under review, you will be notified upon completion"/>
       </main>
       <app-dashboard-footer/>
     </div>

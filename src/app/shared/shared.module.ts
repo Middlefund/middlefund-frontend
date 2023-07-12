@@ -24,7 +24,14 @@ import { CustomTextAreaComponent } from './custom-text-area/custom-text-area.com
 import { CustomFileInputComponent } from './custom-file-input/custom-file-input.component';
 import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import player from 'lottie-web'
+import { RocketAnimationComponent } from './rocket-animation/rocket-animation.component';
+import {LottieComponent, LottieModule} from "ngx-lottie";
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
+export function playerFactory() {
+  return player
+}
 @NgModule({
   declarations: [
     LogoComponent,
@@ -44,20 +51,23 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     CustomSelectComponent,
     CustomTextAreaComponent,
     CustomFileInputComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    RocketAnimationComponent,
+    BreadcrumbComponent
   ],
-  imports: [
-    CommonModule,
-    NgClass,
-    MatProgressSpinnerModule,
-    NgIf,
-    RouterLink,
-    MatIconModule,
-    MatSlideToggleModule,
-    RouterLinkActive,
-    ReactiveFormsModule,
-    PdfViewerModule,
-  ],
+    imports: [
+        CommonModule,
+        NgClass,
+        MatProgressSpinnerModule,
+        NgIf,
+        RouterLink,
+        MatIconModule,
+        MatSlideToggleModule,
+        RouterLinkActive,
+        ReactiveFormsModule,
+        PdfViewerModule,
+        LottieModule.forRoot({player: playerFactory})
+    ],
   exports: [
     LogoComponent,
     ButtonComponent,
@@ -74,6 +84,8 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     CustomSelectComponent,
     CustomTextAreaComponent,
     CustomFileInputComponent,
+    RocketAnimationComponent,
+    BreadcrumbComponent,
   ]
 })
 

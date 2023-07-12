@@ -1,0 +1,11 @@
+.dashboard-container {
+  @apply relative flex justify-center items-center h-[76vh] flex-col;
+}
+
+.rocket-container{
+  @apply  w-[18.75rem] h-[18.75rem]
+}
+
+.page-container{
+  @apply text-primary text-base text-center font-normal
+}
