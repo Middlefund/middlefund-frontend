@@ -1,35 +1,34 @@
 <section class="h-[100vh] overflow-y-scroll bg-secondary">
 
 <div class="flex flex-row-reverse justify-evenly m-20">
-  <form class="flex items-center">
-    <label for="simple-search" class="sr-only">Search</label>
+  <div class="flex items-center">
+<!--    <label for="simple-search" class="sr-only">Search</label>-->
     <div class="relative w-full">
-      <div class="absolute inset-y-0 text-primary left-0 flex items-center pl-3 pointer-events-none">
-        <mat-icon>search</mat-icon>
-      </div>
-      <input type="search" id="simple-search" class="bg-secondary border border-primary text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+      <app-custom-input for="startup_name" type="text" placeholder="Search" [control]="searchFilter.controls.search"/>
     </div>
-    <button type="submit" class="p-1.5 ml-2 text-xs font-medium text-primary bg-secondary rounded-lg border border-primary dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-      <mat-icon>search</mat-icon>
-    </button>
-  </form>
+  </div>
 <div>
-  <select id="countries" class="bg-secondary border border-primary text-white text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>Choose a category</option>
-    <option value="US">Fintech</option>
-    <option value="CA">Agriculture</option>
-    <option value="FR">Web 3.0</option>
-    <option value="DE">Software Development</option>
-  </select>
+  <app-custom-select placeholder="Filter by category" [options]="industries" [loadingOptions]="loadingIndustries" [control]="searchFilter.controls.filter"/>
 </div>
 </div>
-
   <div class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
-    <div class="flex gap-5 justify-center items-center flex-wrap">
-      <app-custom-card/>
-      <app-custom-card/>
-      <app-custom-card/>
-      <app-custom-card/>
+    <div *ngIf="!isLoading" class="flex gap-5 justify-center items-center flex-wrap">
+      <app-custom-card
+        *ngFor="let startup of startups"
+        [name]="startup.startup_name"
+        [bio]="startup.startup_bio"
+        [category]="startup.industry"
+        [status]="startup.verified"
+      />
+    </div>
+    <div *ngIf="isLoading" class="flex gap-5 justify-center items-center flex-wrap">
+      <app-custom-card-skeleton/>
+      <app-custom-card-skeleton/>
+    </div>
+  </div>
+  <div *ngIf="!startups && !isLoading" class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
+    <div  class="flex gap-5 justify-center items-center flex-wrap">
+      No startups found
     </div>
   </div>
   <div class="card my-10 flex justify-center">

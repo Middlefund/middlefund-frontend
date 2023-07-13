@@ -28,6 +28,8 @@ import player from 'lottie-web'
 import { RocketAnimationComponent } from './rocket-animation/rocket-animation.component';
 import {LottieComponent, LottieModule} from "ngx-lottie";
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { CustomCardSkeletonComponent } from './custom-card/custom-card-skeleton/custom-card-skeleton.component';
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 export function playerFactory() {
   return player
@@ -53,21 +55,23 @@ export function playerFactory() {
     CustomFileInputComponent,
     SafeUrlPipe,
     RocketAnimationComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    CustomCardSkeletonComponent
   ],
-    imports: [
-        CommonModule,
-        NgClass,
-        MatProgressSpinnerModule,
-        NgIf,
-        RouterLink,
-        MatIconModule,
-        MatSlideToggleModule,
-        RouterLinkActive,
-        ReactiveFormsModule,
-        PdfViewerModule,
-        LottieModule.forRoot({player: playerFactory})
-    ],
+  imports: [
+    CommonModule,
+    NgClass,
+    MatProgressSpinnerModule,
+    NgIf,
+    RouterLink,
+    MatIconModule,
+    MatSlideToggleModule,
+    RouterLinkActive,
+    ReactiveFormsModule,
+    PdfViewerModule,
+    LottieModule.forRoot({player: playerFactory}),
+    NgxSkeletonLoaderModule
+  ],
   exports: [
     LogoComponent,
     ButtonComponent,
@@ -86,6 +90,7 @@ export function playerFactory() {
     CustomFileInputComponent,
     RocketAnimationComponent,
     BreadcrumbComponent,
+    CustomCardSkeletonComponent,
   ]
 })
 

@@ -7,6 +7,9 @@ import {InvestorDashboardRoutingModule} from "./investor-dashboard-routing.modul
 import { ViewStartupsComponent } from './view-startups/view-startups.component';
 import { InvestorVerificationComponent } from './investor-verification/investor-verification.component';
 import {MatIconModule} from "@angular/material/icon";
+import {SkeletonModule} from "primeng/skeleton";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {MatIconModule} from "@angular/material/icon";
     SharedModule,
     RouterOutlet,
     InvestorDashboardRoutingModule,
-    MatIconModule
+    MatIconModule,
+    SkeletonModule,
+    NgxSkeletonLoaderModule,
+    FormsModule
   ],
   exports: [],
   providers: []

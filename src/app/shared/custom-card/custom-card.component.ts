@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-custom-card',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./custom-card.component.css']
 })
 export class CustomCardComponent {
-
+  @Input() name: string = ''
+  @Input() bio: string = ''
+  @Input() category: string = ''
+  @Input() status: string = ''
 }
