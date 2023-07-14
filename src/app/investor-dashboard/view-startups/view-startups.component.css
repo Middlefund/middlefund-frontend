@@ -28,3 +28,7 @@
 ::ng-deep .p-dropdown .p-dropdown-trigger {
   color: #A49370;
 }
+
+::ng-deep .ngx-pagination .current {
+  background:  #A49370 !important;
+}

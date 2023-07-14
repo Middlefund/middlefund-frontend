@@ -6,6 +6,7 @@ import {City, Country, ICountry, State} from "country-state-city";
 import {Router} from "@angular/router";
 import {startupData} from "../../models/interfaces";
 import {registrationInfo, stagesOptions} from "../../utility/constants";
+import {FormDataAppender} from "../../utility/formDataAppender";
 
 @Component({
   selector: 'app-startup-profile',
@@ -28,7 +29,8 @@ export class StartupProfileComponent implements OnInit{
   constructor(private pitchService: PitchSubmissionService,
               private toast: ToastrService,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private append: FormDataAppender) {
   }
 
   ngOnInit() {
@@ -131,25 +133,27 @@ export class StartupProfileComponent implements OnInit{
 
   onSubmit = () => {
     if(this.startupProfileForm.valid) {
-      if(JSON.stringify(this.pitchService.startupProfile) === JSON.stringify(this.startupProfileForm.value)) {
+      this.append.appendFormData(this.startupProfileForm)
+      console.log(this.pitchService.pitchFormData)
+      // if(JSON.stringify(this.pitchService.startupProfile) === JSON.stringify(this.startupProfileForm.value)) {
         this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
-      }
-      else {
-        this.isLoading = true
-        this.pitchService.submitStartupProfile(this.startupProfileForm.value).subscribe({
-          next: value => {
-            localStorage.setItem('pitch', JSON.stringify(value.data))
-            this.pitchService.updatePitch(value.data)
-            this.toast.success(value.message)
-            this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
-            this.isLoading = false
-          },
-          error: (err) => {
-            this.toast.error(err.error.error || 'Oops! Something went wrong')
-            this.isLoading = false
-          }
-        })
-      }
+      // }
+      // else {
+      //   this.isLoading = true
+      //   this.pitchService.submitStartupProfile(this.startupProfileForm.value).subscribe({
+      //     next: value => {
+      //       localStorage.setItem('pitch', JSON.stringify(value.data))
+      //       this.pitchService.updatePitch(value.data)
+      //       this.toast.success(value.message)
+      //       this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
+      //       this.isLoading = false
+      //     },
+      //     error: (err) => {
+      //       this.toast.error(err.error.error || 'Oops! Something went wrong')
+      //       this.isLoading = false
+      //     }
+      //   })
+      // }
 
     }
   }

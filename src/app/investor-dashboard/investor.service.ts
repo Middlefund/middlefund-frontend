@@ -14,4 +14,8 @@ export class InvestorService {
   getAllPitches(page: number, perPage: number, filter: string, search: string){
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-pitches?page=${page}&perPage=${perPage}&filter=${filter}&search=${search}`);
   }
+
+  getPitch(id: string) {
+    return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-pitch/${id}`);
+  }
 }

@@ -29,6 +29,7 @@
     "ng-animate": "^2.0.1",
     "ng2-pdf-viewer": "^9.1.5",
     "ngx-lottie": "^10.0.0",
+    "ngx-pagination": "^6.0.3",
     "ngx-skeleton-loader": "^8.0.0",
     "ngx-toastr": "^17.0.2",
     "primeng": "^16.0.1",

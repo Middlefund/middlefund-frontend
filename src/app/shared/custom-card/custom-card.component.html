@@ -1,4 +1,4 @@
-<div class="bg-tertiary max-sm:max-w-sm rounded-xl max-w-md">
+<div class="bg-tertiary min-w-max max-md:w-72 max-w-sm:w-64 w-[20rem] max-sm:max-w-sm rounded-xl max-w-md">
   <div class="rounded-md flex justify-center pt-10">
     <img class="object-cover w-28 h-28 rounded-md" src="assets/avatar.jpg" alt="logo or cover"/>
   </div>
@@ -18,7 +18,7 @@
     <p class="text-white text-sm">{{category}}</p>
   </div>
   <div class="flex my-8 pb-5 mx-5 justify-between">
-    <app-button variant="tertiary" class="text-white">
+    <app-button [routerLink]="'../view-startup/'+id" variant="tertiary" class="text-white">
       <div class="flex items-center">
       <span>Read more</span>
       <mat-icon>keyboard_arrow_right</mat-icon>

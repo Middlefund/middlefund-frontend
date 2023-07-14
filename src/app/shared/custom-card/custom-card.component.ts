@@ -10,4 +10,5 @@ export class CustomCardComponent {
   @Input() bio: string = ''
   @Input() category: string = ''
   @Input() status: string = ''
+  @Input() id: string = ''
 }

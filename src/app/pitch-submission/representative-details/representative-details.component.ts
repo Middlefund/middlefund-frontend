@@ -62,25 +62,26 @@ export class RepresentativeDetailsComponent implements OnInit{
   }
   onSubmit() {
     if(this.repDetailsForm.valid) {
-      if(JSON.stringify(this.pitchService.repDetails) === JSON.stringify(this.repDetailsForm.value)) {
+        this.appender.appendFormData(this.repDetailsForm)
+      // if(JSON.stringify(this.pitchService.repDetails) === JSON.stringify(this.repDetailsForm.value)) {
         this.router.navigateByUrl('/pitch-submission/supporting-documents').then(r => r)
-      }
-      else {
-        this.isLoading = true;
-        this.pitchService.submitRepDetails(this.repDetailsForm.getRawValue()).subscribe({
-          next: (value ) => {
-            localStorage.setItem('pitch', JSON.stringify(value.data))
-            this.pitchService.updatePitch(value.data)
-            this.isLoading = false;
-            this.router.navigateByUrl('/pitch-submission/supporting-documents').then(r => r)
-            this.toast.success(value.message)
-          },
-          error: error => {
-            this.toast.error(error.error.message || 'Oops! Something went wrong');
-            this.isLoading = false
-          }
-        })
-      }
+      // }
+      // else {
+      //   this.isLoading = true;
+      //   this.pitchService.submitRepDetails(this.repDetailsForm.getRawValue()).subscribe({
+      //     next: (value ) => {
+      //       localStorage.setItem('pitch', JSON.stringify(value.data))
+      //       this.pitchService.updatePitch(value.data)
+      //       this.isLoading = false;
+      //       this.router.navigateByUrl('/pitch-submission/supporting-documents').then(r => r)
+      //       this.toast.success(value.message)
+      //     },
+      //     error: error => {
+      //       this.toast.error(error.error.message || 'Oops! Something went wrong');
+      //       this.isLoading = false
+      //     }
+      //   })
+      // }
     }
   }
 }

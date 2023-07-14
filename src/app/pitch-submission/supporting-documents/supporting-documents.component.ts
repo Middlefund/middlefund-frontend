@@ -3,8 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
 import {startupData} from "../../models/interfaces";
+import {FormDataAppender} from "../../utility/formDataAppender";
 
 
 @Component({
@@ -24,8 +24,8 @@ export class SupportingDocumentsComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private pitchService: PitchSubmissionService,
               private toast: ToastrService,
-              private router: Router,
-              private sanitizer: DomSanitizer){
+              private append: FormDataAppender,
+              private router: Router){
   }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0];
     this.pitchFormData.append('logo', file)
     this.supportingDocsForm.patchValue({ logo: file });
-
+    this.pitchService.pitchFormData.append('logo', file)
     // Check if the file is an image
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
@@ -97,6 +97,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0];
     this.pitchFormData.append('pitch', file)
     this.supportingDocsForm.patchValue({ pitch: file });
+    this.pitchService.pitchFormData.append('pitch', file)
     // Check if the file is an image
     if (file && file.type.startsWith('application/pdf')) {
       const reader = new FileReader();
@@ -112,6 +113,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0]
     this.supportingDocsForm.patchValue({ video: file})
     this.pitchFormData.append('video', file)
+    this.pitchService.pitchFormData.append('video', file)
     // Check if the file is an image
     if (file && file.type.startsWith('video/')) {
       const reader = new FileReader();
@@ -129,6 +131,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0];
     this.supportingDocsForm.patchValue({ id: file})
     this.pitchFormData.append('id', file, file)
+    this.pitchService.pitchFormData.append('id', file)
     // Check if the file is an image
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
@@ -144,24 +147,31 @@ export class SupportingDocumentsComponent implements OnInit{
 
   onSubmit() {
     if (this.supportingDocsForm.value) {
-      if(JSON.stringify(this.pitchService.supportingDocs) === JSON.stringify(this.supportingDocsForm.value)) {
-        this.router.navigateByUrl('/startup/home').then(r => r)
-      } else {
-        this.isLoading = true
-        this.pitchService.submitSupportingDocs(this.pitchFormData).subscribe({
-          next: (value: any) => {
-            localStorage.setItem('pitch', JSON.stringify(value.data))
-            this.pitchService.updatePitch(value.data)
-            this.toast.success(value.message)
-            this.isLoading = false
-            this.router.navigateByUrl('/startup/home').then(r => r)
-          },
-          error: (err: any) => {
-            this.isLoading = false;
-            this.toast.error(err.error.error || "Oops! Server error: ")
-          }
-        })
-      }
+      // Assuming you have a FormData object called 'formData'
+
+// Iterate over the fields of the formData object
+      this.pitchService.pitchFormData.forEach((value, key) => {
+        console.log(key, value);
+      });
+
+      // if(JSON.stringify(this.pitchService.supportingDocs) === JSON.stringify(this.supportingDocsForm.value)) {
+      //   this.router.navigateByUrl('/startup/home').then(r => r)
+      // } else {
+      //   this.isLoading = true
+      //   this.pitchService.submitSupportingDocs(this.pitchFormData).subscribe({
+      //     next: (value: any) => {
+      //       localStorage.setItem('pitch', JSON.stringify(value.data))
+      //       this.pitchService.updatePitch(value.data)
+      //       this.toast.success(value.message)
+      //       this.isLoading = false
+      //       this.router.navigateByUrl('/startup/home').then(r => r)
+      //     },
+      //     error: (err: any) => {
+      //       this.isLoading = false;
+      //       this.toast.error(err.error.error || "Oops! Server error: ")
+      //     }
+      //   })
+      // }
     }
   }
 

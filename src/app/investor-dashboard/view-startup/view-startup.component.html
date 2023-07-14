@@ -1,0 +1,64 @@
+<section class="bg-secondary h-screen">
+  <div>
+  <div class="wrapper">
+    <div class="profile-card js-profile-card rounded-md">
+      <div class="profile-card__img">
+        <img *ngIf="!loading" [src]="startup?.logo" alt="profile card">
+        <ngx-skeleton-loader *ngIf="loading" [theme]="{'border-radius': '100%',height: '150px',width: '150px', 'background-color': '#A4A4A4',}"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="moveDown">
+            <p class="headings flex self-end" style="align-items: self-end"><mat-icon class="mr-1">source</mat-icon> Overview</p><br>
+            <p class="headings">Startup Name</p>
+            <p class="writings" *ngIf="!loading">{{startup?.startup_name}}</p><br>
+            <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+            <p class="headings">Industry</p>
+            <p class="writings">{{startup?.industry}}</p><br>
+            <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+            <p class="headings">Biography/ What they do</p>
+            <p class="writings">{{startup?.startup_bio}}</p>
+            <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          </div>
+          <div class="ml-[30px] mt-10">
+            <a target="_blank" class="p-2 bg-primary hover:bg-tertiary text-white rounded-md" [href]="startup?.pitch_deck">View Pitch</a>
+          </div>
+        </div>
+      <div class="card" id="borderline">
+        <div class="moveDown">
+<!--          <a href="../startup/pitchDeck/<?php echo $data['pitch_deck']?>" class="headings sDocuments">View Pitch &nbsp<img src="assets/images/icons8-document-30.png" width="20" style="vertical-align: middle;-->
+<!--                          display: inline-block; color:white"/></a><br><br>-->
+          <p class="headings">Raising</p>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          <p class="writings">{{startup?.amount_to_raise}}</p><br>
+          <p class="headings">Final Amount after Commission</p>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          <p *ngIf="!loading" class="writings">{{formatCurrency(rawAmount(startup?.amount_to_raise) - (0.05 * rawAmount(startup?.amount_to_raise)))}}</p><br>
+          <p class="headings">Amount of Equity for Amount</p>
+          <p *ngIf="!loading" class="writings">{{startup?.equity}}%</p><br>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          <p class="headings">Previously Raised</p>
+          <p class="writings">{{startup?.raised_amount}} </p><br>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          <p class="headings">Represented By</p>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '0.4rem',width: '10rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+          <p class="writings" *ngIf="!loading">{{startup?.rep_name}},  {{startup?.rep_position}}</p><br>
+          <p class="writings">If you select interested, our team will send you more details on our due diligence and you
+            can choose to invest instantly or do a further round of your own due diligence - which we
+            recommend.
+            As the investor you can choose to cover the 5% commission leaving the full funding amount
+            to the startup or we take the 5% commission from the funded amount. </p><br>
+          <p *ngIf="startup?.video_pitch" class="headings">Pitch Video</p>
+          <a *ngIf="startup?.video_pitch" class="popup-video writings pVideo" [href]="startup?.video_pitch">Click to Play Video</a><br>
+          <app-button class="float-right" *ngIf="!loading" name="Interested in Investing"/>
+          <ngx-skeleton-loader *ngIf="loading" [theme]="{height: '1rem',width: '1rem', 'background-color': '#A4A4A4',}"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+      </div>
+  </div>
+
+</div>
+
+</section>

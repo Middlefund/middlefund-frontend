@@ -10,23 +10,27 @@ import {MatIconModule} from "@angular/material/icon";
 import {SkeletonModule} from "primeng/skeleton";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {FormsModule} from "@angular/forms";
+import { ViewStartupComponent } from './view-startup/view-startup.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
     InvestorDashboardComponent,
     ViewStartupsComponent,
-    InvestorVerificationComponent
+    InvestorVerificationComponent,
+    ViewStartupComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterOutlet,
-    InvestorDashboardRoutingModule,
-    MatIconModule,
-    SkeletonModule,
-    NgxSkeletonLoaderModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterOutlet,
+        InvestorDashboardRoutingModule,
+        MatIconModule,
+        SkeletonModule,
+        NgxSkeletonLoaderModule,
+        FormsModule,
+        NgxPaginationModule
+    ],
   exports: [],
   providers: []
 })

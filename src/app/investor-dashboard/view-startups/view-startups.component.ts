@@ -29,6 +29,7 @@ export class ViewStartupsComponent implements OnInit{
   startups: Array<startupData> = []
   industries: Array<{name: string, value: string}> = []
   loadingIndustries = false
+  total: any
 
   constructor(private investorService: InvestorService,
               private pitch: PitchSubmissionService,
@@ -64,6 +65,8 @@ export class ViewStartupsComponent implements OnInit{
       next: value => {
         this.isLoading = false
         this.startups = []
+        this.total = value.data.total
+        console.log(this.total)
         value.data.data.map((startup: startupData) => {
           this.startups.push(startup)
         })
@@ -88,6 +91,10 @@ export class ViewStartupsComponent implements OnInit{
         this.toast.error(error.error.message || "Oops! Server error")
       }
     })
+  }
+
+  pageChange(event: any) {
+    console.log(event)
   }
 
   protected readonly registrationInfo = registrationInfo;

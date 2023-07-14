@@ -1,33 +1,31 @@
-<section class="h-[100vh] overflow-y-scroll bg-secondary">
+<section class="h-[100vh] w-full overflow-y-scroll bg-secondary">
 
-<div class="flex flex-row-reverse justify-evenly m-20">
-  <div class="flex items-center">
-<!--    <label for="simple-search" class="sr-only">Search</label>-->
-    <div class="relative w-full">
-      <app-custom-input for="startup_name" type="text" placeholder="Search" [control]="searchFilter.controls.search"/>
-    </div>
-  </div>
-<div>
-  <app-custom-select placeholder="Filter by category" [options]="industries" [loadingOptions]="loadingIndustries" [control]="searchFilter.controls.filter"/>
+  <div class="grid mt-10 sm:grid-cols-2 max-w-screen-md ml-10 mr-10 gap-x-5 w-full">
+      <app-custom-input for="startup_name" [type]="'search'" placeholder="Search" [control]="searchFilter.controls.search"/>
+      <app-custom-select placeholder="Filter by category" [options]="industries" [loadingOptions]="loadingIndustries" [control]="searchFilter.controls.filter"/>
 </div>
-</div>
-  <div class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
-    <div *ngIf="!isLoading" class="flex gap-5 justify-center items-center flex-wrap">
+  <div class="w-full mt-8 min-h-fit flex justify-center items-center box-border p-0 m-0">
+    <div *ngIf="!isLoading" class="flex gap-8 justify-center items-center flex-wrap">
       <app-custom-card
-        *ngFor="let startup of startups"
+        *ngFor="let startup of startups | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total  }"
         [name]="startup.startup_name"
         [bio]="startup.startup_bio"
         [category]="startup.industry"
         [status]="startup.verified"
+        [id]="startup.id"
       />
+
     </div>
-    <div *ngIf="isLoading" class="flex gap-5 justify-center items-center flex-wrap">
+    <div *ngIf="isLoading" class="flex gap-8 justify-center items-center flex-wrap">
       <app-custom-card-skeleton/>
       <app-custom-card-skeleton/>
     </div>
   </div>
-  <div *ngIf="!startups && !isLoading" class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
-    <div  class="flex gap-5 justify-center items-center flex-wrap">
+  <div class="flex justify-center" *ngIf="!isLoading">
+    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+  </div>
+  <div *ngIf="!startups.length && !isLoading" class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">
+    <div  class="flex text-primary text-lg gap-5 justify-center items-center flex-wrap">
       No startups found
     </div>
   </div>
