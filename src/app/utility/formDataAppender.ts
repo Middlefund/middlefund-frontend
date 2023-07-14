@@ -35,11 +35,11 @@ export class FormDataAppender {
     });
   }
 
-  appendObject(object) {
+  appendObject(object: any) {
     const formData = this.pitchSubmissionService.pitchFormData
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        formData.set(key, data[key]);
+    for (const key in object) {
+      if (object.hasOwnProperty(key)) {
+        formData.set(key, object[key]);
       }
     }
   }
