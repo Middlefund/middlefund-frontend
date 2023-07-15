@@ -21,6 +21,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ProfileInitials} from "./utility/profileInitials";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {AuthInterceptor} from "./utility/auth-interceptor.service";
     SharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxSkeletonLoaderModule
   ],
   providers: [
     ProfileInitials,

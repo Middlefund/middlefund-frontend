@@ -1,0 +1,11 @@
+<div class="card flex justify-content-center">
+  <p-dialog [modal]="true" [header]="header" [(visible)]="visible" [style]="{width: '30vw'}">
+    <p>
+      {{description}}
+    </p>
+    <ng-template pTemplate="footer">
+      <app-button name="No" (click)="cancelEmitter()" variant="primary"/>
+      <app-button (click)="submitEmitter()" [isLoading]="isLoading" name="Yes" variant="primary"/>
+    </ng-template>
+  </p-dialog>
+</div>

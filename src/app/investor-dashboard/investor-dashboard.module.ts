@@ -7,20 +7,32 @@ import {InvestorDashboardRoutingModule} from "./investor-dashboard-routing.modul
 import { ViewStartupsComponent } from './view-startups/view-startups.component';
 import { InvestorVerificationComponent } from './investor-verification/investor-verification.component';
 import {MatIconModule} from "@angular/material/icon";
+import {SkeletonModule} from "primeng/skeleton";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {FormsModule} from "@angular/forms";
+import { ViewStartupComponent } from './view-startup/view-startup.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import { InterestedComponent } from './interested/interested.component';
 
 @NgModule({
   declarations: [
     InvestorDashboardComponent,
     ViewStartupsComponent,
-    InvestorVerificationComponent
+    InvestorVerificationComponent,
+    ViewStartupComponent,
+    InterestedComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterOutlet,
-    InvestorDashboardRoutingModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterOutlet,
+        InvestorDashboardRoutingModule,
+        MatIconModule,
+        SkeletonModule,
+        NgxSkeletonLoaderModule,
+        FormsModule,
+        NgxPaginationModule
+    ],
   exports: [],
   providers: []
 })

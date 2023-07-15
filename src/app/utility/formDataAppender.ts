@@ -17,7 +17,7 @@ export class FormDataAppender {
       if (control instanceof FormGroup) {
         this.appendNestedFormData(control, key, formData);
       } else {
-        formData.append(key, control?.value);
+        formData.set(key, control?.value);
       }
     });
   }
@@ -30,9 +30,18 @@ export class FormDataAppender {
       if (control instanceof FormGroup) {
         this.appendNestedFormData(control, formKey, formData);
       } else {
-        formData.append(formKey, control.value);
+        formData.set(formKey, control.value);
       }
     });
+  }
+
+  appendObject(object: any) {
+    const formData = this.pitchSubmissionService.pitchFormData
+    for (const key in object) {
+      if (object.hasOwnProperty(key)) {
+        formData.set(key, object[key]);
+      }
+    }
   }
 
 }

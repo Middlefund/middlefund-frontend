@@ -10,3 +10,20 @@ textarea:focus,
 input:focus {
   outline: none;
 }
+
+@supports (-webkit-appearance: none) {
+  @media not all and (min-resolution:.001dpcm) {
+    @media {
+      /* Styles for WebKit-based browsers */
+      input[type="checkbox"], input[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        /* Add custom styles here */
+      }
+    }
+  }
+}
+
+::ng-deep .ngx-pagination .current {
+  background: red !important;
+}

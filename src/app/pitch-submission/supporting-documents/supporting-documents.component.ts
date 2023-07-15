@@ -3,8 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
-import {startupData} from "../../models/interfaces";
+import {pitchData, startupData} from "../../models/interfaces";
+import {FormDataAppender} from "../../utility/formDataAppender";
 
 
 @Component({
@@ -21,11 +21,12 @@ export class SupportingDocumentsComponent implements OnInit{
   videoSrc: string = '';
   idSrc: string = '';
   pdfSrc: string = '';
+  isConfirmationModal: boolean = false;
   constructor(private fb: FormBuilder,
               private pitchService: PitchSubmissionService,
               private toast: ToastrService,
-              private router: Router,
-              private sanitizer: DomSanitizer){
+              private append: FormDataAppender,
+              private router: Router){
   }
 
   ngOnInit() {
@@ -36,35 +37,35 @@ export class SupportingDocumentsComponent implements OnInit{
     logo: ['', Validators.required],
     pitch: ['', Validators.required],
     video: [''],
-    id: ['', Validators.required]
+    repId: ['', Validators.required]
   })
 
-  setData(pitch: startupData) {
+  setData(pitch: pitchData) {
     this.logoSrc = pitch.logo
-    this.idSrc = pitch.rep_id
-    this.videoSrc = pitch.video_pitch
-    this.pdfSrc = pitch.pitch_deck
+    this.idSrc = pitch.repId
+    this.videoSrc = pitch.video
+    this.pdfSrc = pitch.pitch
     this.supportingDocsForm.get('logo')?.setValue(pitch.logo)
-    this.pitchFormData.append('logo', pitch.logo)
-    this.supportingDocsForm.get('pitch')?.setValue(pitch.pitch_deck)
-    this.pitchFormData.append('pitch', pitch.pitch_deck)
-    this.supportingDocsForm.get('id')?.setValue(pitch.rep_id)
-    this.pitchFormData.append('id', pitch.rep_id)
-    this.supportingDocsForm.get('video')?.setValue(pitch.video_pitch)
-    this.pitchFormData.append('video', pitch.video_pitch)
+    this.pitchFormData.set('logo', pitch.logo)
+    this.supportingDocsForm.get('pitch')?.setValue(pitch.pitch)
+    this.pitchFormData.set('pitch', pitch.pitch)
+    this.supportingDocsForm.get('repId')?.setValue(pitch.repId)
+    this.pitchFormData.set('repId', pitch.repId)
+    this.supportingDocsForm.get('video')?.setValue(pitch.video)
+    this.pitchFormData.append('video', pitch.video)
   }
 
   getPitch() {
     if(this.pitchService.pitchData) {
-      const pitch: startupData = this.pitchService.pitchData
+      const pitch: pitchData = this.pitchService.pitchData
       this.setData(pitch)
     } else {
       this.isLoadingPage = true
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
-          this.pitchService.updatePitch(value.data)
-          this.setData(value.data)
+          this.pitchService.updatePitch()
+          // this.setData(value.data)
           this.isLoadingPage = false;
         },
         error: error => {
@@ -79,7 +80,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0];
     this.pitchFormData.append('logo', file)
     this.supportingDocsForm.patchValue({ logo: file });
-
+    this.pitchService.pitchFormData.set('logo', file)
     // Check if the file is an image
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
@@ -97,6 +98,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0];
     this.pitchFormData.append('pitch', file)
     this.supportingDocsForm.patchValue({ pitch: file });
+    this.pitchService.pitchFormData.set('pitch', file)
     // Check if the file is an image
     if (file && file.type.startsWith('application/pdf')) {
       const reader = new FileReader();
@@ -112,6 +114,7 @@ export class SupportingDocumentsComponent implements OnInit{
     const file = event.target.files[0]
     this.supportingDocsForm.patchValue({ video: file})
     this.pitchFormData.append('video', file)
+    this.pitchService.pitchFormData.set('video', file)
     // Check if the file is an image
     if (file && file.type.startsWith('video/')) {
       const reader = new FileReader();
@@ -127,8 +130,9 @@ export class SupportingDocumentsComponent implements OnInit{
 
   onIdChange(event: any) {
     const file = event.target.files[0];
-    this.supportingDocsForm.patchValue({ id: file})
-    this.pitchFormData.append('id', file, file)
+    this.supportingDocsForm.patchValue({ repId: file})
+    this.pitchFormData.append('repId', file, file)
+    this.pitchService.pitchFormData.set('repId', file)
     // Check if the file is an image
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
@@ -142,16 +146,28 @@ export class SupportingDocumentsComponent implements OnInit{
     }
   }
 
+  toggleConfirmationModal() {
+    this.isConfirmationModal = !this.isConfirmationModal
+  }
+
   onSubmit() {
     if (this.supportingDocsForm.value) {
-      if(JSON.stringify(this.pitchService.supportingDocs) === JSON.stringify(this.supportingDocsForm.value)) {
-        this.router.navigateByUrl('/startup/home').then(r => r)
-      } else {
+      // Assuming you have a FormData object called 'formData'
+
+// Iterate over the fields of the formData object
+      this.pitchService.pitchFormData.forEach((value, key) => {
+        console.log(key, value);
+      });
+
+      // if(JSON.stringify(this.pitchService.supportingDocs) === JSON.stringify(this.supportingDocsForm.value)) {
+      //   this.router.navigateByUrl('/startup/home').then(r => r)
+      // } else {
         this.isLoading = true
-        this.pitchService.submitSupportingDocs(this.pitchFormData).subscribe({
+        this.pitchService.submitPitch().subscribe({
           next: (value: any) => {
             localStorage.setItem('pitch', JSON.stringify(value.data))
-            this.pitchService.updatePitch(value.data)
+            this.pitchService.setData(value.data)
+            this.pitchService.updatePitch()
             this.toast.success(value.message)
             this.isLoading = false
             this.router.navigateByUrl('/startup/home').then(r => r)
@@ -163,6 +179,5 @@ export class SupportingDocumentsComponent implements OnInit{
         })
       }
     }
-  }
 
 }

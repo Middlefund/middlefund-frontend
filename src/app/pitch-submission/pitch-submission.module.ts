@@ -10,6 +10,7 @@ import {SharedModule} from "../shared/shared.module";
 import {CommonModule, CurrencyPipe, PercentPipe} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
   declarations: [
@@ -20,14 +21,15 @@ import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
     SupportingDocumentsComponent,
     ReviewingPitchComponent,
   ],
-  imports: [
-    RouterOutlet,
-    CommonModule,
-    PitchSubmissionRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+    imports: [
+        RouterOutlet,
+        CommonModule,
+        PitchSubmissionRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DialogModule
+    ],
   exports: [
   ],
   providers: [CurrencyPipe, PercentPipe]
