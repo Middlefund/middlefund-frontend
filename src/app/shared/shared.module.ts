@@ -26,10 +26,13 @@ import {SafeUrlPipe} from "../utility/safeUrlPipe.pipe";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import player from 'lottie-web'
 import { RocketAnimationComponent } from './rocket-animation/rocket-animation.component';
-import {LottieComponent, LottieModule} from "ngx-lottie";
+import {LottieModule} from "ngx-lottie";
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CustomCardSkeletonComponent } from './custom-card/custom-card-skeleton/custom-card-skeleton.component';
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import {DialogModule} from "primeng/dialog";
+
 
 export function playerFactory() {
   return player
@@ -56,22 +59,24 @@ export function playerFactory() {
     SafeUrlPipe,
     RocketAnimationComponent,
     BreadcrumbComponent,
-    CustomCardSkeletonComponent
+    CustomCardSkeletonComponent,
+    ConfirmationModalComponent
   ],
-  imports: [
-    CommonModule,
-    NgClass,
-    MatProgressSpinnerModule,
-    NgIf,
-    RouterLink,
-    MatIconModule,
-    MatSlideToggleModule,
-    RouterLinkActive,
-    ReactiveFormsModule,
-    PdfViewerModule,
-    LottieModule.forRoot({player: playerFactory}),
-    NgxSkeletonLoaderModule
-  ],
+    imports: [
+        CommonModule,
+        NgClass,
+        MatProgressSpinnerModule,
+        NgIf,
+        RouterLink,
+        MatIconModule,
+        MatSlideToggleModule,
+        RouterLinkActive,
+        ReactiveFormsModule,
+        PdfViewerModule,
+        LottieModule.forRoot({player: playerFactory}),
+        NgxSkeletonLoaderModule,
+        DialogModule,
+    ],
   exports: [
     LogoComponent,
     ButtonComponent,
@@ -91,6 +96,7 @@ export function playerFactory() {
     RocketAnimationComponent,
     BreadcrumbComponent,
     CustomCardSkeletonComponent,
+    ConfirmationModalComponent,
   ]
 })
 

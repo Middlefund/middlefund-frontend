@@ -4,7 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {City, Country, ICountry, State} from "country-state-city";
 import {Router} from "@angular/router";
-import {startupData} from "../../models/interfaces";
+import {startupData, pitchData} from "../../models/interfaces";
 import {registrationInfo, stagesOptions} from "../../utility/constants";
 import {FormDataAppender} from "../../utility/formDataAppender";
 
@@ -36,11 +36,11 @@ export class StartupProfileComponent implements OnInit{
   ngOnInit() {
     this.getPitch()
 
-    this.startupProfileForm.controls.location.controls.country.valueChanges.subscribe(value => {
+    this.startupProfileForm.controls.country.valueChanges.subscribe(value => {
       this.setStates(value)
     })
 
-    this.startupProfileForm.controls.location.controls.region.valueChanges.subscribe(value => {
+    this.startupProfileForm.controls.region.valueChanges.subscribe(value => {
       this.setCities(value)
     })
   }
@@ -72,24 +72,28 @@ export class StartupProfileComponent implements OnInit{
     })
   }
 
-  setData(data: startupData) {
-    this.startupProfileForm.get('startupName')?.setValue(data.startup_name)
-    this.startupProfileForm.get('registrationInfo')?.setValue(data.registration_type)
-    this.startupProfileForm.get('registrationCountry')?.setValue(data.registration_country)
+  setData(data: pitchData) {
+    this.startupProfileForm.get('startupName')?.setValue(data.startupName)
+    this.startupProfileForm.get('registrationInfo')?.setValue(data.registrationInfo)
+    this.startupProfileForm.get('registrationCountry')?.setValue(data.registrationCountry)
     this.startupProfileForm.get('industry')?.setValue(data.industry)
     this.startupProfileForm.get('stage')?.setValue(data.stage)
-    this.startupProfileForm.controls.location.get('country')?.setValue(data.country)
-    this.setStates(data.country)
-    this.startupProfileForm.controls.location.get('region')?.setValue(data.region_state)
-    this.setCities(data.region_state)
-    this.startupProfileForm.controls.location.get('city')?.setValue(data.city)
-    this.startupProfileForm.controls.social.get('website')?.setValue(data.website)
-    this.startupProfileForm.controls.social.get('linkedIn')?.setValue(data.linkedin)
+    if(data.country) {
+      this.startupProfileForm.get('country')?.setValue(data.country)
+      this.setStates(data.country)
+    }
+    if(data.region) {
+      this.startupProfileForm.get('region')?.setValue(data.region)
+      this.setCities(data.region)
+    }
+    if(data.city) this.startupProfileForm.get('city')?.setValue(data.city)
+    this.startupProfileForm.get('website')?.setValue(data.website)
+    this.startupProfileForm.get('linkedIn')?.setValue(data.linkedIn)
   }
   getPitch() {
     if(this.pitchService.pitchData) {
       this.getAllIndustries()
-      const pitch: startupData = this.pitchService.pitchData
+      const pitch: pitchData = this.pitchService.pitchData
       this.setData(pitch)
       // if(this.startupProfileForm.invalid) {
       //   localStorage.removeItem('pitch');
@@ -100,7 +104,7 @@ export class StartupProfileComponent implements OnInit{
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
-          this.pitchService.updatePitch(value.data)
+          this.pitchService.updatePitch()
           // this.getAllIndustries()
           this.setData(value.data)
           this.loadingPage =false
@@ -119,15 +123,11 @@ export class StartupProfileComponent implements OnInit{
     industry: new FormControl(null, Validators.required),
     registrationCountry: new FormControl(null),
     stage: new FormControl(null, Validators.required),
-    location: new FormGroup({
-      country: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      region: new FormControl(null, Validators.required),
-    }),
-    social: new FormGroup({
-      website: new FormControl(''),
-      linkedIn: new FormControl('')
-    })
+    country: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    region: new FormControl(null, Validators.required),
+    website: new FormControl(''),
+    linkedIn: new FormControl('')
   });
 
 
@@ -135,7 +135,10 @@ export class StartupProfileComponent implements OnInit{
     if(this.startupProfileForm.valid) {
       this.append.appendFormData(this.startupProfileForm)
       console.log(this.pitchService.pitchFormData)
+
       // if(JSON.stringify(this.pitchService.startupProfile) === JSON.stringify(this.startupProfileForm.value)) {
+        this.pitchService.updatePitch()
+      console.log(this.pitchService.pitchData)
         this.router.navigateByUrl('/pitch-submission/pitch-details').then(r => r)
       // }
       // else {

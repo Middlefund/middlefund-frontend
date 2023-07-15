@@ -3,16 +3,16 @@ export interface messageData {
   data: any
 }
 
-export interface pitchData {
+export interface pitch {
   "startupName": string;
-  "registrationInfo": string
-  "registrationCountry": string
-  "industry": string
-  "stage": string
+  "registrationInfo": any
+  "registrationCountry": any
+  "industry": any
+  "stage": any
   "location": {
-    "country": string
-    "region": string
-    "city": string
+    "country": any
+    "region": any
+    "city": any
   };
   "social": {
     "website": string;
@@ -57,6 +57,33 @@ export interface repDetails {
   position: string;
   linkedIn: string;
   repBio: string;
+}
+
+export interface pitchData {
+  "startupName": string;
+  "registrationInfo": any;
+  "registrationCountry": any;
+  "industry": any;
+  "stage": any;
+  "country": any;
+  "region": any;
+  "city": any;
+  "website": string;
+  "linkedIn": string;
+  "raisedAmount": any;
+  amountToRaise: any;
+  purpose: any;
+  equity: string;
+  startupBio: string;
+  repName: string;
+  position: string;
+  rep_linkedIn: string;
+  repBio: string;
+  logo: string;
+  pitch: string,
+  video: string,
+  repId: any
+  verified: string
 }
 
 export interface startupData {

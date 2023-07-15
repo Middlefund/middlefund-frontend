@@ -10,11 +10,11 @@
       <app-custom-select label="Industry *" placeholder="What industry do you operate in?" [options]="industries" [loadingOptions]="loadingIndustries" [control]="startupProfileForm.controls.industry"/>
       <app-custom-select label="Registration Country" placeholder="What country is your startup registered in" [options]="countries" [control]="startupProfileForm.controls.registrationCountry"/>
       <app-custom-select label="Stage *" placeholder="What stage are you currently at?" [control]="startupProfileForm.controls.stage" [options]="stagesOptions"/>
-      <app-custom-select label="Country *" placeholder="What country is your startup based in" [options]="countries" [control]="startupProfileForm.controls.location.controls.country"/>
-      <app-custom-select *ngIf="startupProfileForm.controls.location.controls.country.valid" label="Region or State *" placeholder="What region or state is your startup based in" [options]="states" [control]="startupProfileForm.controls.location.controls.region"/>
-      <app-custom-select *ngIf="startupProfileForm.controls.location.controls.region.valid" label="City *" placeholder="What city is your startup based in" [options]="cities" [control]="startupProfileForm.controls.location.controls.city"/>
-      <app-custom-input label="Website" for="website" type="url" placeholder="Leave blank if you do not have a website." [control]="startupProfileForm.controls.social.controls.website"/>
-      <app-custom-input label="LinkedIn" for="linkedin" type="url" placeholder="Leave blank if you do not have an account." [control]="startupProfileForm.controls.social.controls.linkedIn"/>
+      <app-custom-select label="Country *" placeholder="What country is your startup based in" [options]="countries" [control]="startupProfileForm.controls.country"/>
+      <app-custom-select *ngIf="startupProfileForm.controls.country.valid" label="Region or State *" placeholder="What region or state is your startup based in" [options]="states" [control]="startupProfileForm.controls.region"/>
+      <app-custom-select *ngIf="startupProfileForm.controls.region.valid" label="City *" placeholder="What city is your startup based in" [options]="cities" [control]="startupProfileForm.controls.city"/>
+      <app-custom-input label="Website" for="website" type="url" placeholder="Leave blank if you do not have a website." [control]="startupProfileForm.controls.website"/>
+      <app-custom-input label="LinkedIn" for="linkedin" type="url" placeholder="Leave blank if you do not have an account." [control]="startupProfileForm.controls.linkedIn"/>
       </div>
       <div class="flex mt-10 w-full justify-end md:max-w-5xl">
         <app-button type="submit" [isLoading]="isLoading" [disable]="!startupProfileForm.valid" name="Next"/>

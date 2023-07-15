@@ -5,6 +5,7 @@ import {DashboardHomeComponent} from "../shared/dashboard-home/dashboard-home.co
 import {ViewStartupsComponent} from "./view-startups/view-startups.component";
 import {InvestorVerificationComponent} from "./investor-verification/investor-verification.component";
 import {ViewStartupComponent} from "./view-startup/view-startup.component";
+import {InterestedComponent} from "./interested/interested.component";
 
 const settingsModule = () => import('../settings/settings.module').then(x => x.SettingsModule)
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: 'view-startups', component: ViewStartupsComponent},
       {path: 'view-startup/:id', component: ViewStartupComponent},
       {path: 'investor-verification', component: InvestorVerificationComponent},
+      {path: 'interested/:pitchId', component: InterestedComponent},
       {path: 'settings', loadChildren: settingsModule}
     ]}
 ]

@@ -12,13 +12,15 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {FormsModule} from "@angular/forms";
 import { ViewStartupComponent } from './view-startup/view-startup.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { InterestedComponent } from './interested/interested.component';
 
 @NgModule({
   declarations: [
     InvestorDashboardComponent,
     ViewStartupsComponent,
     InvestorVerificationComponent,
-    ViewStartupComponent
+    ViewStartupComponent,
+    InterestedComponent
   ],
     imports: [
         CommonModule,

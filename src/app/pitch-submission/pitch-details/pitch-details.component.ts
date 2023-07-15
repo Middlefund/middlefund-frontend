@@ -4,7 +4,7 @@ import {CurrencyPipe} from "@angular/common";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {startupData} from "../../models/interfaces";
+import {pitchData, startupData} from "../../models/interfaces";
 import {purposeOptions, raisedAmountOptions} from "../../utility/constants";
 import {FormDataAppender} from "../../utility/formDataAppender";
 
@@ -37,17 +37,17 @@ export class PitchDetailsComponent implements OnInit{
     startupBio: ['', [Validators.required]]
   })
 
-  setData(pitch: startupData) {
-    this.pitchDetailsForm.get('raisedAmount')?.setValue(pitch.raised_amount)
-    this.pitchDetailsForm.get('amountToRaise')?.setValue(pitch.amount_to_raise)
+  setData(pitch: pitchData) {
+    this.pitchDetailsForm.get('raisedAmount')?.setValue(pitch.raisedAmount)
+    this.pitchDetailsForm.get('amountToRaise')?.setValue(pitch.amountToRaise)
     this.pitchDetailsForm.get('purpose')?.setValue(pitch.purpose)
     this.pitchDetailsForm.get('equity')?.setValue(pitch.equity)
-    this.pitchDetailsForm.get('startupBio')?.setValue(pitch.startup_bio)
+    this.pitchDetailsForm.get('startupBio')?.setValue(pitch.startupBio)
   }
 
   getPitch() {
     if(this.pitchService.pitchData) {
-      const pitch: startupData = this.pitchService.pitchData
+      const pitch: pitchData = this.pitchService.pitchData
       this.setData(pitch)
     }
     else {
@@ -55,7 +55,7 @@ export class PitchDetailsComponent implements OnInit{
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
-          this.pitchService.updatePitch(value.data)
+          this.pitchService.updatePitch()
           this.setData(value.data)
           this.isLoadingPage = false;
         },
@@ -74,6 +74,7 @@ export class PitchDetailsComponent implements OnInit{
   onSubmit = () => {
     if(this.pitchDetailsForm.valid) {
         this.append.appendFormData(this.pitchDetailsForm)
+        this.pitchService.updatePitch()
     //   if(JSON.stringify(this.pitchService.pitchDetails) === JSON.stringify(this.pitchDetailsForm.value)) {
         this.router.navigateByUrl('/pitch-submission/representative-details').then(r => r)
       // }

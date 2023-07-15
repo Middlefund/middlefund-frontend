@@ -18,4 +18,8 @@ export class InvestorService {
   getPitch(id: string) {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-pitch/${id}`);
   }
+
+  interested(pitchId: string) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/interested`, {pitchId});
+  }
 }

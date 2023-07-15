@@ -11,4 +11,5 @@ export class CustomCardComponent {
   @Input() category: string = ''
   @Input() status: string = ''
   @Input() id: string = ''
+  @Input() logoSrc: string = ''
 }
