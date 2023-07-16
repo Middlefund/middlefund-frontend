@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {messageData} from "../models/interfaces";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {Form} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +23,13 @@ export class InvestorService {
   interested(pitchId: string) {
     return this.http.post<messageData>(`${environment.BACKEND_URL}/api/interested`, {pitchId});
   }
+
+  verification(formData: FormData) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/investor-verification`, formData);
+  }
+
+  getInvestor() {
+    return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-investor`);
+  }
+
 }

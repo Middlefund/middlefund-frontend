@@ -139,5 +139,27 @@ export interface NotificationData {
   updated_at: string;
 }
 
+export interface InvestorData {
+  id: string;
+  user_id: string;
+  user_type: string | null;
+  organization_name: string | null;
+  investment_stage: string | null;
+  position: string | null;
+  interests: string[] | null;
+  commitment: number | null;
+  min_cheque_size: number | null;
+  max_cheque_size: number | null;
+  linkedIn: string | null;
+  twitter: string | null;
+  id_type: string;
+  id_card: string;
+  proof_type: string;
+  proof: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
 
 

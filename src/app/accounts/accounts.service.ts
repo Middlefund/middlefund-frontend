@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
+import {BehaviorSubject, catchError, NEVER, Observable, tap, throwError} from "rxjs";
 import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
 import {messageData} from "../models/interfaces";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ export class AccountsService {
   public user!: Observable<any>;
   public redirectUrl: string = ''
   constructor(private http: HttpClient,
-              private alert: AlertService) {
+              private alert: AlertService,
+              private router: Router,
+              private toast: ToastrService) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('middlefund$user')!));
     this.user = this.userSubject.asObservable();
   }
@@ -72,7 +76,15 @@ export class AccountsService {
   }
 
   refreshToken(refreshToken: string = this.userTokens.refresh_token, user_type: string = this.userData.user_type) {
-    return this.http.post<any>(`${environment.BACKEND_URL}/api/refresh`, {refreshToken, user_type})
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/refresh`, {refreshToken, user_type}).pipe(
+      catchError((refreshTokenErr) => {
+          this.logoutUser();
+        return throwError(refreshTokenErr);
+      }),
+      tap((response) => {
+        console.log("Yes")
+      })
+    )
   }
 
   setRedirectUrl(url: string) {
@@ -83,4 +95,13 @@ export class AccountsService {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/user-notification`)
   }
 
+  private logoutUser(): Observable<never> {
+    const url: string = this.router.url;
+    this.toast.info('Your session expired, please login again');
+    this.clearToken();
+    localStorage.clear();
+    this.setRedirectUrl(url);
+    this.router.navigateByUrl('/login');
+    return NEVER;
+  }
 }

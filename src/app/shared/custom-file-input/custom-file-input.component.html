@@ -1,10 +1,10 @@
 <div class="flex flex-col items-center justify-center w-full">
-  <label [for]="for" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
+  <label [for]="for" class="flex flex-col items-center justify-center w-full h-64 border-2 border-white border-dashed rounded-lg cursor-pointer bg-gray-50">
     <input (change)="onChange($event)" [id]="for" type="file" [accept]="accept"  class="hidden z-[1000]"/>
     <div *ngIf="!imageSrc && !videoSrc && !pdfSrc " class="flex text-2xl flex-col items-center justify-center pt-5 pb-6">
-      <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-      <p class="text-xs text-gray-500 dark:text-gray-400">{{acceptedType}}</p>
+      <svg aria-hidden="true" class="w-10 h-10 mb-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+      <p class="mb-2 text-sm text-white dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+      <p class="text-xs text-white dark:text-gray-400">{{acceptedType}}</p>
     </div>
       <img *ngIf="imageSrc" class="object-contain w-full h-60" [src]="imageSrc | safeUrl"/>
       <video *ngIf="videoSrc" class="object-contain w-full h-60" autoplay [src]="videoSrc | safeUrl"></video>
@@ -12,7 +12,7 @@
                   [original-size]="false" [src]="pdfSrc" style="height: 15rem; width: 100%; display: block;"></pdf-viewer>
   </label>
 </div>
-<div class="flex flex-col mt-1">
+<div class="flex text-white flex-col mt-1">
   <span>{{title}}</span>
   <span>{{description}}</span>
 </div>
