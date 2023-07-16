@@ -9,10 +9,11 @@ import { InvestorVerificationComponent } from './investor-verification/investor-
 import {MatIconModule} from "@angular/material/icon";
 import {SkeletonModule} from "primeng/skeleton";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ViewStartupComponent } from './view-startup/view-startup.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { InterestedComponent } from './interested/interested.component';
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
   declarations: [
@@ -22,17 +23,20 @@ import { InterestedComponent } from './interested/interested.component';
     ViewStartupComponent,
     InterestedComponent
   ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        RouterOutlet,
-        InvestorDashboardRoutingModule,
-        MatIconModule,
-        SkeletonModule,
-        NgxSkeletonLoaderModule,
-        FormsModule,
-        NgxPaginationModule
-    ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterOutlet,
+    InvestorDashboardRoutingModule,
+    MatIconModule,
+    SkeletonModule,
+    NgxSkeletonLoaderModule,
+    FormsModule,
+    NgxPaginationModule,
+    DialogModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   providers: []
 })

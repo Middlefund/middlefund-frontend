@@ -147,7 +147,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 }
                 return next.handle(request);
               })
-            );
+            )
           } else {
             // Token refresh is already in progress, queue the request
             return this.refreshTokenSubject.pipe(

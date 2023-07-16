@@ -1,1 +1,78 @@
-<p>investor-verification works!</p>
+<section *ngIf="!status" class="flex text-white h-full md:h-screen bg-secondary justify-center w-full">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form [formGroup]="verificationForm" *ngIf="!isLoadingPage" (ngSubmit)="toggleModal()" class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
+    <div class="grid border-y-2 border-primary pb-8 pt-4 md:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+      <div>
+        <h1>Upload Documents</h1>
+        <p class="max-md:min-h-[7rem]">We need to confirm you are behind your account, so please complete this mandatory step to continue.
+          We require both sides of your ID.
+        </p>
+        <p class="text-primary text-lg">Id Type</p>
+        <div class="mb-4 flex gap-x-4">
+          <div class="flex gap-x-1">
+          <input type="radio" formControlName="idType" value="Passport" name="idType" class="accent-primary text-primary border border-primary"/>
+          <label>Passport</label>
+          </div>
+          <div class="flex gap-x-1">
+          <input type="radio" name="idType" formControlName="idType" value="National Card" class="accent-primary text-primary border border-primary"/>
+          <label>National Card</label>
+          </div>
+          <div class="flex gap-x-1">
+          <input type="radio" name="idType" formControlName="idType" value="Driver's License" class="accent-primary text-primary border border-primary"/>
+          <label>Driver's License</label>
+          </div>
+        </div>
+        <app-custom-file-input [pdfSrc]="idSrc" for="logo" (changeInput)="onIdChange($event)" accept="application/pdf" acceptedType="pdf"/>
+      </div>
+      <div>
+        <h1>Proof of residence</h1>
+        <p class="max-md:min-h-[7rem]">
+          Proof of address document can be one of the following:
+          Bank/Credit card statement or Utility Bill - within the last 6 months.
+        </p>
+        <p class="text-primary text-lg">Proof type</p>
+        <div class="mb-4 flex gap-x-4">
+          <div class="flex gap-x-1">
+            <input type="radio" formControlName="proofType" value="Utility Bill" name="proofType" class="accent-primary text-primary border border-primary"/>
+            <label>Utility Bill</label>
+          </div>
+          <div class="flex gap-x-1">
+            <input type="radio" formControlName="proofType" value="Bank / Credit Card statement" name="proofType" class="accent-primary text-primary border border-primary"/>
+            <label>Bank / Credit Card statement</label>
+          </div>
+        </div>
+        <app-custom-file-input [pdfSrc]="proofSrc" [for]="'pitch'" (changeInput)="onProofChange($event)"  accept="application/pdf" acceptedType="pdf"/>
+      </div>
+    </div>
+    <div class="flex mt-10 w-full justify-end md:max-w-5xl">
+      <app-button [isLoading]="isLoading" name="Save" [disable]="verificationForm.invalid"/>
+    </div>
+  </form>
+</section>
+<section *ngIf="status === 'verified'" class="flex gap-x-10 justify-center text-white h-full md:h-[90vh] bg-secondary items-center w-full">
+  <span class="text-primary text-5xl">You are verified</span>
+  <div class="success-checkmark">
+    <div class="check-icon">
+      <span class="icon-line line-tip"></span>
+      <span class="icon-line line-long"></span>
+      <div class="icon-circle"></div>
+      <div class="icon-fix"></div>
+    </div>
+  </div>
+</section>
+<section *ngIf="status === 'pending'" class="flex gap-x-10 justify-center text-white h-full md:h-[90vh] bg-secondary items-center w-full">
+  <app-rocket-animation title="Your documents are under review. We will notify you after the process"/>
+</section>
+<app-confirmation-modal
+  header="Verify Investor"
+  description="Are you sure you want to submit? Documents will be reviewed"
+  [isLoading]="isLoading"
+  [visible]="visible"
+  (cancel)="toggleModal()"
+  (submit)="onSubmit()"
+/>
+
+
