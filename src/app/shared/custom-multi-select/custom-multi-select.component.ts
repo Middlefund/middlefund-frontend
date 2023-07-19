@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {FormArray, FormControl} from "@angular/forms";
 
 @Component({
@@ -23,9 +23,6 @@ export class CustomMultiSelectComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  emitOption(value: string) {
-    this.optionSelected.emit(value)
-  }
 
   toggleOption(option: any) {
     if (this.selectedOptions.includes(option)) {
@@ -45,5 +42,14 @@ export class CustomMultiSelectComponent {
     invalidEmail: "Please provide a valid email",
     invalidFullName: "Provide a name in this format: Firstname Lastname",
     invalidConfirmPassword: "Passwords do not match"
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    const dropdown = !(event.target as HTMLElement).closest('.dropdown');
+    const dropdownInput = !(event.target as HTMLElement).closest('.dropDownInput');
+    if (dropdown && dropdownInput) {
+      this.isDropdownOpen = false;
+    }
   }
 }

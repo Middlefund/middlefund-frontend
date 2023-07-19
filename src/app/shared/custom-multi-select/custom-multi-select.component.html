@@ -1,7 +1,7 @@
 <div>
   <label [for]="for" class="block mb-2 text-sm font-medium text-white dark:text-white">{{ label }}</label>
   <div class="relative w-full">
-    <div class="flex items-center space-x-2">
+    <div class="flex dropDownInput items-center space-x-2">
       <div class="relative w-full">
         <input type="text" [formControl]="control" [placeholder]="placeholder"  (click)="toggleDropdown()" [id]="for" class="bg-secondary truncate cursor-pointer w-full border border-grey text-white text-sm rounded-lg focus:ring-blue-500 focus:border-primary focus:shadow-primary focus:shadow-md block p-2.5 pr-7" readonly>
         <div class="absolute ml-2 inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isDropdownOpen" class="absolute w-full bg-secondary z-10 mt-1 rounded-lg shadow-lg dark:bg-gray-800">
+    <div (click)="onDocumentClick($event)" *ngIf="isDropdownOpen" class="dropdown absolute w-full bg-secondary z-10 mt-1 rounded-lg shadow-lg dark:bg-gray-800">
       <ul class="py-1 overflow-auto max-h-60">
         <li *ngFor="let option of options; index as i " class="px-4 py-2 flex items-center">
           <input type="checkbox" [value]="option.value"  class="accent-primary"  (change)="toggleOption(option.value)">

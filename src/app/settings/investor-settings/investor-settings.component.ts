@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {PitchSubmissionService} from "../../pitch-submission/pitch-submission.service";
 import {InvestorFormControls} from "../../utility/models";
+import {registerAs, registrationInfo, stagesOptions} from "../../utility/constants";
 
 interface City {
   name: string,
@@ -19,22 +20,27 @@ export class InvestorSettingsComponent implements OnInit{
   interests: Array<{name: string, value: string}> = [];
   loadingIndustries = false;
   selectedInterests: string[] = []
+  isOrganization: boolean = true
   constructor(private fb: FormBuilder,
               private toast: ToastrService,
               private pitchService: PitchSubmissionService) {}
 
   ngOnInit() {
     this.getAllIndustries()
+    this.investorForm.controls.registerAs.valueChanges.subscribe((value: any) => {
+      value === 'Organization' ? this.isOrganization = true : this.isOrganization = false;
+    })
   }
 
   investorForm = this.fb.group({
-    organizationName: [''],
-    investmentStage: [''],
-    position: [],
-    interests: [this.selectedInterests.join(', ')],
-    commitment: [''],
-    minChequeSize: [''],
-    maxChequeSize: [''],
+    registerAs: ['Organization', Validators.required],
+    organizationName: ['', this.isOrganization ? Validators.required : ''],
+    investmentStage: ['', Validators.required],
+    position: ['', this.isOrganization ? Validators.required : ''],
+    interests: ['', Validators.required],
+    commitment: ['', Validators.required],
+    minChequeSize: ['', Validators.required],
+    maxChequeSize: ['', Validators.required],
     linkedIn: [''],
     twitter: [''],
   })
@@ -78,4 +84,8 @@ export class InvestorSettingsComponent implements OnInit{
       }
     })
   }
+
+  protected readonly stagesOptions = stagesOptions;
+  protected readonly registrationInfo = registrationInfo;
+  protected readonly registerAs = registerAs;
 }
