@@ -17,7 +17,7 @@ import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.co
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { LockedComponent } from './locked/locked.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CustomCardComponent } from './custom-card/custom-card.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { CustomTextAreaComponent } from './custom-text-area/custom-text-area.component';
@@ -32,6 +32,7 @@ import { CustomCardSkeletonComponent } from './custom-card/custom-card-skeleton/
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import {DialogModule} from "primeng/dialog";
+import { CustomMultiSelectComponent } from './custom-multi-select/custom-multi-select.component';
 
 
 export function playerFactory() {
@@ -60,7 +61,8 @@ export function playerFactory() {
     RocketAnimationComponent,
     BreadcrumbComponent,
     CustomCardSkeletonComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    CustomMultiSelectComponent
   ],
     imports: [
         CommonModule,
@@ -76,6 +78,7 @@ export function playerFactory() {
         LottieModule.forRoot({player: playerFactory}),
         NgxSkeletonLoaderModule,
         DialogModule,
+        FormsModule,
     ],
   exports: [
     LogoComponent,
@@ -97,6 +100,7 @@ export function playerFactory() {
     BreadcrumbComponent,
     CustomCardSkeletonComponent,
     ConfirmationModalComponent,
+    CustomMultiSelectComponent,
   ]
 })
 

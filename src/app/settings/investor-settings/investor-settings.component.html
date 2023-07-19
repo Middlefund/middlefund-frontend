@@ -5,17 +5,10 @@
       <app-custom-input type="text" [for]="'organization_name'" [label]="'Organization Name'" [placeholder]="'Enter the name of your organization'"/>
       <app-custom-input type="text" [for]="'investment_stage'" [label]="'Investment Stage'" [placeholder]="'Select preferred Investment Stage'"/>
       <app-custom-input type="password" [for]="'password_confirmation'" [label]="'Confirm New Password'" [placeholder]="'Enter your new password again'"/>
-
-      <div class="card flex justify-content-center">
-        <p-multiSelect [options]="groupedCities" [group]="true" [(ngModel)]="selectedCities" defaultLabel="Select a City" scrollHeight="250px" display="chip">
-          <ng-template let-group pTemplate="group">
-            <div class="flex align-items-center">
-              <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + group.value" style="width: 20px" />
-              <span>{{ group.label }}</span>
-            </div>
-          </ng-template>
-        </p-multiSelect>
-      </div>
+      <app-custom-multi-select (optionSelected)="onOptionSelect('interests', $event)" [control]="investorForm.controls.interests"
+                               [options]="interests" label="Interests" for="interests"
+                               [placeholder]="loadingIndustries ? 'Loading...' : 'Select preferred interests'"
+      />
     </div>
     <div class="mt-5">
       <app-button [isLoading]="isLoading" name="Save" variant="optional"/>

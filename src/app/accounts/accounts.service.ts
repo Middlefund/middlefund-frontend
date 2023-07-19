@@ -80,9 +80,6 @@ export class AccountsService {
       catchError((refreshTokenErr) => {
           this.logoutUser();
         return throwError(refreshTokenErr);
-      }),
-      tap((response) => {
-        console.log("Yes")
       })
     )
   }

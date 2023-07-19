@@ -1,3 +1,5 @@
+import {FormControl} from "@angular/forms";
+
 export interface loginData {
   token: object
   user: object
@@ -23,4 +25,16 @@ export interface startupProfile {
     website: string
     linkedIn: string
   }
+}
+
+export interface InvestorFormControls {
+  organizationName: FormControl;
+  investmentStage: FormControl;
+  position: FormControl;
+  interests: FormControl;
+  commitment: FormControl;
+  minChequeSize: FormControl;
+  maxChequeSize: FormControl;
+  linkedIn: FormControl;
+  twitter: FormControl;
 }

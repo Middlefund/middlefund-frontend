@@ -10,6 +10,8 @@ import {SharedModule} from "../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AlertModule} from "../alert";
 import {MultiSelectModule} from "primeng/multiselect";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -18,16 +20,18 @@ import {MultiSelectModule} from "primeng/multiselect";
     AccountSettingsComponent,
     InvestorSettingsComponent
   ],
-    imports: [
-        RouterOutlet,
-        CommonModule,
-        SettingsRoutingModule,
-        SharedModule,
-        ReactiveFormsModule,
-        FormsModule,
-        AlertModule,
-        MultiSelectModule,
-    ],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    SettingsRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AlertModule,
+    MultiSelectModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
   exports : []
 })
 

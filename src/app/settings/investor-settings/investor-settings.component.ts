@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {SelectItemGroup} from "primeng/api";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import {PitchSubmissionService} from "../../pitch-submission/pitch-submission.service";
+import {InvestorFormControls} from "../../utility/models";
 
 interface City {
   name: string,
@@ -12,51 +14,24 @@ interface City {
   templateUrl: './investor-settings.component.html',
   styleUrls: ['./investor-settings.component.css']
 })
-export class InvestorSettingsComponent {
+export class InvestorSettingsComponent implements OnInit{
   isLoading: boolean = false;
-  groupedCities!: SelectItemGroup[];
+  interests: Array<{name: string, value: string}> = [];
+  loadingIndustries = false;
+  selectedInterests: string[] = []
+  constructor(private fb: FormBuilder,
+              private toast: ToastrService,
+              private pitchService: PitchSubmissionService) {}
 
-  selectedCities!: City[];
-  constructor(private fb: FormBuilder) {
-    this.groupedCities = [
-      {
-        label: 'Germany',
-        value: 'de',
-        items: [
-          { label: 'Berlin', value: 'Berlin' },
-          { label: 'Frankfurt', value: 'Frankfurt' },
-          { label: 'Hamburg', value: 'Hamburg' },
-          { label: 'Munich', value: 'Munich' }
-        ]
-      },
-      {
-        label: 'USA',
-        value: 'us',
-        items: [
-          { label: 'Chicago', value: 'Chicago' },
-          { label: 'Los Angeles', value: 'Los Angeles' },
-          { label: 'New York', value: 'New York' },
-          { label: 'San Francisco', value: 'San Francisco' }
-        ]
-      },
-      {
-        label: 'Japan',
-        value: 'jp',
-        items: [
-          { label: 'Kyoto', value: 'Kyoto' },
-          { label: 'Osaka', value: 'Osaka' },
-          { label: 'Tokyo', value: 'Tokyo' },
-          { label: 'Yokohama', value: 'Yokohama' }
-        ]
-      }
-    ];
+  ngOnInit() {
+    this.getAllIndustries()
   }
 
   investorForm = this.fb.group({
     organizationName: [''],
     investmentStage: [''],
-    position: [''],
-    interests: [''],
+    position: [],
+    interests: [this.selectedInterests.join(', ')],
     commitment: [''],
     minChequeSize: [''],
     maxChequeSize: [''],
@@ -65,6 +40,42 @@ export class InvestorSettingsComponent {
   })
 
   onSubmit() {
+    console.log(this.investorForm.value)
+  }
 
+  // onOptionSelect(event: any) {
+  //   this.investorForm.controls.interests.setValue(event.join(', '))
+  // }
+  onOptionSelect(controlName: keyof InvestorFormControls, value: any) {
+    this.investorForm.controls[controlName].setValue(value.join(', '));
+  }
+
+
+
+  addInterest(option: any) {
+    // this.investorForm.controls.interests.push(option)
+    console.log(this.investorForm.controls.interests.value)
+    // if (index > -1) {
+    //   this.selectedOptions.splice(option, 1);
+    // } else {
+    //   this.selectedOptions.push(option);
+    // }
+    // console.log(this.selectedOptions)
+  }
+
+  getAllIndustries() {
+    this.loadingIndustries = true;
+    this.pitchService.getIndustries().subscribe({
+      next: value => {
+        value.data.map((industry: {name: string}) => {
+          this.interests.push({name: industry.name, value: industry.name})
+        })
+        this.loadingIndustries = false;
+      },
+      error: error => {
+        this.loadingIndustries = false;
+        this.toast.error(error.error.message || "Oops! Server error")
+      }
+    })
   }
 }
