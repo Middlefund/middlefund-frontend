@@ -32,4 +32,8 @@ export class InvestorService {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-investor`);
   }
 
+  saveInvestorSettings(investorSettings: any) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/save-investor-settings`, investorSettings);
+  }
+
 }
