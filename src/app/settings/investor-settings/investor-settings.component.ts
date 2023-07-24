@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {PitchSubmissionService} from "../../pitch-submission/pitch-submission.service";
 import {InvestorFormControls, InvestorSettings} from "../../utility/models";
@@ -7,11 +7,6 @@ import {registerAs, registrationInfo, stagesOptions} from "../../utility/constan
 import {InvestorService} from "../../investor-dashboard/investor.service";
 import {CurrencyPipe} from "@angular/common";
 import {AlertService} from "../../alert";
-
-interface City {
-  name: string,
-  code: string
-}
 
 @Component({
   selector: 'app-investor-settings',
@@ -21,6 +16,16 @@ interface City {
 export class InvestorSettingsComponent implements OnInit{
   isLoading: boolean = false;
   interests: Array<{name: string, value: string, checked: boolean}> = [];
+  stages: Array<{name: string, value: string, checked: boolean}> = [
+    {name: "Idea Stage", value: "Idea Stage", checked: false},
+    {name: "Minimum Viable Product (MVP)", value: "Minimum Viable Product (MVP)", checked: false},
+    {name: "Pre Seed(Pre Revenue)", value: "Pre Seed(Pre Revenue)", checked: false},
+    {name: "Pre Seed(Pre Revenue with Traction)", value: "Pre Seed(Pre Revenue with Traction)", checked: false},
+    {name: "Early Stage", value: "Early Stage", checked: false},
+    {name: "Seed Stage", value: "Seed Stage", checked: false},
+    {name: "Series A+", value: "Series A+", checked: false},
+  ];
+
   loadingIndustries = false;
   isOrganization: boolean = true
   isLoadingPage: boolean = false;
@@ -36,7 +41,7 @@ export class InvestorSettingsComponent implements OnInit{
   ngOnInit() {
     this.getInvestorSettings()
     this.investorForm.controls.registerAs.valueChanges.subscribe((value: any) => {
-      value === 'Organization' ? this.isOrganization = true : this.isOrganization = false;
+      this.isOrganization = value === 'Organization';
     })
   }
 
@@ -78,10 +83,35 @@ export class InvestorSettingsComponent implements OnInit{
       this.investorForm?.controls[controlName]?.value?.split(', ')
     if(selectedOptions?.includes(value)) {
       selectedOptions = selectedOptions?.filter(item => item !== value);
+      if(controlName === 'interests') {
+        this.interests.forEach((interest) => {
+          if (interest === value) {
+            interest.checked = false;
+          }
+        });
+      } else if (controlName === 'investmentStage') {
+        this.stages.forEach((stage) => {
+          if (stage.name === value) {
+            stage.checked = false;
+          }
+        });
+      }
     } else {
       selectedOptions?.push(value);
+      if(controlName === 'interests') {
+        this.interests.forEach((interest) => {
+          if (interest === value) {
+            interest.checked = true;
+          }
+        });
+      } else if (controlName === 'investmentStage') {
+        this.stages.forEach((stage) => {
+          if (stage.name === value) {
+            stage.checked = true;
+          }
+        });
+      }
     }
-    console.log(selectedOptions)
     if(selectedOptions?.length === 1) {
       this.investorForm.controls[controlName].setValue(selectedOptions[0]);
     } else if(selectedOptions?.length){
@@ -146,9 +176,14 @@ export class InvestorSettingsComponent implements OnInit{
     this.investorForm.controls.minChequeSize.setValue(data.min_cheque_size)
     this.investorForm.controls.maxChequeSize.setValue(data.max_cheque_size)
     this.investorForm.controls.linkedIn.setValue(data.linkedIn)
+    const stages = this.investorSettings.investment_stage.split(', ')
+    this.stages.forEach((stage) => {
+      if (stages.includes(stage.name)) {
+        stage.checked = true;
+      }
+    });
+    this.investorForm.controls.investmentStage.setValue(data.investment_stage)
   }
-
-  protected readonly stagesOptions = stagesOptions;
   protected readonly registrationInfo = registrationInfo;
   protected readonly registerAs = registerAs;
 }

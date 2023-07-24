@@ -11,7 +11,7 @@
     <div class="mt-8 grid md:grid-cols-2 gap-x-6 gap-y-6">
       <app-custom-input *ngIf="investorForm.controls?.registerAs?.value === 'Organization'" type="text" [for]="'organization_name'" [label]="'Organization Name'" [placeholder]="'What organization do you represent'" [control]="investorForm.controls.organizationName"/>
       <app-custom-multi-select (optionSelected)="onOptionSelect('investmentStage', $event)" [control]="investorForm.controls.investmentStage"
-                               [options]="stagesOptions" label="Investment Stage" for="investment_stage" [placeholder]="'Select preferred investment stages'"
+                               [options]="stages" label="Investment Stage" for="investment_stage" [placeholder]="'Select preferred investment stages'"
       />
       <app-custom-input *ngIf="investorForm.controls?.registerAs?.value === 'Organization'" type="text" [for]="'position'" [label]="'Position'" [placeholder]="'What is your position in your organization'" [control]="investorForm.controls.position"/>
       <app-custom-multi-select (optionSelected)="onOptionSelect('interests', $event)" [control]="investorForm.controls.interests"
