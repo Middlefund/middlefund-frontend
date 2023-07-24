@@ -14,7 +14,7 @@
     <div (click)="onDocumentClick($event)" *ngIf="isDropdownOpen" class="dropdown absolute w-full bg-secondary z-10 mt-1 rounded-lg shadow-lg dark:bg-gray-800">
       <ul class="py-1 overflow-auto max-h-60">
         <li *ngFor="let option of options; index as i " class="px-4 py-2 flex items-center">
-          <input type="checkbox" [value]="option.value"  class="accent-primary"  (change)="toggleOption(option.value)">
+          <input [checked]="option.checked" type="checkbox" [value]="option.value"  class="accent-primary"  (change)="toggleOption(option.value)">
           <span  class="ml-2">{{ option.name }}</span>
         </li>
       </ul>

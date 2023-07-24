@@ -20,7 +20,7 @@ interface City {
 })
 export class InvestorSettingsComponent implements OnInit{
   isLoading: boolean = false;
-  interests: Array<{name: string, value: string}> = [];
+  interests: Array<{name: string, value: string, checked: boolean}> = [];
   loadingIndustries = false;
   isOrganization: boolean = true
   isLoadingPage: boolean = false;
@@ -34,7 +34,6 @@ export class InvestorSettingsComponent implements OnInit{
               private alert: AlertService) {}
 
   ngOnInit() {
-    this.getAllIndustries()
     this.getInvestorSettings()
     this.investorForm.controls.registerAs.valueChanges.subscribe((value: any) => {
       value === 'Organization' ? this.isOrganization = true : this.isOrganization = false;
@@ -73,7 +72,24 @@ export class InvestorSettingsComponent implements OnInit{
   }
 
   onOptionSelect(controlName: keyof InvestorFormControls, value: any) {
-    this.investorForm.controls[controlName].setValue(value.join(', '));
+    console.log(this.investorForm?.controls[controlName]?.value)
+    let selectedOptions = this.investorForm?.controls[controlName]?.value === '' ?
+      [] :
+      this.investorForm?.controls[controlName]?.value?.split(', ')
+    if(selectedOptions?.includes(value)) {
+      selectedOptions = selectedOptions?.filter(item => item !== value);
+    } else {
+      selectedOptions?.push(value);
+    }
+    console.log(selectedOptions)
+    if(selectedOptions?.length === 1) {
+      this.investorForm.controls[controlName].setValue(selectedOptions[0]);
+    } else if(selectedOptions?.length){
+      this.investorForm.controls[controlName].setValue(selectedOptions?.join(', ')!);
+    } else {
+      this.investorForm.controls[controlName].setValue('');
+    }
+
   }
 
   transformAmount(controlName: keyof InvestorFormControls) {
@@ -85,7 +101,15 @@ export class InvestorSettingsComponent implements OnInit{
     this.pitchService.getIndustries().subscribe({
       next: value => {
         value.data.map((industry: {name: string}) => {
-          this.interests.push({name: industry.name, value: industry.name})
+          const interests = this.investorSettings.interests.split(', ')
+          this.investorForm.controls.interests.setValue(this.investorSettings.interests)
+          if(industry.name) {
+            let checked: boolean = false;
+            if(interests.includes(industry.name)) {
+              checked = true
+            }
+            this.interests.push({name: industry.name, value: industry.name, checked: checked})
+          }
         })
         this.loadingIndustries = false;
       },
@@ -102,6 +126,7 @@ export class InvestorSettingsComponent implements OnInit{
       next: value => {
         this.investorSettings = value.data
         this.setData(value.data)
+        this.getAllIndustries()
         this.isLoadingPage = false;
       },
       error: error => {

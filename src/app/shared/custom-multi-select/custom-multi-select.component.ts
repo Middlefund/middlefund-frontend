@@ -12,10 +12,11 @@ export class CustomMultiSelectComponent {
   @Input() control = new FormControl()
   @Input() for: string = '';
   @Input() placeholder: string = ''
-  @Input() options:{ name: string, value: any }[] = []
+  @Input() options:{ name: string, value: any, checked?: boolean }[] = []
   @Output() optionSelected = new EventEmitter<any>();
 
-  selectedOptions: string[] = []
+
+  // @Input() selectedOptions: string[] = []
 
   isDropdownOpen = false;
 
@@ -25,13 +26,13 @@ export class CustomMultiSelectComponent {
 
 
   toggleOption(option: any) {
-    if (this.selectedOptions.includes(option)) {
-      this.selectedOptions = this.selectedOptions.filter(item => item !== option);
-    } else {
-      this.selectedOptions.push(option);
-    }
-    console.log(this.selectedOptions)
-    this.optionSelected.emit(this.selectedOptions)
+    // if (this.selectedOptions.includes(option)) {
+    //   this.selectedOptions = this.selectedOptions.filter(item => item !== option);
+    // } else {
+    //   this.selectedOptions.push(option);
+    // }
+    // console.log(this.selectedOptions)
+    this.optionSelected.emit(option)
   }
 
   errorMessages: Record<string, string> = {

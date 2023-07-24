@@ -17,6 +17,7 @@
       <app-custom-multi-select (optionSelected)="onOptionSelect('interests', $event)" [control]="investorForm.controls.interests"
                                [options]="interests" label="Interests" for="interests"
                                [placeholder]="loadingIndustries ? 'Loading...' : 'Select preferred interests'"
+
       />
       <app-custom-input (blur)="transformAmount('commitment')" type="text" [for]="'commitment'" [label]="'Commitment'" [placeholder]="'How much are you looking to commit?'" [control]="investorForm.controls.commitment"/>
       <app-custom-input type="url" [for]="'twitter'" [label]="'Twitter'" [placeholder]="'twitter.com/username'" [control]="investorForm.controls.twitter"/>
