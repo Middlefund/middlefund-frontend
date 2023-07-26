@@ -67,57 +67,6 @@ export class PitchSubmissionService {
     return repName && position && repBio;
   }
 
-  // public get startupProfile(): startupProfile {
-  //   const pitch = this.pitchData
-  //   return {
-  //     startupName: pitch.startup_name,
-  //     registrationInfo: pitch.registration_type,
-  //     industry: pitch.industry,
-  //     registrationCountry: pitch.registration_country,
-  //     stage: pitch.stage,
-  //     location: {
-  //       country: pitch.country,
-  //       city: pitch.city,
-  //       region: pitch.region_state
-  //     },
-  //     social: {
-  //       website: pitch.website,
-  //       linkedIn: pitch.linkedin
-  //     }
-  //   }
-  // }
-
-  // public get pitchDetails(): pitchDetails {
-  //   const pitch = this.pitchData
-  //   return {
-  //     raisedAmount:  pitch.raised_amount,
-  //     amountToRaise: pitch.amount_to_raise,
-  //     purpose: pitch.purpose,
-  //     equity: pitch.equity,
-  //     startupBio: pitch.startup_bio
-  //   }
-  // }
-
-  // public get repDetails(): repDetails {
-  //   const pitch = this.pitchData
-  //   return {
-  //     repName: pitch.rep_name,
-  //     position: pitch.rep_position,
-  //     linkedIn: pitch.rep_linkedin,
-  //     repBio: pitch.rep_short_bio
-  //   }
-  // }
-
-  // public get supportingDocs(): supportingDocs {
-  //   const pitch = this.pitchData
-  //   return {
-  //     logo: pitch.logo,
-  //     pitch: pitch.pitch_deck,
-  //     video: pitch.video_pitch,
-  //     id: pitch.rep_id
-  //   }
-  // }
-
   getPitch() {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/pitch`);
   }
@@ -125,29 +74,7 @@ export class PitchSubmissionService {
   submitPitch() {
     return this.http.post<messageData>(`${environment.BACKEND_URL}/api/pitch-submission`, this.pitchFormData);
   }
-
-  submitStartupProfile(startupProfile: any) {
-    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/startup-profile`, startupProfile)
-  }
-
-  // submitPitchDetails(pitchDetails: pitchDetails) {
-  //   return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/pitch-details`, pitchDetails)
-  // }
-
-  submitRepDetails(repDetails: repDetails) {
-    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/rep-details`, repDetails)
-  }
-
-  submitSupportingDocs(supportingDocs: any) {
-    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/supporting-docs`, supportingDocs)
-  }
-
-  getFileLink(link: string) {
-    return this.http.get(link, {responseType: 'blob'})
-  }
-
   setData(data: startupData) {
-    console.log(data)
     this.pitchFormData.set('startupName', data.startup_name)
     this.pitchFormData.set('registrationInfo', data.registration_type)
     this.pitchFormData.set('registrationCountry', data.registration_country)

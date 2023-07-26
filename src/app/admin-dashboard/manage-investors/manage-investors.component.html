@@ -1,0 +1,20 @@
+<section class="h-[86vh] overflow-x-auto bg-secondary flex flex-col">
+  <div class="mt-10">
+    <div class='flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between mr-9 mt-8 ml-12'>
+      <app-custom-input placeholder="Search"/>
+      <div class='flex flex-wrap gap-4 items-end justify-end -mb-3'>
+        <div class='inline-flex outline-none rounded-md mb-3 px-2'>
+          <app-custom-select [options]="statusOptions" placeholder="Filter by status"/>
+        </div>
+        <div class='inline-flex rounded-md mb-3'>
+          <app-custom-select [options]="statusOptions" placeholder="Filter by status"/>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class="ml-10 mr-10 mt-10 flex-grow">
+    <app-custom-table [tableHeader]="tableHead" [page]="page" [isLoading]="isLoading" [tableData]="investors"/>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<div class="flex flex-col h-full">
+<div class='grid grid-flow-col'>
+  <div class="relative overflow-x-auto border border-primary rounded-lg  shadow-md">
+    <table aria-label="Table to display list" class="w-full rounded-lg border border-primary bg-tertiary text-sm text-left">
+      <thead class="text-xs bg-tertiary border-primary border rounded-2xl text-white uppercase">
+      <tr>
+        <th *ngFor="let head of tableHeader" scope="col" class="px-6 py-3">
+         {{head}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of tableData | paginate: {itemsPerPage: 10, currentPage: page, totalItems: total}" class="bg-tertiary text-white cursor-pointer hover:bg-primary">
+        <td *ngFor="let head of tableHeader" class="px-6 truncate max-w-[10rem] py-4 font-medium text-white whitespace-nowrap">
+         {{data[head]}}
+        </td>
+        <td class="px-6 py-4 text-right">
+          <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="isLoading" class="flex mt-10 h-40 flex-col animate-bounce justify-center w-full items-center">
+  <app-logo/>
+  <span class="text-primary mt-4">Loading...</span>
+</div>
+<div *ngIf="!tableData.length && !isLoading" class="w-full mt-10 min-h-fit flex justify-center items-center box-border p-0 m-0">
+  <div  class="flex text-primary text-lg gap-5 justify-center items-center flex-wrap">
+    {{noData}}
+  </div>
+</div>
+  <div *ngIf="tableData.length && !isLoading" class="flex justify-center mt-auto">
+    <pagination-controls (pageChange)="emitPageNumber($event)"></pagination-controls>
+  </div>
+</div>

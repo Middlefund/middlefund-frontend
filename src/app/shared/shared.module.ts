@@ -33,6 +33,8 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import {DialogModule} from "primeng/dialog";
 import { CustomMultiSelectComponent } from './custom-multi-select/custom-multi-select.component';
+import { CustomTableComponent } from './custom-table/custom-table.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 export function playerFactory() {
@@ -62,46 +64,49 @@ export function playerFactory() {
     BreadcrumbComponent,
     CustomCardSkeletonComponent,
     ConfirmationModalComponent,
-    CustomMultiSelectComponent
-  ],
-    imports: [
-        CommonModule,
-        NgClass,
-        MatProgressSpinnerModule,
-        NgIf,
-        RouterLink,
-        MatIconModule,
-        MatSlideToggleModule,
-        RouterLinkActive,
-        ReactiveFormsModule,
-        PdfViewerModule,
-        LottieModule.forRoot({player: playerFactory}),
-        NgxSkeletonLoaderModule,
-        DialogModule,
-        FormsModule,
-    ],
-  exports: [
-    LogoComponent,
-    ButtonComponent,
-    FlipBoxComponent,
-    StatsCardComponent,
-    DashboardFooterComponent,
-    NotificationsPanelComponent,
-    DashboardAsideComponent,
-    ProfileDropdownComponent,
-    DashboardHeaderComponent,
-    LockedComponent,
-    CustomInputComponent,
-    CustomCardComponent,
-    CustomSelectComponent,
-    CustomTextAreaComponent,
-    CustomFileInputComponent,
-    RocketAnimationComponent,
-    BreadcrumbComponent,
-    CustomCardSkeletonComponent,
-    ConfirmationModalComponent,
     CustomMultiSelectComponent,
-  ]
+    CustomTableComponent
+  ],
+  imports: [
+    CommonModule,
+    NgClass,
+    MatProgressSpinnerModule,
+    NgIf,
+    RouterLink,
+    MatIconModule,
+    MatSlideToggleModule,
+    RouterLinkActive,
+    ReactiveFormsModule,
+    PdfViewerModule,
+    LottieModule.forRoot({player: playerFactory}),
+    NgxSkeletonLoaderModule,
+    DialogModule,
+    FormsModule,
+    NgxPaginationModule,
+  ],
+    exports: [
+        LogoComponent,
+        ButtonComponent,
+        FlipBoxComponent,
+        StatsCardComponent,
+        DashboardFooterComponent,
+        NotificationsPanelComponent,
+        DashboardAsideComponent,
+        ProfileDropdownComponent,
+        DashboardHeaderComponent,
+        LockedComponent,
+        CustomInputComponent,
+        CustomCardComponent,
+        CustomSelectComponent,
+        CustomTextAreaComponent,
+        CustomFileInputComponent,
+        RocketAnimationComponent,
+        BreadcrumbComponent,
+        CustomCardSkeletonComponent,
+        ConfirmationModalComponent,
+        CustomMultiSelectComponent,
+        CustomTableComponent,
+    ]
 })
 
 export class SharedModule{}

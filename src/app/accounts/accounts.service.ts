@@ -98,6 +98,7 @@ export class AccountsService {
     this.clearToken();
     localStorage.clear();
     this.setRedirectUrl(url);
+    localStorage.setItem('redirectUrl', JSON.stringify(url));
     this.router.navigateByUrl('/login');
     return NEVER;
   }

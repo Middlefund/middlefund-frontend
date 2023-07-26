@@ -40,15 +40,18 @@ export class LoginComponent {
           this.toast.success(`Welcome ${value.user.name}`)
           console.log(this.accountsService.redirectUrl)
           this.isLoading = false
-          if (this.accountsService.redirectUrl) {
-            console.log(this.accountsService.redirectUrl)
-            return this.route.navigateByUrl(this.accountsService.redirectUrl).then(r => r)
+          if (localStorage.getItem('redirectUrl')) {
+
+            this.route.navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!)).then(r => r)
           }
           if(value.user.user_type === "startup"){
-            return this.route.navigateByUrl('startup/home').then(r => r)
+            this.route.navigateByUrl('startup/home').then(r => r)
           }
-          else{
-            return this.route.navigateByUrl('investor/home').then(r => r)
+          else if(value.user.user_type === "investor"){
+            this.route.navigateByUrl('investor/home').then(r => r)
+          }
+          else if(value.user.user_type === "admin") {
+            this.route.navigateByUrl('admin/home').then(r => r)
           }
         },
         error: err => {

@@ -16,6 +16,7 @@ export const canActivateStartup: CanActivateFn =
 
   };
 
+
 export const canActivateInvestor: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const user = inject(AccountsService);
@@ -28,6 +29,17 @@ export const canActivateInvestor: CanActivateFn =
 
   };
 
+export const canActivateAdmin: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const user = inject(AccountsService);
+    if (user.loggedInUser && user.userData.user_type === 'admin') {
+      // authorised so return true
+      return true;
+    }
+    inject(Router).navigateByUrl('/login').then(r => r)
+    return false
+
+  };
 export const cannotAuthenticate: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const user = inject(AccountsService);
@@ -37,6 +49,10 @@ export const cannotAuthenticate: CanActivateFn =
     }
     else if (user.loggedInUser && user.userData.user_type === 'investor') {
       inject(Router).navigateByUrl('/investor').then(r => r)
+      return false;
+    }
+    else if(user.loggedInUser && user.userData.user_type === 'admin') {
+      inject(Router).navigateByUrl('/admin').then(r => r)
       return false;
     }
 
