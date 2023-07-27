@@ -233,16 +233,16 @@
           ></ngx-skeleton-loader>
         </div>
         <div class="flex" *ngIf="!isLoadingInvestor">
-          <a (click)="openInNewTab(investor?.linkedIn!)">
+          <a (click)="openInNewTab(investor?.linkedIn!)" class="cursor-pointer">
             <img width="30" alt="linkedin" src="../../../assets/icons8-linkedin.svg"/>
           </a>
-          <a (click)="openInNewTab((investor?.twitter!))">
+          <a (click)="openInNewTab((investor?.twitter!))" class="cursor-pointer">
             <img width="30" alt="twitter" src="../../../assets/icons8-twitter-circled.svg"/>
           </a>
-          <a href="" target="_blank">
+          <a href="" target="_blank" class="cursor-pointer">
             <img width="30" alt="instagram" src="../../../assets/icons8-instagram.svg"/>
           </a>
-          <a href="" target="_blank">
+          <a href="" target="_blank" class="cursor-pointer">
             <img width="30" alt="facebook" src="../../../assets/icons8-facebook.svg"/>
           </a>
         </div>
