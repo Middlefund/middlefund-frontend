@@ -9,13 +9,18 @@
         </th>
       </tr>
       </thead>
-      <tbody>
-      <tr *ngFor="let data of tableData | paginate: {itemsPerPage: 10, currentPage: page, totalItems: total}" class="bg-tertiary text-white cursor-pointer hover:bg-primary">
+      <tbody *ngIf="!isLoading">
+      <tr *ngFor="let data of tableData | paginate: {itemsPerPage: 10, currentPage: page, totalItems: total}" class="bg-tertiary text-white cursor-pointer">
         <td *ngFor="let head of tableHeader" class="px-6 truncate max-w-[10rem] py-4 font-medium text-white whitespace-nowrap">
          {{data[head]}}
         </td>
-        <td class="px-6 py-4 text-right">
-          <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        <td class="px-6 py-4 text-right hover:text-primary">
+          <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button (click)="emitId(data.id)" mat-menu-item>Preview</button>
+            <button mat-menu-item>Approve</button>
+            <button mat-menu-item>Disapprove</button>
+          </mat-menu>
         </td>
       </tr>
       </tbody>

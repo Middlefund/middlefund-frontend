@@ -12,8 +12,8 @@ export class ProfileInitials {
     return user.name;
   }
 
-  createImageFromInitials = (size: number = 600,
-                             name: string = this.getInitials(this.loggedInUserName()),
+  createImageFromInitials = (name: string = this.getInitials(this.loggedInUserName()),
+                             size: number = 600,
                              color: string = this.getRandomColor()) => {
     const canvas= document.createElement('canvas')
     const context= canvas.getContext('2d')

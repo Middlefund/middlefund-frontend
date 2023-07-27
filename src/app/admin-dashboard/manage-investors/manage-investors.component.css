@@ -32,3 +32,16 @@
 ::ng-deep .ngx-pagination .current {
   background:  #A49370 !important;
 }
+
+::ng-deep .p-dialog-header, ::ng-deep .p-dialog-content, ::ng-deep .p-dialog-footer {
+  background: #3A3838 !important;
+}
+
+::ng-deep .p-dialog-title, ::ng-deep .p-dialog-content {
+  color: white !important;
+}
+
+::ng-deep .p-component-overlay {
+  background: #A4937099 !important;
+}
+

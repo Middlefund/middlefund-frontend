@@ -35,6 +35,7 @@ import {DialogModule} from "primeng/dialog";
 import { CustomMultiSelectComponent } from './custom-multi-select/custom-multi-select.component';
 import { CustomTableComponent } from './custom-table/custom-table.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 export function playerFactory() {
@@ -83,6 +84,7 @@ export function playerFactory() {
     DialogModule,
     FormsModule,
     NgxPaginationModule,
+    MatMenuModule,
   ],
     exports: [
         LogoComponent,

@@ -14,9 +14,14 @@ export class CustomTableComponent {
   @Input() page: number = 1
   @Input() total: number = 0
   @Output() pageChange = new EventEmitter<number>();
+  @Output() preview = new EventEmitter<string>()
 
   emitPageNumber(event: number) {
     this.pageChange.emit(event);
+  }
+
+  emitId(id: string) {
+    this.preview.emit(id);
   }
 
 }
