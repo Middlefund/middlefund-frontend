@@ -248,10 +248,13 @@
         </div>
       </div>
       <div *ngIf="investor?.status === 'pending' && !isLoadingInvestor" class="flex justify-end">
-        <app-button name="Approve" variant="optional"/>
+        <app-button (click)="toggleModal()" name="Approve" variant="optional" />
       </div>
       <div *ngIf="investor?.status === 'verified' && !isLoadingInvestor" class="flex justify-end">
-        <app-button name="Revoke Verification" variant="optional"/>
+        <app-button (click)="toggleDeclineModal()" name="Revoke Verification" variant="optional"/>
+      </div>
+      <div *ngIf="investor?.status === 'pending' && !isLoadingInvestor" class="flex justify-end">
+        <app-button (click)="toggleDeclineModal()" name="Decline" variant="optional"/>
       </div>
       <div *ngIf="isLoadingInvestor" class="flex justify-end">
         <ngx-skeleton-loader
@@ -266,4 +269,21 @@
     </div>
   </p-dialog>
 </div>
+<app-confirmation-modal
+  header="Verify Investor"
+  description="Are you sure you want to verify this investor?"
+  [isLoading]="isVerifying"
+  [visible]="verifyConfirmationModal"
+  (cancel)="toggleModal()"
+  (submit)="onVerify()"
+/>
+
+<app-confirmation-modal
+  header="Verify Investor"
+  description="Are you sure you want to decline or revoke verification?"
+  [isLoading]="isDeclining"
+  [visible]="declineConfirmationModal"
+  (cancel)="toggleDeclineModal()"
+  (submit)="onDecline()"
+/>
 

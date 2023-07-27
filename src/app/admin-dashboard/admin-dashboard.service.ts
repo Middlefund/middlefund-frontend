@@ -18,4 +18,11 @@ export class AdminDashboardService {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-investor/${id}`);
   }
 
+  verifyInvestor(id: string){
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/verify-investor`, {id});
+  }
+
+  declineInvestor(id: string) {
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/decline-investor`, {id});
+  }
 }

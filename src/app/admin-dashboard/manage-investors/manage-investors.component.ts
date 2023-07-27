@@ -28,6 +28,10 @@ export class ManageInvestorsComponent implements OnInit{
   isLoadingInvestor: boolean = false;
   investor!: UserInvestor
   investorImage = ''
+  verifyConfirmationModal = false;
+  isVerifying: boolean = false;
+  isDeclining: boolean = false;
+  declineConfirmationModal = false;
 
   constructor(private adminService: AdminDashboardService,
               private toast: ToastrService,
@@ -94,5 +98,55 @@ export class ManageInvestorsComponent implements OnInit{
 
   openInNewTab(url: string) {
     window.open(url, '_blank');
+  }
+
+  toggleModal() {
+    this.verifyConfirmationModal = !this.verifyConfirmationModal
+  }
+
+  resetStatus(status: string) {
+    this.investors.map((investor: UserInvestor) => {
+      if(investor.id === this.investor.id) {
+        investor.status = status
+      }
+    })
+  }
+
+  onVerify() {
+    this.isVerifying = true;
+    this.adminService.verifyInvestor(this.investor.id).subscribe({
+      next: value => {
+        this.toast.success(value.message)
+        this.isVerifying = false;
+        this.toggleModal()
+        this.investor.status = 'verified'
+        this.resetStatus('verified')
+      },
+      error: err => {
+        this.toast.error(err.error.error)
+        this.isVerifying = false;
+      }
+    })
+  }
+
+  toggleDeclineModal() {
+    this.declineConfirmationModal = !this.declineConfirmationModal
+  }
+
+  onDecline() {
+    this.isDeclining = true;
+    this.adminService.declineInvestor(this.investor.id).subscribe({
+      next: value => {
+        this.toast.success(value.message)
+        this.isDeclining = false;
+        this.toggleModal()
+        this.investor.status = 'unverified'
+        this.resetStatus('unverified')
+      },
+      error: err => {
+        this.toast.error(err.error.error)
+        this.isDeclining = false;
+      }
+    })
   }
 }
