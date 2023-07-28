@@ -125,7 +125,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 this.refreshTokenSubject.next(response.token.access_token); // Signal token refresh completed
               }),
               catchError((refreshTokenErr) => {
-                console.log("Caught error: " + refreshTokenErr)
                 if (refreshTokenErr.status === 401) {
                   console.log("401")
                   // Token refresh also resulted in 401, logout the user
@@ -175,6 +174,7 @@ export class AuthInterceptor implements HttpInterceptor {
     this.accountsService.clearToken();
     localStorage.clear();
     this.accountsService.setRedirectUrl(url);
+    localStorage.setItem('redirectUrl', url);
     this.router.navigateByUrl('/login');
     return NEVER;
   }

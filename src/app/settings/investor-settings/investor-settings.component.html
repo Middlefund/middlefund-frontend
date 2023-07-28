@@ -1,24 +1,32 @@
 <alert/>
 <section class="h-full w-full bg-secondary min-h-screen flex pt-10">
-  <form [formGroup]="investorForm" (ngSubmit)="onSubmit()" class="h-full max-lg:mx-5 w-full bg-secondary mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl text-white">
+  <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
+    <app-logo/>
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <form *ngIf="!isLoadingPage" [formGroup]="investorForm" (ngSubmit)="onSubmit()" class="h-full max-lg:mx-5 w-full bg-secondary mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl text-white">
+    <div class="flex justify-self-start">
+      <app-custom-select label="Registering As" placeholder="" [options]="registerAs" [control]="investorForm.controls.registerAs"/>
+    </div>
     <div class="mt-8 grid md:grid-cols-2 gap-x-6 gap-y-6">
-      <app-custom-input type="text" [for]="'organization_name'" [label]="'Organization Name'" [placeholder]="'Enter the name of your organization'"/>
-      <app-custom-input type="text" [for]="'investment_stage'" [label]="'Investment Stage'" [placeholder]="'Select preferred Investment Stage'"/>
-      <app-custom-input type="password" [for]="'password_confirmation'" [label]="'Confirm New Password'" [placeholder]="'Enter your new password again'"/>
+      <app-custom-input *ngIf="investorForm.controls?.registerAs?.value === 'Organization'" type="text" [for]="'organization_name'" [label]="'Organization Name'" [placeholder]="'What organization do you represent'" [control]="investorForm.controls.organizationName"/>
+      <app-custom-multi-select (optionSelected)="onOptionSelect('investmentStage', $event)" [control]="investorForm.controls.investmentStage"
+                               [options]="stages" label="Investment Stage" for="investment_stage" [placeholder]="'Select preferred investment stages'"
+      />
+      <app-custom-input *ngIf="investorForm.controls?.registerAs?.value === 'Organization'" type="text" [for]="'position'" [label]="'Position'" [placeholder]="'What is your position in your organization'" [control]="investorForm.controls.position"/>
+      <app-custom-multi-select (optionSelected)="onOptionSelect('interests', $event)" [control]="investorForm.controls.interests"
+                               [options]="interests" label="Interests" for="interests"
+                               [placeholder]="loadingIndustries ? 'Loading...' : 'Select preferred interests'"
 
-      <div class="card flex justify-content-center">
-        <p-multiSelect [options]="groupedCities" [group]="true" [(ngModel)]="selectedCities" defaultLabel="Select a City" scrollHeight="250px" display="chip">
-          <ng-template let-group pTemplate="group">
-            <div class="flex align-items-center">
-              <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + group.value" style="width: 20px" />
-              <span>{{ group.label }}</span>
-            </div>
-          </ng-template>
-        </p-multiSelect>
-      </div>
+      />
+      <app-custom-input (blur)="transformAmount('commitment')" type="text" [for]="'commitment'" [label]="'Commitment'" [placeholder]="'How much are you looking to commit?'" [control]="investorForm.controls.commitment"/>
+      <app-custom-input type="url" [for]="'twitter'" [label]="'Twitter'" [placeholder]="'twitter.com/username'" [control]="investorForm.controls.twitter"/>
+      <app-custom-input (blur)="transformAmount('minChequeSize')" type="text" [for]="'average_cheque_size'" [label]="'Average Cheque Size'" [placeholder]="'What is the minimum amount you will invest?'" [control]="investorForm.controls.minChequeSize"/>
+      <app-custom-input type="url" [for]="'LinkedIn'" [label]="'LinkedIn'" [placeholder]="'linkedin.com/username'" [control]="investorForm.controls.linkedIn"/>
+      <app-custom-input type="text" (blur)="transformAmount('maxChequeSize')" [for]="'max_cheque_size'" [label]="'Maximum Cheque Size'" [placeholder]="'What is the maximum amount you will invest?'" [control]="investorForm.controls.maxChequeSize"/>
     </div>
     <div class="mt-5">
-      <app-button [isLoading]="isLoading" name="Save" variant="optional"/>
+      <app-button [isLoading]="isLoading" [disable]="investorForm.invalid" name="Save" variant="optional"/>
     </div>
   </form>
 </section>

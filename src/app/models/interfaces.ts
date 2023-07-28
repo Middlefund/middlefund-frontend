@@ -161,5 +161,36 @@ export interface InvestorData {
   updated_at: string;
 }
 
+export interface UserInvestor {
+  id: string;
+  name: string;
+  google_id: string | null;
+  email: string;
+  email_verified_at: string;
+  avatar: string | null;
+  avatar_original: string | null;
+  user_type: string;
+  phone: string | null;
+  date_of_birth: string | null;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  organization_name: string;
+  investment_stage: string;
+  position: string;
+  interests: string;
+  commitment: string;
+  min_cheque_size: string;
+  max_cheque_size: string;
+  linkedIn: string;
+  twitter: string;
+  id_type: string;
+  id_card: string;
+  proof_type: string;
+  proof: string;
+  status: string;
+}
+
+
 
 

@@ -80,9 +80,6 @@ export class AccountsService {
       catchError((refreshTokenErr) => {
           this.logoutUser();
         return throwError(refreshTokenErr);
-      }),
-      tap((response) => {
-        console.log("Yes")
       })
     )
   }
@@ -101,6 +98,7 @@ export class AccountsService {
     this.clearToken();
     localStorage.clear();
     this.setRedirectUrl(url);
+    localStorage.setItem('redirectUrl', JSON.stringify(url));
     this.router.navigateByUrl('/login');
     return NEVER;
   }

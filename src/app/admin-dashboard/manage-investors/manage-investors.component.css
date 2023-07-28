@@ -1,0 +1,47 @@
+::ng-deep .p-paginator {
+  background-color: #3A3838 !important;
+}
+
+::ng-deep .p-paginator .p-paginator-first, ::ng-deep .p-paginator .p-paginator-prev, ::ng-deep .p-paginator .p-paginator-next, ::ng-deep .p-paginator .p-paginator-last {
+  color: #A49370 !important;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #A49370 !important;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #A49370 !important;
+  color: white !important;
+}
+
+::ng-deep .p-dropdown {
+  background-color: #3A3838;
+  color: white !important;
+  border: 2px solid #A49370 !important;
+}
+
+::ng-deep .p-dropdown .p-dropdown-label {
+  color: #A49370 !important;
+}
+
+::ng-deep .p-dropdown .p-dropdown-trigger {
+  color: #A49370 !important;
+}
+
+::ng-deep .ngx-pagination .current {
+  background:  #A49370 !important;
+}
+
+::ng-deep .p-dialog-header, ::ng-deep .p-dialog-content, ::ng-deep .p-dialog-footer {
+  background: #3A3838 !important;
+}
+
+::ng-deep .p-dialog-title, ::ng-deep .p-dialog-content {
+  color: white !important;
+}
+
+::ng-deep .p-component-overlay {
+  background: #A4937099 !important;
+}
+

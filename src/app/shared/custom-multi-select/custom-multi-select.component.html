@@ -1,0 +1,28 @@
+<div>
+  <label [for]="for" class="block mb-2 text-sm font-medium text-white dark:text-white">{{ label }}</label>
+  <div class="relative w-full">
+    <div class="flex dropDownInput items-center space-x-2">
+      <div class="relative w-full">
+        <input type="text" [formControl]="control" [placeholder]="placeholder"  (click)="toggleDropdown()" [id]="for" class="bg-secondary truncate cursor-pointer w-full border border-grey text-white text-sm rounded-lg focus:ring-blue-500 focus:border-primary focus:shadow-primary focus:shadow-md block p-2.5 pr-7" readonly>
+        <div class="absolute ml-2 inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg class="h-4 w-4 text-gray-400 dark:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div (click)="onDocumentClick($event)" *ngIf="isDropdownOpen" class="dropdown absolute w-full bg-secondary z-10 mt-1 rounded-lg shadow-lg dark:bg-gray-800">
+      <ul class="py-1 overflow-auto max-h-60">
+        <li *ngFor="let option of options; index as i " class="px-4 py-2 flex items-center">
+          <input [checked]="option.checked" type="checkbox" [value]="option.value"  class="accent-primary"  (change)="toggleOption(option.value)">
+          <span  class="ml-2">{{ option.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ng-container *ngIf="control.invalid && control.touched">
+    <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">
+      {{ errorMessages[error.key] }}
+    </p>
+  </ng-container>
+</div>

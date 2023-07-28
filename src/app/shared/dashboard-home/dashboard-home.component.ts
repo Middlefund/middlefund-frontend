@@ -9,7 +9,7 @@ import {AccountsService} from "../../accounts/accounts.service";
 export class DashboardHomeComponent implements OnInit{
   title: string = ''
   flipCardData: Array<{title: string, description: string, image: string, route: string}> = [];
-   flashCardData: Array<{title: string, value: string}> = []
+   flashCardData: Array<{title: string, value: string, icon: string}> = []
 
   constructor(private accountsService: AccountsService) {
   }
@@ -28,20 +28,20 @@ export class DashboardHomeComponent implements OnInit{
        ]
 
        this.flashCardData= [
-         {title: 'Amount raised', value: '$30,000'},
-         {title: 'Number of pitches', value: '1',},
-         {title: 'Times pitch viewed', value: '8'},
-         {title: 'Intended raise', value: '$60,0000'}
+         {title: 'Amount raised', value: '$30,000', icon: ''},
+         {title: 'Number of pitches', value: '1', icon: ''},
+         {title: 'Times pitch viewed', value: '8', icon: ''},
+         {title: 'Intended raise', value: '$60,0000', icon: ''}
        ]
      }
-     else {
+     else if(this.accountsService.userData.user_type === "investor")  {
        this.title = 'Welcome to Investor Dashboard';
 
        this.flashCardData= [
-         {title: 'Favorite', value: 'Agriculture'},
-         {title: 'Number of pitches view', value: '1',},
-         {title: 'Number of investments', value: '4'},
-         {title: 'Maximum capacity', value: '$60,0000'}
+         {title: 'Favorite', value: 'Agriculture', icon: ''},
+         {title: 'Number of pitches view', value: '1', icon: ''},
+         {title: 'Number of investments', value: '4', icon: ''},
+         {title: 'Maximum capacity', value: '$60,0000', icon: ''}
        ]
 
        this.flipCardData = [
@@ -53,6 +53,26 @@ export class DashboardHomeComponent implements OnInit{
          {title: 'Middlefund Platinum', description: 'This page is currently under construction',
            image: 'assets/undraw_building_blocks_re_5ahy.svg', route: '/under-construction'}
        ]
+     }
+     else if(this.accountsService.userData.user_type === "admin") {
+       this.title = 'Hi Admin';
+
+       this.flashCardData= [
+         {title: 'Number of investors', value: '34', icon: 'money'},
+         {title: 'Number of startups', value: '1', icon: 'flag'},
+         {title: 'Verified Pitches', value: '4', icon: 'beenhere'},
+         {title: 'Total Users', value: '1000', icon: 'groups'}
+       ]
+
+       // this.flipCardData = [
+       //   {title: 'Manage ',
+       //     description: 'View a list of amazing startups with unimaginable potential.',
+       //     image: 'assets/undraw_empty_cart_co35.svg', route: '../view-startups'},
+       //   {title: 'Investment Portfolio', description: 'This page is currently under construction',
+       //     image: 'assets/undraw_invest_re_8jl5.svg', route: '/under-construction'},
+       //   {title: 'Middlefund Platinum', description: 'This page is currently under construction',
+       //     image: 'assets/undraw_building_blocks_re_5ahy.svg', route: '/under-construction'}
+       // ]
      }
 
 

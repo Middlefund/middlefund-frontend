@@ -22,7 +22,7 @@
       <app-custom-card-skeleton/>
     </div>
   </div>
-  <div class="flex justify-center" *ngIf="!isLoading">
+  <div class="flex justify-center" *ngIf="!isLoading && startups.length">
     <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
   </div>
   <div *ngIf="!startups.length && !isLoading" class="w-full min-h-fit flex justify-center items-center box-border p-0 m-0">

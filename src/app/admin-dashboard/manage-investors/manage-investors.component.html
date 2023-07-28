@@ -1,0 +1,289 @@
+<section class="h-[86vh] overflow-x-auto bg-secondary flex flex-col">
+  <div class="mt-10">
+    <div class='flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between mr-9 mt-8 ml-12'>
+      <app-custom-input placeholder="Search" [control]="filterSearch.controls.search"/>
+      <div class='flex flex-wrap gap-4 items-end justify-end -mb-3'>
+        <div class='inline-flex outline-none rounded-md mb-3 px-2'>
+          <app-custom-select [options]="statusOptions" placeholder="Filter by status" [control]="filterSearch.controls.filter"/>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class="ml-10 mr-10 mt-10 flex-grow">
+    <app-custom-table [tableHeader]="tableHead" (preview)="onPreview($event)" [page]="page" [isLoading]="isLoading" [tableData]="investors" (pageChange)="onPageChange($event)"/>
+  </div>
+</section>
+<div class="card flex justify-content-center">
+  <p-dialog [modal]="true" header="Investor" [(visible)]="visible" [style]="{width: '90%'}">
+    <div class="md:mx-auto rounded w-full md:w-1/2 overflow-hidden">
+      <div class="px-5 py-2 flex flex-col gap-3 pb-6">
+        <div *ngIf="!isLoadingInvestor" class="h-[90px] shadow-md w-[90px] rounded-full border-4 overflow-hidden border-primary">
+          <img alt="profile" [src]="investorImage"
+               class="w-full h-full rounded-full object-center object-cover">
+        </div>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+          [theme]="{
+      'border-radius': '100%',
+      height: '90px',
+      width: '90px',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <div *ngIf="!isLoadingInvestor" class="">
+          <h3 class="text-xl text-slate-900 relative font-bold leading-6">
+            {{investor?.name}} <span *ngIf="investor?.organization_name">- {{investor?.organization_name}}, {{investor?.position}}</span>
+          </h3>
+          <p class="text-sm text-gray-600">{{investor?.email}}</p>
+        </div>
+        <div class="flex flex-col" *ngIf="isLoadingInvestor">
+          <ngx-skeleton-loader
+            [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '15rem',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '15rem',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+          [theme]="{
+      'border-radius': '5px',
+      height: '2rem',
+      width: '6rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <div *ngIf="investor?.status === 'verified' && !isLoadingInvestor" class="flex gap-3 flex-wrap">
+          <span class="rounded-sm bg-[#52996c]  px-3 py-2 text-xs font-medium text-yellow-800">
+           {{investor?.status}}
+          </span>
+        </div>
+        <div *ngIf="investor?.status === 'unverified' && !isLoadingInvestor" class="flex gap-3 flex-wrap">
+          <span class="rounded-sm bg-[#8e4444] px-3 py-2 text-xs font-medium text-yellow-800">
+           {{investor?.status}}
+          </span>
+        </div>
+        <div *ngIf="investor?.status === 'pending' && !isLoadingInvestor" class="flex gap-3 flex-wrap">
+          <span class="rounded-sm bg-[#c4b775] px-3 py-2 text-xs font-medium text-yellow-800">
+           {{investor?.status}}
+          </span>
+        </div>
+        <span class="text-md font-medium" *ngIf="!isLoadingInvestor">Interests</span>
+        <div class="flex gap-3 flex-wrap" *ngIf="!isLoadingInvestor">
+          <span *ngFor="let interest of investor?.interests?.split(', ')" class="rounded-sm bg-primary px-3 py-1 text-xs font-medium text-yellow-800">
+            {{interest}}
+          </span>
+        </div>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+          [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '10rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '1.5rem',
+      width: '25rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <span class="text-md font-medium" *ngIf="!isLoadingInvestor">Investment Stages</span>
+        <div class="flex gap-3 flex-wrap" *ngIf="!isLoadingInvestor">
+          <span *ngFor="let stage of investor?.investment_stage?.split(', ')" class="rounded-sm bg-primary px-3 py-1 text-xs font-medium text-yellow-800">
+            {{stage}}
+          </span>
+        </div>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '10rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '1.5rem',
+      width: '25rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <span class="text-md font-medium leading-3" *ngIf="!isLoadingInvestor">Commitment</span>
+        <p class="text-sm text-stone-500" *ngIf="!isLoadingInvestor">{{investor?.commitment}}</p>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '7rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '7rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <span class="text-md font-medium leading-3" *ngIf="!isLoadingInvestor">Cheque Size</span>
+        <p class="text-sm text-slate-500 self-start ml-auto" *ngIf="!isLoadingInvestor">{{investor?.min_cheque_size}} - {{investor?.max_cheque_size}}</p>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '5rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '14rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <span class="text-md font-medium leading-3" *ngIf="!isLoadingInvestor">ID Type: {{investor?.id_type}}</span>
+        <span class="text-md font-medium leading-3" *ngIf="!isLoadingInvestor">Proof Type: {{investor?.proof_type}}</span>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '10rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                             [theme]="{
+      'border-radius': '5px',
+      height: '0.6rem',
+      width: '10rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+        <div class="flex gap-x-4" *ngIf="!isLoadingInvestor">
+          <app-button (click)="openInNewTab(investor?.id_card!)" name="View ID" variant="primary"/>
+          <app-button (click)="openInNewTab(investor?.proof!)" name="View Proof" variant="primary"/>
+        </div>
+        <div class="flex gap-x-4" *ngIf="isLoadingInvestor">
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '5px',
+      height: '2.5rem',
+      width: '7rem',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '5px',
+      height: '2.5rem',
+      width: '7rem',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+        </div>
+        <div class="flex gap-x-2" *ngIf="isLoadingInvestor">
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '100%',
+      height: '30px',
+      width: '30px',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '100%',
+      height: '30px',
+      width: '30px',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '100%',
+      height: '30px',
+      width: '30px',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="isLoadingInvestor"
+                               [theme]="{
+      'border-radius': '100%',
+      height: '30px',
+      width: '30px',
+      'background-color': '#A4A4A4',
+    }"
+          ></ngx-skeleton-loader>
+        </div>
+        <div class="flex" *ngIf="!isLoadingInvestor">
+          <a (click)="openInNewTab(investor?.linkedIn!)" class="cursor-pointer">
+            <img width="30" alt="linkedin" src="../../../assets/icons8-linkedin.svg"/>
+          </a>
+          <a (click)="openInNewTab((investor?.twitter!))" class="cursor-pointer">
+            <img width="30" alt="twitter" src="../../../assets/icons8-twitter-circled.svg"/>
+          </a>
+          <a href="" target="_blank" class="cursor-pointer">
+            <img width="30" alt="instagram" src="../../../assets/icons8-instagram.svg"/>
+          </a>
+          <a href="" target="_blank" class="cursor-pointer">
+            <img width="30" alt="facebook" src="../../../assets/icons8-facebook.svg"/>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="investor?.status === 'pending' && !isLoadingInvestor" class="flex justify-end">
+        <app-button (click)="toggleModal()" name="Approve" variant="optional" />
+      </div>
+      <div *ngIf="investor?.status === 'verified' && !isLoadingInvestor" class="flex justify-end">
+        <app-button (click)="toggleDeclineModal()" name="Revoke Verification" variant="optional"/>
+      </div>
+      <div *ngIf="investor?.status === 'pending' && !isLoadingInvestor" class="flex justify-end">
+        <app-button (click)="toggleDeclineModal()" name="Decline" variant="optional"/>
+      </div>
+      <div *ngIf="isLoadingInvestor" class="flex justify-end">
+        <ngx-skeleton-loader
+                             [theme]="{
+      'border-radius': '5px',
+      height: '3rem',
+      width: '6rem',
+      'background-color': '#A4A4A4',
+    }"
+        ></ngx-skeleton-loader>
+      </div>
+    </div>
+  </p-dialog>
+</div>
+<app-confirmation-modal
+  header="Verify Investor"
+  description="Are you sure you want to verify this investor?"
+  [isLoading]="isVerifying"
+  [visible]="verifyConfirmationModal"
+  (cancel)="toggleModal()"
+  (submit)="onVerify()"
+/>
+
+<app-confirmation-modal
+  header="Verify Investor"
+  description="Are you sure you want to decline or revoke verification?"
+  [isLoading]="isDeclining"
+  [visible]="declineConfirmationModal"
+  (cancel)="toggleDeclineModal()"
+  (submit)="onDecline()"
+/>
+

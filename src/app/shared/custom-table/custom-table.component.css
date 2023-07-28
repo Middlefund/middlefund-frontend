@@ -1,0 +1,34 @@
+::ng-deep .p-paginator {
+  background-color: #3A3838;
+}
+
+::ng-deep .p-paginator .p-paginator-first, ::ng-deep .p-paginator .p-paginator-prev, ::ng-deep .p-paginator .p-paginator-next, ::ng-deep .p-paginator .p-paginator-last {
+  color: #A49370;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #A49370;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #A49370;
+  color: white;
+}
+
+::ng-deep .p-dropdown {
+  background-color: #3A3838;
+  color: white;
+  border: 2px solid #A49370;
+}
+
+::ng-deep .p-dropdown .p-dropdown-label {
+  color: #A49370;
+}
+
+::ng-deep .p-dropdown .p-dropdown-trigger {
+  color: #A49370;
+}
+
+::ng-deep .ngx-pagination .current {
+  background:  #A49370 !important;
+}

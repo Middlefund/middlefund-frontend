@@ -1,0 +1,16 @@
+<section>
+  <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+    <app-dashboard-aside [navigationData]="navigationData" />
+    <div class="flex-1 h-full relative overflow-x-hidden">
+      <app-dashboard-header (notificationButton)="openNotificationsPanel()" [navigationData]="navigationData"/>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+      <app-dashboard-footer/>
+    </div>
+  </div>
+</section>
+<app-notifications-panel [slideIn]="slideIn" [isNotificationsPanelOpen]="isNotificationsPanelOpen"/>
+
+
+

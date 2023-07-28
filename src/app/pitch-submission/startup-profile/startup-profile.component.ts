@@ -95,17 +95,12 @@ export class StartupProfileComponent implements OnInit{
       this.getAllIndustries()
       const pitch: pitchData = this.pitchService.pitchData
       this.setData(pitch)
-      // if(this.startupProfileForm.invalid) {
-      //   localStorage.removeItem('pitch');
-      //   // this.getPitch()
-      // }
     } else {
       this.loadingPage = true
       this.pitchService.getPitch().subscribe({
         next: value => {
           localStorage.setItem('pitch', JSON.stringify(value.data))
           this.pitchService.updatePitch()
-          // this.getAllIndustries()
           this.setData(value.data)
           this.loadingPage =false
         },

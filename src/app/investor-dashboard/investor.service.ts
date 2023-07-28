@@ -2,8 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {messageData} from "../models/interfaces";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
-import {Form} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +28,10 @@ export class InvestorService {
 
   getInvestor() {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-investor`);
+  }
+
+  saveInvestorSettings(investorSettings: any) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/save-investor-settings`, investorSettings);
   }
 
 }

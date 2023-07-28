@@ -35,3 +35,8 @@ export const purposeOptions: Array<{name: string, value: string}> = [
   {name: 'Debts', value: 'Debts'},
   {name: 'Others', value: 'Others'},
 ]
+
+export const registerAs: Array<{name: string, value: string}> = [
+  {name: 'Organization', value: 'Organization'},
+  {name: 'Individual', value: 'Individual'},
+]
