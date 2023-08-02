@@ -25,4 +25,8 @@ export class AdminDashboardService {
   declineInvestor(id: string) {
     return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/decline-investor`, {id});
   }
+
+  getAllStartups(page: number, perPage: number, filter: string, search: string){
+    return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-startups?page=${page}&perPage=${perPage}&filter=${filter}&search=${search}`);
+  }
 }
