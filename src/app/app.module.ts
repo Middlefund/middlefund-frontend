@@ -23,6 +23,7 @@ import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     SharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    ReactiveFormsModule
   ],
   providers: [
     ProfileInitials,
