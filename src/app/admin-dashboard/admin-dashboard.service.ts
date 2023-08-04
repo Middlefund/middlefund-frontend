@@ -29,4 +29,16 @@ export class AdminDashboardService {
   getAllStartups(page: number, perPage: number, filter: string, search: string){
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-startups?page=${page}&perPage=${perPage}&filter=${filter}&search=${search}`);
   }
+
+  getStartupById(id: string){
+    return this.http.get<messageData>(`${environment.BACKEND_URL}/api/get-startup/${id}`);
+  }
+
+  verifyStartup(id: string){
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/verify-startup`, {id});
+  }
+
+  declineStartup(id: string) {
+    return this.http.patch<messageData>(`${environment.BACKEND_URL}/api/decline-startup`, {id});
+  }
 }

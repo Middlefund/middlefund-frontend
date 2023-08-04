@@ -191,6 +191,49 @@ export interface UserInvestor {
   status: string;
 }
 
+export interface UserStartup {
+  amount_to_raise: string;
+  avatar: null;
+  avatar_original: null;
+  city: string;
+  country: string;
+  created_at: string;
+  date_of_birth: null;
+  email: string;
+  email_verified_at: string;
+  equity: string;
+  google_id: null;
+  id: string;
+  industry: string;
+  linkedin: null;
+  logo: string;
+  name: string;
+  password: string;
+  phone: null;
+  pitch_deck: string;
+  purpose: string;
+  raised_amount: string;
+  region_state: string;
+  registration_country: string;
+  registration_type: string;
+  remember_token: null;
+  rep_id: string;
+  rep_linkedin: string;
+  rep_name: string;
+  rep_position: string;
+  rep_short_bio: string;
+  stage: string;
+  startup_bio: string;
+  startup_name: string;
+  updated_at: string;
+  user_id: string;
+  user_type: string;
+  verified: string;
+  video_pitch: null;
+  website: string;
+}
+
+
 
 
 
