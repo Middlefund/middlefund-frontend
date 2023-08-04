@@ -41,13 +41,10 @@ export class LoginComponent {
           console.log(this.accountsService.redirectUrl)
           this.isLoading = false
           if (localStorage.getItem('redirectUrl')) {
-
             this.route.navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!)).then(r => r)
-          }
-          if(value.user.user_type === "startup"){
+          } else if (value.user.user_type === "startup"){
             this.route.navigateByUrl('startup/home').then(r => r)
-          }
-          else if(value.user.user_type === "investor"){
+          } else if(value.user.user_type === "investor"){
             this.route.navigateByUrl('investor/home').then(r => r)
           }
           else if(value.user.user_type === "admin") {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserInvestor} from "../../models/interfaces";
+import {UserStartup} from "../../models/interfaces";
 import {AdminDashboardService} from "../admin-dashboard.service";
 import {ToastrService} from "ngx-toastr";
 import {ProfileInitials} from "../../utility/profileInitials";
@@ -18,15 +18,15 @@ export class ManageStartupsComponent {
     { name: 'Unverified', value: 'unverified' },
   ]
 
-  tableHead = ['Name', 'Email', 'Interests', 'Status'];
-  startups: any = []
+  tableHead = ['Name', 'Email', 'Industry', 'Status'];
+  startups: UserStartup[] = []
   page: number = 1;
   isLoading = false;
   totalData: number = 0;
   visible: boolean = false;
-  isLoadingInvestor: boolean = false;
-  investor!: UserInvestor
-  investorImage = ''
+  isLoadingStartup: boolean = false;
+  startup!: UserStartup
+  startupImage = ''
   verifyConfirmationModal = false;
   isVerifying: boolean = false;
   isDeclining: boolean = false;
@@ -60,13 +60,12 @@ export class ManageStartupsComponent {
     this.adminService.getAllStartups(this.page, 10,
       this.filterSearch.controls.filter.value || '', this.filterSearch.controls.search.value!).subscribe({
       next: value => {
-        console.log(value.data.data)
         this.startups = []
-        this.startups = value.data.data.map((item: UserInvestor) => ({
+        this.startups = value.data.data.map((item: UserStartup) => ({
           Name: item.name,
           Email: item.email,
-          Interests: item.interests,
-          Status: item.status,
+          Industry: item.industry,
+          Status: item.verified,
           id: item.id
         }))
         this.totalData = value.data.totalItems
@@ -81,17 +80,17 @@ export class ManageStartupsComponent {
 
   onPreview(event: string) {
     this.visible = true;
-    this.isLoadingInvestor = true;
-    this.adminService.getInvestorById(event).subscribe({
+    this.isLoadingStartup = true;
+    this.adminService.getStartupById(event).subscribe({
       next: value => {
-        this.investor = value.data
-        this.isLoadingInvestor = false;
-        this.investorImage = this.investor?.avatar ?
-          this.investor?.avatar : this.profileInitials.createImageFromInitials(this.profileInitials.getInitials(this.investor?.name))
+        this.startup = value.data
+        this.isLoadingStartup = false;
+        this.startupImage = this.startup?.avatar ?
+          this.startup?.avatar : this.profileInitials.createImageFromInitials(this.profileInitials.getInitials(this.startup?.name))
       },
       error: err => {
         this.toast.error(err.error.error)
-        this.isLoadingInvestor = false;
+        this.isLoadingStartup = false;
       }
     })
   }
@@ -105,21 +104,21 @@ export class ManageStartupsComponent {
   }
 
   resetStatus(status: string) {
-    this.startups.map((investor: UserInvestor) => {
-      if(investor.id === this.investor.id) {
-        investor.status = status
+    this.startups.map((startup) => {
+      if(startup.id === this.startup.id) {
+        startup.verified = status
       }
     })
   }
 
   onVerify() {
     this.isVerifying = true;
-    this.adminService.verifyInvestor(this.investor.id).subscribe({
+    this.adminService.verifyStartup(this.startup.id).subscribe({
       next: value => {
         this.toast.success(value.message)
         this.isVerifying = false;
         this.toggleModal()
-        this.investor.status = 'verified'
+        this.startup.verified = 'verified'
         this.resetStatus('verified')
       },
       error: err => {
@@ -135,12 +134,12 @@ export class ManageStartupsComponent {
 
   onDecline() {
     this.isDeclining = true;
-    this.adminService.declineInvestor(this.investor.id).subscribe({
+    this.adminService.declineStartup(this.startup.id).subscribe({
       next: value => {
         this.toast.success(value.message)
         this.isDeclining = false;
         this.toggleModal()
-        this.investor.status = 'unverified'
+        this.startup.verified = 'unverified'
         this.resetStatus('unverified')
       },
       error: err => {

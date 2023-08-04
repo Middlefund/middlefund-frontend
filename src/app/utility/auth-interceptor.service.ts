@@ -175,7 +175,7 @@ export class AuthInterceptor implements HttpInterceptor {
     localStorage.clear();
     this.accountsService.setRedirectUrl(url);
     localStorage.setItem('redirectUrl', url);
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login').then(r => r);
     return NEVER;
   }
 }

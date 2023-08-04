@@ -42,7 +42,8 @@ export class AccountsService {
   login(credentials: object): Observable<any> {
     return this.http.post<loginData>(`${environment.BACKEND_URL}/api/login`, credentials).pipe(
       tap( response => {
-      localStorage.setItem("middlefund$user", JSON.stringify(response))
+        console.log(response)
+        localStorage.setItem("middlefund$user", JSON.stringify(response))
         this.userSubject.next(response);
     }),
       catchError(error => {
