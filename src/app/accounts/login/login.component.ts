@@ -68,14 +68,27 @@ export class LoginComponent {
         const height = 700;
         const left = (screen.width - width) / 2;
         const top = ( screen.height - height) / 2;
-        window.open(value.url,"center window",'resizable=yes, width=' + width
+        const popup = window.open(value.url,"center window",'resizable=yes, width=' + width
           + ', height=' + height + ', top='
           + top + ', left=' + left)
 
+        const checkPopup = setInterval(() => {
+          if (popup?.window.location.href.includes('localhost:4000')) {
+            this.route.navigateByUrl(window.location.href)
+            popup.close()
+          }
+          if (!popup || !popup.closed) {
+            console.log('Yes')
+            return
+          }
+          clearInterval(checkPopup);
+        }, 1000);
       },
       error: err => {
         this.alert.error(err.error.message || "Oops! Server error")
       }
     })
   }
+
+
 }
