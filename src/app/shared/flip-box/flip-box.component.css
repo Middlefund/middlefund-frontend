@@ -37,10 +37,7 @@
 .Box .Front{
   -webkit-backface-visibility:hidden;
 }
-.Box .Back{
-  -webkit-transform: rotateX(180deg);
-  -webkit-backface-visibility:hidden;
-}
+
 .Box .Front img{
   width:70%;
   height:60%;
@@ -54,6 +51,8 @@
   font-size: large;
 }
 .Box .Back{
+  -webkit-transform: rotateX(180deg);
+  -webkit-backface-visibility:hidden;
   background-color:#3A3838;
   color:#fff;
   display:table;
@@ -96,7 +95,6 @@
 }
 .Box:hover{
   transform:translateY(-30px);
-  z-index:2;
 }
 @media (max-width:780px){
   .Box:not(:last-child):hover{

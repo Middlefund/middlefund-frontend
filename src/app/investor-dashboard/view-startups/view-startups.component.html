@@ -1,6 +1,6 @@
-<section class="h-[100vh] w-full overflow-y-scroll bg-secondary">
+<section class="w-full overflow-y-scroll bg-secondary">
 
-  <div class="grid mt-10 sm:grid-cols-2 max-w-screen-md ml-10 mr-10 gap-x-5 w-full">
+  <div class="grid mt-10 sm:grid-cols-2 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg ml-10 mr-10 gap-x-5 w-full">
       <app-custom-input for="startup_name" [type]="'search'" placeholder="Search" [control]="searchFilter.controls.search"/>
       <app-custom-select placeholder="Filter by category" [options]="industries" [loadingOptions]="loadingIndustries" [control]="searchFilter.controls.filter"/>
 </div>

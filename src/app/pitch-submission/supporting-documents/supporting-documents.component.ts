@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PitchSubmissionService} from "../pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {pitchData, startupData} from "../../models/interfaces";
+import {pitchData} from "../../models/interfaces";
 import {FormDataAppender} from "../../utility/formDataAppender";
 
 
