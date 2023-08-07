@@ -6,6 +6,7 @@ import {VerificationSuccessComponent} from "./verification-success/verification-
 import {VerificationFailedComponent} from "./verification-failed/verification-failed.component";
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {OauthComponent} from "./oauth/oauth.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path: 'verification-failed', component: VerificationFailedComponent},
       {path: 'forgot-password', component: ForgotPasswordComponent},
       {path: 'reset-password/:token', component: ResetPasswordComponent},
+      {path: 'oauth/:type/:code', component: OauthComponent}
     ]},
 ];
 
