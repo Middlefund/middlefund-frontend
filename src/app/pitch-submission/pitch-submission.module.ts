@@ -11,6 +11,7 @@ import {CommonModule, CurrencyPipe, PercentPipe} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PitchSubmissionRoutingModule} from "./pitch-submission-routing.module";
 import {DialogModule} from "primeng/dialog";
+import {AlertModule} from "../alert";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {DialogModule} from "primeng/dialog";
         SharedModule,
         ReactiveFormsModule,
         FormsModule,
-        DialogModule
+        DialogModule,
+        AlertModule
     ],
   exports: [
   ],
