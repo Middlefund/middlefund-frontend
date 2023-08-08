@@ -1,10 +1,10 @@
-<section *ngIf="!status" class="flex text-white h-full md:h-screen bg-secondary justify-center w-full">
+<section *ngIf="!status || status === 'unverified'" class="flex text-white h-full md:h-screen bg-secondary justify-center w-full">
   <div *ngIf="isLoadingPage" class="flex flex-col animate-bounce justify-center mx-5 w-full items-center">
     <app-logo/>
     <span class="text-primary mt-4">Loading...</span>
   </div>
   <form [formGroup]="verificationForm" *ngIf="!isLoadingPage" (ngSubmit)="toggleModal()" class="flex flex-col w-full max-lg:ml-10 max-lg:mr-10 items-center">
-    <div class="grid border-y-2 border-primary pb-8 pt-4 md:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+    <div class="grid border-y-2 pl-5 pr-5 border-primary pb-8 pt-4 lg:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
       <div>
         <h1>Upload Documents</h1>
         <p class="max-md:min-h-[7rem]">We need to confirm you are behind your account, so please complete this mandatory step to continue.
