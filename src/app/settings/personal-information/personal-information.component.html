@@ -21,7 +21,7 @@
     </div>
     <div class="mt-8 flex flex-col gap-y-6">
       <app-custom-input [for]="'name'" [control]="personalInformationForm.controls.fullName" [label]="'Full Name'" [placeholder]="'Enter your fullname'"/>
-      <app-custom-input [control]="personalInformationForm.controls.email" [for]="'email'" [label]="'Email'" [placeholder]="'Enter your email'"/>
+      <app-custom-input [disabled]="true" [control]="personalInformationForm.controls.email" [for]="'email'" [label]="'Email'" [placeholder]="'Enter your email'"/>
       <app-button [isLoading]="isLoading" name="Save" variant="optional"/>
     </div>
   </form>
