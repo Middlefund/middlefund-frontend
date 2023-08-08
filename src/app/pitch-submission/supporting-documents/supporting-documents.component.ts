@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {pitchData} from "../../models/interfaces";
 import {FormDataAppender} from "../../utility/formDataAppender";
+import {AlertService} from "../../alert";
 
 
 @Component({
@@ -26,7 +27,8 @@ export class SupportingDocumentsComponent implements OnInit{
               private pitchService: PitchSubmissionService,
               private toast: ToastrService,
               private append: FormDataAppender,
-              private router: Router){
+              private router: Router,
+              private alerts: AlertService){
   }
 
   ngOnInit() {
@@ -78,71 +80,90 @@ export class SupportingDocumentsComponent implements OnInit{
 
   onLogoChange(event: any) {
     const file = event.target.files[0];
-    this.pitchFormData.append('logo', file)
-    this.supportingDocsForm.patchValue({ logo: file });
-    this.pitchService.pitchFormData.set('logo', file)
-    // Check if the file is an image
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
+    if(file.size > 1000000) {
+      this.alerts.error("Logo upload size should be less than 1MB")
+    } else {
+      this.pitchFormData.append('logo', file)
+      this.supportingDocsForm.patchValue({ logo: file });
+      this.pitchService.pitchFormData.set('logo', file)
+      // Check if the file is an image
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
 
-      reader.onload = (e: any) => {
-        this.logoSrc = e.target.result
-      };
+        reader.onload = (e: any) => {
+          this.logoSrc = e.target.result
+        };
 
-      // Read the file as a data URL
-      reader.readAsDataURL(file);
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
     }
+
   }
 
   onPitchChange(event: any) {
     const file = event.target.files[0];
-    this.pitchFormData.append('pitch', file)
-    this.supportingDocsForm.patchValue({ pitch: file });
-    this.pitchService.pitchFormData.set('pitch', file)
-    // Check if the file is an image
-    if (file && file.type.startsWith('application/pdf')) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.pdfSrc = e.target.result
-      };
-      // Read the file as a data URL
-      reader.readAsDataURL(file);
+    if(file.size > 1500000) {
+      this.alerts.error('Pitch deck upload size should be less than 1.5MB')
+    } else {
+      this.pitchFormData.append('pitch', file)
+      this.supportingDocsForm.patchValue({ pitch: file });
+      this.pitchService.pitchFormData.set('pitch', file)
+      // Check if the file is an image
+      if (file && file.type.startsWith('application/pdf')) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.pdfSrc = e.target.result
+        };
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
     }
+
   }
 
   onVideoChange(event: any) {
     const file = event.target.files[0]
-    this.supportingDocsForm.patchValue({ video: file})
-    this.pitchFormData.append('video', file)
-    this.pitchService.pitchFormData.set('video', file)
-    // Check if the file is an image
-    if (file && file.type.startsWith('video/')) {
-      const reader = new FileReader();
+    if(file.size > 5000000) {
+      this.alerts.error("Video pitch upload size should be less than 5MB")
+    } else {
+      this.supportingDocsForm.patchValue({ video: file})
+      this.pitchFormData.append('video', file)
+      this.pitchService.pitchFormData.set('video', file)
+      // Check if the file is an image
+      if (file && file.type.startsWith('video/')) {
+        const reader = new FileReader();
 
-      reader.onload = (e: any) => {
-        this.videoSrc = e.target.result
-      };
+        reader.onload = (e: any) => {
+          this.videoSrc = e.target.result
+        };
 
-      // Read the file as a data URL
-      reader.readAsDataURL(file);
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
     }
+
   }
 
   onIdChange(event: any) {
     const file = event.target.files[0];
-    this.supportingDocsForm.patchValue({ repId: file})
-    this.pitchFormData.append('repId', file, file)
-    this.pitchService.pitchFormData.set('repId', file)
-    // Check if the file is an image
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
+    if(file.size > 1000000) {
+      this.alerts.error("Id upload size should be less than 1MB")
+    } else {
+      this.supportingDocsForm.patchValue({ repId: file})
+      this.pitchFormData.append('repId', file, file)
+      this.pitchService.pitchFormData.set('repId', file)
+      // Check if the file is an image
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
 
-      reader.onload = (e: any) => {
-        this.idSrc = e.target.result
-      };
+        reader.onload = (e: any) => {
+          this.idSrc = e.target.result
+        };
 
-      // Read the file as a data URL
-      reader.readAsDataURL(file);
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
     }
   }
 
