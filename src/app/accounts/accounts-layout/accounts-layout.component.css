@@ -111,3 +111,9 @@
     transform: translateY(300px);
   }
 }
+
+@media (max-width: 481px) {
+  .signin-signup {
+    top: 100%;
+  }
+}
