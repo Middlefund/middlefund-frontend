@@ -22,7 +22,6 @@ import {ProfileInitials} from "./utility/profileInitials";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [

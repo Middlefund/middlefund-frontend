@@ -5,6 +5,17 @@ import {AccountsService} from "../accounts/accounts.service";
 import {PitchSubmissionService} from "../pitch-submission/pitch-submission.service";
 import {ToastrService} from "ngx-toastr";
 
+
+export const canActivate: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const user = inject(AccountsService);
+    if (user.loggedInUser) {
+      return true;
+    }
+    inject(Router).navigateByUrl('/login').then(r => r)
+    return false
+
+  };
 export const canActivateStartup: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const user = inject(AccountsService);

@@ -46,6 +46,15 @@ button[disabled]:hover{
   background: black;
 }
 
+.custom {
+  background: #989898;
+  color: white;
+}
+
+.custom:hover {
+  background: #A49370;
+}
+
 .spinner{
   width: 20px !important;
   height: 20px !important;

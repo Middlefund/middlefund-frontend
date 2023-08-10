@@ -3,11 +3,13 @@
   primary: variant === 'primary',
   secondary: variant === 'secondary',
   tertiary: variant === 'tertiary',
-  optional: variant === 'optional'
+  optional: variant === 'optional',
+  custom: variant === 'custom'
 }"
   [type]="type" [disabled]="isLoading || disable"
-        class="font-medium rounded-lg text-sm px-6 py-3 text-center mr-2 mb-2">
+        class="font-medium flex place-items-center rounded-lg align-middle text-sm px-6 py-3 text-center mr-2 mb-2">
  <mat-spinner *ngIf="isLoading" class="spinner" color="accent"/>
+  <mat-icon *ngIf="icon && !isLoading" class="mr-2">{{icon}}</mat-icon>
   {{isLoading ? "" : name}}
   <ng-content></ng-content>
 </button>

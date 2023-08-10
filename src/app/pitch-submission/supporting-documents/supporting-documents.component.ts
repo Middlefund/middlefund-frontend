@@ -87,7 +87,7 @@ export class SupportingDocumentsComponent implements OnInit{
       this.supportingDocsForm.patchValue({ logo: file });
       this.pitchService.pitchFormData.set('logo', file)
       // Check if the file is an image
-      if (file && file.type.startsWith('image/')) {
+      if (file?.type.startsWith('image/')) {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
