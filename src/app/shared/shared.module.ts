@@ -36,6 +36,7 @@ import { CustomMultiSelectComponent } from './custom-multi-select/custom-multi-s
 import { CustomTableComponent } from './custom-table/custom-table.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatMenuModule} from "@angular/material/menu";
+import { PlatinumLogoComponent } from './platinum-logo/platinum-logo.component';
 
 
 export function playerFactory() {
@@ -66,7 +67,8 @@ export function playerFactory() {
     CustomCardSkeletonComponent,
     ConfirmationModalComponent,
     CustomMultiSelectComponent,
-    CustomTableComponent
+    CustomTableComponent,
+    PlatinumLogoComponent
   ],
   imports: [
     CommonModule,
@@ -108,6 +110,7 @@ export function playerFactory() {
         ConfirmationModalComponent,
         CustomMultiSelectComponent,
         CustomTableComponent,
+        PlatinumLogoComponent,
     ]
 })
 
