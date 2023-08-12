@@ -11,6 +11,7 @@ import {
   canActivateStartup,
   cannotAuthenticate
 } from "./utility/auth.guard";
+import {CreateWorkspaceComponent} from "./platinum/create-workspace/create-workspace.component";
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 const startupDashboardModule = () => import('./startup-dashboard/startup-dashboard.module').then(x => x.StartupDashboardModule)
 const investorDashboardModule = () => import('./investor-dashboard/investor-dashboard.module').then(x => x.InvestorDashboardModule)
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'admin', loadChildren: adminDashboardModule, canActivate: [canActivateAdmin]},
   {path: 'platinum', loadChildren: platinumModule, canActivate: [canActivate]},
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
+  {path: 'create-workspace', component: CreateWorkspaceComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
   {path: '**', component: NotFoundComponent}
 ];

@@ -4,11 +4,13 @@ import {PlatinumComponent} from "./platinum.component";
 import { HomeComponent } from './home/home.component';
 import {SharedModule} from "../shared/shared.module";
 import {MatIconModule} from "@angular/material/icon";
+import { CreateWorkspaceComponent } from './create-workspace/create-workspace.component';
 
 @NgModule({
   declarations: [
     PlatinumComponent,
-    HomeComponent
+    HomeComponent,
+    CreateWorkspaceComponent
   ],
   imports: [
     PlatinumRoutingModule,
