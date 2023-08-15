@@ -40,6 +40,7 @@ import { OauthComponent } from './oauth/oauth.component';
   ],
   providers: [
 
-  ]
+  ],
+ 
 })
 export class AccountsModule { }

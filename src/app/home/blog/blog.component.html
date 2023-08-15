@@ -18,20 +18,21 @@
       <p class="mb-6 text-base text-indigo-100 md:text-lg">
         We're delighted that you visited our website, and we want to make sure you stay updated with all the exciting happenings.
       </p>
-      <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
+      <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16" [formGroup]="mailInput">
         <input
           placeholder="Email"
           required=""
           type="email"
           class="flex-grow w-full h-12 px-4 mb-3 text-black transition duration-200 border border-tertiary rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
-          [formControl]="userMail"
+          formControlName="email"
         />
-        <button
+        <button *ngIf="!isLoading"
           class="inline-flex items-center bg-tertiary text-white justify-center w-full h-12 px-6 font-semibold tracking-wide text-teal-900 transition duration-200 rounded shadow-md md:w-auto hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none"
        (click)="onSubscribe()"
-       [disabled]="!userMail.valid" >
+       [disabled]="!mailInput.valid" >
           Subscribe
       </button>
+                <img *ngIf="isLoading" class=" w-12 ml-2" src="../../../assets/1488.gif">
       <!-- <app-button
       [variant]="'optional'"
       [type]="'submit'"
@@ -39,8 +40,8 @@
       /> -->
       
       </div>
-      <div *ngIf="userMail.invalid && (userMail.dirty || userMail.touched)" class="text-yellow text-left pl-5">
-        <div *ngIf="userMail.errors?.['email']">Invalid email format!</div>
+      <div *ngIf="mailInput.invalid && (mailInput.dirty || mailInput.touched)" class="text-yellow text-left pl-5">
+        <div *ngIf="mailInput.errors?.['email']">Invalid email format!</div>
       </div>
       <p class="max-w-md mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
         We value your privacy and promise to send you only relevant and worthwhile content. 
