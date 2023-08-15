@@ -64,8 +64,8 @@ export class AccountsService {
     return this.http.post<any>(`${environment.BACKEND_URL}/api/reset-password`, details)
   }
 
-  socialLogin() {
-    return this.http.get<any>(`${environment.BACKEND_URL}/api/redirect`)
+  socialLogin(socialCredentials: any) {
+    return this.http.post<any>(`${environment.BACKEND_URL}/api/social-login`, socialCredentials)
   }
 
   logout() {

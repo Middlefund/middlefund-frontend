@@ -14,6 +14,7 @@ export class CustomInputComponent {
   @Input() control = new FormControl
   @Input() disabled: boolean = false;
   @Output() blur = new EventEmitter
+  @Input() labelColor: boolean = false;
 
   onBlur () {
     this.blur.emit()

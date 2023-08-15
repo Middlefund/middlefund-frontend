@@ -22,6 +22,12 @@ import {ProfileInitials} from "./utility/profileInitials";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {
+  GoogleSigninButtonModule,
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider
+} from "@abacritt/angularx-social-login";
 
 @NgModule({
   declarations: [
@@ -46,12 +52,28 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
     SharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
   providers: [
     ProfileInitials,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-
+    {provide: 'SocialAuthServiceConfig', useValue: {
+      autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '13347839115-9t4f8ofavoiu5bru41c748q34g4904dp.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err: Error) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

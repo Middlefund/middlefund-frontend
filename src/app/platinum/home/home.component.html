@@ -11,7 +11,7 @@
       <p>Welcome {{name}}</p>
     </div>
     <div class="mt-5 w-full max-w-xs">
-      <app-custom-select [options]="[{name: 'Middlefund', value: 'Middlefund'}]" label="Select workspace" placeholder="select your workspace"/>
+      <app-custom-select [options]="workspaces" label="Select workspace" placeholder="select your workspace"/>
     </div>
     <div class="mt-6">
       <app-button name="Next" variant="custom"/>
