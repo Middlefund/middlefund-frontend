@@ -13,17 +13,24 @@
         <span class="relative inline-block px-2">
           <div class="absolute inset-0 transform -skew-x-12 bg-teal-accent-400"></div>
           <span class="relative text-teal-900">NewsLetter</span>
+          <span class="relative text-teal-900">NewsLetter</span>
         </span>
       </h2>
       <p class="mb-6 text-base text-indigo-100 md:text-lg">
         We're delighted that you visited our website, and we want to make sure you stay updated with all the exciting happenings.
+        We're delighted that you visited our website, and we want to make sure you stay updated with all the exciting happenings.
       </p>
+<<<<<<< HEAD
       <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16" [formGroup]="mailInput">
+=======
+      <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
+>>>>>>> 22ccc40198c5e68ba0a068b02d65d9b7670460d4
         <input
           placeholder="Email"
           required=""
           type="email"
           class="flex-grow w-full h-12 px-4 mb-3 text-black transition duration-200 border border-tertiary rounded appearance-none md:mr-2 md:mb-0 bg-deep-purple-900 focus:border-teal-accent-700 focus:outline-none focus:shadow-outline"
+<<<<<<< HEAD
           formControlName="email"
         />
         <button *ngIf="!isLoading"
@@ -33,6 +40,16 @@
           Subscribe
       </button>
                 <img *ngIf="isLoading" class=" w-12 ml-2" src="../../../assets/1488.gif">
+=======
+          [formControl]="userMail"
+        />
+        <button
+          class="inline-flex items-center bg-tertiary text-white justify-center w-full h-12 px-6 font-semibold tracking-wide text-teal-900 transition duration-200 rounded shadow-md md:w-auto hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none"
+       (click)="onSubscribe()"
+       [disabled]="!userMail.valid" >
+          Subscribe
+      </button>
+>>>>>>> 22ccc40198c5e68ba0a068b02d65d9b7670460d4
       <!-- <app-button
       [variant]="'optional'"
       [type]="'submit'"
@@ -40,8 +57,13 @@
       /> -->
       
       </div>
+<<<<<<< HEAD
       <div *ngIf="mailInput.invalid && (mailInput.dirty || mailInput.touched)" class="text-yellow text-left pl-5">
         <div *ngIf="mailInput.errors?.['email']">Invalid email format!</div>
+=======
+      <div *ngIf="userMail.invalid && (userMail.dirty || userMail.touched)" class="text-yellow text-left pl-5">
+        <div *ngIf="userMail.errors?.['email']">Invalid email format!</div>
+>>>>>>> 22ccc40198c5e68ba0a068b02d65d9b7670460d4
       </div>
       <p class="max-w-md mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
         We value your privacy and promise to send you only relevant and worthwhile content. 
