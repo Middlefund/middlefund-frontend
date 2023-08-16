@@ -22,7 +22,7 @@ export class DashboardHomeComponent implements OnInit{
            description: 'Tell us about your startup and how much you are looking to raise.',
            image: 'assets/undraw_pitching_re_fpgk.svg', route: '../../pitch-submission'},
          {title: 'Middlefund Platinum', description: 'This page is currently under construction',
-           image: 'assets/undraw_revenue_re_2bmg.svg', route: '/under-construction'},
+           image: 'assets/undraw_revenue_re_2bmg.svg', route: '/platinum'},
          {title: 'Build Pitch', description: 'This page is currently under construction',
            image: 'assets/undraw_building_blocks_re_5ahy.svg', route: '/under-construction'}
        ]
@@ -51,7 +51,7 @@ export class DashboardHomeComponent implements OnInit{
          {title: 'Investment Portfolio', description: 'This page is currently under construction',
            image: 'assets/undraw_invest_re_8jl5.svg', route: '/under-construction'},
          {title: 'Middlefund Platinum', description: 'This page is currently under construction',
-           image: 'assets/undraw_building_blocks_re_5ahy.svg', route: '/under-construction'}
+           image: 'assets/undraw_building_blocks_re_5ahy.svg', route: '/platinum'}
        ]
      }
      else if(this.accountsService.userData.user_type === "admin") {

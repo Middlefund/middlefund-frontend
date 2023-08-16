@@ -9,7 +9,8 @@ export class ButtonComponent {
   @Input() isLoading!: boolean;
   @Input() name: string = ''
   @Input() variant: 'primary' |
-    'secondary' | 'tertiary' | 'optional' = 'primary'
+    'secondary' | 'tertiary' | 'optional' | 'custom' = 'primary'
   @Input() type!: 'button' | 'submit'
   @Input() disable!: boolean
+  @Input() icon: string = ''
 }
