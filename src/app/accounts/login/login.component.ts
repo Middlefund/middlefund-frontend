@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {emailValidator} from "../../utility/validators.directive";
 import {AccountsService} from "../accounts.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
 import {ToastrService} from "ngx-toastr";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   isLoading: boolean = false
   showPassword: boolean = false
 
@@ -19,7 +20,14 @@ export class LoginComponent {
               private accountsService: AccountsService,
               private route: Router,
               private alert: AlertService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private authService: SocialAuthService) {
+  }
+
+  ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.socialLogin(user)
+    })
   }
 
   toggleShowPassword() {
@@ -61,34 +69,45 @@ export class LoginComponent {
     }
   }
 
-  socialLogin() {
-    this.accountsService.socialLogin().subscribe({
+  socialLogin(socialCredentials: any) {
+    this.accountsService.socialLogin(socialCredentials).subscribe({
       next: value => {
-        const width = 600;
-        const height = 700;
-        const left = (screen.width - width) / 2;
-        const top = ( screen.height - height) / 2;
-        const popup = window.open(value.url,"center window",'resizable=yes, width=' + width
-          + ', height=' + height + ', top='
-          + top + ', left=' + left)
-
-        const checkPopup = setInterval(() => {
-          if (popup?.window.location.href.includes('localhost:4000')) {
-            this.route.navigateByUrl(window.location.href)
-            popup.close()
-          }
-          if (!popup || !popup.closed) {
-            console.log('Yes')
-            return
-          }
-          clearInterval(checkPopup);
-        }, 1000);
+        console.log(value)
       },
       error: err => {
-        this.alert.error(err.error.message || "Oops! Server error")
+        console.log(err)
       }
     })
   }
+
+  // socialLogin() {
+  //   this.accountsService.socialLogin().subscribe({
+  //     next: value => {
+  //       const width = 600;
+  //       const height = 700;
+  //       const left = (screen.width - width) / 2;
+  //       const top = ( screen.height - height) / 2;
+  //       const popup = window.open(value.url,"center window",'resizable=yes, width=' + width
+  //         + ', height=' + height + ', top='
+  //         + top + ', left=' + left)
+  //
+  //       const checkPopup = setInterval(() => {
+  //         if (popup?.window.location.href.includes('localhost:4000')) {
+  //           this.route.navigateByUrl(window.location.href)
+  //           popup.close()
+  //         }
+  //         if (!popup || !popup.closed) {
+  //           console.log('Yes')
+  //           return
+  //         }
+  //         clearInterval(checkPopup);
+  //       }, 1000);
+  //     },
+  //     error: err => {
+  //       this.alert.error(err.error.message || "Oops! Server error")
+  //     }
+  //   })
+  // }
 
 
 }

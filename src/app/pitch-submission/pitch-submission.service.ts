@@ -36,7 +36,7 @@ export class PitchSubmissionService {
     return this.pitchSubject.value || false;
   }
 
-  public updatePitch() {
+  public  updatePitch() {
     const updatedPitch: any = {}
     this.pitchFormData.forEach((value, key) => {
       if (value === 'null') {

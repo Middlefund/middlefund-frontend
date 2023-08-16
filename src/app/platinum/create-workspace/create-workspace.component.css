@@ -1,0 +1,8 @@
+::ng-deep .mat-icon {
+  height: 10px !important;
+  width: 10px !important;
+}
+
+::ng-deep .material-icons {
+  font-size: 10px !important;
+}

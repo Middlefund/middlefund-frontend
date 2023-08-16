@@ -16,6 +16,7 @@ import { VerificationFailedComponent } from './verification-failed/verification-
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { OauthComponent } from './oauth/oauth.component';
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 
 @NgModule({
   declarations: [
@@ -29,15 +30,16 @@ import { OauthComponent } from './oauth/oauth.component';
     ResetPasswordComponent,
     OauthComponent,
   ],
-  imports: [
-    CommonModule,
-    AccountsRoutingModule,
-    MatIconModule,
-    SharedModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AlertModule
-  ],
+    imports: [
+        CommonModule,
+        AccountsRoutingModule,
+        MatIconModule,
+        SharedModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AlertModule,
+        GoogleSigninButtonModule
+    ],
   providers: [
 
   ],
