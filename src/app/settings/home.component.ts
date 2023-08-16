@@ -8,7 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 @HostListener("window:scroll", [])
 onScroll():void{
-  if( window.innerHeight  >= document.body.offsetHeight - 1){
+  if( (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1){
     console.log('hey')
   }
 }
