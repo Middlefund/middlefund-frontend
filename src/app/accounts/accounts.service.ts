@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, NEVER, Observable, tap, throwError} from "rxjs";
-import {EmailSub, loginData, registerMessage} from "../utility/models";
+import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
 import {messageData} from "../models/interfaces";
@@ -103,7 +103,4 @@ export class AccountsService {
     this.router.navigateByUrl('/login');
     return NEVER;
   }
-
-
-
 }

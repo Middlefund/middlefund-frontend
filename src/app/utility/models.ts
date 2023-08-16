@@ -61,7 +61,3 @@ export interface InvestorSettings {
   user_type: string;
 }
 
-export interface EmailSub {
-  email : string
-}
-

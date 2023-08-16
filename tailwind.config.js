@@ -16,9 +16,7 @@ module.exports = {
       tertiary: '#5F5F5F',
       white: '#fff',
       black: '#000',
-      grey: '#A4A4A4',
-      blue: '#3b82f6',
-      yellow: '#fff200'
+      grey: '#A4A4A4'
     }
   },
   plugins: [],
