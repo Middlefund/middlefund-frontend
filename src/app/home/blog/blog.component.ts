@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.mailInput = new FormGroup({
-      'email': new FormControl(null, Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       
     })
   }
