@@ -13,14 +13,13 @@
         <span class="relative inline-block px-2">
           <div class="absolute inset-0 transform -skew-x-12 bg-teal-accent-400"></div>
           <span class="relative text-teal-900">NewsLetter</span>
-          <span class="relative text-teal-900">NewsLetter</span>
         </span>
       </h2>
       <p class="mb-6 text-base text-indigo-100 md:text-lg">
         We're delighted that you visited our website, and we want to make sure you stay updated with all the exciting happenings.
-        We're delighted that you visited our website, and we want to make sure you stay updated with all the exciting happenings.
       </p>
-      <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16" [formGroup]="mailInput">
+      <div class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
+        <form  [formGroup]="mailInput" (ngSubmit)="onSubscribe()" class="flex w-full">
         <input
           placeholder="Email"
           required=""
@@ -30,24 +29,21 @@
         />
         <button *ngIf="!isLoading"
           class="inline-flex items-center bg-tertiary text-white justify-center w-full h-12 px-6 font-semibold tracking-wide text-teal-900 transition duration-200 rounded shadow-md md:w-auto hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none"
-       (click)="onSubscribe()"
-       [disabled]="!mailInput.valid" >
+          [disabled]="!mailInput.valid"
+       >
           Subscribe
       </button>
                 <img *ngIf="isLoading" class=" w-12 ml-2" src="../../../assets/1488.gif">
-      <!-- <app-button
-      [variant]="'optional'"
-      [type]="'submit'"
-      [name]="'Subscribe'"
-      /> -->
-      
+              </form>
       </div>
-      <div *ngIf="mailInput.invalid && (mailInput.dirty || mailInput.touched)" class="text-yellow text-left pl-5">
-        <div *ngIf="mailInput.errors?.['email']">Invalid email format!</div>
+      <div *ngIf="mailInput.invalid && (mailInput.dirty || mailInput.touched)" class="text-yellow text-left h-7 pl-5">
+        <div *ngIf="mailInput.errors?.['email']" class="text-xl">Invalid email format!</div>
       </div>
-      <p class="max-w-md mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
+      <p>Hey hello</p>
+      <div class="mt-52 flex justify-center">
+      <p class="max-w-md text-center mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
         We value your privacy and promise to send you only relevant and worthwhile content. 
-      </p>
+      </p></div>
 
     
     </div>

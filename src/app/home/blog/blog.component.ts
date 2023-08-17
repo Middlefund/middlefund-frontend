@@ -16,12 +16,6 @@ export class BlogComponent implements OnInit {
   mailInput!: FormGroup
   isLoading = false
 
-  // userMail  = new FormControl({
-  //   email : ['',Validators.email]
-  // })
-
-  // Mailing = this.userMail.value
-
 
   constructor(private toast: ToastrService,
               private homeService:HomeService,
@@ -30,30 +24,31 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.mailInput = new FormGroup({
-      "email": new FormControl('', [Validators.required])
+      'email': new FormControl(null, Validators.required),
+      
     })
   }
+  
 
   onSubscribe(  ){
   
-
+console.log(this.mailInput.errors)
    
     this.homeService.subscribeEmail(this.mailInput.value)
     .subscribe({
       next: val => {
              this.toast.success(val.message)
-             console.log('we2')
+             
       },
       error: err => {
             this.toast.error(err.error.message)
       }
       
     })
-    console.log('we')
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false
-    }, 3000)
+    }, 2000)
 
   }
 
