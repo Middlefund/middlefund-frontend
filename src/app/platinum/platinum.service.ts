@@ -14,4 +14,8 @@ export class PlatinumService {
   getUserWorkspaces() {
     return this.http.get<messageData>(`${environment.BACKEND_URL}/api/my-workspaces`)
   }
+
+  createWorkspace(workspaceDetails: {name: string, emails: Array<string>}) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/create-workspace`, workspaceDetails)
+  }
 }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
+import {PlatinumService} from "../platinum.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 interface onInit {
 }
@@ -12,11 +15,12 @@ interface onInit {
 export class CreateWorkspaceComponent implements onInit {
   emails: string[] = [];
   error: string = ""
-  constructor(private fb: FormBuilder) {
-  }
-
-  ngOnInit() {
-
+  isLoading: boolean = false
+  visible: boolean = false
+  constructor(private fb: FormBuilder,
+              private platinumService: PlatinumService,
+              private toast: ToastrService,
+              private router: Router) {
   }
 
   removeEmail(mail: string) {
@@ -40,19 +44,38 @@ export class CreateWorkspaceComponent implements onInit {
           this.error = 'Email already entered'
         }
       } else {
-        this.error = 'Email is not correct'
+        this.error = 'Email is not a valid email'
       }
     }
   }
 
-  onCreate() {
+  createConfirmation() {
     if(this.emails.length) {
-
+      this.onCreate()
+    } else {
+      this.visible = true
     }
+  }
+
+  onCreate() {
+    this.isLoading = true;
     const data = {
-      name: this.createWorkSpaceForm.controls.name.value,
+      name: this.createWorkSpaceForm.controls.name.value ?? '',
       emails: this.emails
     }
+
+    this.platinumService.createWorkspace(data).subscribe({
+      next: value => {
+        this.toast.success(value.message)
+        this.router.navigateByUrl('/platinum/dashboard').then(r => r)
+        this.isLoading = false;
+      },
+      error: error => {
+        this.isLoading = false;
+        this.toast.error(error.error.message)
+      }
+    })
+
   }
 
 }

@@ -3,7 +3,7 @@
     <app-platinum-logo/>
   </div>
   <div class="flex flex-col justify-center items-center">
-    <form (ngSubmit)="onCreate()" [formGroup]="createWorkSpaceForm" class="w-full max-w-xs flex flex-col gap-y-4">
+    <form (ngSubmit)="createConfirmation()" [formGroup]="createWorkSpaceForm" class="w-full max-w-xs flex flex-col gap-y-4">
       <app-custom-input [labelColor]="true" label="Workspace Name" [control]="createWorkSpaceForm.controls.name" placeholder="Enter workspace name"/>
       <app-custom-input (keydown)="addEmail($event)" [labelColor]="true" [control]="createWorkSpaceForm.controls.email" label="Invite others to your workspace" placeholder="Enter email and press enter"/>
       <p class="text-[red] text-xs">{{error}}</p>
@@ -17,9 +17,13 @@
         </div>
       </div>
       <div class="mt-6 flex items-center justify-center">
-        <app-button [disable]="createWorkSpaceForm.invalid" name="Create" variant="custom"/>
+        <app-button [disable]="createWorkSpaceForm.invalid" [isLoading]="isLoading"  name="Create" variant="custom"/>
       </div>
     </form>
   </div>
   <div></div>
 </section>
+<app-confirmation-modal [visible]="visible" header="Create Workspace" [isLoading]="isLoading"
+  description="Are you sure you want to create without sending any invitations now? You can send later"
+                        (submit)="onCreate()" (cancel)="visible = false"
+/>

@@ -3,7 +3,7 @@
     <p>
       {{description}}
     </p>
-    <ng-template pTemplate="footer">
+    <ng-template pTemplate="footer" class="flex">
       <app-button name="No" (click)="cancelEmitter()" variant="primary"/>
       <app-button (click)="submitEmitter()" [isLoading]="isLoading" name="Yes" variant="primary"/>
     </ng-template>
