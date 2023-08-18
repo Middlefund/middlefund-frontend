@@ -11,7 +11,6 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'create-workspace', component: CreateWorkspaceComponent},
       {path: 'dashboard', component: WorkspaceDashboardComponent}
-
     ]}
 ]
 

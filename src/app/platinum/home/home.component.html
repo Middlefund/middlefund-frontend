@@ -11,13 +11,13 @@
       <p>Welcome {{name}}</p>
     </div>
     <div class="mt-5 w-full max-w-xs">
-      <app-custom-select [options]="workspaces" label="Select workspace" placeholder="select your workspace"/>
+      <app-custom-select [loadingOptions]="isLoading " [options]="workspaces" label="Select workspace" placeholder="select your workspace"/>
     </div>
     <div class="mt-6">
       <app-button name="Next" variant="custom"/>
     </div>
     <div class="mt-8">
-      <app-button name="Create new workspace" routerLink="/create-workspace" variant="tertiary" icon="dashboard_customize"></app-button>
+      <app-button name="Create new workspace" routerLink="../create-workspace" variant="tertiary" icon="dashboard_customize"></app-button>
     </div>
   </div>
   <div></div>

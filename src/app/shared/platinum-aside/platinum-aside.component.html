@@ -1,0 +1,47 @@
+<aside class="flex-shrink-0 h-full max-md:hidden text-white lg:w-96 w-64 bg-[#717171] dark:border-primary-darker dark:bg-darker md:block">
+  <div class="flex ml-8 flex-col h-full">
+    <div class="mt-8">
+      <app-platinum-logo/>
+    </div>
+    <div class="flex gap-x-2 mt-3">
+      <button type="button" class="profileButton transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+        <span class="sr-only">User menu</span>
+        <img class="object-cover w-8 h-8 rounded-full" [src]="image" alt="user image" />
+      </button>
+      <span class="text-white flex items-center">{{name}}</span>
+    </div>
+    <div class="border-[#717171] cursor-pointer rounded-xl mt-5 p-3 w-40 bg-[#494848]">
+      <select class="border-none outline-none bg-[#494848] w-full">
+        <option>Middlefund</option>
+      </select>
+    </div>
+    <!-- Sidebar links -->
+    <nav aria-label="Main" class="mt-10 px-2 py-4 max-w-[16rem] space-y-2 overflow-y-hidden hover:overflow-y-auto">
+      <a routerLinkActive="bg-[#F5F5F53D] border-2 rounded-xl border-[#D9D9D9]"  *ngFor="let nav of navigationData" [routerLink]="nav.route"
+         class="flex cursor-pointer text-white items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+        <mat-icon>{{nav.icon}}</mat-icon><span class="ml-2 inline-flex items-center text-sm">{{nav.title}}</span>
+      </a>
+      <div class="flex w-full">
+        <button class="flex items-center hover:bg-primary space-x-2 w-full bg-[#494848] hover:bg-blue-600 text-white font-semibold py-3 px-3 rounded">
+          <mat-icon>business</mat-icon>
+          <span>Incorporate a company</span>
+        </button>
+      </div>
+    </nav>
+    <div class="flex w-full mt-32 max-w-[15rem]">
+      <button class="flex items-center hover:bg-primary space-x-2 w-full bg-[#494848] hover:bg-blue-600 text-white font-semibold py-3 px-3 rounded">
+        <mat-icon>published_with_changes</mat-icon>
+        <span>Switch Account Type</span>
+      </button>
+    </div>
+
+    <!-- Sidebar footer -->
+    <div class="flex-shrink-0 px-2 py-4 space-y-2">
+<!--      <button type="button" (click)="logout()"-->
+<!--              class="flex items-center justify-center w-full px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-dark focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"-->
+<!--      >-->
+<!--        <mat-icon>logout</mat-icon><span>Logout</span>-->
+<!--      </button>-->
+    </div>
+  </div>
+</aside>
