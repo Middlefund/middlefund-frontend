@@ -1,0 +1,143 @@
+<section class="bg-[#494848] text-white grid grid-cols-2 h-screen">
+  <div [ngClass]="isOpen ? '' : 'col-span-2'" class=""> <!-- Header spanning both columns -->
+    <div class="p-8 text-3xl font-extrabold border-b border-[#717171]">
+      Teams
+    </div>
+    <div class="p-5">
+      <div class="mt-10 pr-12 flex justify-between">
+        <button class="flex items-center border border-[#717171] rounded-md p-2 space-x-1">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span class="text-gray-700">Add Team Member</span>
+        </button>
+        <button class="flex items-center border border-[#717171] rounded-md p-2 space-x-1">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span class="text-gray-700">New Group</span>
+        </button>
+        <button class="flex items-center border border-[#717171] rounded-md p-2 space-x-1">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span class="text-gray-700">New Role</span>
+        </button>
+      </div>
+    </div>
+    <div class="flex gap-x-32 p-5 border-b border-[#717171]">
+      <button class="flex items-center space-x-1">
+        <mat-icon>people_alt</mat-icon>
+        <span class="text-gray-700">Team Member (6)</span>
+      </button>
+      <button class="flex items-center space-x-1">
+        <mat-icon>groups</mat-icon>
+        <span class="text-gray-700">Team Groups (2)</span>
+      </button>
+    </div>
+    <div class="px-5 py-3 flex text-2xl gap-x-4 items-center border-b border-[#717171]">
+      <mat-icon>person</mat-icon>
+      <div class="flex flex-col">
+        <span class="text-xs">Basha Tahidu Damba</span>
+        <span class="text-[#717171] text-xs">Admin - Chief Executive Officer</span>
+        <span class="text-[#717171] text-xs">tuahirud@gmail.com</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="false" class="border-l pb-20 flex flex-col gap-y-5 justify-center pr-32 pl-10 border-[#717171]">
+    <span>Add New Team Member</span>
+    <app-platinum-custom-input placeholder="Full name"/>
+    <app-platinum-custom-select placeholder="Select Role"/>
+    <app-platinum-custom-select placeholder="Select Group"/>
+    <app-platinum-custom-input type="email" placeholder="Email"/>
+    <div class="mt-6">
+      <app-button name="Add" variant="custom"/>
+    </div>
+  </div>
+  <div *ngIf="true" class="border-l pt-20  flex flex-col gap-y-5  pr-32 pl-10 border-[#717171]">
+    <div class="border-b flex flex-col gap-y-5 pb-5 border-[#717171]">
+      <span>Add New Group</span>
+      <app-platinum-custom-input placeholder="Group name"/>
+      <app-platinum-custom-input type="email" placeholder="Group Alias"/>
+      <button class="flex items-center justify-center max-w-[8rem] text-center border border-[#717171] rounded-md p-2 space-x-1">
+        <span class="text-gray-700 text-center">Choose icon</span>
+      </button>
+      <div class="mt-4">
+        <app-button name="Add" variant="custom"/>
+      </div>
+    </div>
+    <span>Current groups</span>
+    <div class="flex justify-between">
+      <div class="py-3 flex text-2xl gap-x-4 items-center">
+        <mat-icon>account_box</mat-icon>
+        <div class="flex flex-col">
+          <span class="text-xs">Administrator</span>
+          <span class="text-[#717171] text-xs">Admin - Members(2)</span>
+        </div>
+      </div>
+      <div>
+        <app-button name="Delete" variant="custom"/>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="false" class="border-l pb-20 pl-10 flex flex-col gap-y-5 pt-28 border-[#717171]">
+    <div class="flex gap-x-8">
+      <div class="flex gap-x-2 items-center">
+        <mat-icon>radio_button_unchecked</mat-icon>
+        <div class="space-y-2">
+          <span>Send investor updates</span>
+          <div class="flex items-center gap-x-2">
+            <span class="bg-[#717171] text-[11px] min-w-[5rem] text-center border border-[#FFD600] text-[#FFD600] rounded-2xl px-2 py-0.5">In progress</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span>{{formatDate()}}</span>
+      </div>
+    </div>
+    <div class="flex gap-x-16">
+      <div class="flex gap-x-2 mt-3">
+        <button type="button" class="profileButton transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+          <span class="sr-only">User menu</span>
+          <img class="object-cover w-8 h-8 rounded-full" [src]="image" alt="user image" />
+        </button>
+        <div>
+          <span class="text-white flex items-center">Basha Tahidu Damba</span>
+          <span class="text-[#D9D9D9] flex items-center">damba@middlefund.co</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-1">
+        <mat-icon>remove_circle</mat-icon>
+        <span class="text-gray-700">Unassign</span>
+      </div>
+    </div> <div class="flex gap-x-16">
+    <div class="flex gap-x-2 mt-3">
+      <button type="button" class="profileButton transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+        <span class="sr-only">User menu</span>
+        <img class="object-cover w-8 h-8 rounded-full" [src]="image" alt="user image" />
+      </button>
+      <div>
+        <span class="text-white flex items-center">Basha Tahidu Damba</span>
+        <span class="text-[#D9D9D9] flex items-center">damba@middlefund.co</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-1">
+      <mat-icon>remove_circle</mat-icon>
+      <span class="text-gray-700">Unassign</span>
+    </div>
+  </div> <div class="flex gap-x-16">
+    <div class="flex gap-x-2 mt-3">
+      <button type="button" class="profileButton transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+        <span class="sr-only">User menu</span>
+        <img class="object-cover w-8 h-8 rounded-full" [src]="image" alt="user image" />
+      </button>
+      <div>
+        <span class="text-white flex items-center">Basha Tahidu Damba</span>
+        <span class="text-[#D9D9D9] flex items-center">damba@middlefund.co</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-1">
+      <mat-icon>remove_circle</mat-icon>
+      <span class="text-gray-700">Unassign</span>
+    </div>
+  </div>
+    <div class="flex mt-8 items-center space-x-1">
+      <mat-icon>add_circle_outline</mat-icon>
+      <span class="text-gray-700">Add New Assignee</span>
+    </div>
+  </div>
+</section>

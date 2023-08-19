@@ -9,6 +9,7 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import { WorkspaceDashboardComponent } from './workspace-dashboard/workspace-dashboard.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TasksComponent } from './tasks/tasks.component';
     HomeComponent,
     CreateWorkspaceComponent,
     WorkspaceDashboardComponent,
-    TasksComponent
+    TasksComponent,
+    TeamsComponent
   ],
   imports: [
     PlatinumRoutingModule,

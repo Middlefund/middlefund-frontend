@@ -11,7 +11,7 @@ export class PlatinumAsideComponent implements OnInit{
   name: string = ''
   image: string = ''
   navigationData: Array<{ route: string, icon: string, title: string }> = [
-    {route: '', icon: 'format_list_numbered', title: 'Tasks'},
+    {route: 'tasks', icon: 'format_list_numbered', title: 'Tasks'},
     {route: 'team', icon: 'groups', title: 'Team'},
   ]
   constructor(private accountsService: AccountsService,
