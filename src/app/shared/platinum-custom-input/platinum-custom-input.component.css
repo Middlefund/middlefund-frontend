@@ -1,0 +1,9 @@
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url(https://img.icons8.com/ios/20/ffffff/calendar--v1.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+}

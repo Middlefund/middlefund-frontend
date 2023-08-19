@@ -5,16 +5,18 @@ import { HomeComponent } from './home/home.component';
 import {SharedModule} from "../shared/shared.module";
 import {MatIconModule} from "@angular/material/icon";
 import { CreateWorkspaceComponent } from './create-workspace/create-workspace.component';
-import {NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import { WorkspaceDashboardComponent } from './workspace-dashboard/workspace-dashboard.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 @NgModule({
   declarations: [
     PlatinumComponent,
     HomeComponent,
     CreateWorkspaceComponent,
-    WorkspaceDashboardComponent
+    WorkspaceDashboardComponent,
+    TasksComponent
   ],
   imports: [
     PlatinumRoutingModule,
@@ -22,7 +24,8 @@ import { WorkspaceDashboardComponent } from './workspace-dashboard/workspace-das
     MatIconModule,
     NgForOf,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgClass
   ],
   exports: []
 })
