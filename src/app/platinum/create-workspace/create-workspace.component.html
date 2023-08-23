@@ -1,0 +1,25 @@
+<section class="bg-secondary h-screen w-full flex flex-col justify-between text-white">
+  <div class="p-10">
+    <app-platinum-logo/>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <form (ngSubmit)="onCreate()" [formGroup]="createWorkSpaceForm" class="w-full max-w-xs flex flex-col gap-y-4">
+      <app-custom-input [labelColor]="true" label="Workspace Name" [control]="createWorkSpaceForm.controls.name" placeholder="Enter workspace name"/>
+      <app-custom-input (keydown)="addEmail($event)" [labelColor]="true" [control]="createWorkSpaceForm.controls.email" label="Invite others to your workspace" placeholder="Enter email and press enter"/>
+      <p class="text-[red] text-xs">{{error}}</p>
+      <div *ngIf="emails.length" class="border-grey rounded-lg border h-fit p-4">
+        <p >Emails to invite</p>
+        <div class="flex flex-wrap gap-2">
+         <label *ngFor="let email of emails" class="bg-grey text-xs text-[red] flex gap-x-1 max-w-fit rounded-md p-2 items-center">
+           <span class="text-white">{{email}}</span>
+           <mat-icon (click)="removeEmail(email)" class="hover:cursor-pointer">cancel</mat-icon>
+         </label>
+        </div>
+      </div>
+      <div class="mt-6 flex items-center justify-center">
+        <app-button [disable]="createWorkSpaceForm.invalid" name="Create" variant="custom"/>
+      </div>
+    </form>
+  </div>
+  <div></div>
+</section>
