@@ -24,6 +24,7 @@ import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import {  ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxSkeletonLoaderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    
   ],
   providers: [
     ProfileInitials,

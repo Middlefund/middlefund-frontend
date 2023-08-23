@@ -27,18 +27,19 @@
         />
         <button *ngIf="!isLoading"
           class="inline-flex items-center bg-tertiary text-white justify-center w-full h-12 px-6 font-semibold tracking-wide text-teal-900 transition duration-200 rounded shadow-md md:w-auto hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none"
-          [disabled]="!mailInput.valid"
+          
        >
           Subscribe
       </button>
-                <img *ngIf="isLoading" class=" w-12 ml-2" src="../../../assets/1488.gif">
+                <!-- <img *ngIf="isLoading" class=" w-12 ml-2" src="../../../assets/1488.gif"> -->
+                <mat-spinner *ngIf="isLoading" class="mat"  ></mat-spinner>
               </form>
       </div>
       <div *ngIf="mailInput.invalid && (mailInput.dirty || mailInput.touched)" class="text-yellow text-left h-7 pl-5">
-        <div *ngIf="mailInput.errors?.['email']" class="text-xl">Invalid email format!</div>
+        <div  class="text-lg text-yellow">Invalid email format!</div>
       </div>
-      <!-- <p>Hey hello</p> -->
-      <div class="mt-52 flex justify-center">
+  
+      <div class="mt-5 flex justify-center">
       <p class="max-w-md text-center mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
         We value your privacy and promise to send you only relevant and worthwhile content. 
       </p></div> 

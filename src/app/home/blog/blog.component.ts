@@ -31,25 +31,18 @@ export class BlogComponent implements OnInit {
   
 
   onSubscribe(  ){
-  
-console.log(this.mailInput.errors)
-   
     this.homeService.subscribeEmail(this.mailInput.value)
     .subscribe({
       next: val => {
-             this.toast.success(val.message)
-             
+             this.toast.success(val.message)       
       },
       error: err => {
             this.toast.error(err.error.message)
-      }
-      
+      }  
     })
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false
-    }, 2000)
-
+    }, 3000)
   }
-
 }
