@@ -1,0 +1,7 @@
+.mat-mdc-progress-spinner {
+    --mdc-circular-progress-active-indicator-color: #5F5F5F;
+}
+
+.mat{
+    height: 50px !important;
+}

@@ -23,12 +23,14 @@ import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptor} from "./utility/auth-interceptor.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {  ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   GoogleSigninButtonModule,
   SocialLoginModule,
   SocialAuthServiceConfig,
   GoogleLoginProvider
 } from "@abacritt/angularx-social-login";
+
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import {
     ToastrModule.forRoot(),
     NgxSkeletonLoaderModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     SocialLoginModule,
     GoogleSigninButtonModule
   ],
