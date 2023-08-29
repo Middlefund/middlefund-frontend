@@ -1,6 +1,5 @@
-import { ActivatedRouteSnapshot, CanActivateFn, provideRouter, RouterStateSnapshot } from "@angular/router";
-import { inject } from "@angular/core";
-import { Router } from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot, Router} from "@angular/router";
+import {inject} from "@angular/core";
 import {AccountsService} from "../accounts/accounts.service";
 import {PitchSubmissionService} from "../pitch-submission/pitch-submission.service";
 import {ToastrService} from "ngx-toastr";

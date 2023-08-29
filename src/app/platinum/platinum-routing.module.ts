@@ -6,6 +6,8 @@ import {CreateWorkspaceComponent} from "./create-workspace/create-workspace.comp
 import {WorkspaceDashboardComponent} from "./workspace-dashboard/workspace-dashboard.component";
 import {TasksComponent} from "./tasks/tasks.component";
 import {TeamsComponent} from "./teams/teams.component";
+import {BusinessProfileComponent} from "./business-profile/business-profile.component";
+import {BusinessDescriptionComponent} from "./business-description/business-description.component";
 
 const routes: Routes = [
   {path: '', component: PlatinumComponent, children: [
@@ -17,7 +19,10 @@ const routes: Routes = [
           { path: 'tasks', component: TasksComponent },
           { path: 'team', component: TeamsComponent },
         ]},
-    ]}
+    ]},
+    {path: 'business-profile', component: BusinessProfileComponent},
+    {path: 'business-description', component: BusinessDescriptionComponent}
+
 ]
 
 @NgModule({

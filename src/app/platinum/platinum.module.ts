@@ -10,6 +10,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { WorkspaceDashboardComponent } from './workspace-dashboard/workspace-dashboard.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TeamsComponent } from './teams/teams.component';
+import { BusinessProfileComponent } from './business-profile/business-profile.component';
+import { BusinessDescriptionComponent } from './business-description/business-description.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TeamsComponent } from './teams/teams.component';
     CreateWorkspaceComponent,
     WorkspaceDashboardComponent,
     TasksComponent,
-    TeamsComponent
+    TeamsComponent,
+    BusinessProfileComponent,
+    BusinessDescriptionComponent
   ],
   imports: [
     PlatinumRoutingModule,

@@ -8,6 +8,7 @@ import {FormControl} from "@angular/forms";
 })
 export class CustomSelectComponent {
   @Input() label: string = '';
+  @Input() labelColor: string = ''
   @Input() for: string = '';
   @Input() type: string = ''
   @Input() placeholder: string = ''

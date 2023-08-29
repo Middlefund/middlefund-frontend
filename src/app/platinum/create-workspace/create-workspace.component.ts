@@ -4,15 +4,12 @@ import {PlatinumService} from "../platinum.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 
-interface onInit {
-}
-
 @Component({
   selector: 'app-create-workspace',
   templateUrl: './create-workspace.component.html',
   styleUrls: ['./create-workspace.component.css']
 })
-export class CreateWorkspaceComponent implements onInit {
+export class CreateWorkspaceComponent {
   emails: string[] = [];
   error: string = ""
   isLoading: boolean = false
