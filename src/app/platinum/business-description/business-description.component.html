@@ -3,24 +3,26 @@
     <mat-icon class="border border-white rounded-md">navigate_before</mat-icon>
     <span>Middlefund Platinum</span>
   </div>
-  <div class="flex flex-col h-full items-center justify-evenly">
-    <div class="flex text-5xl font-bold gap-y-2 items-center justify-center flex-col">
-      <span>Incorporate your company with</span>
-      <span class="text-primary">Middlefund</span>
+  <div class="flex flex-col h-full ">
+    <div class="flex border border-primary p-5 rounded-xl self-center font-bold gap-x-10 items-center justify-center">
+        <div class="space-x-2">
+          <span class="p-2 rounded-lg bg-[#989898]">M</span>
+          <span class="text-primary">Middlefund</span>
+        </div>
+        <div class="flex items-center gap-x-2 justify-center">
+          <mat-icon>location_on</mat-icon>
+          <span>Ghana</span>
+        </div>
     </div>
-    <div class="flex flex-col w-full justify-center items-center">
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
       <form (ngSubmit)="onSubmitBusinessDescription()" [formGroup]="businessDescription" class="w-full max-w-xs flex flex-col gap-y-4">
-        <app-custom-select [labelColor]="'text-primary'" [control]="businessDescription.controls.businessType" label="Choose company type" [options]="registrationInfo" placeholder="select your company type"/>
-        <app-custom-select [labelColor]="'text-primary'" [control]="businessDescription.controls.principalActivities" label="Registration Country" [options]="countries" placeholder="select your registered country"/>
-        <div class="mt-6 flex items-center justify-center">
+        <app-custom-select [labelColor]="'text-primary'" [control]="businessDescription.controls.businessType" label="Nature of Business/Sector" [options]="industries" placeholder="select your company type"/>
+        <app-custom-input [labelColor]="true" label="Company Name" [control]="businessDescription.controls.principalActivities" placeholder="Principal Business Activities"/>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button name="Back" variant="tertiary"/>
           <app-button [disable]="businessDescription.invalid"  name="Next" variant="custom"/>
         </div>
       </form>
-    </div>
-    <div class="flex w-full float-right justify-end items-end">
-      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
-        Request this service for your country
-      </button>
     </div>
   </div>
 </section>
