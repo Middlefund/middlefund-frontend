@@ -1,0 +1,15 @@
+<div>
+  <label [for]="for" class="block mb-2 text-sm font-medium text-white dark:text-white">{{ label }}</label>
+  <div class="bg-[#494848] border border-grey text-white text-sm rounded-lg focus:ring-blue-500 focus:border-primary focus:shadow-primary focus:shadow-md block w-full p-2.5">
+    <select [formControl]="control" [id]="for" class="bg-[#494848] outline-none text-white text-sm block w-full">
+      <option *ngIf="!loadingOptions" [value]="null" disabled selected>{{ placeholder }}</option>
+      <option *ngIf="loadingOptions" disabled selected>Loading...</option>
+      <option [value]="option.value" *ngFor="let option of options">{{option.name}}</option>
+    </select>
+  </div>
+  <ng-container *ngIf="control.invalid && control.touched">
+    <p *ngFor="let error of control.errors! | keyvalue" class="text-[red] text-xs">
+      {{errorMessages[error.key]}}
+    </p>
+  </ng-container>
+</div>

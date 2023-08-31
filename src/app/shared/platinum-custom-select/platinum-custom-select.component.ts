@@ -2,13 +2,13 @@ import {Component, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'app-custom-select',
-  templateUrl: './custom-select.component.html',
-  styleUrls: ['./custom-select.component.css']
+  selector: 'app-platinum-custom-select',
+  templateUrl: './platinum-custom-select.component.html',
+  styleUrls: ['./platinum-custom-select.component.css']
 })
-export class CustomSelectComponent {
+export class PlatinumCustomSelectComponent {
+
   @Input() label: string = '';
-  @Input() labelColor: string = ''
   @Input() for: string = '';
   @Input() type: string = ''
   @Input() placeholder: string = ''

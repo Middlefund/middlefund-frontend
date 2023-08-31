@@ -1,0 +1,28 @@
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex items-center gap-x-1">
+    <mat-icon class="border border-white rounded-md">navigate_before</mat-icon>
+    <span>Middlefund Platinum</span>
+  </div>
+  <div class="flex flex-col h-full ">
+    <div class="flex border border-primary p-5 rounded-xl self-center font-bold gap-x-10 items-center justify-center">
+        <div class="space-x-2">
+          <span class="p-2 rounded-lg bg-[#989898]">M</span>
+          <span class="text-primary">Middlefund</span>
+        </div>
+        <div class="flex items-center gap-x-2 justify-center">
+          <mat-icon>location_on</mat-icon>
+          <span>Ghana</span>
+        </div>
+    </div>
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form (ngSubmit)="onSubmitBusinessDescription()" [formGroup]="businessDescription" class="w-full max-w-xs flex flex-col gap-y-4">
+        <app-custom-select [labelColor]="'text-primary'" [control]="businessDescription.controls.businessType" label="Nature of Business/Sector" [options]="industries" placeholder="select your company type"/>
+        <app-custom-input [labelColor]="true" label="Company Name" [control]="businessDescription.controls.principalActivities" placeholder="Principal Business Activities"/>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button name="Back" variant="tertiary"/>
+          <app-button [disable]="businessDescription.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

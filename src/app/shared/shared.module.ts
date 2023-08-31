@@ -37,6 +37,9 @@ import { CustomTableComponent } from './custom-table/custom-table.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatMenuModule} from "@angular/material/menu";
 import { PlatinumLogoComponent } from './platinum-logo/platinum-logo.component';
+import { PlatinumAsideComponent } from './platinum-aside/platinum-aside.component';
+import { PlatinumCustomInputComponent } from './platinum-custom-input/platinum-custom-input.component';
+import { PlatinumCustomSelectComponent } from './platinum-custom-select/platinum-custom-select.component';
 
 
 export function playerFactory() {
@@ -68,7 +71,10 @@ export function playerFactory() {
     ConfirmationModalComponent,
     CustomMultiSelectComponent,
     CustomTableComponent,
-    PlatinumLogoComponent
+    PlatinumLogoComponent,
+    PlatinumAsideComponent,
+    PlatinumCustomInputComponent,
+    PlatinumCustomSelectComponent
   ],
   imports: [
     CommonModule,
@@ -88,30 +94,33 @@ export function playerFactory() {
     NgxPaginationModule,
     MatMenuModule,
   ],
-    exports: [
-        LogoComponent,
-        ButtonComponent,
-        FlipBoxComponent,
-        StatsCardComponent,
-        DashboardFooterComponent,
-        NotificationsPanelComponent,
-        DashboardAsideComponent,
-        ProfileDropdownComponent,
-        DashboardHeaderComponent,
-        LockedComponent,
-        CustomInputComponent,
-        CustomCardComponent,
-        CustomSelectComponent,
-        CustomTextAreaComponent,
-        CustomFileInputComponent,
-        RocketAnimationComponent,
-        BreadcrumbComponent,
-        CustomCardSkeletonComponent,
-        ConfirmationModalComponent,
-        CustomMultiSelectComponent,
-        CustomTableComponent,
-        PlatinumLogoComponent,
-    ]
+  exports: [
+    LogoComponent,
+    ButtonComponent,
+    FlipBoxComponent,
+    StatsCardComponent,
+    DashboardFooterComponent,
+    NotificationsPanelComponent,
+    DashboardAsideComponent,
+    ProfileDropdownComponent,
+    DashboardHeaderComponent,
+    LockedComponent,
+    CustomInputComponent,
+    CustomCardComponent,
+    CustomSelectComponent,
+    CustomTextAreaComponent,
+    CustomFileInputComponent,
+    RocketAnimationComponent,
+    BreadcrumbComponent,
+    CustomCardSkeletonComponent,
+    ConfirmationModalComponent,
+    CustomMultiSelectComponent,
+    CustomTableComponent,
+    PlatinumLogoComponent,
+    PlatinumAsideComponent,
+    PlatinumCustomInputComponent,
+    PlatinumCustomSelectComponent,
+  ]
 })
 
 export class SharedModule{}
