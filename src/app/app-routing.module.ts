@@ -27,7 +27,9 @@ const routes: Routes = [
   {path: 'investor', loadChildren: investorDashboardModule, canActivate: [canActivateInvestor]},
   {path: 'pitch-submission', loadChildren: pitchSubmissionModule, canActivate: [canActivateStartup]},
   {path: 'admin', loadChildren: adminDashboardModule, canActivate: [canActivateAdmin]},
-  {path: 'platinum', loadChildren: platinumModule, canActivate: [canActivate]},
+  {path: 'platinum', loadChildren: platinumModule,
+  //  canActivate: [canActivate]
+  },
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
   {path: '**', component: NotFoundComponent}
