@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { OauthComponent } from './oauth/oauth.component';
 import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -38,11 +39,12 @@ import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
         ReactiveFormsModule,
         HttpClientModule,
         AlertModule,
-        GoogleSigninButtonModule
+        GoogleSigninButtonModule,
+        MatTooltipModule
     ],
   providers: [
 
   ],
- 
+
 })
 export class AccountsModule { }
