@@ -40,13 +40,17 @@
     </app-input>
     <div class="main items-center flex border border-grey rounded-full overflow-hidden m-4 select-none">
       <div class="title py-3 my-auto px-5 bg-primary text-white text-sm font-semibold mr-3">Account Type</div>
-      <label class="flex radio p-2 cursor-pointer">
+      <label matTooltip="Invest in our pool of outstanding startups with enormous potential" class="flex radio p-2 cursor-pointer">
         <input value="investor" formControlName="userType" class="my-auto accent-primary transform scale-125" type="radio"/>
-        <div class="title px-2">Investor</div>
+        <span class="title px-2">Investor</span>
       </label>
-      <label class="flex radio p-2 cursor-pointer">
+      <label matTooltip="Upload startup pitch and stand a chance of attracting investors" class="flex radio p-2 cursor-pointer">
         <input value="startup" formControlName="userType" class="my-auto accent-primary transform scale-125" type="radio"/>
-        <div class="title px-2">Startup</div>
+        <span class="title px-2">Startup</span>
+      </label>
+      <label matTooltip="Have access to platinum and your join team, you can switch anytime" class="flex radio p-2 cursor-pointer">
+        <input value="regular" formControlName="userType" class="my-auto accent-primary transform scale-125" type="radio"/>
+        <span class="title px-2">Regular</span>
       </label>
     </div>
     <div class="flex items-center">
