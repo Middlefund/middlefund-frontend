@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-business-address',
@@ -10,7 +11,7 @@ export class BusinessAddressComponent implements OnInit {
 
  
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private router:Router){}
 
   ngOnInit(): void {
       
@@ -28,6 +29,7 @@ export class BusinessAddressComponent implements OnInit {
   })
 
   onSubmitBusinessAddress(){
+    this.router.navigate(['/platinum/proprietor-details'])
 console.log(this.businessAddress.value)
   }
 

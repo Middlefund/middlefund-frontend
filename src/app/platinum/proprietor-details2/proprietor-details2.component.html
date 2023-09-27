@@ -18,6 +18,7 @@
         <div class="flex flex-col w-full items-center justify-center mt-5">
           <p class="text-white mb-9 text-base font-bold">Proprietor Details</p>
           <form class="w-full max-w-xs flex flex-col gap-y-4" (ngSubmit)="onSubmitProprietorDetails2()" [formGroup]="proprietorDetails2">
+            <app-custom-file-input></app-custom-file-input>
             <app-custom-input [labelColor]="true" label="Place of Birth" placeholder="Enter place of birth" [control]="proprietorDetails2.controls.place"></app-custom-input>
             <app-custom-input [labelColor]="true" label="Phone Number" placeholder="Enter phone number" [control]="proprietorDetails2.controls.phone"></app-custom-input>
             <app-custom-input [labelColor]="true" label="Email Address" placeholder="someone@example.com" [control]="proprietorDetails2.controls.email"></app-custom-input>

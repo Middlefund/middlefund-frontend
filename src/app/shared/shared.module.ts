@@ -40,6 +40,7 @@ import { PlatinumLogoComponent } from './platinum-logo/platinum-logo.component';
 import { PlatinumAsideComponent } from './platinum-aside/platinum-aside.component';
 import { PlatinumCustomInputComponent } from './platinum-custom-input/platinum-custom-input.component';
 import { PlatinumCustomSelectComponent } from './platinum-custom-select/platinum-custom-select.component';
+import { PlatinumCustomFileComponent } from './platinum-custom-file/platinum-custom-file.component';
 
 
 export function playerFactory() {
@@ -74,7 +75,8 @@ export function playerFactory() {
     PlatinumLogoComponent,
     PlatinumAsideComponent,
     PlatinumCustomInputComponent,
-    PlatinumCustomSelectComponent
+    PlatinumCustomSelectComponent,
+    PlatinumCustomFileComponent
   ],
   imports: [
     CommonModule,
