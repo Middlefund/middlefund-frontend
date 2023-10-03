@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Country, ICountry} from "country-state-city";
 import {registrationInfo} from "../../utility/constants";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-business-profile',
@@ -11,7 +12,7 @@ import {registrationInfo} from "../../utility/constants";
 export class BusinessProfileComponent {
   isLoading = false;
   countries:Array<{name: string, value: string}> = Country.getAllCountries().map(country => ({ name: country.name, value: country.name }));
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router:Router) {
   }
 
   businessProfileForm = this.fb.group({
@@ -21,6 +22,8 @@ export class BusinessProfileComponent {
   })
 
   onSubmitBusinessProfile() {
+
+    this.router.navigate(['/platinum/business-description'])
 
   }
 

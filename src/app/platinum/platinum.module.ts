@@ -15,6 +15,7 @@ import { BusinessDescriptionComponent } from './business-description/business-de
 import { BusinessAddressComponent } from './business-address/business-address.component';
 import { ProprietorDetailsComponent } from './proprietor-details/proprietor-details.component';
 import { ProprietorDetails2Component } from './proprietor-details2/proprietor-details2.component';
+import { FileInputComponent } from './shared/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProprietorDetails2Component } from './proprietor-details2/proprietor-de
     BusinessDescriptionComponent,
     BusinessAddressComponent,
     ProprietorDetailsComponent,
-    ProprietorDetails2Component
+    ProprietorDetails2Component,
+    FileInputComponent
   ],
   imports: [
     PlatinumRoutingModule,

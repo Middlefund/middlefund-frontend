@@ -1,4 +1,4 @@
-<section class="bg-secondary h-screen text-white p-10">
+<section class="bg-secondary h-screen overflow-auto text-white p-10">
     <div class="flex items-center gap-x-1">
         <mat-icon class="border border-white rounded-md">navigate_before</mat-icon>
         <span>Middlefund Platinum</span>
@@ -18,17 +18,14 @@
         <div class="flex flex-col w-full items-center justify-center mt-5">
           <p class="text-white mb-9 text-base font-bold">Proprietor Details</p>
           <form class="w-full max-w-xs flex flex-col gap-y-4" (ngSubmit)="onSubmitProprietorDetails2()" [formGroup]="proprietorDetails2">
-            <app-custom-file-input></app-custom-file-input>
             <app-custom-input [labelColor]="true" label="Place of Birth" placeholder="Enter place of birth" [control]="proprietorDetails2.controls.place"></app-custom-input>
             <app-custom-input [labelColor]="true" label="Phone Number" placeholder="Enter phone number" [control]="proprietorDetails2.controls.phone"></app-custom-input>
             <app-custom-input [labelColor]="true" label="Email Address" placeholder="someone@example.com" [control]="proprietorDetails2.controls.email"></app-custom-input>
-            <app-custom-file-input></app-custom-file-input>
-          
-
-
+            <app-file-input [iconUrl]="'assets/gallery-add.svg'" [placeholder]="'Upload Ghanacard'"></app-file-input>
+            <app-file-input [iconUrl]="'assets/message-edit.svg'" [placeholder]="'Add your signature'"></app-file-input>
             <div class="mt-6 flex items-center gap-x-5 justify-center">
               <app-button (click)="goBack()" name="Back" variant="tertiary"/>
-              <app-button   name="Next" variant="custom"/>
+              <app-button  name="Next" variant="custom"/>
             </div>
 
 
