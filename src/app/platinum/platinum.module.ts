@@ -16,6 +16,7 @@ import { BusinessAddressComponent } from './business-address/business-address.co
 import { ProprietorDetailsComponent } from './proprietor-details/proprietor-details.component';
 import { ProprietorDetails2Component } from './proprietor-details2/proprietor-details2.component';
 import { FileInputComponent } from './shared/file-input/file-input.component';
+import { BillingComponent } from './billing/billing.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FileInputComponent } from './shared/file-input/file-input.component';
     BusinessAddressComponent,
     ProprietorDetailsComponent,
     ProprietorDetails2Component,
-    FileInputComponent
+    FileInputComponent,
+    BillingComponent
   ],
   imports: [
     PlatinumRoutingModule,

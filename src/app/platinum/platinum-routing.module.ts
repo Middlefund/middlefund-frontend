@@ -11,6 +11,7 @@ import {BusinessDescriptionComponent} from "./business-description/business-desc
 import { BusinessAddressComponent } from "./business-address/business-address.component";
 import { ProprietorDetailsComponent } from "./proprietor-details/proprietor-details.component";
 import { ProprietorDetails2Component } from "./proprietor-details2/proprietor-details2.component";
+import { BillingComponent } from "./billing/billing.component";
 
 const routes: Routes = [
   {path: '', component: PlatinumComponent, children: [
@@ -27,7 +28,8 @@ const routes: Routes = [
     {path: 'business-description', component: BusinessDescriptionComponent},
     {path: 'business-address', component:BusinessAddressComponent},
     {path: 'proprietor-details', component:ProprietorDetailsComponent},
-    {path: 'proprietor-details-2', component:ProprietorDetails2Component}
+    {path: 'proprietor-details-2', component:ProprietorDetails2Component},
+    {path: 'billing', component:BillingComponent}
 
 ]
 
