@@ -1,0 +1,40 @@
+<section class="bg-secondary text-white p-10">
+    <div class="flex items-center gap-x-1">
+        <mat-icon class="border border-white rounded-md">navigate_before</mat-icon>
+        <span>Middlefund Platinum</span>
+      </div>
+      <div class="flex flex-col  h-full ">
+        <div class="flex border border-primary p-5 rounded-xl self-center font-bold gap-x-10 items-center justify-center">
+            <div class="space-x-2">
+              <span class="p-2 rounded-lg bg-[#989898]">M</span>
+              <span class="text-primary">Middlefund</span>
+            </div>
+            <div class="flex items-center gap-x-2 justify-center">
+              <mat-icon>location_on</mat-icon>
+              <span>Ghana</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col w-full items-center justify-center mt-5">
+          <p class="text-white mb-9 text-base font-bold">Proprietor Details</p>
+          <form class="w-full max-w-xs flex flex-col gap-y-4" (ngSubmit)="onSubmitProprietorDetails()" [formGroup]="proprietorDetails">
+            <app-custom-input [labelColor]="true" label="Name(First, Middle & Last)" placeholder="Enter Proprietor fullname" [control]="proprietorDetails.controls.name"></app-custom-input>
+            <app-custom-select [options]="gender" labelColor="text-primary" label="Gender" [control]="proprietorDetails.controls.gender" placeholder="Enter gender"></app-custom-select>
+            <app-custom-input [labelColor]="true" label="Date of Birth" placeholder="Enter date of birth" [control]="proprietorDetails.controls.dob"></app-custom-input>
+            <app-custom-input [labelColor]="true" label="Nationality" placeholder="Enter Nationality" [control]="proprietorDetails.controls.nationality"></app-custom-input>
+            <app-custom-select [options]="answer" labelColor="text-primary" label="Does Proprietor/Proprietress Have a Tax Identification Number (TIN)?" [control]="proprietorDetails.controls.tin"></app-custom-select>
+            <app-custom-input [labelColor]="true" label="TIN" placeholder="Enter TIN" [control]="proprietorDetails.controls.tinInfo"></app-custom-input>
+            <div class="mt-6 flex items-center gap-x-5 justify-center">
+              <app-button name="Back" variant="tertiary"/>
+              <app-button  [disable]="proprietorDetails.invalid"  name="Next" variant="custom"/>
+            </div>
+
+
+
+          </form>
+        </div>
+
+      </div>
+
+</section>
+
