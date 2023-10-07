@@ -30,6 +30,8 @@ import {
   SocialAuthServiceConfig,
   GoogleLoginProvider
 } from "@abacritt/angularx-social-login";
+import { HeroVideoComponent } from './home/hero-video/hero-video.component';
+import { CompanyIncorporationComponent } from './company-incorporation/company-incorporation.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import {
     FooterComponent,
     BlogComponent,
     TermsAndConditionsComponent,
+    HeroVideoComponent,
+    CompanyIncorporationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   confirmPasswordValidator,
   emailValidator,
@@ -7,7 +7,7 @@ import {
 } from "../../utility/validators.directive";
 import {FormBuilder, Validators} from "@angular/forms";
 import {AccountsService} from "../accounts.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../alert";
 import {capitalizeWords} from "../../utility/capitalizeEachWord";
 import {ToastrService} from "ngx-toastr";
@@ -17,17 +17,46 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   isLoading: boolean = false
   showPassword: boolean = false
   showConfirmPassword: boolean = false
   password: any = '';
+  token: string = ''
+  disabled: boolean = false
 
   constructor(private fb: FormBuilder,
               private accountsService: AccountsService,
-              private route: Router,
+              private router: Router,
               private alert: AlertService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private route: ActivatedRoute,) {
+  }
+
+  ngOnInit() {
+    this.setToken()
+    this.signup.controls.password.valueChanges.subscribe(value => {
+      this.password = this.signup.get('confirmPassword')?.setValidators(confirmPasswordValidator(value!))
+      this.password = this.signup.get('confirmPassword')?.updateValueAndValidity()
+    })
+
+    this.signup.controls.name.valueChanges.subscribe(value => {
+      if(value) {
+        const capitalizedValue = capitalizeWords(value);
+        this.signup.controls.name.patchValue(capitalizedValue, {emitEvent: false});
+      }
+    })
+  }
+
+  private setToken() {
+    this.route.params.subscribe(params => {
+      this.token = params['token']
+      if(this.token) {
+        this.disabled = true;
+        this.toast.info('You do not have an account with us, please create one')
+        this.signup.controls.token.setValue(this.token)
+      }
+    })
   }
 
   toggleShowPassword() {
@@ -39,23 +68,12 @@ export class SignupComponent {
 
   signup = this.fb.group({
     name: ['', [fullNameValidator()]],
-    email: ['', [emailValidator()]],
+    email: [{value: '', disabled: this.disabled}, [emailValidator()]],
     password: ['', passwordValidator()],
     confirmPassword: ['', confirmPasswordValidator(this.password)],
     userType: ['', Validators.required],
-    acceptTerms: [false, Validators.requiredTrue]
-  })
-
-  passwordChanges = this.signup.controls.password.valueChanges.subscribe(value => {
-    this.password = this.signup.get('confirmPassword')?.setValidators(confirmPasswordValidator(value!))
-    this.password = this.signup.get('confirmPassword')?.updateValueAndValidity()
-  })
-
-  capitalizeFullName = this.signup.controls.name.valueChanges.subscribe(value => {
-    if(value) {
-      const capitalizedValue = capitalizeWords(value!);
-      this.signup.controls.name.patchValue(capitalizedValue, {emitEvent: false});
-    }
+    acceptTerms: [false, Validators.requiredTrue],
+    token: ['']
   })
 
   onSubmit() {

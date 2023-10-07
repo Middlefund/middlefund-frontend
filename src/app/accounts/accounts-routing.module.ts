@@ -17,7 +17,9 @@ const routes: Routes = [
       {path: 'verification-failed', component: VerificationFailedComponent},
       {path: 'forgot-password', component: ForgotPasswordComponent},
       {path: 'reset-password/:token', component: ResetPasswordComponent},
-      {path: 'oauth/:type/:code', component: OauthComponent}
+      {path: 'oauth/:type/:code', component: OauthComponent},
+      {path: 'invite-signup/:token', component: SignupComponent},
+      {path: 'invite-login/:token', component: VerificationSuccessComponent}
     ]},
 ];
 

@@ -53,18 +53,21 @@ export const canActivateAdmin: CanActivateFn =
 export const cannotAuthenticate: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const user = inject(AccountsService);
-    if (user.loggedInUser && user.userData.user_type === 'startup') {
-      inject(Router).navigateByUrl('/startup').then(r => r)
-      return false;
+    if (user.loggedInUser) {
+      inject(Router).navigateByUrl('/company-incorporation').then(r => r)
     }
-    else if (user.loggedInUser && user.userData.user_type === 'investor') {
-      inject(Router).navigateByUrl('/investor').then(r => r)
-      return false;
-    }
-    else if(user.loggedInUser && user.userData.user_type === 'admin') {
-      inject(Router).navigateByUrl('/admin').then(r => r)
-      return false;
-    }
+    // if (user.loggedInUser && user.userData.user_type === 'startup') {
+    //   inject(Router).navigateByUrl('/startup').then(r => r)
+    //   return false;
+    // }
+    // else if (user.loggedInUser && user.userData.user_type === 'investor') {
+    //   inject(Router).navigateByUrl('/investor').then(r => r)
+    //   return false;
+    // }
+    // else if(user.loggedInUser && user.userData.user_type === 'admin') {
+    //   inject(Router).navigateByUrl('/admin').then(r => r)
+    //   return false;
+    // }
 
     return true
 
