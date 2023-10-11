@@ -11,6 +11,7 @@ import {
   // canActivateStartup,
   cannotAuthenticate
 } from "./utility/auth.guard";
+import { IncorporationInfoComponent } from './incorporation-info/incorporation-info.component';
 
 const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 // const startupDashboardModule = () => import('./startup-dashboard/startup-dashboard.module').then(x => x.StartupDashboardModule)
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'company-incorporation', loadChildren: companyIncorporationModule, canActivate: [canActivate] },
   {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
   {path: 'under-construction', component: UnderConstructionComponent},
+  {path: 'incorporation-info', component: IncorporationInfoComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

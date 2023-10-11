@@ -1,0 +1,27 @@
+<section class="bg-secondary h-screen w-full text-white">
+  <div class="flex flex-col h-full items-center">
+    <div class="flex text-5xl font-bold gap-y-2 items-center justify-center flex-col">
+      <span>Incorporate your company with</span>
+      <span class="text-primary">Middlefund</span>
+    </div>
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form [formGroup]="companyIncorporationForm" (ngSubmit)="onSubmitBusinessProfile()" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+            <app-custom-input [labelColor]="true" label="Company Name" [control]="companyIncorporationForm.controls.companyName" placeholder="Enter company name"/>
+            <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.companyType" label="Choose company type" [options]="registrationInfo" placeholder="select your company type"/>
+            <app-custom-input [labelColor]="true" label="Business Name" [control]="companyIncorporationForm.controls.businessName" placeholder="Business Name"/>
+            <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.industryName" label="Nature of Business / Sector" [options]="industries" placeholder="select your business nature"/>
+          <app-custom-input [labelColor]="true" label="Principal Business Activities" [control]="companyIncorporationForm.controls.activities" placeholder="major activities"/>
+        </div>
+        <div class="mt-6 flex items-center justify-center">
+          <app-button name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+    <div class="flex mr-10 w-full float-right justify-end items-end">
+      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
+        Request this service for your country
+      </button>
+    </div>
+  </div>
+</section>

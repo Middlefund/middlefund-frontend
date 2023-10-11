@@ -10,13 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { WorkspaceDashboardComponent } from './workspace-dashboard/workspace-dashboard.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TeamsComponent } from './teams/teams.component';
-import { BusinessProfileComponent } from './business-profile/business-profile.component';
-import { BusinessDescriptionComponent } from './business-description/business-description.component';
-import { BusinessAddressComponent } from './business-address/business-address.component';
-import { ProprietorDetailsComponent } from './proprietor-details/proprietor-details.component';
-import { ProprietorDetails2Component } from './proprietor-details2/proprietor-details2.component';
-import { FileInputComponent } from './shared/file-input/file-input.component';
-import { BillingComponent } from './billing/billing.component';
+import { FileInputComponent } from '../shared/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +20,7 @@ import { BillingComponent } from './billing/billing.component';
     WorkspaceDashboardComponent,
     TasksComponent,
     TeamsComponent,
-    BusinessProfileComponent,
-    BusinessDescriptionComponent,
-    BusinessAddressComponent,
-    ProprietorDetailsComponent,
-    ProprietorDetails2Component,
     FileInputComponent,
-    BillingComponent
   ],
   imports: [
     PlatinumRoutingModule,

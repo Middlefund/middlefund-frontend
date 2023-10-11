@@ -11,7 +11,7 @@ export class CustomInputComponent {
   @Input() label:string = '';
   @Input() type: string = '';
   @Input() placeholder: string = '';
-  @Input() control = new FormControl
+  @Input() control!: FormControl
   @Input() disabled: boolean = false;
   @Output() blur = new EventEmitter
   @Input() labelColor: boolean = false;

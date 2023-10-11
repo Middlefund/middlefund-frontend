@@ -41,6 +41,7 @@ import { PlatinumAsideComponent } from './platinum-aside/platinum-aside.componen
 import { PlatinumCustomInputComponent } from './platinum-custom-input/platinum-custom-input.component';
 import { PlatinumCustomSelectComponent } from './platinum-custom-select/platinum-custom-select.component';
 import { PlatinumCustomFileComponent } from './platinum-custom-file/platinum-custom-file.component';
+import {FileInputComponent} from "./file-input/file-input.component";
 
 
 export function playerFactory() {
@@ -76,7 +77,8 @@ export function playerFactory() {
     PlatinumAsideComponent,
     PlatinumCustomInputComponent,
     PlatinumCustomSelectComponent,
-    PlatinumCustomFileComponent
+    PlatinumCustomFileComponent,
+    FileInputComponent
   ],
   imports: [
     CommonModule,
@@ -122,6 +124,7 @@ export function playerFactory() {
     PlatinumAsideComponent,
     PlatinumCustomInputComponent,
     PlatinumCustomSelectComponent,
+    FileInputComponent
   ]
 })
 

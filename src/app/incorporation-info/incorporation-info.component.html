@@ -1,0 +1,36 @@
+<app-navbar route='/' routeName='Home'/>
+<section class="bg-secondary h-screen overflow-auto text-white">
+  <div class='flex items-center justify-center'>
+    <span class='bg-[#262626] py-2.5 px-10 rounded-md'>Company Incorporation</span>
+  </div>
+  <div class='mt-7 text-center'>
+    <p>Incorporate your company from the comfort of your home.</p>
+    <p>This service is currently available in these countries only.</p>
+  </div>
+  <div class='mt-6'>
+    <div class="flex items-center gap-x-2 justify-center">
+      <mat-icon>location_on</mat-icon>
+      <span>Ghana</span>
+    </div>
+  </div>
+  <div class="mt-8 flex items-center justify-center">
+    <app-button routerLink='/company-incorporation/home' name="Begin" variant="custom"/>
+  </div>
+  <div class='mt-20 flex items-center justify-center'>
+    <div class='flex justify-center'>
+      <p class='text-center max-w-xl'>We are working very hard on getting this service to many more countries.
+        You can request this feature for your country and we just might setup
+        in your country next.</p>
+    </div>
+  </div>
+  <div class="flex flex-col w-full justify-center items-center">
+    <form [formGroup]='requestCountry' (ngSubmit)='onSubmitRequest()' class="w-full max-w-xs flex flex-col gap-y-4">
+      <app-custom-input [labelColor]="true" label="Email" placeholder="Enter email" [control]='requestCountry.controls.email'/>
+      <app-custom-select labelColor='text-primary' label="Country *" placeholder="Select country" [options]="countries" [control]='requestCountry.controls.country'/>
+      <div class='flex justify-center items-center'>
+        <app-button [isLoading]='isLoading' [matTooltip]='requestCountry.invalid ? "Please fill the form with correct details" : ""' [disable]='requestCountry.invalid' name="Submit" variant="custom"/>
+      </div>
+    </form>
+  </div>
+</section>
+

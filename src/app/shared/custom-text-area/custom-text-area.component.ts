@@ -14,6 +14,7 @@ export class CustomTextAreaComponent {
   @Input() control = new FormControl
   @Input() disabled: boolean = false;
   @Output() blur = new EventEmitter
+  @Input() labelColor: boolean = false;
 
   errorMessages: Record<string, string> = {
     required: "This field is required.",

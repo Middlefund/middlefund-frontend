@@ -32,6 +32,12 @@ import {
 } from "@abacritt/angularx-social-login";
 import { HeroVideoComponent } from './home/hero-video/hero-video.component';
 import { CompanyIncorporationComponent } from './company-incorporation/company-incorporation.component';
+import {CompanyIncorporationModule} from "./company-incorporation/company-incorporation.module";
+import { IncorporationInfoComponent } from './incorporation-info/incorporation-info.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { AboutUsComponent } from './home/about-us/about-us.component';
+import { LottieComponent } from 'ngx-lottie';
+import { ContactUsComponent } from './home/contact-us/contact-us.component';
 
 
 @NgModule({
@@ -49,6 +55,9 @@ import { CompanyIncorporationComponent } from './company-incorporation/company-i
     TermsAndConditionsComponent,
     HeroVideoComponent,
     CompanyIncorporationComponent,
+    AboutUsComponent,
+    IncorporationInfoComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +72,10 @@ import { CompanyIncorporationComponent } from './company-incorporation/company-i
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    CompanyIncorporationModule,
+    MatTooltipModule,
+    LottieComponent,
   ],
   providers: [
     ProfileInitials,

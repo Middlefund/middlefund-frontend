@@ -40,3 +40,5 @@ export const registerAs: Array<{name: string, value: string}> = [
   {name: 'Organization', value: 'Organization'},
   {name: 'Individual', value: 'Individual'},
 ]
+
+export const defaultServerError: string = 'Oops! Server error'

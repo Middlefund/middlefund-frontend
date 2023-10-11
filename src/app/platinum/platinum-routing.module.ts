@@ -6,12 +6,12 @@ import {CreateWorkspaceComponent} from "./create-workspace/create-workspace.comp
 import {WorkspaceDashboardComponent} from "./workspace-dashboard/workspace-dashboard.component";
 import {TasksComponent} from "./tasks/tasks.component";
 import {TeamsComponent} from "./teams/teams.component";
-import {BusinessProfileComponent} from "./business-profile/business-profile.component";
-import {BusinessDescriptionComponent} from "./business-description/business-description.component";
-import { BusinessAddressComponent } from "./business-address/business-address.component";
-import { ProprietorDetailsComponent } from "./proprietor-details/proprietor-details.component";
-import { ProprietorDetails2Component } from "./proprietor-details2/proprietor-details2.component";
-import { BillingComponent } from "./billing/billing.component";
+import {BusinessProfileComponent} from "../company-incorporation/business-profile/business-profile.component";
+import {BusinessDescriptionComponent} from "../company-incorporation/business-description/business-description.component";
+import { BusinessAddressComponent } from "../company-incorporation/business-address/business-address.component";
+import { ProprietorDetailsComponent } from "../company-incorporation/proprietor-details/proprietor-details.component";
+import { ProprietorDetails2Component } from "../company-incorporation/proprietor-details2/proprietor-details2.component";
+import { BillingComponent } from "../company-incorporation/billing/billing.component";
 
 const routes: Routes = [
   {path: '', component: PlatinumComponent, children: [

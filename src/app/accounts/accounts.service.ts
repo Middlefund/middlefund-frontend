@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, NEVER, Observable, tap, throwError} from "rxjs";
-import {EmailSub, loginData, registerMessage} from "../utility/models";
+import {loginData, registerMessage} from "../utility/models";
 import {AlertService} from "../alert";
 import {environment} from "../../environments/environment";
-import {messageData} from "../models/interfaces";
+import { IRequestCountry, messageData } from '../models/interfaces';
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 
@@ -102,6 +102,10 @@ export class AccountsService {
     localStorage.setItem('redirectUrl', JSON.stringify(url));
     this.router.navigateByUrl('/login');
     return NEVER;
+  }
+
+  requestCountry(requestInfo: IRequestCountry) {
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/request-country`, requestInfo)
   }
 
 

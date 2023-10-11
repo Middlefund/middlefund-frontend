@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit {
     email: [{value: '', disabled: this.disabled}, [emailValidator()]],
     password: ['', passwordValidator()],
     confirmPassword: ['', confirmPasswordValidator(this.password)],
-    userType: ['', Validators.required],
+    userType: ['regular',],
     acceptTerms: [false, Validators.requiredTrue],
     token: ['']
   })
