@@ -7,22 +7,22 @@
     <ol
       class="relative z-10 flex justify-between text-sm font-medium text-white"
     >
-      <li [ngClass]="stage === 1 ? 'text-primary' : ''" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+      <li [ngClass]="stage === 1 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
         <span [ngClass]="stage === 1 ? 'bg-primary' : 'bg-grey'"
-              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
-          1
+          {{!isBusinessProfileValid() ? 1 : ''}}
+          <mat-icon *ngIf='isBusinessProfileValid()'>check</mat-icon>
         </span>
         <span class="hidden sm:block">Company Profile </span>
       </li>
 
-      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
-        <span routerLinkActive="" #pitch="routerLinkActive" [ngClass]="pitch.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="pitch-details"
+      <li [ngClass]="stage === 2 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="stage === 2 ? 'bg-primary' : 'bg-grey'"
               class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
           2
         </span>
-
         <span class="hidden sm:block">Pitch Details </span>
       </li>
 
@@ -48,3 +48,5 @@
   </div>
 </div>
 <app-business-profile *ngIf='stage === 1'/>
+<app-proprietor-details *ngIf='stage === 2'/>
+

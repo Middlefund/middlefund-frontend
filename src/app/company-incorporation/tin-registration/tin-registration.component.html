@@ -1,0 +1,44 @@
+<div class="bg-secondary px-10 pb-4">
+  <div class='text-center text-primary text-xl'>Tin Registration</div>
+  <h2 class="sr-only">Steps</h2>
+
+  <div
+    class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-grey"
+  >
+    <ol
+      class="relative z-10 flex justify-between text-sm font-medium text-white"
+    >
+      <li [ngClass]="tinStage === 1 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 1 ? 'bg-primary' : 'bg-grey'"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{!isTinPersonalValid() ? 1 : ''}}
+          <mat-icon *ngIf='isTinPersonalValid()'>check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Personal Details </span>
+      </li>
+
+      <li [ngClass]="tinStage === 2 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 2 ? 'bg-primary' : 'bg-grey'"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          2
+        </span>
+        <span class="hidden sm:block">Employment and Identification </span>
+      </li>
+
+      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span routerLinkActive="" #rep="routerLinkActive" [ngClass]="rep.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="representative-details"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          3
+        </span>
+
+        <span class="hidden sm:block">Residential Address</span>
+      </li>
+    </ol>
+  </div>
+</div>
+<app-tin-personal *ngIf='tinStage === 1' />
+<app-tin-employment-identification *ngIf='tinStage === 2'/>
+<app-tin-residential-address *ngIf='tinStage === 3' />

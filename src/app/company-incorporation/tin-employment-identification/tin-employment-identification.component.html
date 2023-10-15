@@ -1,0 +1,34 @@
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex flex-col  h-full ">
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-white mb-9 text-base font-bold">Employment and Identification</p>
+      <form [formGroup]="companyIncorporationForm.controls.proprietorDetails" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+          <app-custom-select [options]="category" labelColor="text-primary" label="Gender"
+                             [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.category" placeholder="Select employment category" />
+          <app-custom-input [labelColor]="true" label="Employer's Name" placeholder="Enter your empoloyer's name"
+                            [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.employerName" />
+          <app-custom-select [options]="idType" labelColor="text-primary" label="ID Type"
+                             [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.idType" placeholder="Select Identification" />
+          <app-custom-input  [labelColor]="true" label="ID Number" placeholder="Enter Identification Number"
+                            [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.idNumber" />
+          <app-custom-input type='date' [labelColor]="true" label="Date of Issue" placeholder="Date ID was issued"
+                            [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.issueDate" />
+          <app-custom-input type='date' [labelColor]="true" label="Expiry Date" placeholder="Expiry date of ID"
+                            [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.expiryDate" />
+          <app-custom-select [options]="countries" labelColor="text-primary" label="Country of Issue"
+                             [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.issueCountry" placeholder='Select country ID was issued'/>
+          <app-custom-input  [labelColor]="true" label="Place of Issue" placeholder="Enter place ID was issued"
+                             [control]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.controls.issuePlace"
+
+          />
+        </div>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
+          <app-button  [disable]="companyIncorporationForm.controls.proprietorTinEmploymentIdentification.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
