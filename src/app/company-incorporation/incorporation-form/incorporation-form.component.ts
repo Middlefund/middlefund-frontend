@@ -8,20 +8,22 @@ import { CompanyIncorporationService } from '../company-incorporation.service';
   styleUrls: ['./incorporation-form.component.css']
 })
 export class IncorporationFormComponent implements OnInit{
-  incorporationForm!: FormGroup
   stage: number = 1
   constructor(private fb: FormBuilder,
               private incorporationService: CompanyIncorporationService) {
-    this.incorporationForm = this.fb.group({
-      companyName: ['', Validators.required],
-      companyType: [null, Validators.required],
-      registrationCountry: [null, Validators.required],
-    })
   }
 
   ngOnInit() {
     this.incorporationService.stage.subscribe((value) => {
       this.stage = value
     })
+
+    this.incorporationService.companyIncorporationForm.valueChanges.subscribe(() => {
+      localStorage.setItem('companyIncorporation', JSON.stringify(this.incorporationService.companyIncorporationForm.value))
+    })
+  }
+
+  isBusinessProfileValid () {
+    return this.incorporationService.businessProfileForm.valid
   }
 }

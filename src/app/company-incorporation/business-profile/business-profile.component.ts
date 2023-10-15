@@ -17,13 +17,12 @@ export class BusinessProfileComponent {
     {name: 'Legal', value: 'Legal'}
   ]
   constructor(private fb: FormBuilder,
-              private router:Router) {
+              private router:Router,
+              private companyIncorporationService:CompanyIncorporationService) {
   }
 
   onSubmitBusinessProfile() {
-
-    this.router.navigate(['/platinum/business-description'])
-
+    this.companyIncorporationService.updateStage(2)
   }
 
   protected readonly registrationInfo = registrationInfo;

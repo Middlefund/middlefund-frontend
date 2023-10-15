@@ -14,6 +14,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IncorporationFormComponent } from './incorporation-form/incorporation-form.component';
+import { TinRegistrationComponent } from './tin-registration/tin-registration.component';
+import { TinPersonalComponent } from './tin-personal/tin-personal.component';
+import { TinEmploymentIdentificationComponent } from './tin-employment-identification/tin-employment-identification.component';
+import { TinResidentialAddressComponent } from './tin-residential-address/tin-residential-address.component';
 
 
 
@@ -28,7 +32,11 @@ import { IncorporationFormComponent } from './incorporation-form/incorporation-f
     ProprietorDetailsComponent,
     NavbarComponent,
     IncorporationFormComponent,
-    IncorporationFormComponent
+    IncorporationFormComponent,
+    TinRegistrationComponent,
+    TinPersonalComponent,
+    TinEmploymentIdentificationComponent,
+    TinResidentialAddressComponent
   ],
   exports: [
     NavbarComponent,
