@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { EmailSub } from '../utility/models';
+import { EmailSub, IContactUs } from '../utility/models';
 import { messageData } from '../models/interfaces';
 
 @Injectable({
@@ -15,4 +15,8 @@ export class HomeService {
     subscribeEmail(userMail : object){
       return this.http.post<messageData>(`${environment.BACKEND_URL}/api/newsletter-subscription`,userMail )
     }
+
+  contactUs(contactUsInfo: IContactUs ){
+    return this.http.post<messageData>(`${environment.BACKEND_URL}/api/contact-us`, contactUsInfo )
+  }
 }

@@ -233,6 +233,11 @@ export interface UserStartup {
   website: string;
 }
 
+export interface IRequestCountry {
+  email: string;
+  country: string;
+}
+
 
 
 

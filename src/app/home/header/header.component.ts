@@ -24,6 +24,22 @@ export class HeaderComponent implements OnInit{
     if(this.accountsService.loggedInUser) {
       this.isLoggedIn = true;
     }
+
+    const smoothScrollLinks = document.querySelectorAll("a");
+
+    smoothScrollLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const targetId = link.getAttribute("href")?.substring(1) ?? "";
+
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
   }
 
   toggleNavBar() {

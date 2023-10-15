@@ -1,0 +1,8 @@
+.status-icon .mat-icon {
+  height: 10px !important;
+  width: 10px !important;
+}
+
+.status-icon .material-icons {
+  font-size: 10px !important;
+}

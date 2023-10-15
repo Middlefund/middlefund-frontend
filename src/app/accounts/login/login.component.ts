@@ -50,14 +50,17 @@ export class LoginComponent implements OnInit{
           this.isLoading = false
           if (localStorage.getItem('redirectUrl')) {
             this.route.navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!)).then(r => r)
-          } else if (value.user.user_type === "startup"){
-            this.route.navigateByUrl('startup/home').then(r => r)
-          } else if(value.user.user_type === "investor"){
-            this.route.navigateByUrl('investor/home').then(r => r)
+          } else {
+            this.route.navigateByUrl('company-incorporation').then(r => r)
           }
-          else if(value.user.user_type === "admin") {
-            this.route.navigateByUrl('admin/home').then(r => r)
-          }
+          // } else if (value.user.user_type === "startup"){
+          //   this.route.navigateByUrl('startup/home').then(r => r)
+          // } else if(value.user.user_type === "investor"){
+          //   this.route.navigateByUrl('investor/home').then(r => r)
+          // }
+          // else if(value.user.user_type === "admin") {
+          //   this.route.navigateByUrl('admin/home').then(r => r)
+          // }
         },
         error: err => {
           this.alert.error(err.error?.message || "Oops! Server error")

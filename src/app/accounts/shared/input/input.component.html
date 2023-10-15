@@ -4,7 +4,7 @@
     <div class="absolute inset-y-0 top-1 left-0 flex items-center pl-3 pointer-events-none">
       <ng-content select=".left-content"></ng-content>
     </div>
-    <input [formControl]="control" [id]="for" [type]="type" [placeholder]="placeholder"
+    <input [disabled]="true" [formControl]="control" [id]="for" [type]="type" [placeholder]="placeholder"
            class="input text-[#00000075] border text-sm rounded-lg shadow focus:shadow-2xl focus:shadow-primary focus:ring-primary focus:border-primary block pl-10 p-2.5"
     >
     <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3">

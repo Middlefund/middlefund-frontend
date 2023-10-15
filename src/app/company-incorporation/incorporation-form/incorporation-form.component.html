@@ -1,0 +1,50 @@
+<div class="bg-secondary px-10 pb-4">
+  <h2 class="sr-only">Steps</h2>
+
+  <div
+    class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-grey"
+  >
+    <ol
+      class="relative z-10 flex justify-between text-sm font-medium text-white"
+    >
+      <li [ngClass]="stage === 1 ? 'text-primary' : ''" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="stage === 1 ? 'bg-primary' : 'bg-grey'"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          1
+        </span>
+        <span class="hidden sm:block">Company Profile </span>
+      </li>
+
+      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span routerLinkActive="" #pitch="routerLinkActive" [ngClass]="pitch.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="pitch-details"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          2
+        </span>
+
+        <span class="hidden sm:block">Pitch Details </span>
+      </li>
+
+      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span routerLinkActive="" #rep="routerLinkActive" [ngClass]="rep.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="representative-details"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          3
+        </span>
+
+        <span class="hidden sm:block">Representative Details </span>
+      </li>
+      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span routerLinkActive="" #docs="routerLinkActive" [ngClass]="docs.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="supporting-documents"
+              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          4
+        </span>
+
+        <span class="hidden sm:block">Supporting Documents </span>
+      </li>
+    </ol>
+  </div>
+</div>
+<app-business-profile *ngIf='stage === 1'/>
