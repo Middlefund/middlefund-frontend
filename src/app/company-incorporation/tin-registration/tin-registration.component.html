@@ -20,21 +20,42 @@
 
       <li [ngClass]="tinStage === 2 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
         <span [ngClass]="tinStage === 2 ? 'bg-primary' : 'bg-grey'"
-              class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
-          2
+          {{!isTinEmploymentIdentificationValid() ? 2 : ''}}
+          <mat-icon *ngIf='isTinEmploymentIdentificationValid()'>check</mat-icon>
         </span>
         <span class="hidden sm:block">Employment and Identification </span>
       </li>
 
-      <li routerLinkActive="text-primary" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
-        <span routerLinkActive="" #rep="routerLinkActive" [ngClass]="rep.isActive ? 'bg-primary' : 'bg-grey'"  routerLink="representative-details"
+      <li [ngClass]="tinStage === 3 ? 'text-primary' : ''" class="flex cursor-pointer items-center gap-2 bg-secondary p-2">
+        <span  [ngClass]="tinStage === 3 ? 'bg-primary' : 'bg-grey'"
               class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
-          3
+          {{!isTinAddressValid() ? 3 : ''}}
+          <mat-icon *ngIf='isTinAddressValid()'>check</mat-icon>
         </span>
-
         <span class="hidden sm:block">Residential Address</span>
+      </li>
+
+      <li [ngClass]="tinStage === 4 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 4 ? 'bg-primary' : 'bg-grey'"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{!isTinContactValid() ? 4 : ''}}
+          <mat-icon *ngIf='isTinContactValid()'>check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Postal and Contact</span>
+      </li>
+
+      <li [ngClass]="tinStage === 5 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 5 ? 'bg-primary' : 'bg-grey'"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{!isTinContactValid() ? 5 : ''}}
+          <mat-icon *ngIf='isTinContactValid()'>check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Business Details</span>
       </li>
     </ol>
   </div>
@@ -42,3 +63,5 @@
 <app-tin-personal *ngIf='tinStage === 1' />
 <app-tin-employment-identification *ngIf='tinStage === 2'/>
 <app-tin-residential-address *ngIf='tinStage === 3' />
+<app-postal-contact *ngIf='tinStage === 4' />
+<app-business-details *ngIf='tinStage === 5' />

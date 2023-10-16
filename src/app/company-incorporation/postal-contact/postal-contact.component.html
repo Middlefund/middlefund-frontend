@@ -1,0 +1,31 @@
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex flex-col  h-full ">
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-white mb-9 text-base font-bold">Postal and Contact Information</p>
+      <form [formGroup]="companyIncorporationForm.controls.proprietorTinAddress" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+          <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.proprietorTinContact.controls.postalType"
+                             label="Resident country" [options]="postalTypes" placeholder="select your postal type"/>
+          <app-custom-input [labelColor]="true" label="Postal Number" placeholder="Enter your postal number"
+                            [control]="companyIncorporationForm.controls.proprietorTinContact.controls.postalNumber" />
+          <app-custom-input [labelColor]="true" label="Box Region" placeholder="Enter region box is located"
+                            [control]="companyIncorporationForm.controls.proprietorTinContact.controls.boxRegion" />
+          <app-custom-input [labelColor]="true" label="Box Location Area" placeholder="Enter area box is located"
+                            [control]="companyIncorporationForm.controls.proprietorTinContact.controls.locationArea" />
+          <app-custom-input type='number'  [labelColor]="true" label="Phone Number" placeholder="Enter your phone number"
+                             [control]="companyIncorporationForm.controls.proprietorTinContact.controls.phoneNumber" />
+          <app-custom-input type='email' [labelColor]="true" label="Email" placeholder="Enter your email"
+                            [control]="companyIncorporationForm.controls.proprietorTinContact.controls.email" />
+          <app-custom-input type='url' [labelColor]="true" label="Website" placeholder="Enter your website (if any)"
+                            [control]="companyIncorporationForm.controls.proprietorTinContact.controls.website" />
+          <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.proprietorTinContact.controls.preferredContactMethod" label="Preferred Contact Method" [options]="contactTypes" placeholder="select your preferred contact method"/>
+        </div>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
+          <app-button  [disable]="companyIncorporationForm.controls.proprietorTinContact.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

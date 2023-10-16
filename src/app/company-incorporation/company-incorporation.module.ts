@@ -18,6 +18,8 @@ import { TinRegistrationComponent } from './tin-registration/tin-registration.co
 import { TinPersonalComponent } from './tin-personal/tin-personal.component';
 import { TinEmploymentIdentificationComponent } from './tin-employment-identification/tin-employment-identification.component';
 import { TinResidentialAddressComponent } from './tin-residential-address/tin-residential-address.component';
+import { PostalContactComponent } from './postal-contact/postal-contact.component';
+import { BusinessDetailsComponent } from './business-details/business-details.component';
 
 
 
@@ -36,7 +38,9 @@ import { TinResidentialAddressComponent } from './tin-residential-address/tin-re
     TinRegistrationComponent,
     TinPersonalComponent,
     TinEmploymentIdentificationComponent,
-    TinResidentialAddressComponent
+    TinResidentialAddressComponent,
+    PostalContactComponent,
+    BusinessDetailsComponent
   ],
   exports: [
     NavbarComponent,

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CompanyIncorporationService } from '../company-incorporation.service';
 import { City, Country, ICountry, State } from 'country-state-city';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './tin-residential-address.component.html',
   styleUrls: ['./tin-residential-address.component.css']
 })
-export class TinResidentialAddressComponent {
+export class TinResidentialAddressComponent implements OnInit{
   companyIncorporationForm = inject(CompanyIncorporationService).companyIncorporationForm
   getCountries: ICountry[] = Country.getAllCountries();
   getAllStates: any
@@ -21,14 +21,22 @@ export class TinResidentialAddressComponent {
               private router: Router) {
   }
 
+  ngOnInit() {
+    this.companyIncorporationForm.controls.proprietorTinAddress.controls.country.valueChanges.subscribe(value => {
+      this.setStates(value)
+    })
+
+    this.companyIncorporationForm.controls.proprietorTinAddress.controls.region.valueChanges.subscribe(value => {
+      this.setCities(value)
+    })
+  }
+
   onSubmit = () => {
-    this.incorporationService.updateTinStage(1)
-    this.incorporationService.updateStage(3)
-    this.router.navigateByUrl('company-incorporation/incorporation-form').then(r => r)
+    this.incorporationService.updateTinStage(4)
   }
 
   onPrevious() {
-    this.incorporationService.updateTinStage(1)
+    this.incorporationService.updateTinStage(2)
   }
 
   setCities(value: any) {

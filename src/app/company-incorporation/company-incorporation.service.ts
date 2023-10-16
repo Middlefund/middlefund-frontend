@@ -50,10 +50,10 @@ export class CompanyIncorporationService {
   readonly proprietorTinResidentialAddressForm = this.fb.group({
     houseNumber: ['', Validators.required],
     buildingName: [''],
-    streetName: [null, Validators.required],
+    streetName: ['', Validators.required],
     country: [null, Validators.required],
     region: [null, Validators.required],
-    town: ['', Validators.required],
+    town: [null, Validators.required],
     district: ['', Validators.required],
     location: ['', Validators.required],
     postalCode: ['', Validators.required],
@@ -70,12 +70,24 @@ export class CompanyIncorporationService {
     issuePlace: ['', Validators.required],
   })
 
+  readonly proprietorTinPostalContactForm = this.fb.group({
+    postalType: [null, Validators.required],
+    postalNumber: ['', Validators.required],
+    boxRegion: ['', Validators.required],
+    locationArea: ['', Validators.required],
+    phoneNumber: ['', Validators.required],
+    email: ['', Validators.required],
+    website: [''],
+    preferredContactMethod: [null, Validators.required],
+  })
+
   readonly companyIncorporationForm = this.fb.group({
     businessProfile: this.businessProfileForm,
     proprietorDetails: this.proprietorDetailsForm,
     proprietorTin: this.proprietorTinPersonalDetailsForm,
     proprietorTinEmploymentIdentification: this.proprietorTinEmploymentIdentificationForm,
-    proprietorTinAddress: this.proprietorTinResidentialAddressForm
+    proprietorTinAddress: this.proprietorTinResidentialAddressForm,
+    proprietorTinContact: this.proprietorTinPostalContactForm
   });
 
 
