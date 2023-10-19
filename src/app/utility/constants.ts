@@ -41,4 +41,14 @@ export const registerAs: Array<{name: string, value: string}> = [
   {name: 'Individual', value: 'Individual'},
 ]
 
+export const industries: Array<{name: string, value: string}> = [
+  {name: 'Legal', value: 'Legal'},
+  {name: 'Delivery', value: 'Delivery'},
+]
+
+export const answer: Array<{name:string, value:string}> = [
+  {name:'Yes', value:'yes'},
+  {name:'No', value:'no'}
+]
+
 export const defaultServerError: string = 'Oops! Server error'

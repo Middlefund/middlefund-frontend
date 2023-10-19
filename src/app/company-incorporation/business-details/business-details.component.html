@@ -1,1 +1,36 @@
-<p>business-details works!</p>
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex flex-col  h-full ">
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-white mb-9 text-base font-bold">Business Details</p>
+      <form (ngSubmit)="onSubmit()" [formGroup]="businessDetailsFrom" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-4 md:max-w-5xl gap-x-5 w-full">
+          <app-custom-select [labelColor]="'text-primary'" [control]="businessDetailsFrom.controls.industry" label="Nature of Business/Sector" [options]="industries" placeholder="select your company type"/>
+          <app-custom-input [labelColor]="true" label="Annual Turnover" [control]="businessDetailsFrom.controls.annualTurnOver" placeholder="Annual Turnover"/>
+          <app-custom-input [labelColor]="true" type="number" label="Number of Employees" [control]="businessDetailsFrom.controls.numberOfEmployees" placeholder="Enter number of Employees"/>
+          <app-custom-select [labelColor]="'text-primary'" [control]="businessDetailsFrom.controls.isRegistered" label="Is your business registered with the Registrar General’s Department?" [options]="answer" placeholder="Is registered"/>
+          <ng-container *ngIf='businessDetailsFrom.controls.isRegistered.value === "yes"'>
+            <app-custom-input [labelColor]="true" label="Business Name" [control]="businessDetailsFrom.controls.businessName" placeholder="Enter Business name"/>
+            <app-custom-input [labelColor]="true" label="Old Tin" [control]="businessDetailsFrom.controls.oldTin" placeholder="Enter old tin number"/>
+            <app-custom-input [labelColor]="true" label="RGD Number " [control]="businessDetailsFrom.controls.RGDN" placeholder="Enter RGD Number"/>
+            <app-custom-input [labelColor]="true" label="House Number" [control]="businessDetailsFrom.controls.houseNumber" placeholder="Enter house number"/>
+            <app-custom-input [labelColor]="true" label="Building Name" [control]="businessDetailsFrom.controls.buildingName" placeholder="Building Name"/>
+            <app-custom-input [labelColor]="true" label="Street Name" [control]="businessDetailsFrom.controls.streetName" placeholder="Street Name"/>
+            <app-custom-select [labelColor]="'text-primary'" [control]="businessDetailsFrom.controls.country" label="Country" [options]="location.countries" placeholder="Select country of registration"/>
+            <app-custom-select [labelColor]="'text-primary'" [control]="businessDetailsFrom.controls.region" label="State or Region"
+                               [options]="location.getStatesByCountryOptions(String(businessDetailsFrom.controls.country.value))" placeholder="Select region of registration"/>
+            <app-custom-select [labelColor]="'text-primary'" [control]="businessDetailsFrom.controls.city" label="City"
+                               [options]="location.getCitiesByCountry(String(businessDetailsFrom.controls.region.value), String(businessDetailsFrom.controls.country.value))" placeholder="Select city of registration"/>
+            <app-custom-input [labelColor]="true" label="Postal Code" [control]="businessDetailsFrom.controls.postalCode" placeholder="Enter postal code"/>
+            <app-custom-input [labelColor]="true" label="Location or Area" [control]="businessDetailsFrom.controls.location" placeholder="Enter location or area"/>
+          </ng-container>
+        </div>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button name="Back" variant="tertiary"/>
+          <app-button [disable]="businessDetailsFrom.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+

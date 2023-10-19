@@ -56,6 +56,7 @@ export class StartupProfileComponent implements OnInit{
     this.getAllStates = State.getStatesOfCountry(this.findCountry?.isoCode)
     this.states = this.getAllStates.map(((state: { name: any; }) => ({name:state.name, value: state.name})))
   }
+
   getAllIndustries() {
     this.loadingIndustries = true;
     this.pitchService.getIndustries().subscribe({

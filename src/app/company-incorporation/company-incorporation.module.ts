@@ -20,6 +20,8 @@ import { TinEmploymentIdentificationComponent } from './tin-employment-identific
 import { TinResidentialAddressComponent } from './tin-residential-address/tin-residential-address.component';
 import { PostalContactComponent } from './postal-contact/postal-contact.component';
 import { BusinessDetailsComponent } from './business-details/business-details.component';
+import { RegisterDepartmentComponent } from './register-department/register-department.component';
+import { TinSignatureComponent } from './tin-signature/tin-signature.component';
 
 
 
@@ -40,7 +42,9 @@ import { BusinessDetailsComponent } from './business-details/business-details.co
     TinEmploymentIdentificationComponent,
     TinResidentialAddressComponent,
     PostalContactComponent,
-    BusinessDetailsComponent
+    BusinessDetailsComponent,
+    RegisterDepartmentComponent,
+    TinSignatureComponent
   ],
   exports: [
     NavbarComponent,

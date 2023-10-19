@@ -57,6 +57,24 @@
         </span>
         <span class="hidden sm:block">Business Details</span>
       </li>
+      <li *ngIf='skipper' [ngClass]="tinStage === 6 ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 6 ? 'bg-primary' : 'bg-grey'"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{!isTinContactValid() ? 6 : ''}}
+          <mat-icon *ngIf='isTinContactValid()'>check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Registered Details</span>
+      </li>
+      <li [ngClass]="tinStage === 6 + skipper ? 'text-primary' : ''" class="flex items-center gap-2 bg-secondary p-2">
+        <span [ngClass]="tinStage === 6 + skipper ? 'bg-primary' : 'bg-grey'"
+              class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{!isTinContactValid() ? 6 + skipper : ''}}
+          <mat-icon *ngIf='isTinContactValid()'>check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Signature</span>
+      </li>
     </ol>
   </div>
 </div>
@@ -65,3 +83,6 @@
 <app-tin-residential-address *ngIf='tinStage === 3' />
 <app-postal-contact *ngIf='tinStage === 4' />
 <app-business-details *ngIf='tinStage === 5' />
+<app-register-department *ngIf='skipper && tinStage === 6'/>
+<app-tin-signature *ngIf='tinStage === 6 + skipper'/>
+

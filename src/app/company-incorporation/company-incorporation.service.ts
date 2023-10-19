@@ -10,11 +10,15 @@ export class CompanyIncorporationService {
   public stage!: Observable<number>
   private tinStageSubject!: BehaviorSubject<number>
   public tinStage!: Observable<number>
+  private tinSkipperSubject!: BehaviorSubject<number>
+  public tinSkipper!: Observable<number>
   constructor(private fb: FormBuilder) {
     this.stageSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('stage')!) || 1);
     this.stage = this.stageSubject.asObservable();
     this.tinStageSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('tinStage')!) || 1);
     this.tinStage = this.tinStageSubject.asObservable();
+    this.tinSkipperSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('tinSkipper')!) || 0);
+    this.tinSkipper = this.tinSkipperSubject.asObservable();
     this.initializeForm()
     this.hasTinNumber()
   }
@@ -81,6 +85,25 @@ export class CompanyIncorporationService {
     preferredContactMethod: [null, Validators.required],
   })
 
+  readonly tinBusinessDetailsForm = this.fb.group({
+    industry: [null, Validators.required],
+    annualTurnOver: ['', Validators.required],
+    numberOfEmployees: ['', Validators.required],
+    isRegistered: [null, Validators.required],
+    businessName: ['', Validators.required],
+    oldTin: ['', Validators.required],
+    RGDN: ['', Validators.required],
+    houseNumber: ['', Validators.required],
+    buildingName: ['', Validators.required],
+    streetName: ['', Validators.required],
+    country: [null, Validators.required],
+    region: [null, Validators.required],
+    city: [null, Validators.required],
+    postalCode: ['', Validators.required],
+    location: ['', Validators.required],
+    signature: ['', Validators.required]
+  })
+
   readonly companyIncorporationForm = this.fb.group({
     businessProfile: this.businessProfileForm,
     proprietorDetails: this.proprietorDetailsForm,
@@ -100,9 +123,9 @@ export class CompanyIncorporationService {
     localStorage.setItem('tinStage', JSON.stringify(stage));
     return this.tinStageSubject.next(stage)
   }
-
-  public get currentStage() {
-    return this.stageSubject.value || 1
+  public updateTinSkipper(value: number) {
+    localStorage.setItem('tinSkipper', JSON.stringify(value));
+    return this.tinStageSubject.next(value)
   }
 
   private initializeForm() {

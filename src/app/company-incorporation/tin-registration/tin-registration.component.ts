@@ -8,6 +8,7 @@ import { CompanyIncorporationService } from '../company-incorporation.service';
 })
 export class TinRegistrationComponent implements OnInit{
   tinStage: number = 1
+  skipper: number = 0
 
   constructor(private incorporationService: CompanyIncorporationService) {
   }
