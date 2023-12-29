@@ -1,0 +1,30 @@
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex flex-col  h-full ">
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-white mb-9 text-base font-bold">Postal and Contact</p>
+      <form [formGroup]="tinContactForm" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinContactForm.controls.postalType" label="Postal Type" [options]="postalTypes" placeholder="select your postal type"/>
+          <app-custom-input [labelColor]="true" label="Postal Number" placeholder="Enter your postal number"
+                            [control]="tinContactForm.controls.postalNumber" />
+          <app-custom-input [labelColor]="true" label="Box Region" placeholder="Enter the region box is located"
+                            [control]="tinContactForm.controls.boxRegion" />
+          <app-custom-input [labelColor]="true" label="Box Location Area" placeholder="Enter the area box is located"
+                            [control]="tinContactForm.controls.boxLocationArea" />
+          <app-custom-input  [labelColor]="true" label="Phone Number" placeholder="Enter your phone number"
+                             [control]="tinContactForm.controls.phoneNumber" />
+          <app-custom-input [labelColor]="true" label="Email" placeholder="Enter your email address"
+                            [control]="tinContactForm.controls.email" />
+          <app-custom-input [labelColor]="true" label="Website" placeholder="Enter your website"
+                            [control]="tinContactForm.controls.website" />
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinContactForm.controls.contactMethod" label="Preferred Contact Method" [options]="contactMethods" placeholder="select your preferred type"/>
+        </div>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
+          <app-button  [disable]="tinContactForm.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

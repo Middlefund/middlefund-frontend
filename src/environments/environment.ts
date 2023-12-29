@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BACKEND_URL: 'https://middlefund.onrender.com'
+  BACKEND_URL: 'https://middlefund.onrender.com',
 };

@@ -38,6 +38,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AboutUsComponent } from './home/about-us/about-us.component';
 import { LottieComponent } from 'ngx-lottie';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
+import {NgCircleProgressModule} from "ng-circle-progress";
 
 
 @NgModule({
@@ -76,6 +77,28 @@ import { ContactUsComponent } from './home/contact-us/contact-us.component';
     CompanyIncorporationModule,
     MatTooltipModule,
     LottieComponent,
+    NgCircleProgressModule.forRoot({
+      "radius": 20,
+      "space": -7,
+      "outerStrokeGradient": true,
+      "outerStrokeWidth": 7,
+      "outerStrokeColor": "#A49370",
+      "outerStrokeGradientStopColor": "#A49370",
+      "innerStrokeColor": "white",
+      "innerStrokeWidth": 7,
+      "animateTitle": false,
+      "animationDuration": 1000,
+      titleFontSize: '10',
+      unitsFontSize: '10',
+      unitsColor: 'white',
+      titleColor: 'white',
+      "showBackground": false,
+      "clockwise": false,
+      "startFromZero": false,
+      showSubtitle: false,
+      showUnits: true,
+      units: '%',
+      "lazy": true})
   ],
   providers: [
     ProfileInitials,

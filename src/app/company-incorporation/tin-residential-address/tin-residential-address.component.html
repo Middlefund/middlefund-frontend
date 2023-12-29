@@ -2,27 +2,27 @@
   <div class="flex flex-col  h-full ">
     <div class="flex flex-col w-full items-center justify-center">
       <p class="text-white mb-9 text-base font-bold">Residential Address</p>
-      <form [formGroup]="companyIncorporationForm.controls.proprietorTinAddress" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
+      <form [formGroup]="tinResidentialAddressForm" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
         <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
           <app-custom-input [labelColor]="true" label="House Number" placeholder="Enter your house number"
-                            [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.houseNumber" />
+                            [control]="tinResidentialAddressForm.controls.houseNumber" />
           <app-custom-input [labelColor]="true" label="Building name (if any)" placeholder="Enter your building name"
-                            [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.buildingName" />
+                            [control]="tinResidentialAddressForm.controls.buildingName" />
           <app-custom-input [labelColor]="true" label="Street Name or Prominent Landmark" placeholder="Enter your street name or landmark"
-                            [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.streetName" />
-          <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.country" label="Resident country" [options]="countries" placeholder="select your resident country"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.region" label="Resident Region" [options]="states" placeholder="select your resident region"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.town" label="Resident City" [options]="cities" placeholder="select your resident city"/>
+                            [control]="tinResidentialAddressForm.controls.streetName" />
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinResidentialAddressForm.controls.country" label="Resident country" [options]="countries" placeholder="select your resident country"/>
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinResidentialAddressForm.controls.region" label="Resident Region" [options]="states" placeholder="select your resident region"/>
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinResidentialAddressForm.controls.town" label="Resident City" [options]="cities" placeholder="select your resident city"/>
           <app-custom-input  [labelColor]="true" label="District" placeholder="Enter your district"
-                             [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.district" />
+                             [control]="tinResidentialAddressForm.controls.district" />
           <app-custom-input [labelColor]="true" label="Location" placeholder="Enter your location"
-                            [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.location" />
+                            [control]="tinResidentialAddressForm.controls.location" />
           <app-custom-input [labelColor]="true" label="Postal Code" placeholder="Enter Postal Code"
-                            [control]="companyIncorporationForm.controls.proprietorTinAddress.controls.postalCode" />
+                            [control]="tinResidentialAddressForm.controls.postalCode" />
         </div>
         <div class="mt-6 flex items-center gap-x-5 justify-center">
           <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
-          <app-button  [disable]="companyIncorporationForm.controls.proprietorTinAddress.invalid"  name="Next" variant="custom"/>
+          <app-button  [disable]="tinResidentialAddressForm.invalid"  name="Next" variant="custom"/>
         </div>
       </form>
     </div>

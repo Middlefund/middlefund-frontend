@@ -5,29 +5,30 @@ import {AccountsService} from "../accounts.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../alert";
 import {ToastrService} from "ngx-toastr";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit{
-  isLoading: boolean = false
-  showPassword: boolean = false
+export class LoginComponent implements OnInit {
+  isLoading: boolean = false;
+  showPassword: boolean = false;
 
-  constructor(private fb: FormBuilder,
-              private accountsService: AccountsService,
-              private route: Router,
-              private alert: AlertService,
-              private toast: ToastrService,
-              private authService: SocialAuthService) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private accountsService: AccountsService,
+    private route: Router,
+    private alert: AlertService,
+    private toast: ToastrService,
+    private authService: SocialAuthService,
+  ) {}
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.socialLogin(user)
-    })
+    this.authService.authState.subscribe(user => {
+      this.socialLogin(user);
+    });
   }
 
   toggleShowPassword() {
@@ -36,22 +37,23 @@ export class LoginComponent implements OnInit{
 
   login = this.fb.group({
     email: ['', [emailValidator()]],
-    password: ['', Validators.required]
-  })
-
+    password: ['', Validators.required],
+  });
 
   onSubmit() {
-    if(this.login.valid){
-      this.isLoading = true
+    if (this.login.valid) {
+      this.isLoading = true;
       this.accountsService.login(this.login.value).subscribe({
         next: value => {
-          this.toast.success(`Welcome ${value.user.name}`)
-          console.log(this.accountsService.redirectUrl)
-          this.isLoading = false
+          this.toast.success(`Welcome ${value.user.name}`);
+          console.log(this.accountsService.redirectUrl);
+          this.isLoading = false;
           if (localStorage.getItem('redirectUrl')) {
-            this.route.navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!)).then(r => r)
+            this.route
+              .navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!))
+              .then(r => r);
           } else {
-            this.route.navigateByUrl('company-incorporation').then(r => r)
+            this.route.navigateByUrl('company-incorporation').then(r => r);
           }
           // } else if (value.user.user_type === "startup"){
           //   this.route.navigateByUrl('startup/home').then(r => r)
@@ -63,24 +65,24 @@ export class LoginComponent implements OnInit{
           // }
         },
         error: err => {
-          this.alert.error(err.error?.message || "Oops! Server error")
-          this.isLoading = false
-        }
-      })
-    }else {
-      this.login.markAllAsTouched()
+          this.alert.error(err.error?.message || 'Oops! Server error');
+          this.isLoading = false;
+        },
+      });
+    } else {
+      this.login.markAllAsTouched();
     }
   }
 
-  socialLogin(socialCredentials: any) {
+  socialLogin(socialCredentials: SocialUser) {
     this.accountsService.socialLogin(socialCredentials).subscribe({
       next: value => {
-        console.log(value)
+        console.log(value);
       },
       error: err => {
-        console.log(err)
-      }
-    })
+        console.log(err);
+      },
+    });
   }
 
   // socialLogin() {
@@ -111,6 +113,4 @@ export class LoginComponent implements OnInit{
   //     }
   //   })
   // }
-
-
 }

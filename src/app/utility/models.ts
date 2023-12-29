@@ -1,30 +1,31 @@
-import {FormControl} from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 export interface loginData {
-  token: object
-  user: object
-  // ... other properties
+  token: object;
+  user: {
+    name: string;
+  };
 }
 
 export interface registerMessage {
-  message: string
+  message: string;
 }
 
 export interface startupProfile {
-  startupName: string
-  registrationInfo: string
-  industry: string
-  registrationCountry: string
-  stage: string
+  startupName: string;
+  registrationInfo: string;
+  industry: string;
+  registrationCountry: string;
+  stage: string;
   location: {
-    country: string
-    city: string
-    region: string
-  }
+    country: string;
+    city: string;
+    region: string;
+  };
   social: {
-    website: string
-    linkedIn: string
-  }
+    website: string;
+    linkedIn: string;
+  };
 }
 
 export interface InvestorFormControls {
@@ -62,7 +63,7 @@ export interface InvestorSettings {
 }
 
 export interface EmailSub {
-  email : string
+  email: string;
 }
 
 export interface IContactUs {
@@ -71,4 +72,3 @@ export interface IContactUs {
   subject: string;
   message: string;
 }
-

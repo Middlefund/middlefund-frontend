@@ -2,7 +2,7 @@
   <div
     class="flex text-xl font-bold gap-y-2 items-center justify-center flex-col"
   >
-    <span class="text-primary">Company Information</span>
+    <span class="text-primary">Proprietor Information</span>
   </div>
   <div
     class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-grey"
@@ -18,10 +18,10 @@
           [ngClass]="stage === 1 ? 'bg-primary' : 'bg-grey'"
           class="check h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
-          {{ !isBusinessProfileValid() ? 1 : '' }}
-          <mat-icon *ngIf="isBusinessProfileValid()">check</mat-icon>
+          {{ !isRoleDetailsValid() ? 1 : '' }}
+          <mat-icon *ngIf="isRoleDetailsValid()">check</mat-icon>
         </span>
-        <span class="hidden sm:block">Company Profile</span>
+        <span class="hidden sm:block">Proprietor Profile</span>
       </li>
 
       <li
@@ -32,13 +32,26 @@
           [ngClass]="stage === 2 ? 'bg-primary' : 'bg-grey'"
           class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
         >
-          {{ !isBusinessAddressValid() ? 2 : '' }}
-          <mat-icon *ngIf="isBusinessAddressValid()">check</mat-icon>
+          {{ !isRoleTinContactValid() ? 2 : '' }}
+          <mat-icon *ngIf="isRoleTinContactValid()">check</mat-icon>
         </span>
-        <span class="hidden sm:block">Business Address </span>
+        <span class="hidden sm:block">Tin & Contact </span>
+      </li>
+
+      <li
+        [ngClass]="stage === 3 ? 'text-primary' : ''"
+        class="flex items-center gap-2 bg-secondary p-2"
+      >
+        <span
+          [ngClass]="stage === 3 ? 'bg-primary' : 'bg-grey'"
+          class="h-6 w-6 rounded-full text-white text-center text-[10px]/6 font-bold"
+        >
+          {{ !isRoleProofValid() ? 3 : '' }}
+          <mat-icon *ngIf="isRoleProofValid()">check</mat-icon>
+        </span>
+        <span class="hidden sm:block">Signature & Declaration</span>
       </li>
     </ol>
   </div>
 </div>
-<app-business-profile *ngIf="stage === 1" />
-<app-business-address *ngIf="stage === 2" />
+<app-proprietor-details *ngIf="stage === 1" />

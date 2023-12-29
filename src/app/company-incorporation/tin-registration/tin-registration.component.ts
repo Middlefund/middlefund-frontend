@@ -23,6 +23,22 @@ export class TinRegistrationComponent implements OnInit{
   }
 
   isTinPersonalValid () {
-    return this.incorporationService.proprietorTinPersonalDetailsForm.valid
+    return this.incorporationService.tinPersonalDetailsForm.valid
+  }
+
+  isTinEmploymentIdentificationValid () {
+    return this.incorporationService.tinEmploymentIdentificationForm.valid
+  }
+
+  isTinResidentialAddressValid () {
+    return this.incorporationService.tinResidentialAddressForm.valid
+  }
+
+  isTinContactValid () {
+    return this.incorporationService.tinContactForm.valid
+  }
+
+  isTinBusinessDetailsValid () {
+    return this.incorporationService.tinBusinessDetailsForm.valid
   }
 }

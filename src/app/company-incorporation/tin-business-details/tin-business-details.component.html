@@ -1,0 +1,46 @@
+<section class="bg-secondary h-screen text-white p-10">
+  <div class="flex flex-col  h-full ">
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-white mb-9 text-base font-bold">Business Details</p>
+      <form [formGroup]="tinBusinessDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
+        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+          <app-custom-input [labelColor]="true" label="Nature of Business" placeholder="enter the nature of your business"
+                            [control]="tinBusinessDetailsForm.controls.businessNature" />
+          <app-custom-input [labelColor]="true" label="Annual Turnover" placeholder="Enter your annual turnover"
+                            [control]="tinBusinessDetailsForm.controls.annualTurnover" />
+          <app-custom-input [labelColor]="true" type="number" label="Number of Employees" placeholder="Enter number of employees"
+                            [control]="tinBusinessDetailsForm.controls.numberOfEmployees" />
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinBusinessDetailsForm.controls.businessRegistered"
+                             label="Is your business registered with the Registrar General’s Department?" [options]="yesOrNo" placeholder="select your choice"/>
+          <app-custom-input  [labelColor]="true" label="Business Name" placeholder="Enter the name of your business"
+                             [control]="tinBusinessDetailsForm.controls.businessName" />
+          <app-custom-input [labelColor]="true" label="Old Tin" placeholder="Enter your old tin number"
+                            [control]="tinBusinessDetailsForm.controls.oldTin" />
+          <app-custom-input [labelColor]="true" label="RGD Number" placeholder="Enter your RGD number"
+                            [control]="tinBusinessDetailsForm.controls.rgdNumber" />
+          <app-custom-input [labelColor]="true" label="House Number" placeholder="Enter your house number"
+                            [control]="tinBusinessDetailsForm.controls.houseNumber" />
+          <app-custom-input [labelColor]="true" label="Building Name" placeholder="Enter your building name"
+                            [control]="tinBusinessDetailsForm.controls.buildingName" />
+          <app-custom-input [labelColor]="true" label="Street Name / Prominent Landmark" placeholder="Enter your street name or prominent landmakr"
+                            [control]="tinBusinessDetailsForm.controls.landMark" />
+          <app-custom-input [labelColor]="true" label="Town / City" placeholder="Enter your your town or city"
+                            [control]="tinBusinessDetailsForm.controls.town" />
+          <app-custom-input [labelColor]="true" label="Location / Area" placeholder="Enter your location"
+                            [control]="tinBusinessDetailsForm.controls.location" />
+          <app-custom-input [labelColor]="true" label="Postal Code" placeholder="Enter your postal code"
+                            [control]="tinBusinessDetailsForm.controls.postalCode" />
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinBusinessDetailsForm.controls.country"
+                             label="Country" [options]="yesOrNo" placeholder="select your country"/>
+          <app-custom-select [labelColor]="'text-primary'" [control]="tinBusinessDetailsForm.controls.region"
+                             label="Region" [options]="yesOrNo" placeholder="select your region"/>
+        </div>
+        <div class="mt-6 flex items-center gap-x-5 justify-center">
+          <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
+          <app-button  [disable]="tinBusinessDetailsForm.invalid"  name="Next" variant="custom"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

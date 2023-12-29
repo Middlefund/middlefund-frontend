@@ -9,6 +9,7 @@ import { City, Country, ICountry, State } from 'country-state-city';
 })
 export class TinPersonalComponent implements OnInit{
   companyIncorporationForm = inject(CompanyIncorporationService).companyIncorporationForm
+  tinPersonalDetailsForm = inject(CompanyIncorporationService).tinPersonalDetailsForm
   maritalStatus: Array<{name: string, value: string}> = [
     {name: 'Married', value: 'Married'},
     {name: 'Single', value: 'Single'},
@@ -29,11 +30,11 @@ export class TinPersonalComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.companyIncorporationForm.controls.proprietorTin.controls.birthCountry.valueChanges.subscribe(value => {
+    this.incorporationService.tinPersonalDetailsForm.controls.birthCountry.valueChanges.subscribe(value => {
       this.setStates(value)
     })
 
-    this.companyIncorporationForm.controls.proprietorTin.controls.birthRegion.valueChanges.subscribe(value => {
+    this.incorporationService.tinPersonalDetailsForm.controls.birthRegion.valueChanges.subscribe(value => {
       this.setCities(value)
     })
   }

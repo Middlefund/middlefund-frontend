@@ -1,38 +1,43 @@
 <section class="bg-secondary h-screen overflow-auto text-white">
-  <div class='flex items-center justify-center'>
-    <span class='bg-[#262626] py-2.5 px-10 rounded-md'>Company Incorporation</span>
+  <div class="flex items-center justify-center">
+    <span class="bg-[#262626] py-2.5 px-10 rounded-md"
+      >Company Incorporation</span
+    >
   </div>
-  <div class='flex flex-col gap-y-5 items-center justify-center mt-8 font-bold'>
-    <span class='text-primary'>My Companies</span>
-    <div class='space-y-4'>
-      <div class='flex items-center gap-x-2'>
-        <div class='bg-[#606060] w-[10rem] text-center p-2 rounded-md'>Middlefund LLC</div>
-        <span class='status-icon space-x-2 text-[green]'>
+  <div class="flex flex-col gap-y-5 items-center justify-center mt-8 font-bold">
+    <span class="text-primary">My Companies</span>
+    <div
+      *ngIf="isLoading"
+      class="flex h-28 mt-5 flex-col animate-bounce justify-center mx-5 w-full items-center"
+    >
+      <app-logo />
+      <span class="text-primary mt-4">Loading...</span>
+    </div>
+    <div class="space-y-4" *ngIf="!isLoading">
+      <div *ngFor="let company of companies" class="flex items-center gap-x-2">
+        <div
+          [routerLink]="'../incorporation-form'"
+          [queryParams]="{ id: company.id }"
+          class="bg-[#606060] cursor-pointer hover:bg-primary min-w-[12rem] text-center p-2 rounded-md"
+        >
+          {{ company.companyName }}
+        </div>
+        <span class="status-icon space-x-2 text-[green]">
           <mat-icon>brightness_1</mat-icon>
           <span>Submitted</span>
         </span>
       </div>
-      <div class='flex items-center gap-x-2'>
-        <div class='bg-[#606060] w-[10rem] text-center p-2 rounded-md'>Maltiti A. Ent LLC</div>
-        <span class='status-icon space-x-2 text-primary'>
-          <mat-icon>brightness_1</mat-icon>
-          <span>Awaiting Review</span>
-        </span>
-      </div>
-      <div class='flex items-center gap-x-2'>
-        <div class='bg-[#606060] w-[10rem] text-center p-2 rounded-md'>Munchies LLC</div>
-        <span class='status-icon space-x-2 text-[red]'>
-          <mat-icon>brightness_1</mat-icon>
-          <span>Rejected</span>
-        </span>
-      </div>
+    </div>
+    <div *ngIf="!isLoading && countries.length === 0">
+      <span>No companies registered</span>
     </div>
   </div>
-  <div class='flex mt-12 items-center justify-center'>
-    <span routerLink='../incorporation-form' class='bg-primary cursor-pointer hover:bg-black py-2.5 px-10 rounded-md'>
+  <div class="flex mt-12 items-center justify-center">
+    <span
+      routerLink="../incorporation-form"
+      class="bg-primary cursor-pointer hover:bg-black py-2.5 px-10 rounded-md"
+    >
       Register new company
     </span>
   </div>
-
 </section>
-

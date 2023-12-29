@@ -1,44 +1,60 @@
-<section class="bg-secondary h-screen text-white p-10">
-      <div class="flex flex-col  h-full ">
-<!--        <div class="flex border border-primary p-5 rounded-xl self-center font-bold gap-x-10 items-center justify-center">-->
-<!--            <div class="space-x-2">-->
-<!--              <span class="p-2 rounded-lg bg-[#989898]">M</span>-->
-<!--              <span class="text-primary">Middlefund</span>-->
-<!--            </div>-->
-<!--            <div class="flex items-center gap-x-2 justify-center">-->
-<!--              <mat-icon>location_on</mat-icon>-->
-<!--              <span>Ghana</span>-->
-<!--            </div>-->
-<!--        </div>-->
-        <div class="flex flex-col w-full items-center justify-center">
-          <p class="text-white mb-9 text-base font-bold">Proprietor Details</p>
-          <form [formGroup]="companyIncorporationForm.controls.proprietorDetails" (ngSubmit)="checkTinBeforeSubmit()" class="flex flex-col mx-5 w-full items-center">
-            <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
-              <app-custom-input [labelColor]="true" label="Name(First, Middle & Last)" placeholder="Enter Proprietor fullname"
-                                [control]="companyIncorporationForm.controls.proprietorDetails.controls.name" />
-              <app-custom-select [options]="gender" labelColor="text-primary" label="Gender"
-                                 [control]="companyIncorporationForm.controls.proprietorDetails.controls.gender" placeholder="Enter gender" />
-              <app-custom-input type='date' [labelColor]="true" label="Date of Birth" placeholder="Enter date of birth"
-                                [control]="companyIncorporationForm.controls.proprietorDetails.controls.dob" />
-              <app-custom-select [options]="countries" labelColor="text-primary" label="Nationality"
-                                 [control]="companyIncorporationForm.controls.proprietorDetails.controls.nationality" placeholder="Enter Nationality" />
-              <app-custom-select [options]="answer" labelColor="text-primary" label="Does Proprietor/Proprietress Have a Tax Identification Number (TIN)?"
-                                 [control]="companyIncorporationForm.controls.proprietorDetails.controls.hasTin" placeholder='Select an answer'/>
-              <app-custom-input  [labelColor]="true" label="TIN" placeholder="Enter TIN"
-                                [control]="companyIncorporationForm.controls.proprietorDetails.controls.tin"
-                                 *ngIf="companyIncorporationForm.controls.proprietorDetails.controls.hasTin.value === 'yes'"
-              />
-            </div>
-            <div class="mt-6 flex items-center gap-x-5 justify-center">
-              <app-button (click)='onPrevious()' type='button' name="Back" variant="tertiary"/>
-              <app-button  [disable]="companyIncorporationForm.controls.proprietorDetails.invalid"  name="Next" variant="custom"/>
-            </div>
-          </form>
+<section class="bg-secondary h-screen w-full text-white">
+  <div class="flex flex-col h-full items-center">
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form
+        [formGroup]="roleDetailsForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col mx-5 w-full items-center"
+      >
+        <div
+          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
+        >
+          <app-custom-input
+            [labelColor]="true"
+            label="Name(First, Middle & Last)"
+            placeholder="Enter your full name"
+            [control]="roleDetailsForm.controls.name"
+          ></app-custom-input>
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="roleDetailsForm.controls.gender"
+            label="Choose your gender"
+            [options]="genderOptions"
+            placeholder="Select your gender"
+          />
+          <app-custom-input
+            [labelColor]="true"
+            label="Date of Birth"
+            placeholder="Enter date of birth"
+            [control]="roleDetailsForm.controls.dob"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="Place of Birth"
+            placeholder="Enter your City"
+            [control]="roleDetailsForm.controls.birthPlace"
+          ></app-custom-input>
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="roleDetailsForm.controls.nationality"
+            label="Choose your nationality"
+            [options]="countries"
+            placeholder="Select your nationality"
+          />
         </div>
-      </div>
-      <app-confirmation-modal [visible]="visible" header="Tin Registration"
-                              description="You must register for TIN at a fee before proceeding. Register?"
-                              (submit)="onSubmitProprietorDetails()" (cancel)="onCancel()"
-      />
+        <div class="mt-6 flex items-center justify-center">
+          <app-button
+            [disable]="roleDetailsForm.invalid"
+            name="Next"
+            variant="custom"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="flex mr-10 w-full float-right justify-end items-end">
+      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
+        Request this service for your country
+      </button>
+    </div>
+  </div>
 </section>
-

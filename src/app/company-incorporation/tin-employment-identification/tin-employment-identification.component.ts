@@ -9,6 +9,7 @@ import { Country, ICountry } from 'country-state-city';
 })
 export class TinEmploymentIdentificationComponent {
   companyIncorporationForm = inject(CompanyIncorporationService).companyIncorporationForm
+  employeeIdentificationForm = inject(CompanyIncorporationService).tinEmploymentIdentificationForm
   category: Array<{name: string, value: string}> = [
     {name: 'Employee', value: 'Employee'},
     {name: 'Employer', value: 'Employer'},

@@ -77,13 +77,25 @@
 //   }
 // }
 
-import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import {catchError, concatMap, NEVER, Observable, of, Subject, throwError} from "rxjs";
-import { tap, finalize } from "rxjs/operators";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Injectable } from "@angular/core";
-import { AccountsService } from "../accounts/accounts.service";
-import { ToastrService } from "ngx-toastr";
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import {
+  catchError,
+  concatMap,
+  NEVER,
+  Observable,
+  Subject,
+  throwError,
+} from 'rxjs';
+import { tap, finalize } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { AccountsService } from '../accounts/accounts.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -94,12 +106,12 @@ export class AuthInterceptor implements HttpInterceptor {
     private router: Router,
     private accountsService: AccountsService,
     private toast: ToastrService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     if (this.accountsService.loggedInUser) {
       const token = this.accountsService.userTokens;
@@ -110,23 +122,28 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(request).pipe(
-      catchError((err) => {
+      catchError(err => {
         if (err.status === 401 && this.accountsService.loggedInUser) {
           if (!this.isRefreshing) {
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null); // Signal to start token refresh
 
             return this.accountsService.refreshToken().pipe(
-              tap((response) => {
-                const userData = JSON.parse(localStorage.getItem("middlefund$user")!);
+              tap(response => {
+                const userData = JSON.parse(
+                  localStorage.getItem('middlefund$user')!,
+                );
                 userData.token = response.token;
-                localStorage.setItem("middlefund$user", JSON.stringify(userData));
+                localStorage.setItem(
+                  'middlefund$user',
+                  JSON.stringify(userData),
+                );
                 this.accountsService.updateUser(userData);
                 this.refreshTokenSubject.next(response.token.access_token); // Signal token refresh completed
               }),
-              catchError((refreshTokenErr) => {
+              catchError(refreshTokenErr => {
                 if (refreshTokenErr.status === 401) {
-                  console.log("401")
+                  console.log('401');
                   // Token refresh also resulted in 401, logout the user
                   return this.logoutUser();
                 }
@@ -136,7 +153,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 this.isRefreshing = false; // Reset the flag
                 this.refreshTokenSubject.complete(); // Complete the subject
               }),
-              concatMap((accessToken) => {
+              concatMap(accessToken => {
                 if (accessToken) {
                   request = request.clone({
                     setHeaders: {
@@ -145,12 +162,12 @@ export class AuthInterceptor implements HttpInterceptor {
                   });
                 }
                 return next.handle(request);
-              })
-            )
+              }),
+            );
           } else {
             // Token refresh is already in progress, queue the request
             return this.refreshTokenSubject.pipe(
-              concatMap((accessToken) => {
+              concatMap(accessToken => {
                 if (accessToken) {
                   request = request.clone({
                     setHeaders: {
@@ -159,12 +176,12 @@ export class AuthInterceptor implements HttpInterceptor {
                   });
                 }
                 return next.handle(request);
-              })
+              }),
             );
           }
         }
         return throwError(err);
-      })
+      }),
     );
   }
 
@@ -179,4 +196,3 @@ export class AuthInterceptor implements HttpInterceptor {
     return NEVER;
   }
 }
-

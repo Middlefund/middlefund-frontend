@@ -1,40 +1,77 @@
-<section class="bg-secondary text-white p-10">
-    <div class="flex items-center gap-x-1">
-        <mat-icon class="border border-white rounded-md">navigate_before</mat-icon>
-        <span>Middlefund Platinum</span>
-      </div>
-      <div class="flex flex-col  h-full ">
-        <div class="flex border border-primary p-5 rounded-xl self-center font-bold gap-x-10 items-center justify-center">
-            <div class="space-x-2">
-              <span class="p-2 rounded-lg bg-[#989898]">M</span>
-              <span class="text-primary">Middlefund</span>
-            </div>
-            <div class="flex items-center gap-x-2 justify-center">
-              <mat-icon>location_on</mat-icon>
-              <span>Ghana</span>
-            </div>
+<section class="bg-secondary h-screen w-full text-white">
+  <div class="flex flex-col h-full items-center">
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form
+        [formGroup]="businessAddress"
+        (ngSubmit)="onSubmitBusinessAddress()"
+        class="flex flex-col mx-5 w-full items-center"
+      >
+        <div
+          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
+        >
+          <app-custom-input
+            [labelColor]="true"
+            label="Digital Address"
+            placeholder="Enter your Digital Address"
+            [control]="businessAddress.controls.digitalAddress"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="House/Building/Flat Name or House Number"
+            placeholder="Enter your House Number"
+            [control]="businessAddress.controls.houseNumber"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="Land Mark"
+            placeholder="Enter Landmark"
+            [control]="businessAddress.controls.landmark"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="City"
+            placeholder="Enter your City"
+            [control]="businessAddress.controls.city"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="District"
+            placeholder="Enter your District"
+            [control]="businessAddress.controls.district"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="Region"
+            placeholder="Enter your Region"
+            [control]="businessAddress.controls.region"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="PO Box"
+            placeholder="Enter PO Box"
+            [control]="businessAddress.controls.boxNumber"
+          ></app-custom-input>
         </div>
-
-        <div class="flex flex-col w-full items-center justify-center mt-5">
-          <p class="text-white mb-9 text-base font-bold">Business Address Information</p>
-          <form class="w-full max-w-xs flex flex-col gap-y-4" (ngSubmit)="onSubmitBusinessAddress()" [formGroup]="businessAddress">
-            <app-custom-input [labelColor]="true" label="Digital Address" placeholder="Enter your Digital Address" [control]="businessAddress.controls.digitalAddress"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="House/Building/Flat Name or House Number" placeholder="Enter your House Number" [control]="businessAddress.controls.houseNo"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="Land Mark" placeholder="Enter Landmark" [control]="businessAddress.controls.landmark"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="City" placeholder="Enter your City" [control]="businessAddress.controls.city"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="District" placeholder="Enter your District" [control]="businessAddress.controls.district"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="Region" placeholder="Enter your Region" [control]="businessAddress.controls.region"></app-custom-input>
-            <app-custom-input [labelColor]="true" label="PO Box" placeholder="Enter PO Box" [control]="businessAddress.controls.poBox"></app-custom-input>
-            <div class="mt-6 flex items-center gap-x-5 justify-center">
-              <app-button name="Back" variant="tertiary"/>
-              <app-button  [disable]="businessAddress.invalid"  name="Next" variant="custom"/>
-            </div>
-
-
-
-          </form>
+        <div class="mt-6 flex items-center justify-center">
+          <app-button
+            (click)="onPrevious()"
+            type="button"
+            name="Previous"
+            variant="custom"
+          />
+          <app-button
+            [disable]="businessAddress.invalid"
+            name="Submit"
+            variant="custom"
+            [isLoading]="isLoading"
+          />
         </div>
-
-      </div>
-
+      </form>
+    </div>
+    <div class="flex mr-10 w-full float-right justify-end items-end">
+      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
+        Request this service for your country
+      </button>
+    </div>
+  </div>
 </section>

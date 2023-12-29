@@ -18,6 +18,11 @@ import { TinRegistrationComponent } from './tin-registration/tin-registration.co
 import { TinPersonalComponent } from './tin-personal/tin-personal.component';
 import { TinEmploymentIdentificationComponent } from './tin-employment-identification/tin-employment-identification.component';
 import { TinResidentialAddressComponent } from './tin-residential-address/tin-residential-address.component';
+import { TinContactComponent } from './tin-contact/tin-contact.component';
+import { TinBusinessDetailsComponent } from './tin-business-details/tin-business-details.component';
+import {ProgressBarModule} from "primeng/progressbar";
+import {NgCircleProgressModule} from "ng-circle-progress";
+import { ProprietorDirectorComponent } from './proprietor-director/proprietor-director.component';
 
 
 
@@ -36,7 +41,10 @@ import { TinResidentialAddressComponent } from './tin-residential-address/tin-re
     TinRegistrationComponent,
     TinPersonalComponent,
     TinEmploymentIdentificationComponent,
-    TinResidentialAddressComponent
+    TinResidentialAddressComponent,
+    TinContactComponent,
+    TinBusinessDetailsComponent,
+    ProprietorDirectorComponent
   ],
   exports: [
     NavbarComponent,
@@ -48,6 +56,8 @@ import { TinResidentialAddressComponent } from './tin-residential-address/tin-re
     SharedModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    ProgressBarModule,
+    NgCircleProgressModule,
   ],
 })
 export class CompanyIncorporationModule { }
