@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { messageData } from '../models/interfaces';
 import { environment } from '../../environments/environment';
-import { loginData } from '../utility/models';
 
 @Injectable({
   providedIn: 'root',
@@ -32,9 +31,9 @@ export class CompanyIncorporationService {
     );
     this.companyStage = this.companyStageSubject.asObservable();
     this.roleStageSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('stage')!) || 1,
+      JSON.parse(localStorage.getItem('roleStage')!) || 1,
     );
-    this.roleStage = this.companyStageSubject.asObservable();
+    this.roleStage = this.roleStageSubject.asObservable();
     this.tinStageSubject = new BehaviorSubject(
       JSON.parse(localStorage.getItem('tinStage')!) || 1,
     );
@@ -82,8 +81,8 @@ export class CompanyIncorporationService {
   });
 
   readonly roleProofForm = this.fb.group({
-    ghanaCard: ['', Validators.required],
-    signature: ['', Validators.required],
+    ghanaCard: this.fb.array([], Validators.required),
+    signature: ['sfsdfs', Validators.required],
   });
 
   readonly tinPersonalDetailsForm = this.fb.group({
@@ -188,13 +187,13 @@ export class CompanyIncorporationService {
     }
   }
 
-  public submitCompanyInfo() {
+  public submitCompanyInfo(id: string | null) {
     const companyInfo = {
       ...this.businessAddress.value,
       ...this.businessProfileForm.value,
     };
     return this.http.post<messageData>(
-      `${environment.BACKEND_URL}/api/company-incorporation`,
+      `${environment.BACKEND_URL}/api/company-incorporation?id=${id}`,
       companyInfo,
     );
   }
@@ -202,6 +201,12 @@ export class CompanyIncorporationService {
   public getCompanies() {
     return this.http.get<messageData>(
       `${environment.BACKEND_URL}/api/companies`,
+    );
+  }
+
+  public getCompany(id: string) {
+    return this.http.get<messageData>(
+      `${environment.BACKEND_URL}/api/get-company/${id}`,
     );
   }
 

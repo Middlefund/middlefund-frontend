@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyIncorporationService } from '../company-incorporation.service';
 import { ToastrService } from 'ngx-toastr';
 import { defaultServerError } from '../../utility/constants';
@@ -17,6 +17,7 @@ export class BusinessAddressComponent {
     private companyIncorporationService: CompanyIncorporationService,
     private router: Router,
     private toastService: ToastrService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   onPrevious() {
@@ -25,18 +26,26 @@ export class BusinessAddressComponent {
 
   onSubmitBusinessAddress() {
     this.isLoading = true;
-    this.companyIncorporationService.submitCompanyInfo().subscribe({
-      next: value => {
-        this.isLoading = false;
-        this.toastService.success(value.message);
-        this.router.navigate([
-          `/company-incorporation/proprietor/${value.data.id}`,
-        ]);
-      },
-      error: err => {
-        this.isLoading = false;
-        this.toastService.error(err.error?.message || defaultServerError);
-      },
-    });
+    this.companyIncorporationService
+      .submitCompanyInfo(this.activatedRoute.snapshot.queryParamMap.get('id'))
+      .subscribe({
+        next: value => {
+          this.isLoading = false;
+          this.toastService.success(value.message);
+          if (
+            this.companyIncorporationService.businessProfileForm.controls
+              .companyType.value === 'Sole proprietorship'
+          ) {
+            this.router.navigate([
+              `/company-incorporation/proprietor/${value.data.id}`,
+            ]);
+          } else {
+          }
+        },
+        error: err => {
+          this.isLoading = false;
+          this.toastService.error(err.error?.message || defaultServerError);
+        },
+      });
   }
 }

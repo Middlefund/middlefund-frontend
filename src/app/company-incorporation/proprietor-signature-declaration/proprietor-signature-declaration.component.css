@@ -1,0 +1,18 @@
+::ng-deep .p-button {
+  background: #262626 !important;
+  border: 1px solid #262626 !important;
+}
+
+::ng-deep .p-button:hover {
+  background: #a49370 !important;
+  border: 1px solid #a49370 !important;
+}
+
+::ng-deep .p-fileupload .p-fileupload-content,
+::ng-deep .p-fileupload .p-fileupload-buttonbar {
+  background: #606060 !important;
+}
+
+::ng-deep .p-fileupload .p-fileupload-content {
+  color: #fff !important;
+}

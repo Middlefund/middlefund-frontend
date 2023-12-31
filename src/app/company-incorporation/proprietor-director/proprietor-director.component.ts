@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyIncorporationService } from '../company-incorporation.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-proprietor-director',

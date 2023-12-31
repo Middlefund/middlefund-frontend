@@ -4,15 +4,15 @@ export const registrationInfo: Array<{ name: string; value: string }> = [
     name: 'Limited Liability Company (LLC)',
     value: 'Limited Liability Company (LLC)',
   },
-  { name: 'S-Corp', value: 'S-Corp' },
-  { name: 'C-Corp', value: 'C-Corp' },
-  { name: 'Company Limited by Shares', value: 'Company Limited by Shares' },
-  { name: 'Company Unlimited by Shares', value: 'Company Unlimited by Shares' },
-  {
-    name: 'Company Limited by Guarantee',
-    value: 'Company Limited by Guarantee',
-  },
-  { name: 'Incorporated Partnership', value: 'Incorporated Partnership' },
+  // { name: 'S-Corp', value: 'S-Corp' },
+  // { name: 'C-Corp', value: 'C-Corp' },
+  // { name: 'Company Limited by Shares', value: 'Company Limited by Shares' },
+  // { name: 'Company Unlimited by Shares', value: 'Company Unlimited by Shares' },
+  // {
+  //   name: 'Company Limited by Guarantee',
+  //   value: 'Company Limited by Guarantee',
+  // },
+  // { name: 'Incorporated Partnership', value: 'Incorporated Partnership' },
 ];
 export const stagesOptions: Array<{ name: string; value: string }> = [
   { name: 'Idea Stage', value: 'Idea Stage' },
@@ -64,4 +64,10 @@ export const genderOptions: Array<{ name: string; value: string }> = [
   { name: 'Male', value: 'male' },
   { name: 'Female', value: 'female' },
   { name: 'Other', value: 'other' },
+];
+
+export const signatureMethods: Array<{ name: string; value: string }> = [
+  { name: 'Sign here', value: 'sign here' },
+  { name: 'Upload signature', value: 'upload signature' },
+  { name: 'Send invite', value: 'send invite' },
 ];

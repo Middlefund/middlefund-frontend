@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@abacritt/angularx-social-login": "^2.1.0",
+    "@almothafar/angular-signature-pad": "^5.0.1",
     "@angular-eslint/eslint-plugin": "^17.1.1",
     "@angular/animations": "^16.0.0",
     "@angular/cdk": "^16.0.1",
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@aws-sdk/client-s3": "^3.484.0",
     "@fortawesome/angular-fontawesome": "^0.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",

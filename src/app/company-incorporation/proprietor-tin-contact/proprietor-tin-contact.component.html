@@ -1,0 +1,54 @@
+<section class="bg-secondary h-screen w-full text-white">
+  <div class="flex flex-col h-full items-center">
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form
+        [formGroup]="tinContactForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col mx-5 w-full items-center"
+      >
+        <div
+          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
+        >
+          <app-custom-input
+            [labelColor]="true"
+            label="Email"
+            placeholder="Enter your email address"
+            [control]="tinContactForm.controls.email"
+          ></app-custom-input>
+          <app-custom-input
+            [labelColor]="true"
+            label="Phone Number"
+            placeholder="Enter your phone number"
+            [control]="tinContactForm.controls.phoneNumber"
+          ></app-custom-input>
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinContactForm.controls.hasTin"
+            label="Does Proprietor Have a Tax Identification Number (TIN)?"
+            [options]="yesOrNo"
+            placeholder="Select your choice"
+          />
+          <app-custom-input
+            *ngIf="tinContactForm.controls.hasTin.value === 'yes'"
+            [labelColor]="true"
+            label="TIN"
+            placeholder="Enter TIN number"
+            [control]="tinContactForm.controls.tin"
+          ></app-custom-input>
+        </div>
+        <div class="mt-6 flex items-center justify-center">
+          <app-button
+            [disable]="tinContactForm.invalid"
+            name="Next"
+            variant="custom"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="flex mr-10 w-full float-right justify-end items-end">
+      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
+        Request this service for your country
+      </button>
+    </div>
+  </div>
+</section>

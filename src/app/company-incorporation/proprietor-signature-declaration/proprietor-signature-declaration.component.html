@@ -1,0 +1,139 @@
+<section class="bg-secondary h-screen w-full text-white">
+  <div class="flex flex-col h-full items-center">
+    <div
+      *ngIf="uploading"
+      class="fixed inset-0 z-10 bg-primary"
+      style="opacity: 0.5"
+      aria-hidden="true"
+    >
+      <div
+        class="flex justify-center z-50 animate-bounce items-center justify-items-center self-center h-full"
+      >
+        <app-logo class="z-50" />
+        <span>Uploading</span>
+      </div>
+    </div>
+    <div class="flex mt-10 flex-col w-full justify-center items-center">
+      <form
+        [formGroup]="roleProofForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col mx-5 w-full items-center"
+      >
+        <div
+          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
+        >
+          <div>
+            <label class="text-primary"
+              >Upload front and back of your Ghana Card</label
+            >
+            <div class="card mt-2 flex justify-content-center">
+              <p-fileUpload
+                [multiple]="true"
+                accept=""
+                [maxFileSize]="1000000"
+                [showUploadButton]="false"
+                [fileLimit]="2"
+                (onSelect)="onUploadGhanaCard($event)"
+                chooseStyleClass="chooseBtn"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">
+                      {{ file.name }} - {{ file.size }} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+          <div>
+            <div class="">
+              <app-custom-select
+                [labelColor]="'text-primary'"
+                label="Select method of adding signature"
+                placeholder="select your prefferred method"
+                [options]="signatureMethods"
+                [control]="signatureMethodsControl"
+              />
+              <div
+                class="mt-2"
+                *ngIf="signatureMethodsControl.value === 'sign here'"
+              >
+                <signature-pad
+                  #signature
+                  [options]="signaturePadOptions"
+                ></signature-pad>
+                <app-button
+                  name="Save"
+                  type="button"
+                  (click)="submitSignature()"
+                  class="mt-2"
+                />
+                <app-button
+                  name="Clear"
+                  type="button"
+                  (click)="this.signaturePad.clear()"
+                  class="mt-2"
+                />
+              </div>
+              <div
+                *ngIf="signatureMethodsControl.value === 'upload signature'"
+                class="card mt-2 flex justify-content-center"
+              >
+                <p-fileUpload
+                  [multiple]="true"
+                  accept=""
+                  [maxFileSize]="1000000"
+                  [showUploadButton]="false"
+                  [fileLimit]="1"
+                  (onSelect)="onUploadSignature($event)"
+                  chooseStyleClass="chooseBtn"
+                >
+                  <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedSignature.length">
+                      <li *ngFor="let file of uploadedSignature">
+                        {{ file.name }} - {{ file.size }} bytes
+                      </li>
+                    </ul>
+                  </ng-template>
+                </p-fileUpload>
+              </div>
+              <div
+                class="mt-3"
+                *ngIf="signatureMethodsControl.value === 'send invite'"
+              >
+                <app-custom-input
+                  [labelColor]="true"
+                  label="Enter email address"
+                  placeholder="Enter proprietor's email address"
+                  [control]="roleProofForm.controls.signature"
+                ></app-custom-input>
+                <span class="text-xs text-[red]"
+                  >Until the invitee signs using the link to be sent, your
+                  submission will be uncompleted</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="text-sm mt-5 max-w-2xl"
+          >By Submitting this form, you agree to allow Middlefund represent you
+          and submit these same information to the appropriate office. You also
+          agree that all information provided is accurate.</span
+        >
+        <div class="mt-6 flex items-center justify-center">
+          <app-button
+            [disable]="roleProofForm.invalid"
+            name="Submit"
+            variant="custom"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="flex mr-10 w-full float-right justify-end items-end">
+      <button class="border border-[#989898] px-4 py-2 rounded-md text-primary">
+        Request this service for your country
+      </button>
+    </div>
+  </div>
+</section>

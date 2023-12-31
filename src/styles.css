@@ -3,8 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 textarea:focus,
 input:focus {
@@ -12,10 +18,11 @@ input:focus {
 }
 
 @supports (-webkit-appearance: none) {
-  @media not all and (min-resolution:.001dpcm) {
+  @media not all and (min-resolution: 0.001dpcm) {
     @media {
       /* Styles for WebKit-based browsers */
-      input[type="checkbox"], input[type="radio"] {
+      input[type='checkbox'],
+      input[type='radio'] {
         -webkit-appearance: none;
         appearance: none;
         /* Add custom styles here */

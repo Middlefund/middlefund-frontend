@@ -40,5 +40,15 @@
     </ol>
   </div>
 </div>
-<app-business-profile *ngIf="stage === 1" />
-<app-business-address *ngIf="stage === 2" />
+<ng-container *ngIf="!isLoading">
+  <app-business-profile *ngIf="stage === 1" />
+  <app-business-address *ngIf="stage === 2" />
+</ng-container>
+<section *ngIf="isLoading" class="bg-secondary h-screen w-full text-white">
+  <div
+    class="flex pt-28 flex-col animate-bounce justify-center mx-5 w-full items-center"
+  >
+    <app-logo />
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+</section>
