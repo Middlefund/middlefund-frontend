@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run config && ng build",
+    "config": "ts-node src/environments/set-env.ts",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -30,6 +31,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "country-state-city": "^3.1.4",
+    "dotenv": "^16.3.1",
     "eslint-plugin-prettier": "^5.1.2",
     "ng-animate": "^2.0.1",
     "ng-circle-progress": "^1.7.1",
