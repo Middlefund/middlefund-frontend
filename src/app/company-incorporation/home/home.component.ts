@@ -5,6 +5,7 @@ import { CompanyIncorporationService } from '../company-incorporation.service';
 import { defaultServerError } from '../../utility/constants';
 import { ToastrService } from 'ngx-toastr';
 import { ICompanyInformation } from '../../models/companyIncorporation.interface';
+import { capitalizeWords } from '../../utility/capitalizeEachWord';
 
 @Component({
   selector: 'app-home',
@@ -49,4 +50,21 @@ export class HomeComponent implements OnInit {
       },
     });
   };
+
+  getColor(status: string) {
+    switch (status) {
+      case 'awaiting review':
+        return 'text-[yellow]';
+      case 'rejected':
+        return 'text-[red]';
+      case 'incomplete':
+        return 'text-primary';
+      case 'submitted':
+        return 'text-[green]';
+      default:
+        return 'text-primary';
+    }
+  }
+
+  protected readonly capitalizeWords = capitalizeWords;
 }

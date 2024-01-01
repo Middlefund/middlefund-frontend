@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyIncorporationService } from '../company-incorporation.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { defaultServerError } from '../../utility/constants';
   templateUrl: './business-address.component.html',
   styleUrls: ['./business-address.component.css'],
 })
-export class BusinessAddressComponent {
+export class BusinessAddressComponent implements OnInit {
   businessAddress = inject(CompanyIncorporationService).businessAddress;
   isLoading = false;
 
@@ -19,6 +19,12 @@ export class BusinessAddressComponent {
     private toastService: ToastrService,
     private activatedRoute: ActivatedRoute,
   ) {}
+
+  ngOnInit() {
+    if (this.companyIncorporationService.businessProfileForm.invalid) {
+      this.companyIncorporationService.updateCompanyProfileStage(1);
+    }
+  }
 
   onPrevious() {
     this.companyIncorporationService.updateCompanyProfileStage(1);
@@ -34,7 +40,7 @@ export class BusinessAddressComponent {
           this.toastService.success(value.message);
           if (
             this.companyIncorporationService.businessProfileForm.controls
-              .companyType.value === 'Sole proprietorship'
+              .companyType.value === 'sole proprietorship'
           ) {
             this.router.navigate([
               `/company-incorporation/proprietor/${value.data.id}`,

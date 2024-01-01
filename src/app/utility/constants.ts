@@ -1,5 +1,5 @@
 export const registrationInfo: Array<{ name: string; value: string }> = [
-  { name: 'Sole proprietorship', value: 'Sole proprietorship' },
+  { name: 'Sole proprietorship', value: 'sole proprietorship' },
   {
     name: 'Limited Liability Company (LLC)',
     value: 'Limited Liability Company (LLC)',

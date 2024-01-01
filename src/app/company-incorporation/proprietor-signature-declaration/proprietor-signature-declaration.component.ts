@@ -10,11 +10,12 @@ import { FileSelectEvent } from 'primeng/fileupload';
 import { UploadService } from '../../utility/upload.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { signatureMethods } from '../../utility/constants';
+import { defaultServerError, signatureMethods } from '../../utility/constants';
 import {
   NgSignaturePadOptions,
   SignaturePadComponent,
 } from '@almothafar/angular-signature-pad';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-proprietor-signature-declaration',
@@ -30,6 +31,7 @@ export class ProprietorSignatureDeclarationComponent
   uploading: boolean = false;
   @ViewChild('signature')
   public signaturePad!: SignaturePadComponent;
+  isLoading: boolean = false;
 
   protected signaturePadOptions: NgSignaturePadOptions = {
     minWidth: 5,
@@ -42,9 +44,16 @@ export class ProprietorSignatureDeclarationComponent
     private toast: ToastrService,
     private uploadService: UploadService,
     private fb: FormBuilder,
+    private companyIncorporationService: CompanyIncorporationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    if (this.companyIncorporationService.roleTinContactForm.invalid) {
+      this.companyIncorporationService.updateRoleStage(2);
+    }
+
     this.signatureMethodsControl.valueChanges.subscribe(value => {
       this.roleProofForm.controls.signature.setValue('');
       if (value === 'send invite') {
@@ -97,8 +106,8 @@ export class ProprietorSignatureDeclarationComponent
   signatureMethodsControl = this.fb.control(null);
 
   ngAfterViewInit() {
-    this.signaturePad.set('minWidth', 5);
-    this.signaturePad.clear();
+    this.signaturePad?.set('minWidth', 5);
+    this.signaturePad?.clear();
   }
 
   async submitSignature() {
@@ -118,6 +127,34 @@ export class ProprietorSignatureDeclarationComponent
     }
   }
 
-  onSubmit = () => {};
+  onSubmit = () => {
+    this.isLoading = true;
+    this.companyIncorporationService
+      .submitProprietorDirector(
+        this.activatedRoute.snapshot.paramMap.get('id') as string,
+      )
+      .subscribe({
+        next: value => {
+          this.isLoading = false;
+          this.toast.success(value.message);
+          if (
+            this.companyIncorporationService.roleTinContactForm.controls.hasTin
+              .value === 'no'
+          ) {
+            this.router.navigate([`/company-incorporation/tin-registration`]);
+          } else {
+            if (value.type === 'sole proprietorship') {
+              this.router.navigate([`/company-incorporation/home`]);
+            } else {
+              this.router.navigate([`/company-incorporation/directors`]);
+            }
+          }
+        },
+        error: err => {
+          this.isLoading = false;
+          this.toast.error(err.error?.message || defaultServerError);
+        },
+      });
+  };
   protected readonly signatureMethods = signatureMethods;
 }

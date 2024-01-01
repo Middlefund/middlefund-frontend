@@ -1,11 +1,5 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Country, ICountry } from 'country-state-city';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { registrationInfo } from '../../utility/constants';
 import { Router } from '@angular/router';
 import { CompanyIncorporationService } from '../company-incorporation.service';

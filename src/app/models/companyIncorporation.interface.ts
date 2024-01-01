@@ -1,3 +1,5 @@
+import { messageData } from './interfaces';
+
 export interface ICompanyInformation {
   id: string;
   companyName: string;
@@ -12,4 +14,9 @@ export interface ICompanyInformation {
   city: string;
   district: string;
   boxNumber: string;
+  status: string;
+}
+
+export interface ImessageDataType extends messageData {
+  type: string;
 }

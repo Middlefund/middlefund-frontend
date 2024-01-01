@@ -16,6 +16,10 @@ export class ProprietorTinContactComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.companyIncorporationService.roleDetailsForm.invalid) {
+      this.companyIncorporationService.updateRoleStage(1);
+    }
+
     this.tinContactForm.controls.hasTin.valueChanges.subscribe(value => {
       if (value === 'yes') {
         this.tinContactForm.controls.tin.setValidators([Validators.required]);

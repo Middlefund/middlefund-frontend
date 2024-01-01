@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { messageData } from '../models/interfaces';
 import { environment } from '../../environments/environment';
+import { ImessageDataType } from '../models/companyIncorporation.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,21 +23,13 @@ export class CompanyIncorporationService {
     private fb: FormBuilder,
     private http: HttpClient,
   ) {
-    this.stageSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('stage')!) || 1,
-    );
+    this.stageSubject = new BehaviorSubject(1);
     this.stage = this.stageSubject.asObservable();
-    this.companyStageSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('stage')!) || 1,
-    );
+    this.companyStageSubject = new BehaviorSubject(1);
     this.companyStage = this.companyStageSubject.asObservable();
-    this.roleStageSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('roleStage')!) || 1,
-    );
+    this.roleStageSubject = new BehaviorSubject(1);
     this.roleStage = this.roleStageSubject.asObservable();
-    this.tinStageSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('tinStage')!) || 1,
-    );
+    this.tinStageSubject = new BehaviorSubject(1);
     this.tinStage = this.tinStageSubject.asObservable();
     this.initializeForm();
     // this.hasTinNumber()
@@ -82,7 +75,7 @@ export class CompanyIncorporationService {
 
   readonly roleProofForm = this.fb.group({
     ghanaCard: this.fb.array([], Validators.required),
-    signature: ['sfsdfs', Validators.required],
+    signature: ['', Validators.required],
   });
 
   readonly tinPersonalDetailsForm = this.fb.group({
@@ -157,22 +150,18 @@ export class CompanyIncorporationService {
   });
 
   public updateCompanyProfileStage(stage: 1 | 2) {
-    localStorage.setItem('companyStage', JSON.stringify(stage));
     return this.companyStageSubject.next(stage);
   }
 
   public updateRoleStage(stage: 1 | 2 | 3) {
-    localStorage.setItem('roleStage', JSON.stringify(stage));
     return this.roleStageSubject.next(stage);
   }
 
   public updateStage(stage: number) {
-    localStorage.setItem('stage', JSON.stringify(stage));
     return this.stageSubject.next(stage);
   }
 
   public updateTinStage(stage: number) {
-    localStorage.setItem('tinStage', JSON.stringify(stage));
     return this.tinStageSubject.next(stage);
   }
 
@@ -207,6 +196,18 @@ export class CompanyIncorporationService {
   public getCompany(id: string) {
     return this.http.get<messageData>(
       `${environment.BACKEND_URL}/api/get-company/${id}`,
+    );
+  }
+
+  public submitProprietorDirector(id: string) {
+    const proprietorDirectorInfo = {
+      ...this.roleDetailsForm.value,
+      ...this.roleTinContactForm.value,
+      ...this.roleProofForm.value,
+    };
+    return this.http.post<ImessageDataType>(
+      `${environment.BACKEND_URL}/api/leader/${id}`,
+      proprietorDirectorInfo,
     );
   }
 

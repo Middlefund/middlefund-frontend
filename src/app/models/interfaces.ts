@@ -1,51 +1,51 @@
 export interface messageData {
-  message: string,
-  data: any
+  message: string;
+  data: any;
 }
 
 export interface pitch {
-  "startupName": string;
-  "registrationInfo": any
-  "registrationCountry": any
-  "industry": any
-  "stage": any
-  "location": {
-    "country": any
-    "region": any
-    "city": any
+  startupName: string;
+  registrationInfo: any;
+  registrationCountry: any;
+  industry: any;
+  stage: any;
+  location: {
+    country: any;
+    region: any;
+    city: any;
   };
-  "social": {
-    "website": string;
-    "linkedIn": string;
-  }
-  "raisedAmount": string
-  amountToRaise: string
-  purpose: string
-  equity: string
-  startupBio: string
+  social: {
+    website: string;
+    linkedIn: string;
+  };
+  raisedAmount: string;
+  amountToRaise: string;
+  purpose: string;
+  equity: string;
+  startupBio: string;
   repName: string;
   position: string;
   repBio: string;
 }
 
 export interface startupProfile {
-  "startupName": null | string | undefined;
-  "registrationInfo": string | null;
-  "registrationCountry": string | null;
-  "industry": string | null;
-  "stage": string | null;
-  "location": {
-    "country": string | null;
-    "region": string | null;
-    "city": string | null;
+  startupName: null | string | undefined;
+  registrationInfo: string | null;
+  registrationCountry: string | null;
+  industry: string | null;
+  stage: string | null;
+  location: {
+    country: string | null;
+    region: string | null;
+    city: string | null;
   };
-  "social": {
-    "website": string;
-    "linkedIn": string;
-  }
+  social: {
+    website: string;
+    linkedIn: string;
+  };
 }
 export interface pitchDetails {
-  "raisedAmount": string | null;
+  raisedAmount: string | null;
   amountToRaise: string | null;
   purpose: string | null;
   equity: string | null;
@@ -60,17 +60,17 @@ export interface repDetails {
 }
 
 export interface pitchData {
-  "startupName": string;
-  "registrationInfo": any;
-  "registrationCountry": any;
-  "industry": any;
-  "stage": any;
-  "country": any;
-  "region": any;
-  "city": any;
-  "website": string;
-  "linkedIn": string;
-  "raisedAmount": any;
+  startupName: string;
+  registrationInfo: any;
+  registrationCountry: any;
+  industry: any;
+  stage: any;
+  country: any;
+  region: any;
+  city: any;
+  website: string;
+  linkedIn: string;
+  raisedAmount: any;
   amountToRaise: any;
   purpose: any;
   equity: string;
@@ -80,10 +80,10 @@ export interface pitchData {
   rep_linkedIn: string;
   repBio: string;
   logo: string;
-  pitch: string,
-  video: string,
-  repId: any
-  verified: string
+  pitch: string;
+  video: string;
+  repId: any;
+  verified: string;
 }
 
 export interface startupData {
@@ -119,9 +119,9 @@ export interface startupData {
 
 export interface supportingDocs {
   logo: string;
-  pitch: string,
-  video: string,
-  id: string
+  pitch: string;
+  video: string;
+  id: string;
 }
 
 export interface NotificationData {
@@ -133,7 +133,7 @@ export interface NotificationData {
     title: string;
     message: string;
     type: string;
-  }
+  };
   read_at: string | null;
   created_at: string;
   updated_at: string;
@@ -237,10 +237,3 @@ export interface IRequestCountry {
   email: string;
   country: string;
 }
-
-
-
-
-
-
-

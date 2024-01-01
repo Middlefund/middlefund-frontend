@@ -1,16 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     screens: {
       'sm-al': '570px',
       ...defaultTheme.screens,
     },
     extend: {},
-    colors:{
+    colors: {
       primary: '#A49370',
       secondary: '#3A3838',
       tertiary: '#5F5F5F',
@@ -21,9 +19,8 @@ module.exports = {
       yellow: '#fff200',
       light: '#b8b8b8',
       dark: '#858585',
-      btcolor: '#606060'
-
-    }
+      btcolor: '#606060',
+    },
   },
   plugins: [],
-}
+};

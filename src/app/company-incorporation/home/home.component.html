@@ -22,9 +22,12 @@
         >
           {{ company.companyName }}
         </div>
-        <span class="status-icon space-x-2 text-[green]">
+        <span
+          [ngClass]="getColor(company.status)"
+          class="status-icon space-x-2"
+        >
           <mat-icon>brightness_1</mat-icon>
-          <span>Submitted</span>
+          <span>{{ capitalizeWords(company.status) }}</span>
         </span>
       </div>
     </div>
