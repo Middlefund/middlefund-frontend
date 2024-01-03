@@ -143,7 +143,6 @@ export class AuthInterceptor implements HttpInterceptor {
               }),
               catchError(refreshTokenErr => {
                 if (refreshTokenErr.status === 401) {
-                  console.log('401');
                   // Token refresh also resulted in 401, logout the user
                   return this.logoutUser();
                 }
@@ -153,11 +152,13 @@ export class AuthInterceptor implements HttpInterceptor {
                 this.isRefreshing = false; // Reset the flag
                 this.refreshTokenSubject.complete(); // Complete the subject
               }),
-              concatMap(accessToken => {
-                if (accessToken) {
+              concatMap(tokens => {
+                console.log(tokens.token.access_token, 'access token');
+                console.log(tokens, 'tokkeeenn after refresh');
+                if (tokens) {
                   request = request.clone({
                     setHeaders: {
-                      Authorization: `Bearer ${accessToken}`,
+                      Authorization: `Bearer ${tokens.token.access_token}`,
                     },
                   });
                 }

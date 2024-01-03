@@ -46,6 +46,9 @@ export class BusinessAddressComponent implements OnInit {
               `/company-incorporation/proprietor/${value.data.id}`,
             ]);
           } else {
+            this.router.navigate([
+              `/company-incorporation/directors/${value.data.id}`,
+            ]);
           }
         },
         error: err => {

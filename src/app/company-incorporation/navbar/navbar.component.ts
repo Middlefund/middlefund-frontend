@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CompanyIncorporationService } from '../company-incorporation.service';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   @Input() route: string = '';
   @Input() routeName: string = '';
   readonly injectRouter = inject(Router);
@@ -16,10 +16,6 @@ export class NavbarComponent implements OnInit {
     private companyIncorporationService: CompanyIncorporationService,
     private router: Router,
   ) {}
-
-  ngOnInit() {
-    console.log(this.router.url);
-  }
 
   calculateCompanyCompletionPercentage(): number {
     const totalBusinessProfileControls = Object.keys(

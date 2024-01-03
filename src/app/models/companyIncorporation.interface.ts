@@ -20,3 +20,22 @@ export interface ICompanyInformation {
 export interface ImessageDataType extends messageData {
   type: string;
 }
+
+export interface ImessageDataStatus extends messageData {
+  status: string;
+}
+
+export interface IProprietorDirector {
+  id: string;
+  name: string;
+  gender: string;
+  dob: string;
+  nationality: string;
+  birthdate: string;
+  email: string;
+  phoneNumber: string;
+  hasTin: string;
+  tin: string;
+  ghanaCard: string;
+  signature: string;
+}

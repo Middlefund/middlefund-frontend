@@ -13,6 +13,8 @@ export class IncorporationFormComponent implements OnInit {
   stage: number = 1;
   id: string | null = null;
   isLoading: boolean = false;
+  status: 'awaiting review' | 'rejected' | 'incomplete' | 'submitted' =
+    'incomplete';
   constructor(
     private incorporationService: CompanyIncorporationService,
     private activatedRoute: ActivatedRoute,
@@ -28,6 +30,7 @@ export class IncorporationFormComponent implements OnInit {
           this.isLoading = false;
           this.incorporationService.businessProfileForm.patchValue(value.data);
           this.incorporationService.businessAddress.patchValue(value.data);
+          this.status = value.data.status;
         },
         error: err => {
           this.isLoading = false;

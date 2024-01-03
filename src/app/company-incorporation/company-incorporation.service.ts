@@ -4,7 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { messageData } from '../models/interfaces';
 import { environment } from '../../environments/environment';
-import { ImessageDataType } from '../models/companyIncorporation.interface';
+import {
+  ImessageDataStatus,
+  ImessageDataType,
+} from '../models/companyIncorporation.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -199,18 +202,43 @@ export class CompanyIncorporationService {
     );
   }
 
-  public submitProprietorDirector(id: string) {
+  public submitProprietorDirector(id: string, directorId?: string) {
     const proprietorDirectorInfo = {
       ...this.roleDetailsForm.value,
       ...this.roleTinContactForm.value,
       ...this.roleProofForm.value,
     };
     return this.http.post<ImessageDataType>(
-      `${environment.BACKEND_URL}/api/leader/${id}`,
+      directorId
+        ? `${environment.BACKEND_URL}/api/leader/${id}?id=${directorId}`
+        : `${environment.BACKEND_URL}/api/leader/${id}`,
       proprietorDirectorInfo,
     );
   }
 
+  public getProprietor(id: string) {
+    return this.http.get<ImessageDataStatus>(
+      `${environment.BACKEND_URL}/api/get-proprietor/${id}`,
+    );
+  }
+
+  public getDirectors(id: string) {
+    return this.http.get<ImessageDataStatus>(
+      `${environment.BACKEND_URL}/api/directors/${id}`,
+    );
+  }
+
+  public getDirector(id: string) {
+    return this.http.get<ImessageDataStatus>(
+      `${environment.BACKEND_URL}/api/director/${id}`,
+    );
+  }
+
+  public submitDirectors(id: string) {
+    return this.http.get<messageData>(
+      `${environment.BACKEND_URL}/api/submit-directors/${id}`,
+    );
+  }
   // hasTinNumber() {
   //     if(this.companyIncorporationForm.controls.proprietorDetails.controls.hasTin.value === 'yes') {
   //       this.companyIncorporationForm.controls.proprietorDetails.get('tin')?.setValidators([Validators.required])

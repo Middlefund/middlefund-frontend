@@ -29,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
+import { ListDirectorsComponent } from './list-directors/list-directors.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
     ProprietorDirectorComponent,
     ProprietorTinContactComponent,
     ProprietorSignatureDeclarationComponent,
+    ListDirectorsComponent,
   ],
   exports: [NavbarComponent],
   imports: [

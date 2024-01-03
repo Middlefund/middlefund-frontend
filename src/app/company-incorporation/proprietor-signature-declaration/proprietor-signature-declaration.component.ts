@@ -129,9 +129,11 @@ export class ProprietorSignatureDeclarationComponent
 
   onSubmit = () => {
     this.isLoading = true;
+    const directorId = this.activatedRoute.snapshot.queryParamMap.get('id');
     this.companyIncorporationService
       .submitProprietorDirector(
         this.activatedRoute.snapshot.paramMap.get('id') as string,
+        directorId ? directorId : undefined,
       )
       .subscribe({
         next: value => {
@@ -146,7 +148,9 @@ export class ProprietorSignatureDeclarationComponent
             if (value.type === 'sole proprietorship') {
               this.router.navigate([`/company-incorporation/home`]);
             } else {
-              this.router.navigate([`/company-incorporation/directors`]);
+              this.router.navigate([
+                `/company-incorporation/directors/${value.data['company_incorporation_id']}`,
+              ]);
             }
           }
         },

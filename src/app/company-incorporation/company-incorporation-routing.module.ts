@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { IncorporationFormComponent } from './incorporation-form/incorporation-form.component';
 import { TinRegistrationComponent } from './tin-registration/tin-registration.component';
 import { ProprietorDirectorComponent } from './proprietor-director/proprietor-director.component';
+import { ListDirectorsComponent } from './list-directors/list-directors.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
       },
       { path: 'tin-registration', component: TinRegistrationComponent },
       { path: 'proprietor/:id', component: ProprietorDirectorComponent },
+      { path: 'director/:id', component: ProprietorDirectorComponent },
+      { path: 'directors/:id', component: ListDirectorsComponent },
     ],
   },
 ];

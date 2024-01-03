@@ -1,0 +1,62 @@
+<section class="bg-secondary h-screen overflow-auto text-white">
+  <div class="flex mt-10 items-center justify-center">
+    <span class="text-lg">List of Directors</span>
+  </div>
+  <div
+    *ngIf="isLoading"
+    class="flex h-28 mt-5 flex-col animate-bounce justify-center mx-5 w-full items-center"
+  >
+    <app-logo />
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+  <div class="space-y-4 mt-10">
+    <div
+      class="flex mt-2 justify-center items-center"
+      *ngIf="directors.length === 0 && !isLoading"
+    >
+      <span class="text-xs text-primary"
+        >No directors yet. Add a minimum of two(2) directors</span
+      >
+    </div>
+    <ng-container *ngIf="directors.length">
+      <div
+        *ngFor="let director of directors; let i = index"
+        class="flex flex-col items-center justify-center"
+      >
+        <span class="text-primary">Director {{ i + 1 }}</span>
+        <div class="flex mt-2 justify-center items-center gap-x-2">
+          <div
+            [routerLink]="'../director/' + id"
+            [queryParams]="{ id: director.id }"
+            class="bg-[#606060] cursor-pointer hover:bg-primary min-w-[12rem] text-center p-2 rounded-md"
+          >
+            {{ director.name }}
+          </div>
+          <!--      <span [ngClass]="getColor(company.status)" class="status-icon space-x-2">-->
+          <!--        <mat-icon>brightness_1</mat-icon>-->
+          <!--        <span>{{ capitalizeWords(company.status) }}</span>-->
+          <!--      </span>-->
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="flex mt-10 items-center justify-center">
+    <button
+      class="flex hover:bg-primary ho px-6 py-2 gap-x-2 items-center rounded-md bg-[#262626]"
+      [routerLink]="'../../director/' + id"
+    >
+      <mat-icon>add_circle</mat-icon>
+      <span>Add new director</span>
+    </button>
+  </div>
+  <span
+    *ngIf="directors.length < 2 && !isLoading"
+    class="text-primary text-xs mt-5 flex place-content-center"
+    >You require at least {{ 2 - directors.length }} director(s)</span
+  >
+  <hr class="text-primary mt-12 align-center mx-[25%]" />
+  <div class="mt-10 gap-x-5 flex items-center justify-center">
+    <app-button name="Back" variant="custom" />
+    <app-button name="Submit" variant="custom" />
+  </div>
+</section>

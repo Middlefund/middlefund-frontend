@@ -2,7 +2,9 @@
   <div
     class="flex text-xl font-bold gap-y-2 items-center justify-center flex-col"
   >
-    <span class="text-primary">Proprietor Information</span>
+    <span class="text-primary"
+      >{{ isDirector ? 'Director' : 'Proprietor' }} Information</span
+    >
   </div>
   <div
     class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-grey"
@@ -21,7 +23,9 @@
           {{ !isRoleDetailsValid() ? 1 : '' }}
           <mat-icon *ngIf="isRoleDetailsValid()">check</mat-icon>
         </span>
-        <span class="hidden sm:block">Proprietor Profile</span>
+        <span class="hidden sm:block"
+          >{{ isDirector ? 'Director' : 'Proprietor' }} Profile</span
+        >
       </li>
 
       <li
@@ -54,6 +58,21 @@
     </ol>
   </div>
 </div>
-<app-proprietor-details *ngIf="stage === 1" />
-<app-proprietor-tin-contact *ngIf="stage === 2" />
-<app-proprietor-signature-declaration *ngIf="stage === 3" />
+<ng-container *ngIf="!isLoading && status !== 'awaiting review'">
+  <app-proprietor-details *ngIf="stage === 1" />
+  <app-proprietor-tin-contact *ngIf="stage === 2" />
+  <app-proprietor-signature-declaration *ngIf="stage === 3" />
+</ng-container>
+<section *ngIf="isLoading" class="bg-secondary h-screen w-full text-white">
+  <div
+    class="flex pt-28 flex-col animate-bounce justify-center mx-5 w-full items-center"
+  >
+    <app-logo />
+    <span class="text-primary mt-4">Loading...</span>
+  </div>
+</section>
+<div *ngIf="status === 'awaiting review' && !isLoading" class="bg-secondary">
+  <app-rocket-animation
+    title="You application is under review, you will be notified upon completion"
+  />
+</div>
