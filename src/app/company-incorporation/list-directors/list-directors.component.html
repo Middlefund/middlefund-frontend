@@ -1,4 +1,7 @@
-<section class="bg-secondary h-screen overflow-auto text-white">
+<section
+  *ngIf="status !== 'awaiting review'"
+  class="bg-secondary h-screen overflow-auto text-white"
+>
   <div class="flex mt-10 items-center justify-center">
     <span class="text-lg">List of Directors</span>
   </div>
@@ -57,6 +60,19 @@
   <hr class="text-primary mt-12 align-center mx-[25%]" />
   <div class="mt-10 gap-x-5 flex items-center justify-center">
     <app-button name="Back" variant="custom" />
-    <app-button name="Submit" variant="custom" />
+    <app-button
+      [isLoading]="isSubmitting"
+      (click)="submit()"
+      name="Submit"
+      variant="custom"
+    />
   </div>
 </section>
+<div
+  *ngIf="status === 'awaiting review' && !isLoading"
+  class="bg-secondary h-screen"
+>
+  <app-rocket-animation
+    title="You application is under review, you will be notified upon completion"
+  />
+</div>
