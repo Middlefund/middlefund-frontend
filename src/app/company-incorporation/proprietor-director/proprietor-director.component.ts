@@ -33,6 +33,21 @@ export class ProprietorDirectorComponent implements OnInit {
     this.incorporationService.roleStage.subscribe(value => {
       this.stage = value;
     });
+    this.incorporationService.roleTinContactForm.controls.hasTin.valueChanges.subscribe(
+      value => {
+        if (value === 'yes') {
+          this.incorporationService.roleTinContactForm.controls.tin.setValidators(
+            [Validators.required],
+          );
+          this.incorporationService.roleTinContactForm.controls.tin.updateValueAndValidity();
+        } else {
+          this.incorporationService.roleTinContactForm.controls.tin.setValidators(
+            [],
+          );
+          this.incorporationService.roleTinContactForm.controls.tin.updateValueAndValidity();
+        }
+      },
+    );
   }
 
   isRoleDetailsValid() {

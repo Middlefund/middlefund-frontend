@@ -52,7 +52,12 @@ export class AccountsService {
 
   login(credentials: object) {
     return this.http
-      .post<loginData>(`${environment.BACKEND_URL}/api/login`, credentials)
+      .post<loginData>(`${environment.BACKEND_URL}/api/login`, credentials, {
+        headers: {
+          'Access-Control-Allow-Origin': 'https://middlefund.onrender.com',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+      })
       .pipe(
         tap(response => {
           console.log(response);

@@ -123,6 +123,13 @@
         >
         <div class="mt-6 flex items-center justify-center">
           <app-button
+            type="button"
+            name="Previous"
+            [disable]="isLoading"
+            variant="custom"
+            (click)="onPrevious()"
+          />
+          <app-button
             [disable]="roleProofForm.invalid"
             name="Submit"
             [isLoading]="isLoading"

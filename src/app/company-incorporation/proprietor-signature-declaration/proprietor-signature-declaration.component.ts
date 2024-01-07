@@ -160,5 +160,9 @@ export class ProprietorSignatureDeclarationComponent
         },
       });
   };
+
+  onPrevious() {
+    this.companyIncorporationService.updateRoleStage(2);
+  }
   protected readonly signatureMethods = signatureMethods;
 }

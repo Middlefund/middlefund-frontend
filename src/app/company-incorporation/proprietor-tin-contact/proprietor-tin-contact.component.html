@@ -6,35 +6,44 @@
         (ngSubmit)="onSubmit()"
         class="flex flex-col mx-5 w-full items-center"
       >
-        <div
-          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
-        >
-          <app-custom-input
-            [labelColor]="true"
-            label="Email"
-            placeholder="Enter your email address"
-            [control]="tinContactForm.controls.email"
-          ></app-custom-input>
-          <app-custom-input
-            [labelColor]="true"
-            label="Phone Number"
-            placeholder="Enter your phone number"
-            [control]="tinContactForm.controls.phoneNumber"
-          ></app-custom-input>
-          <app-custom-select
-            [labelColor]="'text-primary'"
-            [control]="tinContactForm.controls.hasTin"
-            label="Does Proprietor Have a Tax Identification Number (TIN)?"
-            [options]="yesOrNo"
-            placeholder="Select your choice"
-          />
-          <app-custom-input
-            *ngIf="tinContactForm.controls.hasTin.value === 'yes'"
-            [labelColor]="true"
-            label="TIN"
-            placeholder="Enter TIN number"
-            [control]="tinContactForm.controls.tin"
-          ></app-custom-input>
+        <div class="border-y-2 border-primary pb-8 pt-4">
+          <div class="grid sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
+            <app-custom-input
+              [labelColor]="true"
+              label="Email"
+              placeholder="Enter your email address"
+              [control]="tinContactForm.controls.email"
+            ></app-custom-input>
+            <app-custom-input
+              [labelColor]="true"
+              label="Phone Number"
+              placeholder="Enter your phone number"
+              [control]="tinContactForm.controls.phoneNumber"
+            ></app-custom-input>
+            <app-custom-select
+              [labelColor]="'text-primary'"
+              [control]="tinContactForm.controls.hasTin"
+              label="Does Proprietor Have a Tax Identification Number (TIN)?"
+              [options]="yesOrNo"
+              placeholder="Select your choice"
+            />
+            <app-custom-input
+              *ngIf="tinContactForm.controls.hasTin.value === 'yes'"
+              [labelColor]="true"
+              label="TIN"
+              placeholder="Enter TIN number"
+              [control]="tinContactForm.controls.tin"
+            ></app-custom-input>
+          </div>
+          <div
+            *ngIf="tinContactForm.controls.hasTin.value === 'no'"
+            class="flex mt-5 items-center justify-center text-[red] text-xs"
+          >
+            <p>
+              You will be required to fill a tin registration form since the
+              proprietor does not have Tin Number
+            </p>
+          </div>
         </div>
         <div class="mt-6 flex items-center justify-center">
           <app-button
