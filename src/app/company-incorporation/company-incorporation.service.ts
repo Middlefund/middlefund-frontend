@@ -35,7 +35,6 @@ export class CompanyIncorporationService {
     this.tinStageSubject = new BehaviorSubject(1);
     this.tinStage = this.tinStageSubject.asObservable();
     this.initializeForm();
-    // this.hasTinNumber()
   }
 
   readonly businessProfileForm = this.fb.group({
@@ -85,9 +84,8 @@ export class CompanyIncorporationService {
     maritalStatus: [null, Validators.required],
     birthCountry: [null, Validators.required],
     birthRegion: [null, Validators.required],
-    birthTown: [null, Validators.required],
-    nationality: [null, Validators.required],
-    resident: [null, Validators.required],
+    birthCity: [null, Validators.required],
+    isResident: [null, Validators.required],
     maidenLastName: ['', Validators.required],
     motherFirstName: ['', Validators.required],
   });
@@ -98,26 +96,25 @@ export class CompanyIncorporationService {
     streetName: [null, Validators.required],
     country: [null, Validators.required],
     region: [null, Validators.required],
-    town: [null, Validators.required],
+    city: [null, Validators.required],
     district: ['', Validators.required],
-    location: ['', Validators.required],
-    postalCode: ['', Validators.required],
+    locationArea: ['', Validators.required],
   });
 
   readonly tinEmploymentIdentificationForm = this.fb.group({
-    category: [null, Validators.required],
+    category: [null],
     employerName: ['', Validators.required],
     idType: [null, Validators.required],
     idNumber: ['', Validators.required],
     issueDate: ['', Validators.required],
     expiryDate: ['', Validators.required],
-    issueCountry: ['', Validators.required],
+    issueCountry: [null, Validators.required],
     issuePlace: ['', Validators.required],
   });
 
   readonly tinContactForm = this.fb.group({
     postalType: [null, Validators.required],
-    postalNumber: ['', Validators.required],
+    postalCode: ['', Validators.required],
     boxRegion: ['', Validators.required],
     boxLocationArea: ['', Validators.required],
     phoneNumber: ['', Validators.required],
@@ -130,28 +127,19 @@ export class CompanyIncorporationService {
     businessNature: [null, Validators.required],
     annualTurnover: ['', Validators.required],
     numberOfEmployees: [null, Validators.required],
-    businessRegistered: ['', Validators.required],
+    isBusinessRegistered: ['', Validators.required],
     businessName: ['', Validators.required],
     oldTin: ['', Validators.required],
     rgdNumber: ['', Validators.required],
-    houseNumber: ['', Validators.required],
-    buildingName: ['', Validators.required],
+    businessAddress: ['', Validators.required],
+    businessBuildingName: ['', Validators.required],
     landMark: ['', Validators.required],
-    town: ['', Validators.required],
-    location: [''],
-    postalCode: [''],
-    country: [''],
-    region: [''],
+    businessCity: ['', Validators.required],
+    businessLocationArea: [''],
+    businessPostalCode: [''],
+    businessCountry: [''],
+    businessRegion: [''],
   });
-
-  readonly tinRegistrationForm = this.fb.group({
-    personalDetails: this.tinPersonalDetailsForm,
-    employmentIdentification: this.tinEmploymentIdentificationForm,
-    residentialAddress: this.tinResidentialAddressForm,
-    businessDetails: this.tinBusinessDetailsForm,
-    contactDetails: this.tinContactForm,
-  });
-
   public updateCompanyProfileStage(stage: 1 | 2) {
     return this.companyStageSubject.next(stage);
   }
@@ -159,19 +147,9 @@ export class CompanyIncorporationService {
   public updateRoleStage(stage: 1 | 2 | 3) {
     return this.roleStageSubject.next(stage);
   }
-
-  public updateStage(stage: number) {
-    return this.stageSubject.next(stage);
-  }
-
   public updateTinStage(stage: number) {
     return this.tinStageSubject.next(stage);
   }
-
-  public get currentStage() {
-    return this.stageSubject.value || 1;
-  }
-
   private initializeForm() {
     const formData = JSON.parse(localStorage.getItem('companyIncorporation')!);
     if (formData) {
@@ -239,11 +217,18 @@ export class CompanyIncorporationService {
       `${environment.BACKEND_URL}/api/submit-directors/${id}`,
     );
   }
-  // hasTinNumber() {
-  //     if(this.companyIncorporationForm.controls.proprietorDetails.controls.hasTin.value === 'yes') {
-  //       this.companyIncorporationForm.controls.proprietorDetails.get('tin')?.setValidators([Validators.required])
-  //     } else {
-  //       this.companyIncorporationForm.controls.proprietorDetails.get('tin')?.clearValidators()
-  //     }
-  // }
+
+  public submitTinForm(id: string) {
+    const tinRegistrationInfo = {
+      ...this.tinPersonalDetailsForm.value,
+      ...this.tinEmploymentIdentificationForm.value,
+      ...this.tinResidentialAddressForm.value,
+      ...this.tinContactForm.value,
+      ...this.tinResidentialAddressForm.value,
+    };
+    return this.http.post<ImessageDataType>(
+      `${environment.BACKEND_URL}/api/tin-registration/${id}`,
+      tinRegistrationInfo,
+    );
+  }
 }

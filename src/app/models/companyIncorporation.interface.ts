@@ -21,6 +21,10 @@ export interface ImessageDataType extends messageData {
   type: string;
 }
 
+export interface ImessageDataTypeCompany extends ImessageDataType {
+  company: ICompanyInformation;
+}
+
 export interface ImessageDataStatus extends messageData {
   status: string;
 }

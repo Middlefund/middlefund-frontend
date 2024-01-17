@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'incorporation-form',
         component: IncorporationFormComponent,
       },
-      { path: 'tin-registration', component: TinRegistrationComponent },
+      { path: 'tin-registration/:id', component: TinRegistrationComponent },
       { path: 'proprietor/:id', component: ProprietorDirectorComponent },
       { path: 'director/:id', component: ProprietorDirectorComponent },
       { path: 'directors/:id', component: ListDirectorsComponent },

@@ -1,25 +1,68 @@
 <section class="bg-secondary h-screen w-full text-white">
   <div class="flex flex-col h-full items-center">
-    <div class="flex text-5xl font-bold gap-y-2 items-center justify-center flex-col">
-      <span>Tin Registration with</span>
-      <span class="text-primary">Middlefund</span>
-    </div>
     <div class="flex mt-10 flex-col w-full justify-center items-center">
-      <form [formGroup]="tinPersonalDetailsForm" (ngSubmit)="onSubmit()" class="flex flex-col mx-5 w-full items-center">
-        <div class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full">
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.maritalStatus" label="Marital Status" [options]="maritalStatus" placeholder="select your status"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.birthCountry" label="Birth Country" [options]="countries" placeholder="select your birth country"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.birthRegion" label="Birth Region" [options]="states" placeholder="select your birth region"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.birthTown" label="Birth City" [options]="cities" placeholder="select your birth city"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.nationality" label="Nationality" [options]="countries" placeholder="select your nationality"/>
-          <app-custom-select [labelColor]="'text-primary'" [control]="tinPersonalDetailsForm.controls.resident" label="Resident" [options]="answer" placeholder="Are you a resident?"/>
-          <app-custom-input  [labelColor]="true" label="Maiden Last Name" placeholder="Enter your maiden last name"
-                            [control]="tinPersonalDetailsForm.controls.maidenLastName" />
-          <app-custom-input [labelColor]="true" label="Mother's First Name" placeholder="Enter your mother's first name"
-                            [control]="tinPersonalDetailsForm.controls.motherFirstName" />
+      <form
+        [formGroup]="tinPersonalDetailsForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col mx-5 w-full items-center"
+      >
+        <div
+          class="grid border-y-2 border-primary pb-8 pt-4 sm:grid-cols-2 gap-y-8 md:max-w-5xl gap-x-5 w-full"
+        >
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinPersonalDetailsForm.controls.maritalStatus"
+            label="Marital Status"
+            [options]="maritalStatus"
+            placeholder="select your status"
+          />
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinPersonalDetailsForm.controls.birthCountry"
+            label="Birth Country"
+            [options]="countries"
+            placeholder="select your birth country"
+          />
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinPersonalDetailsForm.controls.birthRegion"
+            label="Birth Region"
+            [options]="states"
+            placeholder="select your birth region"
+          />
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinPersonalDetailsForm.controls.birthCity"
+            label="Birth City"
+            [options]="cities"
+            placeholder="select your birth city"
+          />
+          <app-custom-select
+            [labelColor]="'text-primary'"
+            [control]="tinPersonalDetailsForm.controls.isResident"
+            label="Are you a resident of your nationality?"
+            [options]="answer"
+            placeholder="Are you a resident?"
+          />
+          <app-custom-input
+            [labelColor]="true"
+            label="Maiden Last Name"
+            placeholder="Enter your maiden last name"
+            [control]="tinPersonalDetailsForm.controls.maidenLastName"
+          />
+          <app-custom-input
+            [labelColor]="true"
+            label="Mother's First Name"
+            placeholder="Enter your mother's first name"
+            [control]="tinPersonalDetailsForm.controls.motherFirstName"
+          />
         </div>
         <div class="mt-6 flex items-center justify-center">
-          <app-button [disable]='tinPersonalDetailsForm.invalid' name="Next" variant="custom"/>
+          <app-button
+            [disable]="tinPersonalDetailsForm.invalid"
+            name="Next"
+            variant="custom"
+          />
         </div>
       </form>
     </div>

@@ -143,7 +143,9 @@ export class ProprietorSignatureDeclarationComponent
             this.companyIncorporationService.roleTinContactForm.controls.hasTin
               .value === 'no'
           ) {
-            this.router.navigate([`/company-incorporation/tin-registration`]);
+            this.router.navigate([
+              `/company-incorporation/tin-registration/${value.data.id}`,
+            ]);
           } else {
             if (value.type === 'sole proprietorship') {
               this.router.navigate([`/company-incorporation/home`]);
