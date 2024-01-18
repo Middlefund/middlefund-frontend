@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CompanyIncorporationService } from '../company-incorporation.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { defaultServerError } from '../../utility/constants';
@@ -10,7 +10,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './proprietor-director.component.html',
   styleUrls: ['./proprietor-director.component.css'],
 })
-export class ProprietorDirectorComponent implements OnInit {
+export class ProprietorDirectorComponent implements OnInit, OnDestroy {
   stage: number = 1;
   isLoading = false;
   status: string = 'incomplete';
@@ -48,6 +48,13 @@ export class ProprietorDirectorComponent implements OnInit {
         }
       },
     );
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy as directors');
+    this.incorporationService.roleDetailsForm.reset();
+    this.incorporationService.roleProofForm.reset();
+    this.incorporationService.roleTinContactForm.reset();
   }
 
   isRoleDetailsValid() {

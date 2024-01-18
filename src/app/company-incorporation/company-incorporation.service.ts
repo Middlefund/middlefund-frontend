@@ -231,4 +231,10 @@ export class CompanyIncorporationService {
       tinRegistrationInfo,
     );
   }
+
+  public deleteDirector(id: string) {
+    return this.http.delete<ImessageDataStatus>(
+      `${environment.BACKEND_URL}/api/director/${id}`,
+    );
+  }
 }

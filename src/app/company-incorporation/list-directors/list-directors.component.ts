@@ -12,12 +12,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-directors.component.css'],
 })
 export class ListDirectorsComponent implements OnInit {
-  protected readonly capitalizeWords = capitalizeWords;
   directors: IProprietorDirector[] = [];
   isLoading: boolean = false;
   isSubmitting: boolean = false;
   id: string = this.activatedRoute.snapshot.paramMap.get('id') as string;
   status: string = 'incomplete';
+  isDeleting: boolean = false;
+  deleteId = '';
 
   constructor(
     private companyIncorporationService: CompanyIncorporationService,
@@ -65,4 +66,23 @@ export class ListDirectorsComponent implements OnInit {
         },
       });
   }
+
+  deleteDirector = () => {
+    this.isDeleting = true;
+    this.companyIncorporationService.deleteDirector(this.deleteId).subscribe({
+      next: value => {
+        this.isDeleting = false;
+        this.toast.success(value.message);
+        this.directors = this.directors.filter(
+          director => director.id !== this.deleteId,
+        );
+        this.deleteId = '';
+      },
+      error: err => {
+        this.isDeleting = false;
+        this.toast.error(err.error?.message || defaultServerError);
+      },
+    });
+  };
+  protected readonly Boolean = Boolean;
 }
