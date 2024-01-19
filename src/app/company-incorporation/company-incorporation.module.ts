@@ -30,6 +30,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { ListDirectorsComponent } from './list-directors/list-directors.component';
+import { CartComponent } from './cart/cart.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { ListDirectorsComponent } from './list-directors/list-directors.componen
     ProprietorTinContactComponent,
     ProprietorSignatureDeclarationComponent,
     ListDirectorsComponent,
+    CartComponent,
   ],
   exports: [NavbarComponent],
   imports: [
@@ -67,6 +70,7 @@ import { ListDirectorsComponent } from './list-directors/list-directors.componen
     ToastModule,
     FileUploadModule,
     AngularSignaturePadModule,
+    MatMenuModule,
   ],
   providers: [MessageService],
 })

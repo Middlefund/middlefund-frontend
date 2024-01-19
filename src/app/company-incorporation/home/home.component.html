@@ -15,6 +15,14 @@
     </div>
     <div class="space-y-4" *ngIf="!isLoading">
       <div *ngFor="let company of companies" class="flex items-center gap-x-2">
+        <div class="text-white hover:text-primary cursor-pointer">
+          <mat-icon mat-button [matMenuTriggerFor]="menu">more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button [routerLink]="'../cart/' + company.id" mat-menu-item>
+              Cart
+            </button>
+          </mat-menu>
+        </div>
         <div
           [routerLink]="'../incorporation-form'"
           [queryParams]="{ id: company.id }"
