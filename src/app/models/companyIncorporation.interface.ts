@@ -43,3 +43,11 @@ export interface IProprietorDirector {
   ghanaCard: string;
   signature: string;
 }
+
+export interface Icart {
+  count: number;
+  companyPrice: number;
+  tinPrice: number;
+  companyType: string;
+  total: number;
+}

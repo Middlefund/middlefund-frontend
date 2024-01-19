@@ -237,4 +237,10 @@ export class CompanyIncorporationService {
       `${environment.BACKEND_URL}/api/director/${id}`,
     );
   }
+
+  public getCompanyCart(id: string) {
+    return this.http.get<messageData>(
+      `${environment.BACKEND_URL}/api/cart/${id}`,
+    );
+  }
 }

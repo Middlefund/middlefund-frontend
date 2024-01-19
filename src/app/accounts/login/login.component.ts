@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {emailValidator} from "../../utility/validators.directive";
-import {AccountsService} from "../accounts.service";
-import {Router} from "@angular/router";
-import {AlertService} from "../../alert";
-import {ToastrService} from "ngx-toastr";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { emailValidator } from '../../utility/validators.directive';
+import { AccountsService } from '../accounts.service';
+import { Router } from '@angular/router';
+import { AlertService } from '../../alert';
+import { ToastrService } from 'ngx-toastr';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { defaultServerError } from '../../utility/constants';
 
 @Component({
   selector: 'app-login',
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit {
           // }
         },
         error: err => {
-          this.alert.error(err.error?.message || 'Oops! Server error');
+          this.alert.error(err.error?.message || defaultServerError);
           this.isLoading = false;
         },
       });

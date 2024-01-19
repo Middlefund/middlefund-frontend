@@ -2,7 +2,7 @@ export const registrationInfo: Array<{ name: string; value: string }> = [
   { name: 'Sole proprietorship', value: 'sole proprietorship' },
   {
     name: 'Limited Liability Company (LLC)',
-    value: 'Limited Liability Company (LLC)',
+    value: 'limited liability company (LLC)',
   },
   // { name: 'S-Corp', value: 'S-Corp' },
   // { name: 'C-Corp', value: 'C-Corp' },

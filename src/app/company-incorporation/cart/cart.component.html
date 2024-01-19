@@ -1,23 +1,31 @@
 <section
   class="h-screen flex-col bg-secondary flex items-center justify-center"
 >
+  <alert />
   <div
     class="bg-btcolor pb-20 text-lg w-full max-w-lg text-white rounded-lg p-10"
+    *ngIf="isLoading"
+  >
+    <app-middlefund-loader [isLoading]="isLoading" />
+  </div>
+  <div
+    class="bg-btcolor pb-20 text-lg w-full max-w-lg text-white rounded-lg p-10"
+    *ngIf="!isLoading"
   >
     <span class="text-[#858585]">Billing</span>
     <div class="mt-10">
       <div class="flex justify-between">
-        <span>LLC</span>
-        <span>GH&#8373; 1400</span>
+        <span>{{ capitalizeWords(cart?.companyType || '') }}</span>
+        <span>GH&#8373; {{ cart?.companyPrice }}</span>
       </div>
-      <div class="flex justify-between">
-        <span>Tin Registration X3</span>
-        <span>GH&#8373; 300</span>
+      <div *ngIf="cart?.count" class="flex justify-between">
+        <span>Tin Registration X{{ cart?.count }}</span>
+        <span>GH&#8373; {{ cart?.tinPrice }}</span>
       </div>
     </div>
     <div class="flex mt-10 justify-between">
       <span>Total Bill Due</span>
-      <span>GH&#8373; 1700</span>
+      <span>GH&#8373; {{ cart?.total }}</span>
     </div>
   </div>
   <div class="mt-6 flex items-center gap-x-5 justify-center">

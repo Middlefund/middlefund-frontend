@@ -32,6 +32,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { ListDirectorsComponent } from './list-directors/list-directors.component';
 import { CartComponent } from './cart/cart.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { AlertModule } from '../alert';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { MatMenuModule } from '@angular/material/menu';
     FileUploadModule,
     AngularSignaturePadModule,
     MatMenuModule,
+    AlertModule,
   ],
   providers: [MessageService],
 })

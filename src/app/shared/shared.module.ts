@@ -42,6 +42,7 @@ import { PlatinumCustomInputComponent } from './platinum-custom-input/platinum-c
 import { PlatinumCustomSelectComponent } from './platinum-custom-select/platinum-custom-select.component';
 import { PlatinumCustomFileComponent } from './platinum-custom-file/platinum-custom-file.component';
 import {FileInputComponent} from "./file-input/file-input.component";
+import { MiddlefundLoaderComponent } from './middlefund-loader/middlefund-loader.component';
 
 
 export function playerFactory() {
@@ -78,7 +79,8 @@ export function playerFactory() {
     PlatinumCustomInputComponent,
     PlatinumCustomSelectComponent,
     PlatinumCustomFileComponent,
-    FileInputComponent
+    FileInputComponent,
+    MiddlefundLoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,7 @@ export function playerFactory() {
     RouterLinkActive,
     ReactiveFormsModule,
     PdfViewerModule,
-    LottieModule.forRoot({player: playerFactory}),
+    LottieModule.forRoot({ player: playerFactory }),
     NgxSkeletonLoaderModule,
     DialogModule,
     FormsModule,
@@ -124,8 +126,8 @@ export function playerFactory() {
     PlatinumAsideComponent,
     PlatinumCustomInputComponent,
     PlatinumCustomSelectComponent,
-    FileInputComponent
-  ]
+    FileInputComponent,
+    MiddlefundLoaderComponent,
+  ],
 })
-
-export class SharedModule{}
+export class SharedModule {}
