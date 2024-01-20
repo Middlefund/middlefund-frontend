@@ -18,6 +18,11 @@ const setEnv = () => {
   AWS_ACCESS_KEY_ID: '${process.env['AWS_ACCESS_KEY_ID']}',
   AWS_SECRET_ACCESS_KEY: '${process.env['AWS_SECRET_ACCESS_KEY']}',
   AWS_BUCKET_NAME: '${process.env['AWS_BUCKET_NAME']}',
+  HUBTEL_PAY: '${process.env['HUBTEL_PAY']}',
+  MIDDLEFUND_LOGO: '${process.env['MIDDLEFUND_LOGO']}',
+  MOBILE_NUMBER: '${process.env['MOBILE_NUMBER']}',
+  HUBTEL_CLIENT_ID: '${process.env['HUBTEL_CLIENT_ID']}',
+  HUBTEL_CLIENT_SECRET: '${process.env['HUBTEL_CLIENT_SECRET']}',
   production: true,
 };
 `;
@@ -28,6 +33,11 @@ const setEnv = () => {
   AWS_ACCESS_KEY_ID: '${process.env['AWS_ACCESS_KEY_ID']}',
   AWS_SECRET_ACCESS_KEY: '${process.env['AWS_SECRET_ACCESS_KEY']}',
   AWS_BUCKET_NAME: '${process.env['AWS_BUCKET_NAME']}',
+  HUBTEL_PAY: '${process.env['HUBTEL_PAY']}',
+  MIDDLEFUND_LOGO: '${process.env['MIDDLEFUND_LOGO']}',
+  MOBILE_NUMBER: '${process.env['MOBILE_NUMBER']}',
+  HUBTEL_CLIENT_ID: '${process.env['HUBTEL_CLIENT_ID']}',
+  HUBTEL_CLIENT_SECRET: '${process.env['HUBTEL_CLIENT_SECRET']}',
   production: false,
 };
 `;
