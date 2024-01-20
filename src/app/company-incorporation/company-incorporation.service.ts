@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { messageData } from '../models/interfaces';
 import { environment } from '../../environments/environment';
 import {
+  IHubtelRequest,
+  IHubtelResponse,
   ImessageDataStatus,
   ImessageDataType,
 } from '../models/companyIncorporation.interface';
@@ -241,6 +243,13 @@ export class CompanyIncorporationService {
   public getCompanyCart(id: string) {
     return this.http.get<messageData>(
       `${environment.BACKEND_URL}/api/cart/${id}`,
+    );
+  }
+
+  public pay(params: IHubtelRequest) {
+    return this.http.post<IHubtelResponse>(
+      `${environment.HUBTEL_PAY}/${environment.MOBILE_NUMBER}`,
+      params,
     );
   }
 }

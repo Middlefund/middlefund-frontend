@@ -1,4 +1,5 @@
 import { messageData } from './interfaces';
+import * as url from 'url';
 
 export interface ICompanyInformation {
   id: string;
@@ -50,4 +51,26 @@ export interface Icart {
   tinPrice: number;
   companyType: string;
   total: number;
+}
+
+export interface IHubtelRequest {
+  amount: number;
+  title: string;
+  description: string;
+  clientReference: string;
+  callbackUrl: string;
+  cancellationUrl: string;
+  returnUrl: string;
+  logo: string;
+}
+
+export interface IHubtelResponse {
+  message: string;
+  code: string;
+  data: {
+    paylinkId: string;
+    clientReference: string;
+    paylinkUrl: string;
+    expireIn: number;
+  };
 }
