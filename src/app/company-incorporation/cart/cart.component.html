@@ -29,7 +29,17 @@
     </div>
   </div>
   <div class="mt-6 flex items-center gap-x-5 justify-center">
-    <app-button type="button" name="Back" variant="tertiary" />
-    <app-button (click)="pay()" name="Pay" variant="custom" />
+    <app-button
+      (click)="backClicked()"
+      type="button"
+      name="Back"
+      variant="tertiary"
+    />
+    <app-button
+      [disable]="isLoading || cart === undefined || isSending"
+      (click)="pay()"
+      name="Pay"
+      variant="custom"
+    />
   </div>
 </section>
