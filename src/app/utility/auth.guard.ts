@@ -56,11 +56,11 @@ export const cannotAuthenticate: CanActivateFn =
     if (user.loggedInUser) {
       const userType = user.userData.user_type;
       if (userType === 'startup') {
-        inject(Router).navigateByUrl('/startup').then(r => r);
+        inject(Router).navigateByUrl('/startup/home').then(r => r);
       } else if (userType === 'investor') {
-        inject(Router).navigateByUrl('/investor').then(r => r);
+        inject(Router).navigateByUrl('/investor/home').then(r => r);
       } else if (userType === 'admin') {
-        inject(Router).navigateByUrl('/admin').then(r => r);
+        inject(Router).navigateByUrl('/admin/home').then(r => r);
       } else {
         inject(Router).navigateByUrl('/company-incorporation').then(r => r);
       }

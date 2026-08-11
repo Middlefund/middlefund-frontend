@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
 import { IRequestCountry, messageData } from '../models/interfaces';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SocialUser } from '@abacritt/angularx-social-login';
 
 @Injectable({
   providedIn: 'root',
@@ -60,7 +61,6 @@ export class AccountsService {
       })
       .pipe(
         tap(response => {
-          console.log(response);
           localStorage.setItem('middlefund$user', JSON.stringify(response));
           this.userSubject.next(response);
         }),
@@ -92,11 +92,18 @@ export class AccountsService {
     );
   }
 
-  socialLogin(socialCredentials: any) {
-    return this.http.post<any>(
-      `${environment.BACKEND_URL}/api/social-login`,
-      socialCredentials,
-    );
+  socialLogin(socialCredentials: SocialUser): Observable<loginData> {
+    return this.http
+      .post<loginData>(
+        `${environment.BACKEND_URL}/api/social-login`,
+        socialCredentials,
+      )
+      .pipe(
+        tap(response => {
+          localStorage.setItem('middlefund$user', JSON.stringify(response));
+          this.userSubject.next(response);
+        }),
+      );
   }
 
   logout() {
