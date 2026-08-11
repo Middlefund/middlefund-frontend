@@ -41,29 +41,30 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
   });
 
+  private navigateByUserType(user: { user_type: string }): void {
+    const redirectUrl = localStorage.getItem('redirectUrl');
+    if (redirectUrl) {
+      this.route.navigateByUrl(JSON.parse(redirectUrl)).then(r => r);
+      localStorage.removeItem('redirectUrl');
+    } else if (user.user_type === 'startup') {
+      this.route.navigateByUrl('startup/home').then(r => r);
+    } else if (user.user_type === 'investor') {
+      this.route.navigateByUrl('investor/home').then(r => r);
+    } else if (user.user_type === 'admin') {
+      this.route.navigateByUrl('admin/home').then(r => r);
+    } else {
+      this.route.navigateByUrl('company-incorporation').then(r => r);
+    }
+  }
+
   onSubmit() {
     if (this.login.valid) {
       this.isLoading = true;
       this.accountsService.login(this.login.value).subscribe({
         next: value => {
           this.toast.success(`Welcome ${value.user.name}`);
-          console.log(this.accountsService.redirectUrl);
           this.isLoading = false;
-          if (localStorage.getItem('redirectUrl')) {
-            this.route
-              .navigateByUrl(JSON.parse(localStorage.getItem('redirectUrl')!))
-              .then(r => r);
-          } else {
-            this.route.navigateByUrl('company-incorporation').then(r => r);
-          }
-          // } else if (value.user.user_type === "startup"){
-          //   this.route.navigateByUrl('startup/home').then(r => r)
-          // } else if(value.user.user_type === "investor"){
-          //   this.route.navigateByUrl('investor/home').then(r => r)
-          // }
-          // else if(value.user.user_type === "admin") {
-          //   this.route.navigateByUrl('admin/home').then(r => r)
-          // }
+          this.navigateByUserType(value.user);
         },
         error: err => {
           this.alert.error(err.error?.message || defaultServerError);
@@ -78,40 +79,12 @@ export class LoginComponent implements OnInit {
   socialLogin(socialCredentials: SocialUser) {
     this.accountsService.socialLogin(socialCredentials).subscribe({
       next: value => {
-        console.log(value);
+        this.toast.success(`Welcome ${value.user.name}`);
+        this.navigateByUserType(value.user);
       },
       error: err => {
-        console.log(err);
+        this.alert.error(err.error?.message || defaultServerError);
       },
     });
   }
-
-  // socialLogin() {
-  //   this.accountsService.socialLogin().subscribe({
-  //     next: value => {
-  //       const width = 600;
-  //       const height = 700;
-  //       const left = (screen.width - width) / 2;
-  //       const top = ( screen.height - height) / 2;
-  //       const popup = window.open(value.url,"center window",'resizable=yes, width=' + width
-  //         + ', height=' + height + ', top='
-  //         + top + ', left=' + left)
-  //
-  //       const checkPopup = setInterval(() => {
-  //         if (popup?.window.location.href.includes('localhost:4000')) {
-  //           this.route.navigateByUrl(window.location.href)
-  //           popup.close()
-  //         }
-  //         if (!popup || !popup.closed) {
-  //           console.log('Yes')
-  //           return
-  //         }
-  //         clearInterval(checkPopup);
-  //       }, 1000);
-  //     },
-  //     error: err => {
-  //       this.alert.error(err.error.message || "Oops! Server error")
-  //     }
-  //   })
-  // }
 }
