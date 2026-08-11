@@ -4,6 +4,7 @@ export interface loginData {
   token: object;
   user: {
     name: string;
+    user_type: string;
   };
 }
 

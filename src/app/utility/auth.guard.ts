@@ -54,22 +54,20 @@ export const cannotAuthenticate: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const user = inject(AccountsService);
     if (user.loggedInUser) {
-      inject(Router).navigateByUrl('/company-incorporation').then(r => r)
+      const userType = user.userData.user_type;
+      if (userType === 'startup') {
+        inject(Router).navigateByUrl('/startup/home').then(r => r);
+      } else if (userType === 'investor') {
+        inject(Router).navigateByUrl('/investor/home').then(r => r);
+      } else if (userType === 'admin') {
+        inject(Router).navigateByUrl('/admin/home').then(r => r);
+      } else {
+        inject(Router).navigateByUrl('/company-incorporation').then(r => r);
+      }
+      return false;
     }
-    // if (user.loggedInUser && user.userData.user_type === 'startup') {
-    //   inject(Router).navigateByUrl('/startup').then(r => r)
-    //   return false;
-    // }
-    // else if (user.loggedInUser && user.userData.user_type === 'investor') {
-    //   inject(Router).navigateByUrl('/investor').then(r => r)
-    //   return false;
-    // }
-    // else if(user.loggedInUser && user.userData.user_type === 'admin') {
-    //   inject(Router).navigateByUrl('/admin').then(r => r)
-    //   return false;
-    // }
 
-    return true
+    return true;
 
   };
 
